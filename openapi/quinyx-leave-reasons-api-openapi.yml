@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Leave Reasons API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Leave Reasons
+paths:
+  /users/leave-reasons:
+    get:
+      tags:
+      - Leave Reasons
+      summary: Returns list of leave reasons
+      description: Returns list of leave reasons
+      operationId: e5fd7d826054be45710680505ab8c092
+      responses:
+        '200':
+          description: Leave reason list
+          content:
+            application/json:
+              schema:
+                properties:
+                  leaveReasons:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LeaveReason'
+                type: object
+      security:
+      - BearerAuth: []
+      x-audience: public
+components:
+  schemas:
+    LeaveReason:
+      description: Leave Reason Model
+      properties:
+        id:
+          type: string
+          example: I2WBgosnFVE_8v58HOxF1.ARrDgOqLcihwZAkPusTGU-
+        name:
+          type: string
+          example: Sick leave
+      type: object
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

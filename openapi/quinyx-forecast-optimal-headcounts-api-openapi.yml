@@ -1,0 +1,354 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Forecast Optimal Headcounts API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Forecast Optimal Headcounts
+  x-displayName: Forecast Optimal Headcounts
+paths:
+  /v2/forecast-calculation/groups/{groupId}/optimal-headcounts/{optimalHeadcountId}:
+    post:
+      tags:
+      - Forecast Optimal Headcounts
+      summary: Calculate optimal headcount by id
+      operationId: calculateOptimalHeadcountsById
+      parameters:
+      - name: optimalHeadcountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-calculation_OptimalHeadcountDatasetIntegrationRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-calculation_CalculatedDatasetResponse'
+      x-audience: public
+  /v2/forecast-calculation/groups/{groupId}/optimal-headcounts:
+    get:
+      tags:
+      - Forecast Optimal Headcounts
+      summary: Calculate optimal headcounts for group, excluding limit rules
+      operationId: calculateOptimalHeadcounts
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-calculation_OptimalHeadcountDatasetByGroupResponse'
+      x-audience: public
+  /v2/forecast-settings/optimal-headcounts:
+    get:
+      tags:
+      - Forecast Optimal Headcounts
+      summary: Get all optimal headcounts for the customer
+      operationId: getOptimalHeadcounts
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-settings_OptimalHeadcount'
+      x-audience: public
+components:
+  schemas:
+    forecast-calculation_AggregatedBlock:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:15:00Z'
+        value:
+          type: number
+          format: double
+          example: 12.5
+        editedValue:
+          type: number
+          format: double
+          example: 13
+        runId:
+          type: string
+          example: run-7f3c2a1b
+        runTimeStamp:
+          type: string
+          format: date-time
+          example: '2024-01-15T07:55:00Z'
+    forecast-calculation_OptimalHeadcountDatasetIntegrationRequest:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          example: '2024-01-15T18:00:00Z'
+        dataType:
+          type: string
+          enum:
+          - ACTUAL
+          - BUDGET
+          - FORECAST
+          example: FORECAST
+      required:
+      - dataType
+      - end
+      - start
+    forecast-calculation_CalculatedDatasetResponse:
+      type: object
+      properties:
+        dataset:
+          $ref: '#/components/schemas/forecast-calculation_DatasetAggregatedBlockLocalTime'
+        id:
+          type: string
+          example: calc-7f3c2a1b
+        src:
+          type: string
+          example: FORECAST
+        groupId:
+          type: integer
+          format: int32
+          example: 42
+    forecast-calculation_DatasetAggregatedBlockLocalTime:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-calculation_AggregatedBlockLocalTime'
+        summaryValue:
+          type: number
+          format: double
+          example: 100.5
+        editedSummaryValue:
+          type: number
+          format: double
+          example: 105
+        resolution:
+          type: integer
+          format: int32
+          example: 5
+    forecast-calculation_AggregatedBlockLocalTime:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:15:00Z'
+        value:
+          type: number
+          format: double
+          example: 12.5
+        editedValue:
+          type: number
+          format: double
+          example: 13
+    forecast-calculation_DatasetAggregatedBlock:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-calculation_AggregatedBlock'
+        summaryValue:
+          type: number
+          format: double
+          example: 100.5
+        editedSummaryValue:
+          type: number
+          format: double
+          example: 105
+        resolution:
+          type: integer
+          format: int32
+          example: 5
+    forecast-calculation_OptimalHeadcountDatasetByGroupResponse:
+      type: object
+      properties:
+        optimalHeadcountId:
+          type: string
+          example: ohc-7f3c2a1b
+        shiftTypeId:
+          type: integer
+          format: int32
+          example: 5
+        shiftTypeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        datasetsByGroupId:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/forecast-calculation_DatasetAggregatedBlock'
+    forecast-settings_OptimalHeadcount:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1f8e8b3c-9a2d-4b8e-9a2d-1f8e8b3c9a2d
+        name:
+          type: string
+          example: Optimal headcount
+          maxLength: 50
+          minLength: 0
+        description:
+          type: string
+          example: Optimal headcount description
+          maxLength: 512
+          minLength: 0
+        forecastVariableId:
+          type: integer
+          format: int32
+          example: 1
+        forecastVariableType:
+          type: string
+          example: headcount
+        forecastConfigurationId:
+          type: integer
+          format: int32
+          example: 1
+        calculatedVariableId:
+          type: string
+          format: uuid
+          example: 2f8e8b3c-9a2d-4b8e-9a2d-2f8e8b3c9a2d
+        externalId:
+          type: string
+          example: external-id-1
+          maxLength: 128
+          minLength: 0
+          pattern: '[A-Za-z0-9_\-]+'
+        shiftTypeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        aggregationType:
+          type: string
+          enum:
+          - SUM
+          - AVERAGE
+          - HOURLY_SUM
+          example: SUM
+        variableType: {}
+        src:
+          type: string
+          example: optimalHeadcount
+      required:
+      - aggregationType
+      - name
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

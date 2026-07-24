@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Schedule Availability API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Schedule Availability
+  x-displayName: Schedule Availability
+paths:
+  /v2/schedule-availability/v2:
+    post:
+      tags:
+      - Schedule Availability
+      summary: Create schedule availability
+      operationId: createScheduleAvailability
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/schedule-availability_CreateScheduleAvailabilityInternalIdsModel'
+        required: true
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/schedule-availability/v2/groups/{groupId}:
+    get:
+      tags:
+      - Schedule Availability
+      summary: Get schedule availability by group id
+      operationId: getScheduleAvailabilityByGroup
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/schedule-availability_IntegrationInternalIdsScheduleAvailability'
+      x-audience: public
+  /v2/schedule-availability/v2/employees/{employeeId}:
+    get:
+      tags:
+      - Schedule Availability
+      summary: Get schedule availability by employee id
+      operationId: getScheduleAvailabilityByEmployee
+      parameters:
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/schedule-availability_IntegrationInternalIdsScheduleAvailability'
+      x-audience: public
+components:
+  schemas:
+    schedule-availability_IntegrationInternalIdsScheduleAvailability:
+      type: object
+      properties:
+        startDateTime:
+          type: string
+          example: '2026-01-15T08:00:00'
+        endDateTime:
+          type: string
+          example: '2026-01-15T17:00:00'
+        employeeId:
+          type: integer
+          format: int64
+          example: 12345
+        unitGroupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        sectionGroupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+    schedule-availability_CreateScheduleAvailabilityInternalIdsModel:
+      type: object
+      properties:
+        startDateTime:
+          type: string
+          example: '2026-01-15T08:00:00'
+        endDateTime:
+          type: string
+          example: '2026-01-15T17:00:00'
+        employeeId:
+          type: integer
+          format: int64
+          example: 12345
+        groupId:
+          type: integer
+          format: int32
+          example: 42
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

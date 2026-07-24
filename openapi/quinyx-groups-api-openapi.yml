@@ -1,0 +1,577 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Groups API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Groups
+  x-displayName: Groups
+paths:
+  /v2/organisation/groups/{groupId}:
+    get:
+      tags:
+      - Groups
+      summary: Get group by id
+      description: Get group details identified by groupId.
+      operationId: getSingleGroupDetails
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns group details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupDetailsResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_UnauthorizedErrorResponseDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation_ValidationErrorDto'
+        '404':
+          description: The group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_ApiErrorResponseDto'
+      x-audience: public
+    put:
+      tags:
+      - Groups
+      summary: Update group
+      description: Update a group identified by given groupId.
+      operationId: updateGroup
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organisation_GroupUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: Group created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupDetailsResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation_ValidationErrorDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_UnauthorizedErrorResponseDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation_ValidationErrorDto'
+        '404':
+          description: The group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_ApiErrorResponseDto'
+      x-audience: public
+    delete:
+      tags:
+      - Groups
+      summary: Delete a group
+      description: Deletes the group record with identified by aa given groupId.
+      operationId: deleteGroup
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: Group record successfully deleted.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_UnauthorizedErrorResponseDto'
+        '403':
+          description: The user doesn't have permission to delete the record
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation_ValidationErrorDto'
+        '404':
+          description: Domain or group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_ApiErrorResponseDto'
+      x-audience: public
+  /v2/organisation/groups:
+    post:
+      tags:
+      - Groups
+      summary: Create group
+      description: Create a new group from a given DTO.
+      operationId: createGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organisation_GroupCreationRequest'
+        required: true
+      responses:
+        '200':
+          description: Group created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupDetailsResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation_ValidationErrorDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_UnauthorizedErrorResponseDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation_ValidationErrorDto'
+        '404':
+          description: The group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_ApiErrorResponseDto'
+      x-audience: public
+  /v2/organisation/groups/{groupId}/children:
+    get:
+      tags:
+      - Groups
+      summary: List child groups
+      description: Get children groups from a given groupId.
+      operationId: getGroupChildren
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: Zero-based page index (0..N)
+        required: false
+        schema:
+          type: integer
+          default: 0
+          minimum: 0
+      - name: size
+        in: query
+        description: The size of the page to be returned
+        required: false
+        schema:
+          type: integer
+          default: 20
+          minimum: 1
+      - name: sort
+        in: query
+        description: 'Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.'
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Returns group details.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation_GroupDetailsResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_UnauthorizedErrorResponseDto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation_ValidationErrorDto'
+        '404':
+          description: The group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_ApiErrorResponseDto'
+      x-audience: public
+components:
+  schemas:
+    organisation_AddressDto:
+      type: object
+      properties:
+        country:
+          type: string
+          example: SE
+        address:
+          type: string
+          example: 123 Main Street
+        zipCode:
+          type: string
+          example: '11120'
+        city:
+          type: string
+          example: Stockholm
+        municipality:
+          type: string
+          example: Stockholm Municipality
+        timeZone:
+          type: string
+          example: Europe/Stockholm
+    organisation_UnitAttributesDto:
+      type: object
+      properties:
+        unitId:
+          type: integer
+          format: int32
+          example: 170305
+        address:
+          $ref: '#/components/schemas/organisation_AddressDto'
+          description: If not provided will be ignored.
+        costCentre:
+          type: integer
+          format: int32
+          description: If not provided will set current value to 0.
+          example: 1001
+        managerId:
+          type: integer
+          format: int32
+          description: If not provided will set current value to 0.
+          example: 1234
+        currency:
+          type: string
+          description: Currency can not be null
+          example: SEK
+        publishedTo:
+          type: string
+          format: date
+          description: publishedTo, if not provided will set current value to current Date.
+          example: '2026-04-20'
+        blockPasswordLogin:
+          type: boolean
+          description: If not explicitly provided will set existing value to false.
+          example: false
+        shiftRules:
+          $ref: '#/components/schemas/organisation_ShiftRulesDto'
+          writeOnly: true
+        shiftRulesDto:
+          $ref: '#/components/schemas/organisation_ShiftRulesDto'
+    organisation_DistrictAttributesDto:
+      type: object
+      properties:
+        districtId:
+          type: integer
+          format: int32
+          example: 567
+        managerId:
+          type: integer
+          format: int32
+          description: If not provided will set current value to null.
+          example: 1234
+    organisation_UnauthorizedErrorResponseDto:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          example: 1776706090492
+        path:
+          type: string
+          example: /v2/organisation/groups/123
+        status:
+          type: integer
+          format: int32
+          example: 401
+        error:
+          type: string
+          example: invalid_token
+        requestId:
+          type: string
+          example: 32dbf81e-314892
+        error_description:
+          type: string
+          example: Unauthorized exception
+    organisation_GroupDetailsResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 170305
+        name:
+          type: string
+          example: Stockholm Central
+        groupType:
+          type: string
+          enum:
+          - domain
+          - district
+          - unit
+          - section
+          example: unit
+        parentGroupId:
+          type: integer
+          format: int32
+          example: 170300
+        districtAttributesDto:
+          $ref: '#/components/schemas/organisation_DistrictAttributesDto'
+        sectionAttributesDto:
+          $ref: '#/components/schemas/organisation_SectionAttributesDto'
+        unitAttributesDto:
+          $ref: '#/components/schemas/organisation_UnitAttributesDto'
+    organisation_SectionAttributesDto:
+      type: object
+      properties:
+        sectionId:
+          type: integer
+          format: int32
+          example: 789
+        managerGroupId:
+          type: integer
+          format: int32
+          description: If not provided will set current value to 0.
+          example: 170305
+        costCentre:
+          type: integer
+          format: int32
+          description: If not provided will set current value to 0.
+          example: 1001
+        managerId:
+          type: integer
+          format: int32
+          description: If not provided will set current value to 0.
+          example: 1234
+    organisation_ValidationErrorDto:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+          example: fieldName
+        message:
+          type: string
+          example: error.organisation.forbidden
+        severity:
+          type: string
+          example: ERROR
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
+          example: {}
+    organisation_GroupCreationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Stockholm Central
+        groupType:
+          type: string
+          example: unit
+        parentGroupId:
+          type: integer
+          format: int32
+          example: 170300
+        districtAttributesDto:
+          $ref: '#/components/schemas/organisation_DistrictAttributesDto'
+        sectionAttributesDto:
+          $ref: '#/components/schemas/organisation_SectionAttributesDto'
+        unitAttributesDto:
+          $ref: '#/components/schemas/organisation_UnitAttributesDto'
+      required:
+      - parentGroupId
+    organisation_ApiErrorResponseDto:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          example: '2026-04-20T18:11:08.182+00:00'
+        status:
+          type: integer
+          format: int32
+          example: 404
+        error:
+          type: string
+          example: Not Found
+        path:
+          type: string
+          example: /integration/groups/123
+    organisation_ShiftRulesDto:
+      type: object
+      properties:
+        maxHoursPerDay:
+          type: number
+          format: double
+          example: 8
+        maxHoursPerWeek:
+          type: number
+          format: double
+          example: 40
+        minRest:
+          type: integer
+          format: int32
+          example: 11
+        numberOfBreaks:
+          type: integer
+          format: int32
+          example: 1
+    organisation_GroupUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Stockholm Central
+          minLength: 1
+        parentGroupId:
+          type: integer
+          format: int32
+          description: Required for all group types except 'domain'
+          example: 170300
+        groupType:
+          type: string
+          enum:
+          - domain
+          - district
+          - unit
+          - section
+          example: unit
+          pattern: ^(domain|district|unit|section)$
+        districtAttributesDto:
+          $ref: '#/components/schemas/organisation_DistrictAttributesDto'
+          description: Used for group type 'district'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
+        sectionAttributesDto:
+          $ref: '#/components/schemas/organisation_SectionAttributesDto'
+          description: Required for group type 'section'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
+        unitAttributesDto:
+          $ref: '#/components/schemas/organisation_UnitAttributesDto'
+          description: Required for group type 'unit'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
+      required:
+      - groupType
+      - name
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

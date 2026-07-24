@@ -1,0 +1,535 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Tags API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Tags
+  x-displayName: Tags
+paths:
+  /v2/tags/categories/{categoryExternalId}/tags/{tagExternalId}:
+    get:
+      tags:
+      - Tags
+      summary: Get tag by external category id and external tag id
+      description: Retrieves a specific tag using its category external ID and tag external ID
+      operationId: getTagByExternalId
+      parameters:
+      - name: categoryExternalId
+        in: path
+        description: External identifier of the tag category
+        required: true
+        schema:
+          type: string
+      - name: tagExternalId
+        in: path
+        description: External identifier of the tag
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tag found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tags_TagIntegration'
+      x-audience: public
+    put:
+      tags:
+      - Tags
+      summary: Update tag
+      description: Updates all values of an existing tag. The categoryExternalId cannot be changed
+      operationId: updateTagByExternalId
+      parameters:
+      - name: categoryExternalId
+        in: path
+        description: External identifier of the tag category
+        required: true
+        schema:
+          type: string
+      - name: tagExternalId
+        in: path
+        description: External identifier of the tag to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Tag details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tags_TagIntegration'
+        required: true
+      responses:
+        '200':
+          description: Tag successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tags_TagIntegration'
+      x-audience: public
+    delete:
+      tags:
+      - Tags
+      summary: Delete tag
+      description: Deletes the tag with the given external category and tag ID
+      operationId: deleteTagByExternalId
+      parameters:
+      - name: categoryExternalId
+        in: path
+        description: External identifier of the tag category
+        required: true
+        schema:
+          type: string
+      - name: tagExternalId
+        in: path
+        description: External identifier of the tag to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Tag successfully deleted
+        '404':
+          description: Tag or tag category not found
+      x-audience: public
+  /v2/tags/categories/{categoryExternalId}/tags:
+    get:
+      tags:
+      - Tags
+      summary: List tags by external category id
+      description: 'Retrieves all tags associated with the specified category external ID.<br />Please use [GET /v2/categories/{categoryExternalId}/tags](#/Tag%20Integration%20API/getPagedTagsByExternalCategoryId) instead.<br />Removal date: December 10, 2025.'
+      operationId: getTagsByExternalCategoryId
+      parameters:
+      - name: categoryExternalId
+        in: path
+        description: External identifier of the tag category
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of tags retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/tags_TagIntegration'
+      deprecated: true
+      x-audience: public
+    post:
+      tags:
+      - Tags
+      summary: Create tag
+      description: Creates a new tag within the specified category. The created tag is returned
+      operationId: createTagByExternalId
+      parameters:
+      - name: categoryExternalId
+        in: path
+        description: External identifier of the tag category
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Tag details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tags_TagIntegration'
+        required: true
+      responses:
+        '200':
+          description: Tag successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tags_TagIntegration'
+      x-audience: public
+  /v2/tags/v2/categories/{categoryExternalId}/tags:
+    get:
+      tags:
+      - Tags
+      summary: List paginated tags by external category id
+      description: Retrieves a paginated collection of tags associated with the specified category external ID.<br />Pagination is defined by cursor and size.<br />If the cursor is omitted, the first page will be returned.<br />If the size is omitted, a default size of 1000 will be used
+      operationId: getPagedTagsByExternalCategoryId
+      parameters:
+      - name: categoryExternalId
+        in: path
+        description: External identifier of the tag category
+        required: true
+        schema:
+          type: string
+        example: LOC-001
+      - name: cursor
+        in: query
+        description: The reference point to fetch a set of results. If omitted or empty, the first page of results will be returned
+        required: false
+        allowEmptyValue: true
+        schema:
+          type: string
+        example: abcdefghijklmnopqrstuvwxyz==
+      - name: size
+        in: query
+        description: 'Number of items per page (default value: 1000, min value: 1, max value: 10000)'
+        required: false
+        allowEmptyValue: true
+        schema:
+          type: integer
+          default: 1000
+          maximum: 10000
+          minimum: 1
+        example: 100
+      responses:
+        '200':
+          description: Paged collection of tags retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tags_PagedResponse'
+      x-audience: public
+  /v2/tags/categories:
+    get:
+      tags:
+      - Tags
+      summary: List tag categories
+      description: Retrieves a list of all tag categories associated with the domain group
+      operationId: getTagCategoriesExternal
+      responses:
+        '200':
+          description: List of tag categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/tags_TagCategory_Default'
+      x-audience: public
+  /v2/tags/categories/{categoryExternalId}:
+    get:
+      tags:
+      - Tags
+      summary: Get tag category by external id
+      description: Retrieves a tag category using its external identifier
+      operationId: getTagCategoryByExternalId
+      parameters:
+      - name: categoryExternalId
+        in: path
+        description: External identifier of the tag category
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tag category found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tags_TagCategory_Default'
+      x-audience: public
+components:
+  schemas:
+    tags_TagCategoryType_Default:
+      type: string
+      description: Enumeration of possible tag types
+      enum:
+      - COST_CENTER
+      - PROJECT
+      - ACCOUNT
+      - EXTENDED
+      example: PROJECT
+    tags_TagIntegration:
+      type: object
+      description: Represents a tag with integration-specific properties
+      properties:
+        unitExternalId:
+          type: string
+          description: External identifier of the unit this tag is associated with
+          example: UNIT-001
+        categoryExternalId:
+          type: string
+          description: External identifier of the category this tag belongs to
+          example: LOC-001
+        name:
+          type: string
+          description: Name of the tag
+          example: Downtown Store
+          maxLength: 255
+          minLength: 0
+        code:
+          type: string
+          description: Code identifier for the tag
+          example: DT-001
+          maxLength: 50
+          minLength: 0
+        externalId:
+          type: string
+          description: External identifier for integration purposes
+          example: store-123
+          maxLength: 60
+          minLength: 0
+        information:
+          type: string
+          description: Additional information about the tag
+          example: Main downtown location with parking
+          maxLength: 2000
+          minLength: 0
+        uniqueScheduling:
+          type: boolean
+          description: Indicates if this tag requires unique scheduling
+          example: true
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Start date for tag validity. If set, tag start date must be between '1970-01-02' and '2038-01-19' (inclusive)
+          example: '2024-01-01'
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: End date for tag validity. If set, tag end date must be between '1970-01-02' and '2038-01-19' (inclusive)
+          example: '2024-12-31'
+        periods:
+          type: array
+          description: Operating periods for this tag
+          example:
+          - from: '2022-01-01'
+            to: '2022-01-31'
+            hours: 8
+            type: DAYS
+            count: 1
+          items:
+            $ref: '#/components/schemas/tags_Period'
+        coordinates:
+          type: array
+          description: Geographic coordinates associated with this tag
+          example:
+          - latitude: 59.334591
+            longitude: 18.06324
+            name: Stockholm Mall
+            radius: 100
+          items:
+            $ref: '#/components/schemas/tags_Coordinate'
+        customFields:
+          type: array
+          description: Custom fields for additional tag properties
+          example:
+          - label: phoneNumber
+            value: '+46123456789'
+          items:
+            $ref: '#/components/schemas/tags_CustomField'
+      required:
+      - categoryExternalId
+      - name
+      - unitExternalId
+    tags_PageMetadata:
+      type: object
+      description: Page metadata
+      properties:
+        contentSize:
+          type: integer
+          format: int32
+          description: Content size (number of content items)
+          example: 345
+        nextCursor:
+          type: string
+          description: Next page cursor. It will be empty if current page is the last page
+          example: zyxwvutsrqponmlkjihgfedcba==
+      required:
+      - contentSize
+      - nextCursor
+    tags_PagedResponse:
+      type: object
+      description: Represents a paginated collection of tags
+      properties:
+        content:
+          type: array
+          description: Page content (collection of tags)
+          items:
+            $ref: '#/components/schemas/tags_TagIntegration'
+        page:
+          $ref: '#/components/schemas/tags_PageMetadata'
+          description: This page metadata
+          example:
+            contentSize: 345
+            nextCursor: zyxwvutsrqponmlkjihgfedcba==
+      required:
+      - content
+      - page
+    tags_TagCategory_Default:
+      type: object
+      description: Represents a category for grouping tags with common characteristics
+      properties:
+        name:
+          type: string
+          description: Name of the tag category
+          example: Store Locations
+          maxLength: 255
+        tagType:
+          $ref: '#/components/schemas/tags_TagCategoryType_Default'
+          description: Type of tags in this category
+          example: PROJECT
+        color:
+          type: string
+          description: Hexadecimal color code for visual representation
+          example: '#FF5733'
+        externalId:
+          type: string
+          description: External identifier for integration purposes
+          example: LOC-001
+          maxLength: 60
+      required:
+      - name
+      - tagType
+    tags_CustomField:
+      type: object
+      description: Represents a custom field with key-value pair for additional tag properties
+      properties:
+        label:
+          type: string
+          description: Label of the custom field
+          example: Phone number
+          maxLength: 50
+          minLength: 0
+        value:
+          type: string
+          description: Value of the custom field
+          example: '+46701234567'
+          maxLength: 255
+          minLength: 0
+      required:
+      - label
+      - value
+    tags_Period:
+      type: object
+      description: Represents an operating period for a tag, defining when it is active
+      properties:
+        from:
+          type: string
+          format: date
+          description: Start date of the period
+          example: '2022-01-01'
+        to:
+          type: string
+          format: date
+          description: End date of the period
+          example: '2022-01-31'
+        hours:
+          type: number
+          format: float
+          description: Number of hours for this period
+          example: 8
+        type:
+          type: string
+          description: Type of period
+          enum:
+          - PERIOD
+          - DAYS
+          - WEEKS
+          example: DAYS
+        count:
+          type: number
+          format: float
+          description: Number of periods
+          example: 1
+      required:
+      - count
+      - from
+      - hours
+      - type
+    tags_Coordinate:
+      type: object
+      description: Represents geographic coordinates for a location
+      properties:
+        latitude:
+          type: number
+          format: float
+          description: Latitude of the location
+          example: 59.334591
+        longitude:
+          type: number
+          format: float
+          description: Longitude of the location
+          example: 18.06324
+        name:
+          type: string
+          description: Name or description of the location
+          example: Stockholm Mall
+        radius:
+          type: integer
+          format: int32
+          description: Radius of the location
+          example: 100
+          minimum: 1
+      required:
+      - latitude
+      - longitude
+      - radius
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

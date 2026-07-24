@@ -1,0 +1,288 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Opening Hours API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Opening Hours
+  x-displayName: Opening Hours
+paths:
+  /v2/opening-hours/groups/{groupId}/opening-hours/{openingHoursId}:
+    put:
+      tags:
+      - Opening Hours
+      summary: Update opening hours by id
+      operationId: updateOpeningHours
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: openingHoursId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/opening-hours_OpeningHours'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opening-hours_OpeningHours'
+      x-audience: public
+    delete:
+      tags:
+      - Opening Hours
+      summary: Delete opening hours based on opening hours id
+      operationId: deleteOpeningHours
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: openingHoursId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/opening-hours/groups/{groupId}/opening-hours:
+    get:
+      tags:
+      - Opening Hours
+      summary: Get opening hours based on group id
+      operationId: getOpeningHours
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/opening-hours_OpeningHours'
+      x-audience: public
+    post:
+      tags:
+      - Opening Hours
+      summary: Create opening hours
+      operationId: createOpeningHours
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/opening-hours_OpeningHours'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opening-hours_OpeningHours'
+      x-audience: public
+  /v2/opening-hours/groups/{groupId}/open-periods:
+    get:
+      tags:
+      - Opening Hours
+      summary: Get open periods
+      operationId: getOpeningHoursPeriods
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: periodStart
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: periodEnd
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/opening-hours_OpenPeriod'
+      x-audience: public
+components:
+  schemas:
+    opening-hours_WeekdayHours:
+      type: object
+      properties:
+        weekday:
+          type: integer
+          format: int32
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          example: 1
+        startTime:
+          type: string
+          example: '12:00'
+        endTime:
+          type: string
+          example: '14:00'
+        open:
+          type: boolean
+          example: true
+      required:
+      - endTime
+      - open
+      - startTime
+      - weekday
+    opening-hours_OpenPeriod:
+      type: object
+      properties:
+        open:
+          type: string
+          example: '2023-03-15T08:00:00'
+        close:
+          type: string
+          example: '2023-03-15T20:00:00'
+      required:
+      - close
+      - open
+    opening-hours_OpeningHours:
+      type: object
+      properties:
+        groupId:
+          type: integer
+          format: int32
+          example: 1234
+        name:
+          type: string
+          example: Saturday hours
+          maxLength: 50
+          minLength: 0
+        startDate:
+          type: string
+          format: date
+          example: '2023-03-15'
+        endDate:
+          type: string
+          format: date
+          example: '2023-04-20'
+        type:
+          type: string
+          enum:
+          - STANDARD
+          - SPECIAL
+          example: STANDARD
+        weekdayHours:
+          type: array
+          items:
+            $ref: '#/components/schemas/opening-hours_WeekdayHours'
+          minItems: 1
+      required:
+      - startDate
+      - type
+      - weekdayHours
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

@@ -1,0 +1,166 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Shifts API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Shifts
+paths:
+  /users/shifts:
+    get:
+      tags:
+      - Shifts
+      summary: Returns upcoming or unassigned shifts
+      description: Get employee upcoming or unassigned shifts, starting from today
+      operationId: ceca41a5670c40c386064b4879ab3eb2
+      parameters:
+      - name: filter
+        in: query
+        description: Choose upcoming or unassigned shifts
+        required: true
+        schema:
+          type: string
+          enum:
+          - upcoming
+          - unassigned
+      responses:
+        '200':
+          description: All shifts are sorted by the start time in ascending order (limited to 20 shifts, in published period, up to 90 days in the future)
+          content:
+            application/json:
+              schema:
+                properties:
+                  shifts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Shift'
+                type: object
+        '400':
+          description: When invalid filter is applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidShiftFilter'
+      security:
+      - BearerAuth: []
+      x-audience: public
+components:
+  schemas:
+    Shift:
+      description: Shift Model
+      properties:
+        id:
+          type: string
+          example: fQRK0r5s9S4dXwRa_u5vjIKfHzBhzO9wpCjJ583dRX6.oxr63g--
+        employeeName:
+          type: string
+          example: John Doe
+        from:
+          type: string
+          example: '2019-02-01 09:00:00'
+        to:
+          type: string
+          example: '2019-02-01 17:00:00'
+        shiftType:
+          type: string
+          example: Day Shift
+        unit:
+          type: string
+          example: Unit name
+        section:
+          type: string
+          example: Section name
+        breaksDuration:
+          type: integer
+          example: 60
+        breaks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Break'
+      type: object
+    InvalidShiftFilter:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, unassigned'
+          type: object
+      type: object
+    Break:
+      description: Shift Break Model
+      properties:
+        start:
+          type: string
+          example: '2019-02-01 11:30:00'
+        end:
+          type: string
+          example: '2019-02-01 12:30:00'
+      type: object
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

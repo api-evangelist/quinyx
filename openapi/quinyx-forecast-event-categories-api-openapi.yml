@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Forecast Event Categories API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Forecast Event Categories
+  x-displayName: Forecast Event Categories
+paths:
+  /v2/forecast-events/groups/{groupId}/event-categories/{eventCategoryId}:
+    get:
+      tags:
+      - Forecast Event Categories
+      summary: Get forecast event category
+      operationId: getEventCategory
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: eventCategoryId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-events_EventCategory'
+      x-audience: public
+    put:
+      tags:
+      - Forecast Event Categories
+      summary: Update forecast event category
+      operationId: updateEventCategory
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: eventCategoryId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-events_EventCategory'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/forecast-events_EventCategory'
+      x-audience: public
+    delete:
+      tags:
+      - Forecast Event Categories
+      summary: Delete forecast event category
+      operationId: deleteEventCategory
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: eventCategoryId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/forecast-events/groups/{groupId}/event-categories:
+    get:
+      tags:
+      - Forecast Event Categories
+      summary: List forecast event categories for group
+      operationId: getEventCategories
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-events_EventCategory'
+      x-audience: public
+    post:
+      tags:
+      - Forecast Event Categories
+      summary: Create forecast event category for the domain
+      operationId: createEventCategory
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-events_EventCategory'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/forecast-events_EventCategory'
+      x-audience: public
+components:
+  schemas:
+    forecast-events_EventCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        type:
+          type: string
+          enum:
+          - CUSTOM
+          - BANK_HOLIDAY
+          example: CUSTOM
+        active:
+          type: boolean
+          example: true
+        hasEvents:
+          type: boolean
+          example: true
+        hasAutomaticEffect:
+          type: boolean
+          example: false
+        name:
+          type: string
+          example: Local football match
+          maxLength: 50
+          minLength: 0
+        defaultEventEffectType:
+          type: string
+          enum:
+          - RELATIVE
+          - CLOSED
+          - ABSOLUTE
+          - AUTOMATIC
+          example: RELATIVE
+        defaultEventEffectValue:
+          type: number
+          format: double
+          example: 1.25
+      required:
+      - active
+      - name
+      - type
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

@@ -1,0 +1,352 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Absences API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Absences
+  x-displayName: Absences
+paths:
+  /v2/schedule/groups/{groupId}/absences:
+    post:
+      tags:
+      - Absences
+      summary: Create full-time absence for employee
+      operationId: addAbsence
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: overlapAbsences
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: ignoreOverridableValidations
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/schedule_AbsenceRequest'
+        required: true
+      responses:
+        '200':
+          description: Response created absence details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schedule_AbsenceResponse'
+        '400':
+          description: "In case one of the input values (shiftsInThisPeriod, begin, end,\n  absenceRateDirection, splitType, ignoreOverridableValidations\n   overlapAbsences) are invalid.\n"
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+      x-audience: public
+  /v2/schedule/groups/{groupId}/absences/part-time:
+    post:
+      tags:
+      - Absences
+      summary: Create part-time absence for employee
+      operationId: addPartTimeAbsence
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: overlapAbsences
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: ignoreOverridableValidations
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: absenceRate
+        in: query
+        required: true
+        schema:
+          type: number
+          format: double
+          maximum: 99.9999
+          minimum: 0.0001
+      - name: absenceRateDirection
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - FROM_START
+          - FROM_END
+          - WHOLE_SHIFT
+      - name: splitType
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DAY
+          - SHIFT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/schedule_AbsenceRequest'
+        required: true
+      responses:
+        '200':
+          description: Response created part-time absence details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schedule_AbsenceResponse'
+        '400':
+          description: '                      In case one of the input values (shiftsInThisPeriod, begin, end, absenceRateDirection, splitType, ignoreOverridableValidations overlapAbsences, splitType, absenceRate, absenceRateDirection) are invalid.
+
+            '
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+      x-audience: public
+  /v2/schedule/groups/{groupId}/absences/{absenceId}:
+    delete:
+      tags:
+      - Absences
+      summary: Delete absence for employee
+      operationId: deleteAbsence
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: absenceId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: reassignBackShifts
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '202':
+          description: Absence has been successfully deleted.
+        '400':
+          description: '                      In case one of the input values (groupId, absenceId, reassignBackShifts) are invalid.
+
+            '
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+        '406':
+          description: Not Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schedule_AbsenceValidationError'
+      x-audience: public
+components:
+  schemas:
+    schedule_AbsenceValidationError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: ABSENCE_OVERLAP
+        text:
+          type: string
+          example: Absence overlaps with existing absence
+        severity:
+          type: string
+          example: ERROR
+        localisedMessage:
+          type: string
+          example: Absence overlaps with existing absence
+        shiftId:
+          type: integer
+          format: int64
+          example: 1
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
+    schedule_AbsenceResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        groupId:
+          type: integer
+          format: int32
+          example: 100
+        absenceTypeId:
+          type: integer
+          format: int32
+          example: 1
+        employeeId:
+          type: integer
+          format: int32
+          example: 100
+        begin:
+          type: string
+          example: '2026-01-01T08:00:00'
+        end:
+          type: string
+          example: '2026-01-01T17:00:00'
+        employeeAttested:
+          type: boolean
+          example: false
+        managerAttested:
+          type: boolean
+          example: false
+        absenceScheduleId:
+          type: integer
+          format: int64
+          example: 10
+        shiftsInThisPeriod:
+          type: string
+          enum:
+          - UNASSIGN
+          - DELETE
+          - KEEP
+          example: UNASSIGN
+        managerComment:
+          type: string
+          example: Approved
+    schedule_AbsenceRequest:
+      type: object
+      properties:
+        absenceTypeId:
+          type: integer
+          format: int32
+          example: 1
+        employeeId:
+          type: integer
+          format: int32
+          example: 100
+          minimum: 1
+        begin:
+          type: string
+          example: '2026-01-01T08:00:00'
+        end:
+          type: string
+          example: '2026-01-01T17:00:00'
+        employeeAttested:
+          type: boolean
+          example: false
+        managerAttested:
+          type: boolean
+          example: false
+        absenceScheduleId:
+          type: integer
+          format: int64
+          example: 10
+        shiftsInThisPeriod:
+          type: string
+          enum:
+          - UNASSIGN
+          - DELETE
+          - KEEP
+          example: UNASSIGN
+        managerComment:
+          type: string
+          example: Approved
+          maxLength: 65535
+          minLength: 0
+      required:
+      - absenceTypeId
+      - begin
+      - employeeId
+      - end
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

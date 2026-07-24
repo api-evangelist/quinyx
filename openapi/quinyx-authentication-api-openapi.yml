@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Authentication API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Authentication
+  x-displayName: Authentication
+paths:
+  /v2/oauth/token:
+    post:
+      tags:
+      - Authentication
+      summary: Issue access token
+      description: Operation returns the security token to be used for subsequent calls to API
+      operationId: authenticated
+      parameters:
+      - name: grant_type
+        in: query
+        description: Grant type requested
+        required: true
+        schema:
+          type: string
+        example: client_credentials
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2Token'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2Token'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2Token'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2Token'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2Token'
+      x-audience: public
+  /oauth/token:
+    post:
+      tags:
+      - Authentication
+      summary: Get new access and refresh token
+      description: To get tokens using your login credentials you will need to set 'grantType' to 'password' and send it together with the 'username' and 'password'. To get tokens using refresh token you will need to set 'grantType' to 'refresh_token' and sent it together with the 'refreshToken'.
+      operationId: 55a51a4de1b282bc0fbf6e49f7560071
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - grantType
+              properties:
+                grantType:
+                  type: string
+                  enum:
+                  - password
+                  - refresh_token
+                  example: password
+                refreshToken:
+                  type: string
+                  example: SomeRandomStringThatRepresentsRefreshToken
+                username:
+                  description: Employee email address
+                  type: string
+                  example: foo@example.com
+                password:
+                  type: string
+                  example: someRandomPassword
+              type: object
+      responses:
+        '200':
+          description: Tokens are successfully created. Copy 'accessToken' and add it to 'Authorization' header in format 'Bearer accessToken'. Access token will expire in 15 minutes so use received 'refreshToken' to generate new tokens
+          content:
+            application/json:
+              schema:
+                properties:
+                  token:
+                    $ref: '#/components/schemas/TokenResponse'
+                type: object
+        '400':
+          description: Error while getting tokens.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Error while getting tokens.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidUsernamePassword'
+      x-audience: public
+components:
+  schemas:
+    InvalidUsernamePassword:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 401
+            msg:
+              type: string
+              example: INVALID_USERNAME_OR_PASSWORD
+          type: object
+      type: object
+    TokenResponse:
+      description: Token object
+      properties:
+        tokenType:
+          description: Token type. It is always Bearer.
+          type: string
+          enum:
+          - Bearer
+          example: Bearer
+        accessToken:
+          description: Access token used for authorization. Copy it to 'Authorization' header in format 'Bearer accessToken'
+          type: string
+          example: receivedAccessToken
+        expiredIn:
+          description: Expiration time for access tokens in seconds, default is 900.
+          type: integer
+          example: 900
+        refreshToken:
+          description: Refresh token used for getting new access token. It will expire in 30 days.
+          type: string
+          example: receivedRefreshToken
+      type: object
+    rest-api-uaa_OAuth2Token:
+      type: object
+      properties:
+        expires_in:
+          type: integer
+          format: int64
+          example: 3600
+        jti:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+        access_token:
+          type: string
+          example: eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJjbGllbnQifQ.signature
+        scope:
+          type: string
+          example: read write
+        token_type:
+          type: string
+          example: bearer
+    ErrorResponse:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: SOME_ERROR_MESSAGE
+          type: object
+      type: object
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

@@ -1,0 +1,317 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Forecast Static Rules API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Forecast Static Rules
+  x-displayName: Forecast Static Rules
+paths:
+  /v2/forecasts/static-rules:
+    get:
+      tags:
+      - Forecast Static Rules
+      summary: List static rules
+      operationId: getStaticRulesByGroup
+      parameters:
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+          maximum: 5000
+          minimum: 1
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+          maximum: 200
+          minimum: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_PaginatedResultListExternalStaticRule'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_PaginatedResultListExternalStaticRule'
+      x-audience: public
+    put:
+      tags:
+      - Forecast Static Rules
+      summary: Update a static rule
+      operationId: updateStaticRule
+      parameters:
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+      x-audience: public
+    post:
+      tags:
+      - Forecast Static Rules
+      summary: Create a new static rule
+      operationId: createStaticRule
+      parameters:
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+        required: true
+      responses:
+        '201':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+      x-audience: public
+  /v2/forecasts/static-rules/{externalStaticRuleId}:
+    delete:
+      tags:
+      - Forecast Static Rules
+      summary: Delete a static rule
+      operationId: deleteStaticRule
+      parameters:
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: externalStaticRuleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+components:
+  schemas:
+    forecast-data-ingestion_Pagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          format: int64
+        currentPage:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
+    forecast-data-ingestion_ExternalShiftType:
+      type: object
+      properties:
+        externalShiftTypeId:
+          type: string
+          example: EXTERNAL_SHIFT_ID
+        amount:
+          type: integer
+          format: int32
+          example: 10
+          maximum: 100000
+      required:
+      - amount
+      - externalShiftTypeId
+    forecast-data-ingestion_PaginatedResultListExternalStaticRule:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+        pagination:
+          $ref: '#/components/schemas/forecast-data-ingestion_Pagination'
+    forecast-data-ingestion_ExternalStaticRule:
+      type: object
+      properties:
+        weekdays:
+          type: array
+          items:
+            type: integer
+            format: int32
+            enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+          maxItems: 7
+          minItems: 1
+        repeatPeriod:
+          type: integer
+          format: int32
+          example: 1
+          maximum: 100
+        shiftType:
+          $ref: '#/components/schemas/forecast-data-ingestion_ExternalShiftType'
+        startTime:
+          type: string
+          example: '12:00'
+        endTime:
+          type: string
+          example: '13:00'
+        startDate:
+          type: string
+          format: date
+          example: '2022-01-13'
+        endDate:
+          type: string
+          format: date
+          example: '2022-02-20'
+        comment:
+          type: string
+          example: Holiday closure
+      required:
+      - endTime
+      - repeatPeriod
+      - shiftType
+      - startDate
+      - startTime
+      - weekdays
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

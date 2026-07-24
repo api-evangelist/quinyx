@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Pay Schedules API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Pay Schedules
+  x-displayName: Pay Schedules
+paths:
+  /v2/employee/pay-schedules/{id}/periods/{periodDate}:
+    get:
+      tags:
+      - Pay Schedules
+      summary: Get most recent pay period ending before date
+      operationId: getPayPeriod
+      parameters:
+      - name: payScheduleRestId
+        in: query
+        description: Pay Schedule identifier
+        required: true
+        schema:
+          type: string
+        examples:
+          internal-id:
+            summary: Internal ID
+            description: Internal ID (Integer)
+            value: 9
+          external-id:
+            summary: External ID
+            description: External ID prefixed with 'xrefId:', 1-64 characters long, consisting of alphanumerics and . _ -
+            value: xrefId:my-external-id
+      - name: periodDate
+        in: path
+        description: 'Returned period will be the most recent one that ended before this date. Usually: current date. Format: YYYY-MM-DD.'
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2026-02-10'
+      responses:
+        '200':
+          description: Previous pay period along with list of allowed employees and unit IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee_IntegrationPayPeriodResponse'
+        '401':
+          description: Unauthorized. Missing Bearer token.
+        '403':
+          description: 'Forbidden. Missing permission: pay_schedules:read'
+        '404':
+          description: Pay schedule, or credential's customer is not found
+      x-audience: public
+components:
+  schemas:
+    employee_IntegrationPayPeriodResponse:
+      type: object
+      properties:
+        payrollSystemId:
+          type: integer
+          format: int32
+        payPeriod:
+          type: 'null'
+          $ref: '#/components/schemas/employee_IntegrationPayPeriod'
+          description: The previous pay period relative to the current date. Null if no previous period exists (e.g., this is the first pay cycle or the schedule hasn't started yet).
+        employeeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          uniqueItems: true
+        unitIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          uniqueItems: true
+    employee_IntegrationPayPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date
+        end:
+          type: string
+          format: date
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

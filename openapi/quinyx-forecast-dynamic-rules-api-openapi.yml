@@ -1,0 +1,281 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Forecast Dynamic Rules API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Forecast Dynamic Rules
+  x-displayName: Forecast Dynamic Rules
+paths:
+  /v2/forecasts/dynamic-rules:
+    get:
+      tags:
+      - Forecast Dynamic Rules
+      summary: List dynamic rules
+      operationId: getDynamicRulesByGroup
+      parameters:
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_ExternalDynamicRule'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_ExternalDynamicRule'
+      x-audience: public
+    put:
+      tags:
+      - Forecast Dynamic Rules
+      summary: Update a dynamic rule
+      operationId: updateDynamicRule
+      parameters:
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_ExternalDynamicRule'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+    post:
+      tags:
+      - Forecast Dynamic Rules
+      summary: Create a new dynamic rule
+      operationId: createDynamicRule
+      parameters:
+      - name: externalUnitId
+        in: query
+        description: External Group Id
+        required: true
+        schema:
+          type: string
+        example: unitId
+      - name: externalSectionId
+        in: query
+        description: External Section Id
+        required: false
+        schema:
+          type: string
+        example: sectionId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_ExternalDynamicRule'
+        required: true
+      responses:
+        '201':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_ExternalDynamicRule'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  /v2/forecasts/dynamic-rules/{externalDynamicRuleId}:
+    delete:
+      tags:
+      - Forecast Dynamic Rules
+      summary: Delete a dynamic rule
+      operationId: deleteDynamicRule
+      parameters:
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: externalDynamicRuleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+components:
+  schemas:
+    forecast-data-ingestion_ExternalShiftType:
+      type: object
+      properties:
+        externalShiftTypeId:
+          type: string
+          example: EXTERNAL_SHIFT_ID
+        amount:
+          type: integer
+          format: int32
+          example: 10
+          maximum: 100000
+      required:
+      - amount
+      - externalShiftTypeId
+    forecast-data-ingestion_ExternalDynamicRule:
+      type: object
+      properties:
+        forecastExternalVariableId:
+          type: string
+          example: EXTERNAL_VAR
+        amount:
+          type: integer
+          format: int64
+          example: 100
+          maximum: 99999999999
+        weekdays:
+          type: array
+          items:
+            type: integer
+            format: int32
+            enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+          maxItems: 7
+          minItems: 1
+        startTime:
+          type: string
+          example: '12:00'
+        endTime:
+          type: string
+          example: '13:00'
+        shiftTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ExternalShiftType'
+          minItems: 1
+      required:
+      - amount
+      - endTime
+      - forecastExternalVariableId
+      - shiftTypes
+      - startTime
+      - weekdays
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

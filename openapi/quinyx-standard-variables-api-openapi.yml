@@ -1,0 +1,335 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Standard Variables API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Standard Variables
+  x-displayName: Standard Variables
+paths:
+  /v2/statistics/standard-variables:
+    post:
+      tags:
+      - Standard Variables
+      summary: List standard variables
+      description: Fetches standard variables from the statistics service.
+      operationId: getStatistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/statistics_AdvancedStatisticsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/statistics_Statistic'
+      x-audience: public
+components:
+  schemas:
+    statistics_AdvancedStatisticsRequest:
+      type: object
+      properties:
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        period:
+          $ref: '#/components/schemas/statistics_StatisticsPeriod'
+        variables:
+          type: array
+          items:
+            type: string
+            enum:
+            - scheduled-hours
+            - worked-hours
+            - leave-hours
+            - optimal-hours
+            - forecast-hours
+            - forecast-sales
+            - actual-sales
+            - actual-staff-cost
+            - forecast-staff-cost
+            - base-schedule-hours
+            - productive-hours
+            - kpi-scheduled-hours
+            - kpi-scheduled-hours-excl-ut
+            - kpi-worked-hours
+            - scheduled-staff-cost
+            - scheduled-staff-cost-excluding-absences
+            - scheduled-hours-excluding-absences
+            - worked-hours-excluding-absences
+            - expected-staff-cost
+            - scheduled-break-hours
+            - punched-break-hours
+            - base-schedule-cost
+            - expected-kpi-scheduled-hours
+            - expected-kpi-worked-hours
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/statistics_Filter'
+        baseScheduleData:
+          $ref: '#/components/schemas/statistics_BaseScheduleData'
+        baseScheduleIds:
+          type: array
+          items:
+            type: string
+        displayItems:
+          type: array
+          items:
+            type: string
+            enum:
+            - people
+            - shifts
+            - tasks
+            - punches
+            - absences
+        laborView:
+          type: boolean
+          example: false
+        statisticsFilterTypes:
+          type: string
+          enum:
+          - and
+          - or
+          example: and
+          writeOnly: true
+        people-filter-type:
+          type: string
+          enum:
+          - and
+          - or
+          example: and
+        shifts-filter-type:
+          type: string
+          enum:
+          - and
+          - or
+          example: and
+        tasks-filter-type:
+          type: string
+          enum:
+          - and
+          - or
+          example: and
+        punches-filter-type:
+          type: string
+          enum:
+          - and
+          - or
+          example: and
+        absences-filter-type:
+          type: string
+          enum:
+          - and
+          - or
+          example: and
+    statistics_StatisticPeriodValue:
+      type: object
+      properties:
+        start:
+          type: string
+          example: '2026-01-01T00:00:00'
+        end:
+          type: string
+          example: '2026-01-01T23:59:59'
+        value:
+          type: number
+          format: double
+          example: 100
+        employeeId:
+          type: integer
+          format: int32
+          example: 1
+    statistics_TimeRangeFilter:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        from:
+          type: string
+          example: 08:00
+        to:
+          type: string
+          example: '17:00'
+    statistics_BaseScheduleData:
+      type: object
+      properties:
+        baseScheduleId:
+          type: string
+          example: abc123
+        dayIndex:
+          type: integer
+          format: int32
+          example: 0
+    statistics_Filter:
+      type: object
+      properties:
+        name:
+          type: string
+          enum:
+          - employee
+          - employee-skill
+          - employee-section
+          - employee-unit
+          - staff-category
+          - shift-type
+          - shift-status
+          - section
+          - shift-id
+          - shift-start
+          - shift-end
+          - task-status
+          - task-type
+          - task-section
+          - punch-type
+          - punch-id
+          - absence-type
+          - absence-shift-id
+          - attest-status
+          - absence-attest-status
+          - punch-attest-status
+          - tag-ids
+          - agreement
+          - base-schedule
+          example: employee
+        values:
+          type: array
+          items:
+            type: integer
+            format: int32
+        timeRange:
+          $ref: '#/components/schemas/statistics_TimeRangeFilter'
+    statistics_StatisticsPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          example: '2026-01-01T00:00:00'
+        end:
+          type: string
+          example: '2026-01-31T23:59:59'
+        aggregation-type:
+          type: string
+          enum:
+          - m
+          - H
+          - D
+          - W
+          - M
+          example: D
+        aggregation-value:
+          type: integer
+          format: int32
+          example: 1
+    statistics_Statistic:
+      type: object
+      properties:
+        variable:
+          type: string
+          enum:
+          - scheduled-hours
+          - worked-hours
+          - leave-hours
+          - optimal-hours
+          - forecast-hours
+          - forecast-sales
+          - actual-sales
+          - actual-staff-cost
+          - forecast-staff-cost
+          - base-schedule-hours
+          - productive-hours
+          - kpi-scheduled-hours
+          - kpi-scheduled-hours-excl-ut
+          - kpi-worked-hours
+          - scheduled-staff-cost
+          - scheduled-staff-cost-excluding-absences
+          - scheduled-hours-excluding-absences
+          - worked-hours-excluding-absences
+          - expected-staff-cost
+          - scheduled-break-hours
+          - punched-break-hours
+          - base-schedule-cost
+          - expected-kpi-scheduled-hours
+          - expected-kpi-worked-hours
+          example: scheduled-hours
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/statistics_StatisticPeriodValue'
+        total-value:
+          type: number
+          format: double
+          example: 100
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

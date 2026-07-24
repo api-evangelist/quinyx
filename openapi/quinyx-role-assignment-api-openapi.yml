@@ -1,0 +1,772 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Role Assignment API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Role Assignment
+paths:
+  /hr/v3/role-assignments:
+    get:
+      summary: List role assignments
+      description: Returns a paginated list of role assignments.
+      operationId: listRoleAssignments
+      parameters:
+      - name: pageToken
+        in: query
+        description: Cursor for the next page of results.
+        required: false
+        schema:
+          type: string
+          example: eyJpZCI6MTAwfQ
+      - name: pageSize
+        in: query
+        description: Maximum number of items to return.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 50
+          example: 50
+          maximum: 100
+          minimum: 1
+      - name: idIn
+        in: query
+        description: Filter by id (IN)
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for id with operator IN
+          items:
+            type: string
+          maxItems: 50
+      - name: employeeIdIn
+        in: query
+        description: Filter by employeeId (IN)
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for employeeId with operator IN
+          items:
+            type: string
+          maxItems: 50
+      - name: groupIdIn
+        in: query
+        description: Filter by groupId (IN)
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for groupId with operator IN
+          items:
+            type: string
+          maxItems: 50
+      - name: roleIdIn
+        in: query
+        description: Filter by roleId (IN)
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for roleId with operator IN
+          items:
+            type: string
+          maxItems: 50
+      - name: startDateGte
+        in: query
+        description: Filter by startDate (GTE)
+        schema:
+          type: string
+      - name: startDateLte
+        in: query
+        description: Filter by startDate (LTE)
+        schema:
+          type: string
+      - name: endDateGte
+        in: query
+        description: Filter by endDate (GTE)
+        schema:
+          type: string
+      - name: endDateLte
+        in: query
+        description: Filter by endDate (LTE)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security_CursorPageRoleAssignmentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/security_ProblemDetail'
+                - $ref: '#/components/schemas/security_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/role-assignments
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                    - detail: name is mandatory
+                      pointer: '#/name'
+                    instance: /hr/v3/role-assignments
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /hr/v3/role-assignments
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /hr/v3/role-assignments
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/role-assignments
+      security:
+      - OAuth2ClientCredentials:
+        - hr:role-assignments:read
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Role Assignment
+      tags:
+      - Role Assignment
+    post:
+      summary: Create a role assignment
+      description: Creates a new role assignment for an employee.
+      operationId: createRoleAssignment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/security_RoleAssignmentRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security_RoleAssignmentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/security_ProblemDetail'
+                - $ref: '#/components/schemas/security_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/role-assignments
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                    - detail: name is mandatory
+                      pointer: '#/name'
+                    instance: /hr/v3/role-assignments
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /hr/v3/role-assignments
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /hr/v3/role-assignments
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/role-assignments
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/role-assignments
+      security:
+      - OAuth2ClientCredentials:
+        - hr:role-assignments:create
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Role Assignment
+      tags:
+      - Role Assignment
+  /hr/v3/role-assignments/{id}:
+    delete:
+      summary: Delete a role assignment
+      description: Deletes a role assignment by ID.
+      operationId: deleteRoleAssignment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /hr/v3/role-assignments/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /hr/v3/role-assignments/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/role-assignments/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/role-assignments/{id}
+      security:
+      - OAuth2ClientCredentials:
+        - hr:role-assignments:delete
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Role Assignment
+      tags:
+      - Role Assignment
+    patch:
+      summary: Update a role assignment
+      description: Updates the start date and/or end date of a role assignment.
+      operationId: updateRoleAssignment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/security_RoleAssignmentUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security_RoleAssignmentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/security_ProblemDetail'
+                - $ref: '#/components/schemas/security_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/role-assignments/{id}
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                    - detail: name is mandatory
+                      pointer: '#/name'
+                    instance: /hr/v3/role-assignments/{id}
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /hr/v3/role-assignments/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /hr/v3/role-assignments/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/role-assignments/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/role-assignments/{id}
+      security:
+      - OAuth2ClientCredentials:
+        - hr:role-assignments:update
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Role Assignment
+      tags:
+      - Role Assignment
+components:
+  schemas:
+    security_RoleAssignmentUpdateRequest:
+      type: object
+      description: Request to update a role assignment
+      properties:
+        startDate:
+          type: string
+          format: date
+          description: Start date of the assignment
+          example: '2026-06-01'
+        endDate:
+          type: string
+          format: date
+          description: End date of the assignment
+          example: '2026-12-31'
+    security_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
+    security_CursorPageRoleAssignmentResponse:
+      type: object
+      description: A page of data along with pagination information for cursor-based pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/security_RoleAssignmentResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/security_CursorPaginationInfo'
+    security_RoleAssignmentResponse:
+      type: object
+      description: Represents a role assignment
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the role assignment
+          example: '12345'
+        employeeId:
+          type: string
+          description: Employee identifier
+          example: '12345'
+        groupId:
+          type: string
+          description: Group identifier
+          example: '16'
+        roleId:
+          type: string
+          description: Role identifier
+          example: '12'
+        startDate:
+          type: string
+          format: date
+          description: Start date of the assignment
+          example: '2025-10-01'
+        endDate:
+          type: string
+          format: date
+          description: End date of the assignment
+          example: '2026-12-31'
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+          example: '2025-10-01T14:18:41Z'
+        updated:
+          type: string
+          format: date-time
+          description: Last update timestamp
+          example: '2025-10-16T09:34:27Z'
+    security_RoleAssignmentRequest:
+      type: object
+      description: Request body for creating a role assignment
+      properties:
+        employeeId:
+          type: string
+          description: 'Employee identifier. Supports badgeNumber: prefix.'
+          examples:
+          - '10'
+          - badgeNumber:EMP001
+        groupId:
+          type: string
+          description: 'Group identifier. Supports xrefId: prefix.'
+          examples:
+          - '10'
+          - xrefId:GRP-16
+        roleId:
+          type: string
+          description: 'Role identifier. Supports xrefId: prefix.'
+          examples:
+          - '10'
+          - xrefId:admin
+        startDate:
+          type: string
+          format: date
+          description: Start date of the assignment. Defaults to today.
+          example: '2025-10-01'
+        endDate:
+          type: string
+          format: date
+          description: End date of the assignment. Defaults to null.
+          example: '2026-01-01'
+      required:
+      - employeeId
+      - groupId
+      - roleId
+    security_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem
+          example: /api/endpoint
+      required:
+      - status
+      - title
+      - type
+      title: ProblemDetail
+    security_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
+    security_ValidationError:
+      type: object
+      description: Validation errors, conforming to RFC 9457.
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/validation-error
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+          example: The request is not valid.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 422
+        errors:
+          type: array
+          description: A list of validation errors.
+          items:
+            $ref: '#/components/schemas/security_ValidationErrorDetail'
+          maxItems: 50
+          minItems: 1
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem.
+          example: /api/endpoint
+      required:
+      - errors
+      - status
+      - title
+      - type
+      title: ValidationError
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

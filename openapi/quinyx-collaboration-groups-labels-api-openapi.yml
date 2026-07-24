@@ -1,0 +1,227 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Collaboration Groups Labels API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Collaboration Groups Labels
+  x-displayName: Collaboration Groups Labels
+paths:
+  /v2/collaboration-groups/labels/{labelId}:
+    get:
+      tags:
+      - Collaboration Groups Labels
+      summary: Get label by id
+      operationId: getLabelsById
+      parameters:
+      - name: labelId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_Label'
+      x-audience: public
+    put:
+      tags:
+      - Collaboration Groups Labels
+      summary: Update label
+      operationId: updateLabel
+      parameters:
+      - name: labelId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_LabelUpdate'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_Label'
+      x-audience: public
+    delete:
+      tags:
+      - Collaboration Groups Labels
+      summary: Delete label
+      operationId: deleteLabel
+      parameters:
+      - name: labelId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/collaboration-groups/labels:
+    post:
+      tags:
+      - Collaboration Groups Labels
+      summary: Create label for domain
+      operationId: createLabel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_LabelCreate'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_Label'
+      x-audience: public
+  /v2/collaboration-groups/labels/domain/{domainId}:
+    get:
+      tags:
+      - Collaboration Groups Labels
+      summary: List labels by domain
+      operationId: getLabelsByDomain
+      parameters:
+      - name: domainId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collaboration-groups_Label'
+      x-audience: public
+components:
+  schemas:
+    collaboration-groups_LabelUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Important
+          minLength: 1
+        color:
+          type: string
+          example: '#FF0000'
+      required:
+      - name
+    collaboration-groups_Label:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Important
+        color:
+          type: string
+          example: '#FF0000'
+        domainId:
+          type: integer
+          format: int32
+          example: 100
+    collaboration-groups_LabelCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Important
+          minLength: 1
+        domainId:
+          type: integer
+          format: int32
+          example: 100
+        color:
+          type: string
+          example: '#FF0000'
+      required:
+      - domainId
+      - name
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

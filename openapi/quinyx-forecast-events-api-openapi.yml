@@ -1,0 +1,490 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Forecast Events API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Forecast Events
+  x-displayName: Forecast Events
+paths:
+  /v2/forecast-events/groups/{groupId}/events/{eventId}:
+    put:
+      tags:
+      - Forecast Events
+      summary: Update forecast event
+      operationId: updateEvent
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-events_UpdateEventIntegrationRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/forecast-events_IntegrationEvent'
+      x-audience: public
+    delete:
+      tags:
+      - Forecast Events
+      summary: Delete forecast event
+      operationId: deleteEvent
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/forecast-events/groups/{groupId}/events:
+    get:
+      tags:
+      - Forecast Events
+      summary: List forecast events for group
+      operationId: getIntegrationEvents
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: startTime
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-events_IntegrationEvent'
+      x-audience: public
+    post:
+      tags:
+      - Forecast Events
+      summary: List forecast events for group and its ancestors
+      operationId: getGroupHierarchyIntegrationEvents
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-events_GroupHierarchyEventsExternalRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-events_IntegrationEvent'
+      x-audience: public
+  /v2/forecast-events/groups/{groupId}/event:
+    post:
+      tags:
+      - Forecast Events
+      summary: Create forecast events for forecast configurations and groups
+      operationId: createIntegrationEvent
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-events_CreateEventIntegrationRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-events_IntegrationEvent'
+      x-audience: public
+  /v2/forecast-events/groups/{groupId}/events/{eventId}/overrides:
+    get:
+      tags:
+      - Forecast Events
+      summary: List override events for forecast event
+      operationId: getIntegrationEventsByEventId
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-events_IntegrationEvent'
+                uniqueItems: true
+      x-audience: public
+components:
+  schemas:
+    forecast-events_IntegrationEvent:
+      type: object
+      properties:
+        id:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T18:00:00Z'
+        eventCategoryId:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          minLength: 1
+        parentEvent:
+          $ref: '#/components/schemas/forecast-events_Event'
+        groupId:
+          type: integer
+          format: int32
+          example: 12345
+        eventEffects:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-events_EventEffect'
+          minItems: 1
+        eventEffectValue:
+          type: number
+          format: double
+          example: 1.25
+        comment:
+          type: string
+          example: Local football match
+          maxLength: 255
+          minLength: 0
+        active:
+          type: boolean
+          example: true
+        hierarchyEnabled:
+          type: boolean
+          example: true
+      required:
+      - endTime
+      - eventCategoryId
+      - eventEffects
+      - startTime
+    forecast-events_GroupHierarchyEventsExternalRequest:
+      type: object
+      properties:
+        externalVariableId:
+          type: string
+          example: external-var-123
+          minLength: 1
+        externalConfigurationId:
+          type: string
+          example: external-config-456
+          minLength: 1
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T18:00:00Z'
+      required:
+      - endTime
+      - externalConfigurationId
+      - externalVariableId
+      - startTime
+    forecast-events_EventEffect:
+      type: object
+      properties:
+        forecastConfigurationId:
+          type: integer
+          format: int32
+          example: 42
+        type:
+          type: string
+          enum:
+          - RELATIVE
+          - CLOSED
+          - ABSOLUTE
+          - AUTOMATIC
+          example: RELATIVE
+        value:
+          type: number
+          format: double
+          example: 1.25
+      required:
+      - forecastConfigurationId
+      - type
+      - value
+    forecast-events_CreateEventIntegrationRequest:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T18:00:00Z'
+        eventCategoryId:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          minLength: 1
+        comment:
+          type: string
+          example: Local football match
+          maxLength: 255
+          minLength: 0
+        active:
+          type: boolean
+          example: true
+        hierarchyEnabled:
+          type: boolean
+          example: true
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+        forecastConfigurationIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+        eventEffectType:
+          type: string
+          enum:
+          - RELATIVE
+          - CLOSED
+          - ABSOLUTE
+          - AUTOMATIC
+          example: RELATIVE
+        eventEffectValue:
+          type: number
+          format: double
+          example: 1.25
+      required:
+      - endTime
+      - eventCategoryId
+      - eventEffectType
+      - forecastConfigurationIds
+      - groupIds
+      - startTime
+    forecast-events_UpdateEventIntegrationRequest:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T18:00:00Z'
+        eventCategoryId:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          minLength: 1
+        comment:
+          type: string
+          example: Local football match
+          maxLength: 255
+          minLength: 0
+        active:
+          type: boolean
+          example: true
+        id:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        eventEffects:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-events_EventEffect'
+          minItems: 1
+      required:
+      - endTime
+      - eventCategoryId
+      - eventEffects
+      - startTime
+    forecast-events_Event:
+      type: object
+      properties:
+        id:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T18:00:00Z'
+        eventCategoryId:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          minLength: 1
+        parentEvent:
+          required:
+          - endTime
+          - eventCategoryId
+          - startTime
+        groupId:
+          type: integer
+          format: int32
+          example: 12345
+        eventEffects:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-events_EventEffect'
+          minItems: 1
+        eventEffectValue:
+          type: number
+          format: double
+          example: 1.25
+        comment:
+          type: string
+          example: Local football match
+          maxLength: 255
+          minLength: 0
+        active:
+          type: boolean
+          example: true
+        hierarchyEnabled:
+          type: boolean
+          example: true
+      required:
+      - endTime
+      - eventCategoryId
+      - eventEffects
+      - startTime
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

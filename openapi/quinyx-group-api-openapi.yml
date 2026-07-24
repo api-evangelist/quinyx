@@ -1,0 +1,832 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Group API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Group
+paths:
+  /organization/v3/groups/{id}:
+    get:
+      summary: Get a group
+      description: Returns a group by ID.
+      operationId: getGroup
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          description: An identifier that can be either a Quinyx ID or a prefixed external ID string.
+          oneOf:
+          - type: string
+            description: The Quinyx ID of the resource.
+            pattern: ^[0-9]+$
+          - type: string
+            description: The external string ID, which must start with 'xrefId:'.
+            example: xrefId:f47ac10b-58cc-3
+            pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /organization/v3/groups/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /organization/v3/groups/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /organization/v3/groups/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups/{id}
+      security:
+      - OAuth2ClientCredentials:
+        - organization:groups:read
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+      - Group
+    put:
+      summary: Update a group
+      description: Updates the specified group with the provided attributes and returns the updated group.
+      operationId: updateGroup
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          description: An identifier that can be either a Quinyx ID or a prefixed external ID string.
+          oneOf:
+          - type: string
+            description: The Quinyx ID of the resource.
+            pattern: ^[0-9]+$
+          - type: string
+            description: The external string ID, which must start with 'xrefId:'.
+            example: xrefId:f47ac10b-58cc-3
+            pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organisation_CreateGroupRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/organisation_ProblemDetail'
+                - $ref: '#/components/schemas/organisation_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /organization/v3/groups/{id}
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                    - detail: name is mandatory
+                      pointer: '#/name'
+                    instance: /organization/v3/groups/{id}
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /organization/v3/groups/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /organization/v3/groups/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /organization/v3/groups/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups/{id}
+      security:
+      - OAuth2ClientCredentials:
+        - organization:groups:update
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+      - Group
+    delete:
+      summary: Deletes a group
+      description: Permanently deletes the specified group and all associated data, including but not limited to employees, shifts, and punches.
+      operationId: deleteGroup
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          description: An identifier that can be either a Quinyx ID or a prefixed external ID string.
+          oneOf:
+          - type: string
+            description: The Quinyx ID of the resource.
+            pattern: ^[0-9]+$
+          - type: string
+            description: The external string ID, which must start with 'xrefId:'.
+            example: xrefId:f47ac10b-58cc-3
+            pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+      responses:
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /organization/v3/groups/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /organization/v3/groups/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /organization/v3/groups/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups/{id}
+      security:
+      - OAuth2ClientCredentials:
+        - organization:groups:delete
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+      - Group
+  /organization/v3/groups:
+    get:
+      summary: List groups
+      description: Returns a paginated list of groups.
+      operationId: getGroups
+      parameters:
+      - name: pageToken
+        in: query
+        description: Cursor for the next page of results.
+        required: false
+        schema:
+          type: string
+          example: eyJpZCI6MTAwfQ
+      - name: pageSize
+        in: query
+        description: Maximum number of items to return.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 50
+          example: 50
+          maximum: 100
+          minimum: 1
+      - name: idIn
+        in: query
+        description: 'Filter by id (IN). Supports external ids of types: xrefId'
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for id with operator IN
+          items:
+            description: An identifier that can be either a Quinyx ID or a prefixed external ID string.
+            oneOf:
+            - type: string
+              description: The Quinyx ID of the resource.
+            - type: string
+              description: The external string ID, which must start with 'xrefId:'.
+              example: xrefId:example-external-id
+              pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+          maxItems: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_CursorPageGroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/organisation_ProblemDetail'
+                - $ref: '#/components/schemas/organisation_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /organization/v3/groups
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                    - detail: name is mandatory
+                      pointer: '#/name'
+                    instance: /organization/v3/groups
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /organization/v3/groups
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /organization/v3/groups
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups
+      security:
+      - OAuth2ClientCredentials:
+        - organization:groups:read
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+      - Group
+    post:
+      summary: Create a group
+      description: Creates a new group and returns the created group.
+      operationId: createGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organisation_CreateGroupRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/organisation_ProblemDetail'
+                - $ref: '#/components/schemas/organisation_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /organization/v3/groups
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                    - detail: name is mandatory
+                      pointer: '#/name'
+                    instance: /organization/v3/groups
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /organization/v3/groups
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /organization/v3/groups
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups
+      security:
+      - OAuth2ClientCredentials:
+        - organization:groups:create
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+      - Group
+components:
+  schemas:
+    organisation_CreateGroupRequest:
+      type: object
+      description: Request payload used to create a new group
+      properties:
+        name:
+          type: string
+          description: The name of the group
+          example: Engineering
+          maxLength: 50
+          minLength: 0
+        groupType:
+          type: string
+          description: Type of group
+          enum:
+          - DISTRICT
+          - UNIT
+          - SECTION
+          example: UNIT
+          minLength: 1
+        parentGroupId:
+          type: string
+          description: Identifier of the parent group
+          example: '10'
+        managerId:
+          type: string
+          description: Employee ID of the group manager
+          example: '1001'
+        costCentreId:
+          type: string
+          description: Associated cost centre identifier
+          example: '200'
+        xrefIds:
+          type: array
+          description: External reference identifiers
+          example:
+          - AD-ENG
+          - COST-ENG-01
+          items:
+            type: string
+          maxItems: 50
+          minItems: 0
+      required:
+      - groupType
+      - name
+      - parentGroupId
+    organisation_CursorPageGroupResponse:
+      type: object
+      description: A page of data along with pagination information for cursor-based pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/organisation_GroupResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/organisation_CursorPaginationInfo'
+    organisation_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem
+          example: /api/endpoint
+      required:
+      - status
+      - title
+      - type
+      title: ProblemDetail
+    organisation_GroupResponse:
+      type: object
+      description: Represents a group within the organization hierarchy
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the group
+          example: '42'
+        name:
+          type: string
+          description: The name of the group
+          example: Engineering
+          maxLength: 50
+          minLength: 0
+        groupType:
+          type: string
+          description: Type of group
+          enum:
+          - DISTRICT
+          - UNIT
+          - SECTION
+          example: UNIT
+        parentGroupId:
+          type: string
+          description: Identifier of the parent group
+          example: '10'
+        managerId:
+          type: string
+          description: Employee ID of the group manager
+          example: '1001'
+        costCentreId:
+          type: string
+          description: Associated cost centre identifier
+          example: '200'
+        xrefIds:
+          type: array
+          description: External reference identifiers
+          example:
+          - AD-ENG
+          - COST-ENG-01
+          items:
+            type: string
+          maxItems: 50
+          minItems: 0
+        created:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp when the group was created
+          example: '2024-01-10T09:15:30Z'
+        updated:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp when the group was last updated
+          example: '2024-01-12T17:42:10Z'
+    organisation_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
+    organisation_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
+    organisation_ValidationError:
+      type: object
+      description: Validation errors, conforming to RFC 9457.
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/validation-error
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+          example: The request is not valid.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 422
+        errors:
+          type: array
+          description: A list of validation errors.
+          items:
+            $ref: '#/components/schemas/organisation_ValidationErrorDetail'
+          maxItems: 50
+          minItems: 1
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem.
+          example: /api/endpoint
+      required:
+      - errors
+      - status
+      - title
+      - type
+      title: ValidationError
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

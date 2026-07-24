@@ -1,0 +1,282 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Forecast Target Data API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Forecast Target Data
+  x-displayName: Forecast Target Data
+paths:
+  /v2/forecasts/target-data:
+    post:
+      tags:
+      - Forecast Target Data
+      summary: Upload daily target data with maximum 366 rows
+      description: Operation used to upload target data for daily basic. The total amount of data rows must not exceed 366.
+      operationId: postTargetData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_TargetDataInputList'
+        required: true
+      responses:
+        '200':
+          description: Data successfully uploaded
+          content:
+            '*/*':
+              schema:
+                type: string
+        '400':
+          description: Unexpected input.
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  /v2/forecasts/target-data/{externalId}:
+    get:
+      tags:
+      - Forecast Target Data
+      summary: Get target data for a target configuration, up to 360 days
+      description: Getting the Target data for the given target configuration. The range between these two dates can not exceed 360 days.
+      operationId: getTargetData
+      parameters:
+      - name: externalId
+        in: path
+        description: External ID of the target configuration
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_TargetDataOutput'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_TargetDataOutput'
+      x-audience: public
+    delete:
+      tags:
+      - Forecast Target Data
+      summary: Delete target data for a target configuration, up to 360 days
+      description: Delete the Target data for the given target configuration. The range between these two dates can not exceed 360 days.
+      operationId: deleteTargetData
+      parameters:
+      - name: externalId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+components:
+  schemas:
+    forecast-data-ingestion_TargetDataOutput:
+      type: object
+      properties:
+        externalId:
+          type: string
+          example: target-1
+        externalUnitId:
+          type: string
+          example: unit-1
+        externalSectionId:
+          type: string
+          example: section-1
+        targetPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_TargetDataPayload'
+    forecast-data-ingestion_TargetDataPayload:
+      type: object
+      properties:
+        rangeType:
+          type: string
+          enum:
+          - EXACT
+          - NOT_LESS_THAN
+          - NOT_MORE_THAN
+          - BETWEEN
+          example: EXACT
+        value:
+          type: number
+          format: double
+          example: 100
+        fromValue:
+          type: number
+          format: double
+          example: 0
+        toValue:
+          type: number
+          format: double
+          example: 100
+        date:
+          type: string
+          format: date
+          example: '2026-01-15'
+      required:
+      - date
+      - rangeType
+    forecast-data-ingestion_TargetDataInputList:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_TargetDataInput'
+      required:
+      - requests
+    forecast-data-ingestion_TargetDataInput:
+      type: object
+      properties:
+        externalId:
+          type: string
+          example: target-1
+          minLength: 1
+        externalUnitId:
+          type: string
+          example: unit-1
+          minLength: 1
+        externalSectionId:
+          type: string
+          example: section-1
+        targetPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_TargetDataPayload'
+      required:
+      - externalId
+      - externalUnitId
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

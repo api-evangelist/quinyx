@@ -1,0 +1,664 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Labor Standards API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Labor Standards
+  x-displayName: Labor Standards
+paths:
+  /v2/labor-standards/labor-standards/{laborStandardId}:
+    put:
+      tags:
+      - Labor Standards
+      summary: Update a labor standard
+      operationId: updateLaborStandard
+      parameters:
+      - name: laborStandardId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/labor-standards_IntegrationLaborStandard'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/labor-standards_LaborStandard'
+      x-audience: public
+    delete:
+      tags:
+      - Labor Standards
+      summary: Delete a labor standard
+      operationId: deleteLaborStandard
+      parameters:
+      - name: laborStandardId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/labor-standards/labor-standards:
+    get:
+      tags:
+      - Labor Standards
+      summary: Read labor standards by external optimal headcount id
+      operationId: readLaborStandardsByOptimalHeadcountId
+      parameters:
+      - name: externalOptimalHeadcountId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/labor-standards_LaborStandard'
+      x-audience: public
+    post:
+      tags:
+      - Labor Standards
+      summary: Create a labor standard
+      operationId: createLaborStandard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/labor-standards_IntegrationLaborStandard'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/labor-standards_LaborStandard'
+      x-audience: public
+  /v2/labor-standards/groups/{groupId}/labor-standards/limit-configurations:
+    get:
+      tags:
+      - Labor Standards
+      summary: Read limit configurations by group for a period
+      operationId: readLimitRulesByGroup
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: periodStart
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: periodEnd
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/labor-standards_LimitConfigurationsByGroupResponse'
+      x-audience: public
+components:
+  schemas:
+    labor-standards_IntegrationRule:
+      type: object
+      discriminator:
+        propertyName: type
+      properties:
+        id:
+          type: string
+          example: rule-1
+        type:
+          type: string
+          enum:
+          - LINEAR
+          - LIMIT
+          - DYNAMIC
+          - STATIC
+          example: LINEAR
+      required:
+      - type
+    labor-standards_DynamicRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_Rule'
+      - type: object
+        properties:
+          forecastConfigurationId:
+            type: integer
+            format: int32
+            example: 1
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_DynamicConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - forecastConfigurationId
+      - type
+    labor-standards_LimitRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_Rule'
+      - type: object
+        properties:
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_LimitConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - type
+    labor-standards_StaticRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_Rule'
+      - type: object
+        properties:
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_StaticConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - type
+    labor-standards_DynamicConfiguration:
+      type: object
+      properties:
+        startValue:
+          type: number
+          format: double
+          example: 0
+        endValue:
+          type: number
+          format: double
+          example: 100
+        headcount:
+          type: number
+          format: double
+          example: 5
+      required:
+      - endValue
+      - headcount
+      - startValue
+    labor-standards_IntegrationLaborStandard:
+      type: object
+      properties:
+        id:
+          type: string
+          example: abc123
+        domainGroupId:
+          type: integer
+          format: int32
+          example: 100
+        name:
+          type: string
+          example: Example labor standard
+          minLength: 1
+        externalOptimalHeadcountId:
+          type: string
+          example: external-headcount-1
+          minLength: 1
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+        rules:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/labor-standards_IntegrationDynamicRule'
+            - $ref: '#/components/schemas/labor-standards_IntegrationLimitRule'
+            - $ref: '#/components/schemas/labor-standards_IntegrationLinearRule'
+            - $ref: '#/components/schemas/labor-standards_IntegrationStaticRule'
+          minItems: 1
+        roundingMethod:
+          type: string
+          enum:
+          - UP
+          - DOWN
+          - NEAREST
+          - NONE
+          example: UP
+      required:
+      - externalOptimalHeadcountId
+      - groupIds
+      - name
+      - roundingMethod
+      - rules
+    labor-standards_StaticConfiguration:
+      type: object
+      properties:
+        useOpeningHours:
+          type: boolean
+          example: true
+        startTime:
+          type: string
+          example: 08:00
+        endTime:
+          type: string
+          example: '17:00'
+        startOffset:
+          type: integer
+          format: int32
+          example: 0
+        endOffset:
+          type: integer
+          format: int32
+          example: 0
+        weekdays:
+          type: array
+          items:
+            type: integer
+            format: int32
+            enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+          minItems: 1
+        headcount:
+          type: number
+          format: double
+          example: 5
+      required:
+      - headcount
+      - useOpeningHours
+      - weekdays
+    labor-standards_LinearRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_Rule'
+      - type: object
+        properties:
+          productivityMethod:
+            type: string
+            enum:
+            - UNITS_PER_HOUR
+            - MINUTES_PER_UNIT
+            example: UNITS_PER_HOUR
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_LinearConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - productivityMethod
+      - type
+    labor-standards_Rule:
+      type: object
+      discriminator:
+        propertyName: type
+      properties:
+        id:
+          type: string
+          example: rule-1
+        type:
+          type: string
+          enum:
+          - LINEAR
+          - LIMIT
+          - DYNAMIC
+          - STATIC
+          example: LINEAR
+      required:
+      - type
+    labor-standards_IntegrationDynamicRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
+      - type: object
+        properties:
+          externalForecastConfigurationId:
+            type: string
+            example: external-fc-1
+            minLength: 1
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_DynamicConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - externalForecastConfigurationId
+      - type
+    labor-standards_LaborStandard:
+      type: object
+      properties:
+        id:
+          type: string
+          example: abc123
+        domainGroupId:
+          type: integer
+          format: int32
+          example: 100
+        name:
+          type: string
+          example: Example labor standard
+          minLength: 1
+        optimalHeadcountId:
+          type: string
+          example: headcount-1
+          minLength: 1
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+        rules:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/labor-standards_DynamicRule'
+            - $ref: '#/components/schemas/labor-standards_LimitRule'
+            - $ref: '#/components/schemas/labor-standards_LinearRule'
+            - $ref: '#/components/schemas/labor-standards_StaticRule'
+          minItems: 1
+        roundingMethod:
+          type: string
+          enum:
+          - UP
+          - DOWN
+          - NEAREST
+          - NONE
+          example: UP
+      required:
+      - groupIds
+      - name
+      - optimalHeadcountId
+      - roundingMethod
+      - rules
+    labor-standards_ResolvedLimitConfiguration:
+      type: object
+      properties:
+        useOpeningHours:
+          type: boolean
+          example: true
+        startTime:
+          type: string
+          example: 08:00
+        endTime:
+          type: string
+          example: '17:00'
+        startOffset:
+          type: integer
+          format: int32
+          example: 0
+        endOffset:
+          type: integer
+          format: int32
+          example: 0
+        weekdays:
+          type: array
+          items:
+            type: integer
+            format: int32
+            enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+          minItems: 1
+        type:
+          type: string
+          enum:
+          - MIN
+          - MAX
+          example: MIN
+        headcount:
+          type: number
+          format: double
+          example: 5
+        start:
+          type: string
+          example: '2026-01-01T08:00:00'
+        end:
+          type: string
+          example: '2026-01-01T17:00:00'
+      required:
+      - headcount
+      - type
+      - useOpeningHours
+      - weekdays
+    labor-standards_LimitConfiguration:
+      type: object
+      properties:
+        useOpeningHours:
+          type: boolean
+          example: true
+        startTime:
+          type: string
+          example: 08:00
+        endTime:
+          type: string
+          example: '17:00'
+        startOffset:
+          type: integer
+          format: int32
+          example: 0
+        endOffset:
+          type: integer
+          format: int32
+          example: 0
+        weekdays:
+          type: array
+          items:
+            type: integer
+            format: int32
+            enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+          minItems: 1
+        type:
+          type: string
+          enum:
+          - MIN
+          - MAX
+          example: MIN
+        headcount:
+          type: number
+          format: double
+          example: 5
+      required:
+      - headcount
+      - type
+      - useOpeningHours
+      - weekdays
+    labor-standards_IntegrationLinearRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
+      - type: object
+        properties:
+          productivityMethod:
+            type: string
+            enum:
+            - UNITS_PER_HOUR
+            - MINUTES_PER_UNIT
+            example: UNITS_PER_HOUR
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_IntegrationLinearConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - productivityMethod
+      - type
+    labor-standards_LinearConfiguration:
+      type: object
+      properties:
+        productivity:
+          type: number
+          format: double
+          example: 10
+        forecastConfigurationId:
+          type: integer
+          format: int32
+          example: 1
+      required:
+      - forecastConfigurationId
+      - productivity
+    labor-standards_IntegrationLinearConfiguration:
+      type: object
+      properties:
+        productivity:
+          type: number
+          format: double
+          example: 10
+        externalForecastConfigurationId:
+          type: string
+          example: external-fc-1
+          minLength: 1
+      required:
+      - externalForecastConfigurationId
+      - productivity
+    labor-standards_IntegrationStaticRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
+      - type: object
+        properties:
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_StaticConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - type
+    labor-standards_LimitConfigurationsByGroupResponse:
+      type: object
+      properties:
+        optimalHeadcountId:
+          type: string
+          example: headcount-1
+        shiftTypeId:
+          type: integer
+          format: int32
+          example: 1
+        shiftTypeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        limitConfigurationsByGroupId:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_ResolvedLimitConfiguration'
+    labor-standards_IntegrationLimitRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
+      - type: object
+        properties:
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_LimitConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - type
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

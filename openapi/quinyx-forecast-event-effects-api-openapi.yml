@@ -1,0 +1,190 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Forecast Event Effects API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Forecast Event Effects
+  x-displayName: Forecast Event Effects
+paths:
+  /v2/forecast-calculation/customer/{customerId}/events:
+    post:
+      tags:
+      - Forecast Event Effects
+      summary: Calculate event effects for a customer
+      operationId: getEvents
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-calculation_CalculateEventEffectsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-calculation_Event'
+      x-audience: public
+components:
+  schemas:
+    forecast-calculation_EventEffect:
+      type: object
+      properties:
+        id:
+          type: string
+          example: eff-7f3c2a1b
+        eventId:
+          type: string
+          example: evt-7f3c2a1b
+        forecastConfigurationId:
+          type: integer
+          format: int32
+          example: 1
+        type:
+          type: string
+          example: RELATIVE
+        value:
+          type: number
+          format: double
+          example: 1.25
+    forecast-calculation_CalculateEventEffectsRequest:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2024-01-15T18:00:00Z'
+        externalConfigurationId:
+          type: string
+          example: config-123
+          minLength: 1
+        externalVariableId:
+          type: string
+          example: var-456
+          minLength: 1
+        externalUnitId:
+          type: string
+          example: unit-789
+          minLength: 1
+        externalSectionId:
+          type: string
+          example: section-001
+      required:
+      - endTime
+      - externalConfigurationId
+      - externalUnitId
+      - externalVariableId
+      - startTime
+    forecast-calculation_Event:
+      type: object
+      properties:
+        id:
+          type: string
+          example: evt-7f3c2a1b
+        startTime:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2024-01-15T18:00:00Z'
+        eventCategoryId:
+          type: string
+          example: cat-001
+        groupId:
+          type: integer
+          format: int32
+          example: 42
+        eventEffects:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-calculation_EventEffect'
+        comment:
+          type: string
+          example: Marketing campaign launch
+        active:
+          type: boolean
+          example: true
+        hierarchyEnabled:
+          type: boolean
+          example: false
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules AI Scheduled Headcount API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: AI Scheduled Headcount
+  x-displayName: AI Scheduled Headcount
+paths:
+  /v2/statistics/groups/{groupId}/ai-scheduled-headcount/{shiftTypeId}:
+    get:
+      tags:
+      - AI Scheduled Headcount
+      summary: Get ai scheduled headcount snapshot
+      description: Fetches the ai scheduled headcount for the given shift type. The requested period must not exceed 120 days.
+      operationId: getScheduledHeadcountSnapshot
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: shiftTypeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/statistics_HeadCount'
+      x-audience: public
+components:
+  schemas:
+    statistics_HeadCount:
+      type: object
+      properties:
+        variable:
+          type: string
+          example: scheduledHeadcount
+        resolution:
+          type: integer
+          format: int32
+          example: 30
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/statistics_StatisticPeriodValue'
+        total-value:
+          type: number
+          format: double
+          example: 100
+    statistics_StatisticPeriodValue:
+      type: object
+      properties:
+        start:
+          type: string
+          example: '2026-01-01T00:00:00'
+        end:
+          type: string
+          example: '2026-01-01T23:59:59'
+        value:
+          type: number
+          format: double
+          example: 100
+        employeeId:
+          type: integer
+          format: int32
+          example: 1
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

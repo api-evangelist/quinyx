@@ -1,0 +1,577 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Shift API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Shift
+paths:
+  /schedule/v3/shifts:
+    get:
+      summary: List shifts
+      description: 'Returns shifts using cursor-based pagination.
+
+
+        Supports:
+
+        - Numeric internal IDs
+
+        - External IDs using prefix ''xrefId:''
+
+        - Employee badge numbers using prefix ''badgeNumber:''
+
+        - Timezone override via Prefer header
+
+
+        Pagination is cursor-based. Use the returned pageToken for next/previous navigation.
+
+        '
+      operationId: getShifts
+      parameters:
+      - name: Prefer
+        in: header
+        description: 'Optional header for response formatting.
+
+
+          Example:
+
+          Prefer: timezone=Europe/Belgrade
+
+
+          Affects only response date-time values.
+
+          Does NOT affect filtering parameters.
+
+
+          Default response timezone is UTC.
+
+          '
+        required: false
+        schema:
+          type: string
+        example: timezone=Europe/Belgrade
+      - name: pageToken
+        in: query
+        description: Cursor for the next page of results.
+        required: false
+        schema:
+          type: string
+          example: eyJpZCI6MTAwfQ
+      - name: pageSize
+        in: query
+        description: Maximum number of items to return.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 50
+          example: 50
+          maximum: 100
+          minimum: 1
+      - name: idIn
+        in: query
+        description: 'Filter by id (IN). Supports external ids of types: xrefId'
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for id with operator IN
+          items:
+            description: An identifier that can be either a Quinyx ID or a prefixed external ID string.
+            oneOf:
+            - type: string
+              description: The Quinyx ID of the resource.
+              pattern: ^[0-9]+$
+            - type: string
+              description: The external string ID, which must start with 'xrefId:'.
+              example: xrefId:example-external-id
+              pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+          maxItems: 50
+      - name: groupIdIn
+        in: query
+        description: 'Filter by groupId (IN). Supports external ids of types: xrefId'
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for groupId with operator IN
+          items:
+            description: An identifier that can be either a Quinyx ID or a prefixed external ID string.
+            oneOf:
+            - type: string
+              description: The Quinyx ID of the resource.
+              pattern: ^[0-9]+$
+            - type: string
+              description: The external string ID, which must start with 'xrefId:'.
+              example: xrefId:example-external-id
+              pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+          maxItems: 50
+      - name: employeeIdIn
+        in: query
+        description: 'Filter by employeeId (IN). Supports external ids of types: badgeNumber'
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for employeeId with operator IN
+          items:
+            description: An identifier that can be either a Quinyx ID or a prefixed external ID string.
+            oneOf:
+            - type: string
+              description: The Quinyx ID of the resource.
+              pattern: ^[0-9]+$
+            - type: string
+              description: The external string ID, which must start with 'badgeNumber:'.
+              example: badgeNumber:example-external-id
+              pattern: ^badgeNumber:[a-zA-Z0-9._-]{1,64}$
+          maxItems: 50
+      - name: beginGte
+        in: query
+        description: Filter by begin (GTE)
+        schema:
+          type: string
+          format: date-time
+      - name: beginLte
+        in: query
+        description: Filter by begin (LTE)
+        schema:
+          type: string
+          format: date-time
+      - name: statusIn
+        in: query
+        description: Filter by status (IN)
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Multiple values for status with operator IN
+          items:
+            type: string
+          maxItems: 50
+      - name: deleted
+        in: query
+        description: Filter by deleted (EQ)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shifts_CursorPageShift'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/shifts_ProblemDetail'
+                - $ref: '#/components/schemas/shifts_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /schedule/v3/shifts
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                    - detail: name is mandatory
+                      pointer: '#/name'
+                    instance: /schedule/v3/shifts
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/shifts_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: Access token not set or invalid, and the requested resource could not be returned
+                    instance: /schedule/v3/shifts
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/shifts_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: The resource could not be returned as the requestor is not authorized
+                    instance: /schedule/v3/shifts
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/shifts_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /schedule/v3/shifts
+      security:
+      - OAuth2ClientCredentials:
+        - schedule:shifts:read
+      x-audience: public
+      x-resource-group: Schedule
+      x-resource: Shift
+      tags:
+      - Shift
+components:
+  schemas:
+    shifts_ValidationError:
+      type: object
+      description: Validation errors, conforming to RFC 9457.
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/validation-error
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+          example: The request is not valid.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 422
+        errors:
+          type: array
+          description: A list of validation errors.
+          items:
+            $ref: '#/components/schemas/shifts_ValidationErrorDetail'
+          maxItems: 50
+          minItems: 1
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem.
+          example: /api/endpoint
+      required:
+      - errors
+      - status
+      - title
+      - type
+      title: ValidationError
+    shifts_CursorPageShift:
+      type: object
+      description: A page of data along with pagination information for cursor-based pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/shifts_Shift'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/shifts_CursorPaginationInfo'
+    shifts_Shift:
+      type: object
+      description: Represents a scheduled shift for an employee within a group
+      properties:
+        id:
+          type: string
+          description: Internal numeric ID of the shift
+          example: '123456789'
+        xrefId:
+          type: string
+          description: External reference ID of the shift.
+          example: ext-shift-001
+        groupId:
+          type: string
+          description: ID of the group this shift belongs to
+          example: '42'
+        begin:
+          type: string
+          format: date-time
+          description: Start date and time of the shift
+          example: '2024-06-01T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the shift
+          example: '2024-06-01T16:00:00Z'
+        status:
+          type: string
+          description: Current status of the shift
+          example: ASSIGNED
+        deleted:
+          type: boolean
+          description: Indicates whether the shift has been soft-deleted
+          example: false
+        shiftTypeId:
+          type: string
+          description: ID of the shift type associated with this shift
+          example: '7'
+        employeeId:
+          type: string
+          description: ID of the employee assigned to this shift. Use prefix 'badgeNumber:' when filtering
+          example: '99'
+        countScheduleHours:
+          type: boolean
+          description: Whether the shift hours count toward scheduled hours
+          example: true
+        countWorkedHours:
+          type: boolean
+          description: Whether the shift hours count toward worked hours
+          example: true
+        freeDay:
+          type: boolean
+          description: Indicates whether this shift represents a free/day-off day
+          example: false
+        productiveTime:
+          type: string
+          description: Productive time
+          example: SCHEDULED_TIME
+        comment:
+          type: string
+          description: Optional comment or note attached to the shift
+          example: Morning shift - opening duties
+        costCentreId:
+          type: string
+          description: ID of the cost centre associated with this shift
+          example: '5'
+        projectId:
+          type: string
+          description: ID of the project associated with this shift
+          example: '12'
+        agreementId:
+          type: string
+          description: ID of the agreement governing this shift
+          example: '3'
+        scheduledDuration:
+          type: string
+          description: Total scheduled duration of the shift in ISO-8601 duration format
+          example: PT8H
+        created:
+          type: string
+          format: date-time
+          description: Timestamp when the shift was created
+          example: '2024-01-15T10:30:00Z'
+        updated:
+          type: string
+          format: date-time
+          description: Timestamp when the shift was last updated
+          example: '2024-05-20T14:00:00Z'
+        breaks:
+          type: array
+          description: List of breaks within the shift
+          items:
+            $ref: '#/components/schemas/shifts_Task'
+          maxItems: 20
+        tasks:
+          type: array
+          description: List of tasks assigned within the shift
+          items:
+            $ref: '#/components/schemas/shifts_TaskIntegrationModel'
+          maxItems: 100
+        additionalTimeLevel:
+          type: string
+          description: Additional time level on a shift
+          example: '4'
+    shifts_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem
+          example: /api/endpoint
+      required:
+      - status
+      - title
+      - type
+      title: ProblemDetail
+    shifts_Task:
+      type: object
+      description: Represents a task segment within a shift
+      properties:
+        begin:
+          type: string
+          format: date-time
+          description: Start date and time of the break
+          example: '2024-06-01T12:00:00Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the break
+          example: '2024-06-01T12:30:00Z'
+    shifts_TaskIntegrationModel:
+      type: object
+      description: Represents a task segment within a shift
+      properties:
+        id:
+          type: string
+          description: Internal numeric ID of the task
+          example: '987654321'
+        shiftTypeId:
+          type: string
+          description: ID of the shift type associated with this task
+          example: '7'
+        begin:
+          type: string
+          format: date-time
+          description: Start date and time of the task
+          example: '2024-06-01T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the task
+          example: '2024-06-01T10:00:00Z'
+        countAsScheduledHours:
+          type: boolean
+          description: Whether this task's hours count toward scheduled hours
+          example: true
+        countAsWorkedHours:
+          type: boolean
+          description: Whether this task's hours count toward worked hours
+          example: true
+        productiveTime:
+          type: string
+          description: Productive time
+          example: ALWAYS
+        costCentreId:
+          type: string
+          description: ID of the cost centre associated with this task
+          example: '5'
+        projectId:
+          type: string
+          description: ID of the project associated with this task
+          example: '12'
+        comment:
+          type: string
+          description: Optional comment or note attached to the task
+          example: Customer service desk coverage
+    shifts_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
+    shifts_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page, or null if there is no next page.
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page, or null if there is no previous page.
+          example: eyJpZCI6ODB9
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

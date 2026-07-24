@@ -1,0 +1,1244 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Forecast Data API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Forecast Data
+  x-displayName: Forecast Data
+paths:
+  /v2/forecasts/raw-data:
+    post:
+      tags:
+      - Forecast Data
+      summary: Upload actual data with maximum 366 rows
+      description: Operation used to upload actual data. The total amount of data rows must not exceed 366. Deprecated. Use /actual-data instead.
+      operationId: postRawData
+      parameters:
+      - name: appendData
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_DataProviderInputList'
+        required: true
+      responses:
+        '200':
+          description: Data successfully uploaded
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      deprecated: true
+      x-audience: public
+  /v2/forecasts/predicted-data:
+    post:
+      tags:
+      - Forecast Data
+      summary: Upload prediction data with maximum 366 rows at the variable resolution
+      description: Operation used to upload generated prediction data. Resolution of datapoints must match expected resolution of variable. The total amount of data rows must not exceed 366.
+      operationId: postPredictedData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_ForecastPredictionIntegrationList'
+        required: true
+      responses:
+        '200':
+          description: Data successfully uploaded
+          content:
+            '*/*':
+              schema:
+                type: string
+        '400':
+          description: Unexpected input.
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  ? /v2/forecasts/forecast-variables/{externalForecastVariableId}/forecast-configurations/{externalForecastConfigurationId}/edit-forecast
+  : post:
+      tags:
+      - Forecast Data
+      summary: Update forecast configuration and related data
+      description: Operation used to edit forecast configurations and update related forecast data.
+      operationId: editCalculatedForecast
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalForecastConfigurationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataModifier'
+        required: true
+      responses:
+        '200':
+          description: Forecast successfully updated
+          content:
+            '*/*':
+              schema:
+                type: string
+        '400':
+          description: Unexpected input.
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  /v2/forecasts/forecast-data:
+    post:
+      tags:
+      - Forecast Data
+      summary: Upload forecast data with maximum 366 rows
+      description: Operation used to upload forecast data. The total amount of data rows must not exceed 366. Deprecated. Use /budget-data instead.
+      operationId: postForecastData
+      parameters:
+      - name: appendData
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_DataProviderInputList'
+        required: true
+      responses:
+        '200':
+          description: Data successfully uploaded
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      deprecated: true
+      x-audience: public
+  /v2/forecasts/budget-data:
+    post:
+      tags:
+      - Forecast Data
+      summary: Upload budget data with maximum 366 rows
+      description: Operation used to upload budget data. The total amount of data rows must not exceed 366.
+      operationId: postBudgetData
+      parameters:
+      - name: appendData
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_DataProviderInputList'
+        required: true
+      responses:
+        '200':
+          description: Data successfully uploaded
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  /v2/forecasts/aggregated-data:
+    post:
+      tags:
+      - Forecast Data
+      summary: Upload pre-aggregated data with maximum 366 rows
+      description: Operation used to upload data already grouped at input data resolution. The total amount of data rows must not exceed 366.
+      operationId: postAggregatedData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_DataProviderInputList'
+        required: true
+      responses:
+        '200':
+          description: Data successfully uploaded
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  /v2/forecasts/actual-data:
+    post:
+      tags:
+      - Forecast Data
+      summary: Upload actual data with maximum 366 rows
+      description: Operation used to upload actual data. The total amount of data rows must not exceed 366.
+      operationId: postActualData
+      parameters:
+      - name: appendData
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/forecast-data-ingestion_DataProviderInputList'
+        required: true
+      responses:
+        '200':
+          description: Data successfully uploaded
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  /v2/forecasts/forecast-variables/{externalForecastVariableId}/raw-data:
+    get:
+      tags:
+      - Forecast Data
+      summary: Get uploaded raw data for forecast variable, up to 120 days
+      description: Getting the actual data previously uploaded for the given forecast variable. The range between these two dates can not exceed 120 days. Deprecated. Use ../actual-data instead.
+      operationId: getRawData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+      deprecated: true
+      x-audience: public
+    delete:
+      tags:
+      - Forecast Data
+      summary: Delete uploaded raw data and matching calculated forecast
+      description: Deleting the actual data previously uploaded for the given forecast variable. This operation will also delete the corresponding calculated forecast data. The startTime and endTime must be at the start of hour and the range between these two dates can not exceed 120 days. Deprecated. Use ../actual-data instead.
+      operationId: deleteRawData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '202':
+          description: The delete request was received successfully and the operation will be performed asynchronously
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      deprecated: true
+      x-audience: public
+  /v2/forecasts/forecast-variables/{externalForecastVariableId}/raw-data-stream:
+    get:
+      tags:
+      - Forecast Data
+      summary: Stream uploaded raw data for forecast variable, up to 120 days
+      description: Stream the actual data previously uploaded for the given forecast variable. The range between these two dates can not exceed 120 days. Deprecated. Use ../actual-data instead.
+      operationId: getRawDataStream
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+      deprecated: true
+      x-audience: public
+  /v2/forecasts/forecast-variables/{externalForecastVariableId}/forecast-data:
+    get:
+      tags:
+      - Forecast Data
+      summary: Get uploaded forecast data for a forecast variable, up to 120 days
+      description: Getting the uploaded forecast data for the given forecast variable. The range between these two dates can not exceed 120 days. Deprecated. Use /budget-data instead.
+      operationId: getUploadedForecastData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+      deprecated: true
+      x-audience: public
+    delete:
+      tags:
+      - Forecast Data
+      summary: Delete previously uploaded forecast data for a forecast variable
+      description: Deleting the previously uploaded forecast data for the given forecast variable. The startTime and endTime must be at the start of hour and the range between these two dates can not exceed 120 days. Deprecated. Use /forecast-variables/{externalForecastVariableId}/budget-data instead.
+      operationId: deleteForecastData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '202':
+          description: The delete request was received successfully and the operation will be performed asynchronously
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      deprecated: true
+      x-audience: public
+  /v2/forecasts/forecast-variables/{externalForecastVariableId}/calculated-forecast:
+    get:
+      tags:
+      - Forecast Data
+      summary: Get the calculated forecast for a forecast variable, ignoring forecast events
+      description: Getting the calculated forecast for the given forecast variable. The range between these two dates can not exceed 120 days. Forecast events are NOT taken into consideration.
+      operationId: getCalculatedForecastForVariable
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_CalculatedForecast'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_CalculatedForecast'
+      x-audience: public
+  /v2/forecasts/forecast-variables/{externalForecastVariableId}/budget-data:
+    get:
+      tags:
+      - Forecast Data
+      summary: Get uploaded budget data for a forecast variable, up to 120 days
+      description: Getting the uploaded budget data for the given forecast variable. The range between these two dates can not exceed 120 days.
+      operationId: getUploadedBudgetData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+      x-audience: public
+    delete:
+      tags:
+      - Forecast Data
+      summary: Delete previously uploaded budget data for a forecast variable
+      description: Deleting the previously uploaded budget data for the given forecast variable. The startTime and endTime must be at the start of hour and the range between these two dates can not exceed 120 days.
+      operationId: deleteBudgetData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '202':
+          description: The delete request was received successfully and the operation will be performed asynchronously
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  /v2/forecasts/forecast-variables/{externalForecastVariableId}/aggregated-data:
+    get:
+      tags:
+      - Forecast Data
+      summary: Get aggregated data for a forecast variable, up to 120 days
+      description: Getting the aggregated data for the given forecast variable. The range between these two dates can not exceed 120 days.
+      operationId: getAggregatedData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_AggregatedData'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_AggregatedData'
+      x-audience: public
+  /v2/forecasts/forecast-variables/{externalForecastVariableId}/actual-data:
+    get:
+      tags:
+      - Forecast Data
+      summary: Get previously uploaded actual data for a forecast variable, up to 120 days
+      description: Getting the actual data previously uploaded for the given forecast variable. The range between these two dates can not exceed 120 days.
+      operationId: getActualData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+      x-audience: public
+    delete:
+      tags:
+      - Forecast Data
+      summary: Delete previously uploaded actual data and the matching calculated forecast
+      description: Deleting the actual data previously uploaded for the given forecast variable. This operation will also delete the corresponding calculated forecast data. The startTime and endTime must be at the start of hour and the range between these two dates can not exceed 120 days.
+      operationId: deleteActualData
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '202':
+          description: The delete request was received successfully and the operation will be performed asynchronously
+          content:
+            '*/*':
+              schema:
+                type: string
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                type: string
+      x-audience: public
+  /v2/forecasts/forecast-variables/{externalForecastVariableId}/actual-data-stream:
+    get:
+      tags:
+      - Forecast Data
+      summary: Stream previously uploaded actual data for a forecast variable, up to 120 days
+      description: Stream the actual data previously uploaded for the given forecast variable. The range between these two dates can not exceed 120 days.
+      operationId: getActualDataStream
+      parameters:
+      - name: externalForecastVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalUnitId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: externalSectionId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/forecast-data-ingestion_DataIngestionOutput'
+      x-audience: public
+  /v2/forecasts/calculated-variables/{extCalculatedVarId}:
+    get:
+      tags:
+      - Forecast Data
+      summary: Get calculated variable data by external id, up to 120 days
+      description: Getting the data for calculated variable identified by externalId. The range between these two dates can not exceed 120 days.
+      operationId: getCalculatedVariableData
+      parameters:
+      - name: extCalculatedVarId
+        in: path
+        description: Calculated Variable External Id
+        required: true
+        schema:
+          type: string
+        example: extId
+      - name: externalUnitId
+        in: query
+        description: External Group Id
+        required: true
+        schema:
+          type: string
+        example: unitId
+      - name: startTime
+        in: query
+        description: Start of the period in ISO format
+        required: true
+        schema:
+          type: string
+          format: date-time
+        example: '2020-01-26T00:00:00Z'
+      - name: endTime
+        in: query
+        description: End of the period ISO format
+        required: true
+        schema:
+          type: string
+          format: date-time
+        example: '2020-01-27T00:00:00Z'
+      responses:
+        '200':
+          description: Calculated variable data for given period
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_CalculatedVariableOutput'
+        '403':
+          description: Forbidden to perform this action
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_CalculatedVariableOutput'
+        '404':
+          description: Calculated variable was not found for given externalId and externalUnitId
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/forecast-data-ingestion_CalculatedVariableOutput'
+      x-audience: public
+components:
+  schemas:
+    forecast-data-ingestion_CalculatedForecastData:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example: 100
+        editedData:
+          type: number
+          format: double
+          example: 105
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T12:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T13:00:00Z'
+    forecast-data-ingestion_ForecastDataPayload:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example: 100
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T12:00:00Z'
+      required:
+      - data
+      - timestamp
+    forecast-data-ingestion_ForecastPredictionDataInput:
+      type: object
+      properties:
+        externalForecastVariableId:
+          type: string
+          example: var-1
+          minLength: 1
+        externalForecastConfigurationId:
+          type: string
+          example: config-1
+          minLength: 1
+        externalUnitId:
+          type: string
+          example: unit-1
+          minLength: 1
+        externalSectionId:
+          type: string
+          example: section-1
+        runIdentifier:
+          type: string
+          example: run-1
+          minLength: 1
+        runTimestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T12:00:00Z'
+        forecastDataPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_Payload'
+          minItems: 1
+      required:
+      - externalForecastConfigurationId
+      - externalForecastVariableId
+      - externalUnitId
+      - forecastDataPayload
+      - runIdentifier
+      - runTimestamp
+    forecast-data-ingestion_ForecastPredictionIntegrationList:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ForecastPredictionDataInput'
+      required:
+      - requests
+    forecast-data-ingestion_Payload:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example: 100
+        timestamp:
+          type: string
+          example: '2026-01-15T12:00:00Z'
+      required:
+      - data
+      - timestamp
+    forecast-data-ingestion_DataProviderInput:
+      type: object
+      properties:
+        externalForecastVariableId:
+          type: string
+          example: var-1
+          minLength: 1
+        externalUnitId:
+          type: string
+          example: unit-1
+          minLength: 1
+        externalSectionId:
+          type: string
+          example: section-1
+        forecastDataPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_Payload'
+          minItems: 1
+      required:
+      - externalForecastVariableId
+      - externalUnitId
+      - forecastDataPayload
+    forecast-data-ingestion_DataProviderInputList:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_DataProviderInput'
+      required:
+      - requests
+    forecast-data-ingestion_DataIngestionOutput:
+      type: object
+      properties:
+        externalForecastVariableId:
+          type: string
+          example: var-1
+        externalUnitId:
+          type: string
+          example: unit-1
+        externalSectionId:
+          type: string
+          example: section-1
+        dataPayLoad:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataPayload'
+          writeOnly: true
+        dataPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataPayload'
+    forecast-data-ingestion_AggregatedData:
+      type: object
+      properties:
+        groupId:
+          type: integer
+          format: int32
+          example: 1
+        forecastVariableId:
+          type: integer
+          format: int32
+          example: 1
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T12:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T13:00:00Z'
+        data:
+          type: number
+          format: double
+          example: 100
+        skip:
+          type: boolean
+          example: false
+        dataType:
+          type: string
+          enum:
+          - ACTUAL
+          - PREDICTED
+          - FORECAST
+          example: ACTUAL
+    forecast-data-ingestion_CalculatedVariableOutput:
+      type: object
+      properties:
+        extCalculatedVarId:
+          type: string
+          example: calc-var-1
+        externalUnitId:
+          type: string
+          example: unit-1
+        externalSectionId:
+          type: string
+          example: section-1
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataPayload'
+    forecast-data-ingestion_ForecastDataModifier:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T12:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T13:00:00Z'
+        percentageModification:
+          type: number
+          format: double
+          example: 10
+        newValueForPeriod:
+          type: number
+          format: double
+          example: 120
+      required:
+      - endTime
+      - startTime
+    forecast-data-ingestion_CalculatedForecast:
+      type: object
+      properties:
+        externalForecastConfigurationId:
+          type: string
+          example: config-1
+        externalUnitId:
+          type: string
+          example: unit-1
+        externalSectionId:
+          type: string
+          example: section-1
+        dataPayLoad:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_CalculatedForecastData'
+          writeOnly: true
+        dataPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_CalculatedForecastData'
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

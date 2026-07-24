@@ -1,0 +1,402 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Mappings API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Mappings
+  x-displayName: Mappings
+paths:
+  /v2/mapping/{mappingId}:
+    put:
+      tags:
+      - Mappings
+      summary: Update mapping
+      operationId: update
+      parameters:
+      - name: mappingId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mapping_MappingExternalValueRequest'
+        required: true
+      responses:
+        '200':
+          description: Response for the updated mapping of quinyxValue and externalValue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mapping_MappingResponse'
+        '400':
+          description: In case when externalValue is invalid
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/mapping_ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+        '501':
+          description: Mapping type not supported
+      x-audience: public
+    delete:
+      tags:
+      - Mappings
+      summary: Delete mapping
+      operationId: delete
+      parameters:
+      - name: mappingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Response in case of successful delete
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/mapping_ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+      x-audience: public
+  /v2/mapping/groups/{domainGroupId}:
+    post:
+      tags:
+      - Mappings
+      summary: Create mapping
+      operationId: save
+      parameters:
+      - name: domainGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mapping_MappingRequest'
+        required: true
+      responses:
+        '201':
+          description: Response for the created mapping of quinyxValue and externalValue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mapping_MappingResponse'
+        '400':
+          description: In case when quinyxValue or externalValue are invalid
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/mapping_ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+        '501':
+          description: Mapping type not supported
+      x-audience: public
+  /v2/mapping/domains/{domainId}/mappings/{mappingType}:
+    post:
+      tags:
+      - Mappings
+      summary: Search mappings by domain and type
+      description: Retrieves mapping records for the given domainId and mappingType, narrowed down by quinyxValue or/and externalValue.
+      operationId: getMappings
+      parameters:
+      - name: domainId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: mappingType
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mapping_MappingValues'
+        required: true
+      responses:
+        '200':
+          description: " Response that returns the list of mapping records for the given domainId and mappingType and quinyxValue or externalValue, or both. \n If both externalValue and quinyxValue are provided then a list of one element is returned.\n "
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/mapping_MappingResponse'
+        '400':
+          description: "   If the request is invalid or malformed.\n   Note: body is required, if externalValue and quinyxValue is not available in the request \n   the corresponding fields should be set to NULL.\n "
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/mapping_ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+      x-audience: public
+  /v2/mapping/mappingTypes:
+    get:
+      tags:
+      - Mappings
+      summary: List existing mapping types that can be used in a request
+      operationId: getMappingTypes
+      responses:
+        '200':
+          description: List of all mapping types which can be used to fetch quinyxValue or externalValue
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/mapping_ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      x-audience: public
+  /v2/mapping/mappingTypes/{mappingType}/mappings:
+    get:
+      tags:
+      - Mappings
+      summary: List mappings by type
+      operationId: getMappings_1
+      parameters:
+      - name: mappingType
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: quinyxValue
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: externalValue
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Response where you see the quinyxValue and externalValue
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/mapping_MappingResponse'
+        '400':
+          description: 'In case you send quinyxValue and externalValue at the same time.
+
+            You should send only one of them to retrieve the other value.
+
+            Or if the mappingType is invalid.
+
+            '
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/mapping_ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+      x-audience: public
+components:
+  schemas:
+    mapping_MappingRequest:
+      type: object
+      properties:
+        quinyxValue:
+          type: string
+          example: '1234'
+          maxLength: 256
+          minLength: 1
+        externalValue:
+          type: string
+          example: ext-abc-001
+          maxLength: 256
+          minLength: 1
+        mappingType:
+          type: string
+          enum:
+          - GROUP_ID
+          - EMPLOYEE_ID
+          - ABSENCE_ID
+          - UNIT_ID
+          - SECTION_ID
+          - ROLE_ID
+          - AGREEMENT_TEMPLATE_ID
+          - AGREEMENT
+          - DISTRICT_ID
+          example: GROUP_ID
+        parentId:
+          type: integer
+          format: int32
+          example: 42
+      required:
+      - externalValue
+      - quinyxValue
+    mapping_MappingValues:
+      type: object
+      properties:
+        quinyxValue:
+          type: string
+          example: '1234'
+          maxLength: 256
+          minLength: 1
+        externalValue:
+          type: string
+          example: ext-abc-001
+          maxLength: 256
+          minLength: 1
+    mapping_MappingResponse:
+      type: object
+      properties:
+        mappingType:
+          type: string
+          example: GROUP_ID
+        id:
+          type: string
+          example: 5f9a8c6d-1e2b-3c4d-5e6f-7a8b9c0d1e2f
+        quinyxValue:
+          type: string
+          example: '1234'
+        externalValue:
+          type: string
+          example: ext-abc-001
+        domainId:
+          type: integer
+          format: int32
+          example: 1
+    mapping_MappingExternalValueRequest:
+      type: object
+      properties:
+        externalValue:
+          type: string
+          example: ext-abc-001
+          maxLength: 256
+          minLength: 1
+      required:
+      - externalValue
+    mapping_ValidationError:
+      type: object
+      properties:
+        field:
+          type: string
+          example: externalValue
+        message:
+          type: string
+          example: must not be blank
+        severity:
+          type: string
+          example: ERROR
+        localisedMessage:
+          type: string
+          example: External value must not be blank
+        groupingMessage:
+          type: string
+          example: validation
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

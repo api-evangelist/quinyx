@@ -1,0 +1,699 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Collaboration Groups API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Collaboration Groups
+  x-displayName: Collaboration Groups
+paths:
+  /v2/collaboration-groups/groups/{collaborationGroupId}:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: Get collaboration group by id
+      operationId: getCollaborationGroupsById
+      parameters:
+      - name: collaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: includeArchived
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_CollaborationGroupDetails'
+      x-audience: public
+    put:
+      tags:
+      - Collaboration Groups
+      summary: Update collaboration group
+      operationId: editCollaborationGroups
+      parameters:
+      - name: collaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_CollaborationGroupUpdate'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_CollaborationGroup'
+      x-audience: public
+    delete:
+      tags:
+      - Collaboration Groups
+      summary: Delete collaboration group with its children
+      operationId: deleteCollaborationGroupsWithChildren
+      parameters:
+      - name: collaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: includeArchived
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/collaboration-groups/groups/{collaborationGroupId}/unarchive:
+    put:
+      tags:
+      - Collaboration Groups
+      summary: Unarchive collaboration group
+      operationId: unArchiveCollaborationGroup
+      parameters:
+      - name: collaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/collaboration-groups/groups/{collaborationGroupId}/move:
+    put:
+      tags:
+      - Collaboration Groups
+      summary: Move a collaboration group to a new parent
+      operationId: moveCollaborationGroup
+      parameters:
+      - name: collaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_CollaborationGroupMove'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_CollaborationGroup'
+      x-audience: public
+  /v2/collaboration-groups/groups/{collaborationGroupId}/archive:
+    put:
+      tags:
+      - Collaboration Groups
+      summary: Archive collaboration group
+      operationId: archiveCollaborationGroup
+      parameters:
+      - name: collaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/collaboration-groups/groups:
+    post:
+      tags:
+      - Collaboration Groups
+      summary: Create collaboration group for domain
+      operationId: createCollaborationGroups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_CollaborationGroupCreate'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_CollaborationGroup'
+      x-audience: public
+  /v2/collaboration-groups/associate-groups:
+    post:
+      tags:
+      - Collaboration Groups
+      summary: Associate groups to a collaboration group
+      operationId: associateGroupsToCollaborationGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_CollaborationGroupGroupDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_CollaborationGroupGroup'
+      x-audience: public
+  /v2/collaboration-groups/associate-employees:
+    post:
+      tags:
+      - Collaboration Groups
+      summary: Associate employees to a collaboration group
+      operationId: associateEmployeesToCollaborationGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_CollaborationGroupEmployeeDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_CollaborationGroupEmployee'
+      x-audience: public
+  /v2/collaboration-groups/root-by-domain/{domainId}:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: Get root collaboration group by domain id
+      operationId: getRootCollaborationGroupsByDomain
+      parameters:
+      - name: domainId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collaboration-groups_CollaborationGroupDetails'
+      x-audience: public
+  /v2/collaboration-groups/groups/{rootGroupId}/all-under-root:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: List collaboration groups under root
+      operationId: getAllCollaborationGroupsUnderRoot
+      parameters:
+      - name: rootGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: includeArchived
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collaboration-groups_CollaborationGroupDetails'
+      x-audience: public
+  /v2/collaboration-groups/groups/{parentId}/children:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: List child collaboration groups
+      operationId: getChildrenGroups
+      parameters:
+      - name: parentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collaboration-groups_CollaborationGroupDetails'
+      x-audience: public
+  /v2/collaboration-groups/groups/{collaborationGroupId}/employees:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: List employee ids in collaboration group
+      operationId: getCollaborationGroupEmployeeIds
+      parameters:
+      - name: collaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: includeArchived
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+      x-audience: public
+  /v2/collaboration-groups/groups/{collaborationGroupId}/eligible-parents:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: List eligible parent collaboration groups
+      operationId: getEligibleParentCollaborationGroups
+      parameters:
+      - name: collaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collaboration-groups_CollaborationGroup'
+      x-audience: public
+  /v2/collaboration-groups/groups/group/{groupId}:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: List collaboration groups for group
+      operationId: getCollaborationGroupsByEmployeeGroupId
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collaboration-groups_CollaborationGroupDetails'
+      x-audience: public
+  /v2/collaboration-groups/groups/employee/{employeeId}:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: List collaboration groups for employee
+      operationId: getCollaborationGroupsByEmployeeId
+      parameters:
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collaboration-groups_CollaborationGroupDetails'
+      x-audience: public
+  /v2/collaboration-groups/by-root/{rootCollaborationGroupId}/employee/{employeeId}:
+    get:
+      tags:
+      - Collaboration Groups
+      summary: Get collaboration group by root id and employee id
+      operationId: getCollaborationGroupByRootIdAndEmployeeId
+      parameters:
+      - name: rootCollaborationGroupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collaboration-groups_CollaborationGroupDetails'
+      x-audience: public
+  /v2/collaboration-groups/delete-groups:
+    delete:
+      tags:
+      - Collaboration Groups
+      summary: Remove groups from a collaboration group, optionally including archived collaboration groups
+      operationId: deleteGroupsFromCollaborationGroup
+      parameters:
+      - name: includeArchived
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_CollaborationGroupGroupDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+  /v2/collaboration-groups/delete-employees:
+    delete:
+      tags:
+      - Collaboration Groups
+      summary: Remove employees from a collaboration group, optionally including archived collaboration groups
+      operationId: deleteEmployeesFromCollaborationGroup
+      parameters:
+      - name: includeArchived
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collaboration-groups_CollaborationGroupEmployeeDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+      x-audience: public
+components:
+  schemas:
+    collaboration-groups_CollaborationGroupEmployeeDTO:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        employeeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+      required:
+      - collaborationGroupId
+      - employeeIds
+    collaboration-groups_CollaborationGroupUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Region North
+          minLength: 1
+        labelId:
+          type: integer
+          format: int64
+          example: 5
+        domoDashboardId:
+          type: string
+          example: abc12
+          maxLength: 5
+          minLength: 5
+          pattern: ^[a-zA-Z0-9]*$
+      required:
+      - labelId
+      - name
+    collaboration-groups_CollaborationGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Region North
+        parentId:
+          type: integer
+          format: int64
+          example: 10
+        domainId:
+          type: integer
+          format: int32
+          example: 100
+        labelId:
+          type: integer
+          format: int64
+          example: 5
+        domoDashboardId:
+          type: string
+          example: abc-123
+        isArchived:
+          type: boolean
+          example: false
+    collaboration-groups_CollaborationGroupDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Region North
+        groups:
+          type: array
+          items:
+            type: integer
+            format: int32
+        employees:
+          type: array
+          items:
+            type: integer
+            format: int32
+        parent:
+          type: integer
+          format: int64
+          example: 10
+        children:
+          type: array
+          items:
+            type: integer
+            format: int64
+        labelId:
+          type: integer
+          format: int64
+          example: 5
+        domoDashboardId:
+          type: string
+          example: abc12
+        isArchived:
+          type: boolean
+          example: false
+    collaboration-groups_CollaborationGroupEmployee:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        employeeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+    collaboration-groups_CollaborationGroupCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Region North
+          minLength: 1
+        domainId:
+          type: integer
+          format: int32
+          example: 100
+        parentId:
+          type: integer
+          format: int64
+          example: 10
+        labelId:
+          type: integer
+          format: int64
+          example: 5
+        domoDashboardId:
+          type: string
+          example: abc12
+          maxLength: 5
+          minLength: 5
+          pattern: ^[a-zA-Z0-9]*$
+      required:
+      - domainId
+      - labelId
+      - name
+    collaboration-groups_CollaborationGroupGroupDTO:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+      required:
+      - collaborationGroupId
+      - groupIds
+    collaboration-groups_CollaborationGroupGroup:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+    collaboration-groups_CollaborationGroupMove:
+      type: object
+      properties:
+        newParentId:
+          type: integer
+          format: int64
+          example: 10
+      required:
+      - newParentId
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

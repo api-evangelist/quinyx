@@ -1,0 +1,196 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Absence Schedules
+  x-displayName: Absence Schedules
+paths:
+  /v2/absence-schedule/groups/{groupId}:
+    get:
+      tags:
+      - Absence Schedules
+      summary: List absence schedules for group
+      operationId: getAbsenceSchedules
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Response where you see the absence schedules for group
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/absence-schedule_IntegrationAbsenceSchedule'
+        '400':
+          description: 'In case you send groupId which is not domain groupId.
+
+            Or if groupId is invalid.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/absence-schedule_ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+      x-audience: public
+components:
+  schemas:
+    absence-schedule_ValidationError:
+      type: object
+      properties:
+        field:
+          type: string
+          example: externalValue
+        message:
+          type: string
+          example: must not be blank
+        severity:
+          type: string
+          example: ERROR
+        localisedMessage:
+          type: string
+          example: External value must not be blank
+        groupingMessage:
+          type: string
+          example: validation
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
+    absence-schedule_IntegrationAbsenceSchedule:
+      type: object
+      properties:
+        absenceScheduleId:
+          type: integer
+          format: int64
+          example: 1
+        absenceScheduleName:
+          type: string
+          example: Sick leave
+        absenceScheduleShiftTypeId:
+          type: integer
+          format: int32
+          example: 10
+        adjustmentLogic:
+          type: string
+          enum:
+          - USE_EMPLOYMENT_RATE
+          - USE_NOMINAL_HOURS
+          - USE_SHIFT_LENGTH
+          - USE_MINI_JOBBERS
+          - USE_EMPLOYMENT_RATE_NEW
+          example: USE_NOMINAL_HOURS
+        shiftReplacement:
+          type: string
+          enum:
+          - SCHEDULED_DAYS
+          - FREE_DAYS
+          - ALL_DAYS
+          example: ALL_DAYS
+        comment:
+          type: string
+          example: Schedule comment
+        bankHolidayCreation:
+          type: boolean
+          example: true
+        dayAndTime:
+          type: array
+          items:
+            $ref: '#/components/schemas/absence-schedule_IntegrationAbsenceScheduleShift'
+    absence-schedule_IntegrationAbsenceScheduleShift:
+      type: object
+      properties:
+        startTime:
+          type: string
+          example: 08:00:00
+        endTime:
+          type: string
+          example: '17:00:00'
+        days:
+          type: array
+          items:
+            type: string
+            enum:
+            - MONDAY
+            - TUESDAY
+            - WEDNESDAY
+            - THURSDAY
+            - FRIDAY
+            - SATURDAY
+            - SUNDAY
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

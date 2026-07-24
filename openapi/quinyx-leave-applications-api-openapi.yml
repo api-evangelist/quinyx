@@ -1,0 +1,280 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Leave Applications API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Leave Applications
+paths:
+  /users/leave-applications:
+    get:
+      tags:
+      - Leave Applications
+      summary: Returns historical or upcoming leave applications
+      description: Get upcoming leave applications, starting from today, or historical applications, ending today or earlier
+      operationId: b94e17a44a5e9a2ea0c09d0e752c37bc
+      parameters:
+      - name: filter
+        in: query
+        description: Choose upcoming or historical leave applications
+        required: true
+        schema:
+          type: string
+          enum:
+          - upcoming
+          - historical
+      responses:
+        '200':
+          description: All leave applications are sorted by the time they have been created in descending order
+          content:
+            application/json:
+              schema:
+                properties:
+                  leaveApplications:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LeaveApplication'
+                type: object
+        '400':
+          description: When invalid filter is applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidLeaveApplicationFilter'
+      security:
+      - BearerAuth: []
+      x-audience: public
+    post:
+      tags:
+      - Leave Applications
+      summary: Create leave application
+      description: Create leave application
+      operationId: b29f8f50f23a5ea3e76a1af8bb808965
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - from
+              - to
+              - leaveReasonId
+              properties:
+                from:
+                  description: Start date time of the leave application in format Y-m-d H:i:s, required
+                  type: string
+                  example: '2020-06-27 00:00:00'
+                to:
+                  description: End date time of the leave application in format Y-m-d H:i:s, required, if leave is allDay and for example employee selected 27.06.2020 then we should send value like 2020-06-27 00:00:00, can be in some cases same value as 'from' if leave is exactly one date long
+                  type: string
+                  example: '2020-06-27 00:00:00'
+                leaveReasonId:
+                  description: Leave reason id, required
+                  type: string
+                  example: kBep_ZtJ1sce0EXuI_9Evt.4qUR7INSe06UTygqpqLxc
+                managerId:
+                  description: Manager id which will receive leave application, can be omitted
+                  type: string
+                  example: hd58ElPA.IW0FHctO8oCRAhGTetM2yCxIs.63wgYdfB75C0--
+                leaveMessage:
+                  description: Leave message, can be omitted
+                  type: string
+                  example: I am going on vacation
+                allDay:
+                  description: Not really needed and its not used by the backend logic, should be used by frontend only, if time in 'from' and 'to' parameters is 00:00:00 or leave lasts longer than 24h then its automatically allDay true by default, otherwise its false
+                  type: boolean
+                  example: true
+              type: object
+      responses:
+        '201':
+          description: Created leave application
+          content:
+            application/json:
+              schema:
+                properties:
+                  leaveApp:
+                    $ref: '#/components/schemas/LeaveApplication'
+                type: object
+        '400':
+          description: When some validation is failing, msg property closely describes what was the problem
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  msg:
+                    type: string
+                    example: 'One of the: INVALID_LEAVE_REASON, OVERLAPPING_LEAVES, INVALID_LEAVE_MANAGER, INVALID_ID: hashedInvalidId, LEAVEAPP_MAX_CONSECUTIVE_DAYS, LEAVEAPP_MAX_OCCASIONS, LEAVEAPP_MAX_DAYS_IN_PERIOD, LEAVEAPP_MIN_DAYS_BETWEEN, LEAVEAPP_APPROVED_PUNCH_IN_PERIOD, LEAVEAPP_LOCKED_SALARIES_IN_PERIOD, LEAVEAPP_PRECEEDING_LEAVE_WITHOUT_WORK, CANT_EDIT_LEAVE_APP, NO_VALID_RECEIVER_FOUND, NOT_VALID_TIME_TRACKER_BALANCE'
+                type: object
+        '403':
+          description: When salary period is locked
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 403
+                  msg:
+                    type: string
+                    example: SALARY_PERIOD_LOCKED
+                type: object
+      security:
+      - BearerAuth: []
+      x-audience: public
+  /users/leave-applications/managers:
+    get:
+      tags:
+      - Leave Applications
+      summary: Returns list of leave applications managers
+      description: Returns list of leave applications managers
+      operationId: c59728cf9f3146f3224e3811c0b71700
+      responses:
+        '200':
+          description: Leave applications manager list
+          content:
+            application/json:
+              schema:
+                properties:
+                  leaveManagers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LeaveApplicationManager'
+                type: object
+      security:
+      - BearerAuth: []
+      x-audience: public
+components:
+  schemas:
+    InvalidLeaveApplicationFilter:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, historical'
+          type: object
+      type: object
+    LeaveApplication:
+      description: Leave Application Model
+      properties:
+        id:
+          type: string
+          example: aidhjTypVxiWxO.E8dXmixitUDIUDj175Av8YZyUjtjxWuWm
+        employeeName:
+          type: string
+          example: John Doe
+        leaveReason:
+          type: string
+          example: Sick
+        from:
+          type: string
+          example: '2020-09-01 00:00:00'
+        to:
+          type: string
+          example: '2020-09-01 00:00:00'
+        sendDate:
+          type: string
+          example: '2020-08-20 12:25:00'
+        status:
+          type: string
+          enum:
+          - PENDING
+          - APPROVED
+          - DENIED
+          example: PENDING
+        comment:
+          type: string
+          example: Employee's comment
+        allDay:
+          type: boolean
+          example: true
+      type: object
+    LeaveApplicationManager:
+      description: Leave Application Manager Model
+      properties:
+        id:
+          type: string
+          example: lEgFK5pUNvkUtqzE8jcmjYsvk0WlKqx9f_fHbMrk_0VIsw--
+        name:
+          type: string
+          example: John Doe
+        unit:
+          type: string
+          example: Unit name
+        section:
+          type: string
+          example: Section name
+        defaultManager:
+          type: boolean
+          example: false
+      type: object
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

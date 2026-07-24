@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: Quinyx Absence Schedules Agreements API
+  version: v2
+  x-service: absence-schedule
+  description: null
+servers:
+- url: https://api.quinyx.com
+  description: Production API
+- url: https://api-rc.quinyx.com
+  description: RC API
+tags:
+- name: Agreements
+  x-displayName: Agreements
+paths:
+  /v2/employee/agreements/{id}:
+    patch:
+      tags:
+      - Agreements
+      summary: Partially update an existing agreement
+      operationId: patchAgreement
+      parameters:
+      - name: agreementRestId
+        in: query
+        description: Agreement identifier
+        required: true
+        schema:
+          description: An identifier that can be either a Quinyx ID or a prefixed external ID string.
+          oneOf:
+          - type: string
+            description: The Quinyx ID of the resource.
+            pattern: ^[0-9]+$
+          - type: string
+            description: The external string ID, which must start with 'xrefId:'.
+            example: xrefId:1234
+            pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+        examples:
+          internal-id:
+            summary: Internal ID
+            description: Internal ID (Integer)
+            value: 9
+          external-id:
+            summary: External ID
+            description: External ID prefixed with 'xrefId:', 1-64 characters long, consisting of alphanumerics and . _ -
+            value: xrefId:my-external-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employee_AgreementPatchRequest'
+        required: true
+      responses:
+        '200':
+          description: Agreement details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee_AgreementResponse'
+        '401':
+          description: Unauthorized. Missing Bearer token.
+        '403':
+          description: 'Forbidden. Missing permission: agreement:update'
+        '404':
+          description: Agreement or credential's customer are not found.
+      x-audience: public
+components:
+  schemas:
+    employee_Payroll:
+      type: object
+      properties:
+        payScheduleId:
+          type: string
+          example: '546'
+    employee_AgreementPatchRequest:
+      type: object
+      properties:
+        payroll:
+          $ref: '#/components/schemas/employee_Payroll'
+    employee_AgreementResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '29339'
+        xrefId:
+          type: string
+          example: agr-1382
+        name:
+          type: string
+          example: John's monthly agreement
+        payroll:
+          $ref: '#/components/schemas/employee_Payroll'
+  securitySchemes:
+    employee_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+    opening-hours_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    organisation_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+    rest-api-uaa_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule-availability_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    schedule_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}
+    statistics_OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes: {}

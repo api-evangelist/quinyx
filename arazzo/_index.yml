@@ -1,0 +1,8 @@
+generated: '2026-07-20'
+method: derived
+workflows:
+- file: quinyx-onboard-employee.yml
+  workflowId: onboardEmployee
+  title: Onboard an employee in Quinyx
+  summary: Create an organizational group, create an employee, and assign a role
+    using the Quinyx API v3.

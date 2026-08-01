@@ -1,0 +1,60 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.quinyx.com/problems
+also_derived_from: openapi/quinyx-api-v3-openapi.yml
+format: rfc9457
+media_type: application/problem+json
+notes: >-
+  Quinyx API v3 returns RFC 9457 problem+json error bodies and maintains a public
+  Problem Registry. Each problem type is identified by a stable "type" URI under
+  https://developer.quinyx.com/api/problems/. Status codes for the five core
+  types (400/401/403/404/500) are confirmed verbatim from the v3 OpenAPI response
+  examples; the remaining registry entries map to their standard HTTP status.
+problems:
+- type: https://developer.quinyx.com/api/problems/bad-request
+  status: 400
+  title: Bad Request
+  confirmed_in_spec: true
+- type: https://developer.quinyx.com/api/problems/invalid-parameters
+  status: 400
+  title: Invalid Parameters
+- type: https://developer.quinyx.com/api/problems/validation-error
+  status: 422
+  title: Validation Error
+- type: https://developer.quinyx.com/api/problems/business-rule-violation
+  status: 422
+  title: Business Rule Violation
+- type: https://developer.quinyx.com/api/problems/unauthorized
+  status: 401
+  title: Unauthorized
+  confirmed_in_spec: true
+- type: https://developer.quinyx.com/api/problems/forbidden
+  status: 403
+  title: Forbidden
+  confirmed_in_spec: true
+- type: https://developer.quinyx.com/api/problems/not-found
+  status: 404
+  title: Not Found
+  confirmed_in_spec: true
+- type: https://developer.quinyx.com/api/problems/already-exists
+  status: 409
+  title: Already Exists
+- type: https://developer.quinyx.com/api/problems/content-too-large
+  status: 413
+  title: Content Too Large
+- type: https://developer.quinyx.com/api/problems/unsupported-media-type
+  status: 415
+  title: Unsupported Media Type
+- type: https://developer.quinyx.com/api/problems/too-many-requests
+  status: 429
+  title: Too Many Requests
+- type: https://developer.quinyx.com/api/problems/server-error
+  status: 500
+  title: Server Error
+  confirmed_in_spec: true
+- type: https://developer.quinyx.com/api/problems/service-unavailable
+  status: 503
+  title: Service Unavailable
+- type: https://developer.quinyx.com/api/problems/gateway-timeout
+  status: 504
+  title: Gateway Timeout

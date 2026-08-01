@@ -1,22 +1,465 @@
 aid: quinyx
 name: Quinyx
-description: Quinyx is a company surfaced as a portfolio company of battery-ventures and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Quinyx is an AI-powered workforce management (WFM) platform for frontline
+  organizations, covering scheduling, demand forecasting, time tracking, labor
+  law compliance, task management, and employee engagement across retail,
+  warehousing and logistics, hospitality, facility management, and healthcare.
+  Quinyx exposes a public developer platform with three APIs: the current REST
+  API v3 (OAuth 2.0 client-credentials, RFC 9457 problem details, cursor
+  pagination, regional EU/NA hosts), the earlier REST API v2, and a bearer-token
+  User API v2, plus a legacy SOAP v1. This profile was enriched from Quinyx's
+  own developer portal, OpenAPI descriptions, and public documentation.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://developer.quinyx.com/static/logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/quinyx/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - battery-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-developer-portal
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 24
+  pass: local-v1
 tags:
+- Workforce Management
+- Scheduling
+- Human Resources
+- Time Tracking
+- Forecasting
+- Employee Engagement
+- Retail
+- Hospitality
 - Company
-apis: []
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: quinyx:quinyx-absence-schedules-api
+  name: Quinyx Absence Schedules API
+  description: The Absence Schedules API from Quinyx — 1 operation(s) for absence schedules.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Absence Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-absence-schedules-api-openapi.yml
+- aid: quinyx:quinyx-absence-types-api
+  name: Quinyx Absence Types API
+  description: The Absence Types API from Quinyx — 1 operation(s) for absence types.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Absence Types
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-absence-types-api-openapi.yml
+- aid: quinyx:quinyx-absences-api
+  name: Quinyx Absences API
+  description: The Absences API from Quinyx — 3 operation(s) for absences.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Absences
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-absences-api-openapi.yml
+- aid: quinyx:quinyx-access-token-api
+  name: Quinyx Access Token API
+  description: The Access Token API from Quinyx — 1 operation(s) for access token.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Access Token
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-access-token-api-openapi.yml
+- aid: quinyx:quinyx-agreements-api
+  name: Quinyx Agreements API
+  description: The Agreements API from Quinyx — 1 operation(s) for agreements.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Agreements
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-agreements-api-openapi.yml
+- aid: quinyx:quinyx-ai-scheduled-headcount-api
+  name: Quinyx AI Scheduled Headcount API
+  description: The AI Scheduled Headcount API from Quinyx — 1 operation(s) for ai scheduled headcount.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - AI Scheduled Headcount
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-ai-scheduled-headcount-api-openapi.yml
+- aid: quinyx:quinyx-authentication-api
+  name: Quinyx Authentication API
+  description: The Authentication API from Quinyx — 2 operation(s) for authentication.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-authentication-api-openapi.yml
+- aid: quinyx:quinyx-collaboration-groups-api
+  name: Quinyx Collaboration Groups API
+  description: The Collaboration Groups API from Quinyx — 17 operation(s) for collaboration groups.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Collaboration Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-collaboration-groups-api-openapi.yml
+- aid: quinyx:quinyx-collaboration-groups-labels-api
+  name: Quinyx Collaboration Groups Labels API
+  description: >-
+    The Collaboration Groups Labels API from Quinyx — 3 operation(s) for collaboration groups labels.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Collaboration Groups Labels
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-collaboration-groups-labels-api-openapi.yml
+- aid: quinyx:quinyx-employee-api
+  name: Quinyx Employee API
+  description: The Employee API from Quinyx — 2 operation(s) for employee.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Employee
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-employee-api-openapi.yml
+- aid: quinyx:quinyx-employees-api
+  name: Quinyx Employees API
+  description: The Employees API from Quinyx — 1 operation(s) for employees.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-employees-api-openapi.yml
+- aid: quinyx:quinyx-forecast-data-api
+  name: Quinyx Forecast Data API
+  description: The Forecast Data API from Quinyx — 16 operation(s) for forecast data.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Forecast Data
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-forecast-data-api-openapi.yml
+- aid: quinyx:quinyx-forecast-dynamic-rules-api
+  name: Quinyx Forecast Dynamic Rules API
+  description: The Forecast Dynamic Rules API from Quinyx — 2 operation(s) for forecast dynamic rules.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Forecast Dynamic Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-forecast-dynamic-rules-api-openapi.yml
+- aid: quinyx:quinyx-forecast-event-categories-api
+  name: Quinyx Forecast Event Categories API
+  description: >-
+    The Forecast Event Categories API from Quinyx — 2 operation(s) for forecast event categories.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Forecast Event Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-forecast-event-categories-api-openapi.yml
+- aid: quinyx:quinyx-forecast-event-effects-api
+  name: Quinyx Forecast Event Effects API
+  description: The Forecast Event Effects API from Quinyx — 1 operation(s) for forecast event effects.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Forecast Event Effects
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-forecast-event-effects-api-openapi.yml
+- aid: quinyx:quinyx-forecast-events-api
+  name: Quinyx Forecast Events API
+  description: The Forecast Events API from Quinyx — 4 operation(s) for forecast events.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Forecast Events
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-forecast-events-api-openapi.yml
+- aid: quinyx:quinyx-forecast-optimal-headcounts-api
+  name: Quinyx Forecast Optimal Headcounts API
+  description: >-
+    The Forecast Optimal Headcounts API from Quinyx — 3 operation(s) for forecast optimal headcounts.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Forecast Optimal Headcounts
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-forecast-optimal-headcounts-api-openapi.yml
+- aid: quinyx:quinyx-forecast-static-rules-api
+  name: Quinyx Forecast Static Rules API
+  description: The Forecast Static Rules API from Quinyx — 2 operation(s) for forecast static rules.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Forecast Static Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-forecast-static-rules-api-openapi.yml
+- aid: quinyx:quinyx-forecast-target-data-api
+  name: Quinyx Forecast Target Data API
+  description: The Forecast Target Data API from Quinyx — 2 operation(s) for forecast target data.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Forecast Target Data
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-forecast-target-data-api-openapi.yml
+- aid: quinyx:quinyx-group-api
+  name: Quinyx Group API
+  description: The Group API from Quinyx — 2 operation(s) for group.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Group
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-group-api-openapi.yml
+- aid: quinyx:quinyx-group-locations-api
+  name: Quinyx Group Locations API
+  description: The Group Locations API from Quinyx — 2 operation(s) for group locations.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Group Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-group-locations-api-openapi.yml
+- aid: quinyx:quinyx-groups-api
+  name: Quinyx Groups API
+  description: The Groups API from Quinyx — 3 operation(s) for groups.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-groups-api-openapi.yml
+- aid: quinyx:quinyx-labor-standards-api
+  name: Quinyx Labor Standards API
+  description: The Labor Standards API from Quinyx — 3 operation(s) for labor standards.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Labor Standards
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-labor-standards-api-openapi.yml
+- aid: quinyx:quinyx-leave-applications-api
+  name: Quinyx Leave Applications API
+  description: The Leave Applications API from Quinyx — 2 operation(s) for leave applications.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Leave Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-leave-applications-api-openapi.yml
+- aid: quinyx:quinyx-leave-reasons-api
+  name: Quinyx Leave Reasons API
+  description: The Leave Reasons API from Quinyx — 1 operation(s) for leave reasons.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Leave Reasons
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-leave-reasons-api-openapi.yml
+- aid: quinyx:quinyx-mappings-api
+  name: Quinyx Mappings API
+  description: The Mappings API from Quinyx — 5 operation(s) for mappings.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Mappings
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-mappings-api-openapi.yml
+- aid: quinyx:quinyx-opening-hours-api
+  name: Quinyx Opening Hours API
+  description: The Opening Hours API from Quinyx — 3 operation(s) for opening hours.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Opening Hours
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-opening-hours-api-openapi.yml
+- aid: quinyx:quinyx-pay-schedules-api
+  name: Quinyx Pay Schedules API
+  description: The Pay Schedules API from Quinyx — 1 operation(s) for pay schedules.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Pay Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-pay-schedules-api-openapi.yml
+- aid: quinyx:quinyx-role-api
+  name: Quinyx Role API
+  description: The Role API from Quinyx — 2 operation(s) for role.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Role
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-role-api-openapi.yml
+- aid: quinyx:quinyx-role-assignment-api
+  name: Quinyx Role Assignment API
+  description: The Role Assignment API from Quinyx — 2 operation(s) for role assignment.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Role Assignment
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-role-assignment-api-openapi.yml
+- aid: quinyx:quinyx-schedule-availability-api
+  name: Quinyx Schedule Availability API
+  description: The Schedule Availability API from Quinyx — 3 operation(s) for schedule availability.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Schedule Availability
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-schedule-availability-api-openapi.yml
+- aid: quinyx:quinyx-shift-api
+  name: Quinyx Shift API
+  description: The Shift API from Quinyx — 1 operation(s) for shift.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Shift
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-shift-api-openapi.yml
+- aid: quinyx:quinyx-shifts-api
+  name: Quinyx Shifts API
+  description: The Shifts API from Quinyx — 1 operation(s) for shifts.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Shifts
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-shifts-api-openapi.yml
+- aid: quinyx:quinyx-standard-variables-api
+  name: Quinyx Standard Variables API
+  description: The Standard Variables API from Quinyx — 1 operation(s) for standard variables.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Standard Variables
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-standard-variables-api-openapi.yml
+- aid: quinyx:quinyx-tags-api
+  name: Quinyx Tags API
+  description: The Tags API from Quinyx — 5 operation(s) for tags.
+  humanURL: https://developer.quinyx.com/api/v3
+  baseURL: https://api.eu.quinyx.com
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/quinyx-tags-api-openapi.yml
+common:
+- type: DeveloperPortal
+  url: https://developer.quinyx.com
+- type: Documentation
+  url: https://developer.quinyx.com/guides
+- type: APIReference
+  url: https://developer.quinyx.com/api
+- type: GettingStarted
+  url: https://developer.quinyx.com/guides/getting-started
+- type: Support
+  url: https://support.quinyx.com
+- type: Blog
+  url: https://www.quinyx.com/blog
+- type: GitHubOrganization
+  url: https://github.com/quinyx
+- type: Pricing
+  url: https://www.quinyx.com/pricing
+- type: PrivacyPolicy
+  url: https://www.quinyx.com/privacy
+- type: TermsOfService
+  url: https://www.quinyx.com/policies
+- type: StatusPage
+  url: https://status.quinyx.com
+- type: TrustCenter
+  url: https://trust.quinyx.com
+- type: Deprecation
+  url: https://developer.quinyx.com/api/v3/deprecation
+- type: Authentication
+  url: authentication/quinyx-authentication.yml
+- type: OAuthScopes
+  url: scopes/quinyx-scopes.yml
+- type: LLMsTxt
+  url: llms/quinyx-llms.txt
+- type: ErrorCatalog
+  url: errors/quinyx-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/quinyx-lifecycle.yml
+- type: Conventions
+  url: conventions/quinyx-conventions.yml
+- type: Conformance
+  url: conformance/quinyx-conformance.yml
+- type: MCPServer
+  url: mcp/quinyx-mcp.yml
+- type: DataModel
+  url: data-model/quinyx-data-model.yml
+- type: Sandbox
+  url: sandbox/quinyx-sandbox.yml
+- type: AgenticAccess
+  url: agentic-access/quinyx-agentic-access.yml
+- type: DomainSecurity
+  url: security/quinyx-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Onboard an employee in Quinyx
+  url: arazzo/quinyx-onboard-employee.yml

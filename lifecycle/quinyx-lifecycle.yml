@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.quinyx.com/api/v3/api-versioning
+versioning:
+  scheme: uri-path
+  current: v3
+  supported: [v3, v2]
+  legacy: [v1-soap]
+  docs: https://developer.quinyx.com/api/v3/api-versioning
+deprecation:
+  policy_url: https://developer.quinyx.com/api/v3/deprecation
+  notice_period: at least 12 months before removal (unless required sooner for
+    security, compliance, or stability reasons)
+  headers:
+    deprecation_header: Deprecation-Date
+    sunset_header: Sunset-Date
+  webhook_fields: [deprecated, deprecationfrom, deprecationsunset]
+  rfc8594: partial (uses Deprecation-Date/Sunset-Date rather than the bare
+    Deprecation/Sunset header names)
+status_page: https://status.quinyx.com
+trust_center: https://trust.quinyx.com
+deprecated_operations: []

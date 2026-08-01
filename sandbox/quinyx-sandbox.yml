@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.quinyx.com/api/v3
+notes: >-
+  Quinyx separates a production and an RC (Release Candidate / pre-production)
+  environment per region. RC is the non-production environment used for
+  integration testing against a Quinyx test tenant. No synthetic magic test
+  values (test cards/identifiers) are published; testing uses a real RC tenant
+  with credentials issued from that tenant's Integration credentials page.
+environments:
+- name: EU Production
+  api_base: https://api.eu.quinyx.com
+  token_url: https://api.eu.quinyx.com/oauth/v3/token
+- name: NA Production
+  api_base: https://api.na.quinyx.com
+  token_url: https://api.na.quinyx.com/oauth/v3/token
+- name: EU RC (test)
+  api_base: https://api.eu.rc.quinyx.com
+  token_url: https://api.eu.rc.quinyx.com/oauth/v3/token
+- name: NA RC (test)
+  api_base: https://api.na.rc.quinyx.com
+  token_url: https://api.na.rc.quinyx.com/oauth/v3/token
+user_api_environments:
+- name: User API Production
+  api_base: https://user-api.quinyx.com/v2
+- name: User API RC (test)
+  api_base: https://user-api-rc.quinyx.com/v2
+credentials:
+  source: Account Settings > Integration credentials (Client ID + Client Secret,
+    per tenant/environment)

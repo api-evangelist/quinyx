@@ -1,0 +1,85 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml
+docs: https://developer.quinyx.com/api/v3/authentication
+notes: >-
+  Scopes are requested at token time in the OAuth 2.0 client-credentials grant.
+  Quinyx uses a resource:object:action naming scheme (e.g. hr:employees:read).
+  The scopes below are aggregated verbatim from the v2 and v3 OpenAPI security
+  schemes; the seven v2 service schemes share the same /oauth/v3/token endpoint.
+schemes:
+- name: OAuth2ClientCredentials (v3)
+  source: openapi/quinyx-api-v3-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /oauth/v3/token
+- name: v2 per-service OAuth2ClientCredentials
+  source: openapi/quinyx-api-v2-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /oauth/v3/token
+  members:
+  - employee_OAuth2ClientCredentials
+  - opening-hours_OAuth2ClientCredentials
+  - organisation_OAuth2ClientCredentials
+  - rest-api-uaa_OAuth2ClientCredentials
+  - schedule-availability_OAuth2ClientCredentials
+  - schedule_OAuth2ClientCredentials
+  - statistics_OAuth2ClientCredentials
+scopes:
+- scope: hr:employees:read
+  description: Read employee (HR) records.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml]
+- scope: hr:employees:create
+  description: Create employee records.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml]
+- scope: hr:employees:update
+  description: Update employee records.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml]
+- scope: hr:employees:delete
+  description: Delete employee records.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml]
+- scope: hr:role-assignments:read
+  description: Read role assignments.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v3-openapi.yml]
+- scope: hr:role-assignments:create
+  description: Create role assignments.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v3-openapi.yml]
+- scope: hr:role-assignments:update
+  description: Update role assignments.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v3-openapi.yml]
+- scope: hr:role-assignments:delete
+  description: Delete role assignments.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v3-openapi.yml]
+- scope: organization:groups:read
+  description: Read organizational groups/units.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml]
+- scope: organization:groups:create
+  description: Create organizational groups/units.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml]
+- scope: organization:groups:update
+  description: Update organizational groups/units.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml]
+- scope: organization:groups:delete
+  description: Delete organizational groups/units.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v2-openapi.yml, openapi/quinyx-api-v3-openapi.yml]
+- scope: organization:roles:read
+  description: Read role definitions.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v3-openapi.yml]
+- scope: schedule:shifts:read
+  description: Read schedule shifts.
+  flows: [clientCredentials]
+  sources: [openapi/quinyx-api-v3-openapi.yml]

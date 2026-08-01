@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Quinyx API v2
+  version: 1.0.0
+extends: openapi/quinyx-api-v2-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-api-successor: openapi/quinyx-api-v3-openapi.yml
+    x-api-authentication: authentication/quinyx-authentication.yml

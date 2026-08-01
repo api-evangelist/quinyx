@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: api.quinyx.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 30 23:59:59 2026 GMT
+  hsts: null
+- host: api-rc.quinyx.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 30 23:59:59 2026 GMT
+  hsts: null
+- host: user-api.quinyx.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 30 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: quinyx.com
+  dnssec: false
+  caa:
+  - 0 iodef "mailto:admin@quinyx.com"
+  - 0 issue "amazonaws.com"
+  - 0 issue "certainly.com"
+  - 0 issue "digicert.com"
+  - 0 issue "godaddy.com"
+  - 0 issue "letsencrypt.org"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

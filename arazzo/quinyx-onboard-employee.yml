@@ -1,0 +1,48 @@
+arazzo: 1.0.1
+info:
+  title: Onboard an employee in Quinyx
+  version: 1.0.0
+  summary: Create an organizational group, create an employee, and assign a role
+    using the Quinyx API v3.
+sourceDescriptions:
+- name: quinyxV3
+  url: ../openapi/quinyx-api-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboardEmployee
+  summary: Create a group, an employee, and a role assignment.
+  inputs:
+    type: object
+    properties:
+      groupName: { type: string }
+      employee: { type: object }
+      roleId: { type: string }
+  steps:
+  - stepId: createGroup
+    operationId: createGroup
+    requestBody:
+      payload:
+        name: $inputs.groupName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      groupId: $response.body#/id
+  - stepId: createEmployee
+    operationId: createEmployee
+    requestBody:
+      payload: $inputs.employee
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      employeeId: $response.body#/id
+  - stepId: createRoleAssignment
+    operationId: createRoleAssignment
+    requestBody:
+      payload:
+        employeeId: $steps.createEmployee.outputs.employeeId
+        groupId: $steps.createGroup.outputs.groupId
+        roleId: $inputs.roleId
+    successCriteria:
+    - condition: $statusCode == 201
+  outputs:
+    employeeId: $steps.createEmployee.outputs.employeeId

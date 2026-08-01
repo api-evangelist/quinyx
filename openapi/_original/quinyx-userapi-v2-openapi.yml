@@ -1,0 +1,563 @@
+openapi: 3.0.0
+info:
+  title: Quinyx User API
+  version: v2
+  x-service: userapi
+  description: |
+    The Quinyx User API exposes per-employee data — upcoming and
+    unassigned shifts, leave applications, leave reasons, and
+    leave-application managers — to authenticated end users. It
+    uses an OAuth 2.0 password grant with the employee's own
+    Quinyx credentials and is intentionally separate from the
+    customer/integration-level Quinyx API.
+servers:
+  - url: https://user-api.quinyx.com/v2
+    description: Production API
+  - url: https://user-api-rc.quinyx.com/v2
+    description: RC API
+paths:
+  /oauth/token:
+    post:
+      tags:
+        - Authentication
+      summary: Get new access and refresh token
+      description: >-
+        To get tokens using your login credentials you will need to set
+        'grantType' to 'password' and send it together with the 'username' and
+        'password'. To get tokens using refresh token you will need to set
+        'grantType' to 'refresh_token' and sent it together with the
+        'refreshToken'.
+      operationId: 55a51a4de1b282bc0fbf6e49f7560071
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - grantType
+              properties:
+                grantType:
+                  type: string
+                  enum:
+                    - password
+                    - refresh_token
+                  example: password
+                refreshToken:
+                  type: string
+                  example: SomeRandomStringThatRepresentsRefreshToken
+                username:
+                  description: Employee email address
+                  type: string
+                  example: foo@example.com
+                password:
+                  type: string
+                  example: someRandomPassword
+              type: object
+      responses:
+        '200':
+          description: >-
+            Tokens are successfully created. Copy 'accessToken' and add it to
+            'Authorization' header in format 'Bearer accessToken'. Access token
+            will expire in 15 minutes so use received 'refreshToken' to generate
+            new tokens
+          content:
+            application/json:
+              schema:
+                properties:
+                  token:
+                    $ref: '#/components/schemas/TokenResponse'
+                type: object
+        '400':
+          description: Error while getting tokens.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Error while getting tokens.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidUsernamePassword'
+      x-audience: public
+  /users/leave-applications:
+    get:
+      tags:
+        - Leave Applications
+      summary: Returns historical or upcoming leave applications
+      description: >-
+        Get upcoming leave applications, starting from today, or historical
+        applications, ending today or earlier
+      operationId: b94e17a44a5e9a2ea0c09d0e752c37bc
+      parameters:
+        - name: filter
+          in: query
+          description: Choose upcoming or historical leave applications
+          required: true
+          schema:
+            type: string
+            enum:
+              - upcoming
+              - historical
+      responses:
+        '200':
+          description: >-
+            All leave applications are sorted by the time they have been created
+            in descending order
+          content:
+            application/json:
+              schema:
+                properties:
+                  leaveApplications:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LeaveApplication'
+                type: object
+        '400':
+          description: When invalid filter is applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidLeaveApplicationFilter'
+      security:
+        - BearerAuth: []
+      x-audience: public
+    post:
+      tags:
+        - Leave Applications
+      summary: Create leave application
+      description: Create leave application
+      operationId: b29f8f50f23a5ea3e76a1af8bb808965
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - from
+                - to
+                - leaveReasonId
+              properties:
+                from:
+                  description: >-
+                    Start date time of the leave application in format Y-m-d
+                    H:i:s, required
+                  type: string
+                  example: '2020-06-27 00:00:00'
+                to:
+                  description: >-
+                    End date time of the leave application in format Y-m-d
+                    H:i:s, required, if leave is allDay and for example employee
+                    selected 27.06.2020 then we should send value like
+                    2020-06-27 00:00:00, can be in some cases same value as
+                    'from' if leave is exactly one date long
+                  type: string
+                  example: '2020-06-27 00:00:00'
+                leaveReasonId:
+                  description: Leave reason id, required
+                  type: string
+                  example: kBep_ZtJ1sce0EXuI_9Evt.4qUR7INSe06UTygqpqLxc
+                managerId:
+                  description: >-
+                    Manager id which will receive leave application, can be
+                    omitted
+                  type: string
+                  example: hd58ElPA.IW0FHctO8oCRAhGTetM2yCxIs.63wgYdfB75C0--
+                leaveMessage:
+                  description: Leave message, can be omitted
+                  type: string
+                  example: I am going on vacation
+                allDay:
+                  description: >-
+                    Not really needed and its not used by the backend logic,
+                    should be used by frontend only, if time in 'from' and 'to'
+                    parameters is 00:00:00 or leave lasts longer than 24h then
+                    its automatically allDay true by default, otherwise its
+                    false
+                  type: boolean
+                  example: true
+              type: object
+      responses:
+        '201':
+          description: Created leave application
+          content:
+            application/json:
+              schema:
+                properties:
+                  leaveApp:
+                    $ref: '#/components/schemas/LeaveApplication'
+                type: object
+        '400':
+          description: >-
+            When some validation is failing, msg property closely describes what
+            was the problem
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  msg:
+                    type: string
+                    example: >-
+                      One of the: INVALID_LEAVE_REASON, OVERLAPPING_LEAVES,
+                      INVALID_LEAVE_MANAGER, INVALID_ID: hashedInvalidId,
+                      LEAVEAPP_MAX_CONSECUTIVE_DAYS, LEAVEAPP_MAX_OCCASIONS,
+                      LEAVEAPP_MAX_DAYS_IN_PERIOD, LEAVEAPP_MIN_DAYS_BETWEEN,
+                      LEAVEAPP_APPROVED_PUNCH_IN_PERIOD,
+                      LEAVEAPP_LOCKED_SALARIES_IN_PERIOD,
+                      LEAVEAPP_PRECEEDING_LEAVE_WITHOUT_WORK,
+                      CANT_EDIT_LEAVE_APP, NO_VALID_RECEIVER_FOUND,
+                      NOT_VALID_TIME_TRACKER_BALANCE
+                type: object
+        '403':
+          description: When salary period is locked
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 403
+                  msg:
+                    type: string
+                    example: SALARY_PERIOD_LOCKED
+                type: object
+      security:
+        - BearerAuth: []
+      x-audience: public
+  /users/leave-applications/managers:
+    get:
+      tags:
+        - Leave Applications
+      summary: Returns list of leave applications managers
+      description: Returns list of leave applications managers
+      operationId: c59728cf9f3146f3224e3811c0b71700
+      responses:
+        '200':
+          description: Leave applications manager list
+          content:
+            application/json:
+              schema:
+                properties:
+                  leaveManagers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LeaveApplicationManager'
+                type: object
+      security:
+        - BearerAuth: []
+      x-audience: public
+  /users/leave-reasons:
+    get:
+      tags:
+        - Leave Reasons
+      summary: Returns list of leave reasons
+      description: Returns list of leave reasons
+      operationId: e5fd7d826054be45710680505ab8c092
+      responses:
+        '200':
+          description: Leave reason list
+          content:
+            application/json:
+              schema:
+                properties:
+                  leaveReasons:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LeaveReason'
+                type: object
+      security:
+        - BearerAuth: []
+      x-audience: public
+  /users/shifts:
+    get:
+      tags:
+        - Shifts
+      summary: Returns upcoming or unassigned shifts
+      description: Get employee upcoming or unassigned shifts, starting from today
+      operationId: ceca41a5670c40c386064b4879ab3eb2
+      parameters:
+        - name: filter
+          in: query
+          description: Choose upcoming or unassigned shifts
+          required: true
+          schema:
+            type: string
+            enum:
+              - upcoming
+              - unassigned
+      responses:
+        '200':
+          description: >-
+            All shifts are sorted by the start time in ascending order (limited
+            to 20 shifts, in published period, up to 90 days in the future)
+          content:
+            application/json:
+              schema:
+                properties:
+                  shifts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Shift'
+                type: object
+        '400':
+          description: When invalid filter is applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidShiftFilter'
+      security:
+        - BearerAuth: []
+      x-audience: public
+components:
+  schemas:
+    InvalidUsernamePassword:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 401
+            msg:
+              type: string
+              example: INVALID_USERNAME_OR_PASSWORD
+          type: object
+      type: object
+    ErrorResponse:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: SOME_ERROR_MESSAGE
+          type: object
+      type: object
+    InvalidId:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: 'INVALID_ID: sampleId'
+          type: object
+      type: object
+    InvalidLeaveApplicationFilter:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, historical'
+          type: object
+      type: object
+    InvalidLeaveManager:
+      description: When leave manager is invalid
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: INVALID_LEAVE_MANAGER
+          type: object
+      type: object
+    InvalidLeaveReason:
+      description: When leave reason is invalid
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: INVALID_LEAVE_REASON
+          type: object
+      type: object
+    InvalidparameterValue:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: INVALID_PARAMETER_VALUE
+          type: object
+      type: object
+    InvalidShiftFilter:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, unassigned'
+          type: object
+      type: object
+    OverlappingLeave:
+      description: When leave application already exists in given period
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: OVERLAPPING_LEAVES
+          type: object
+      type: object
+    LeaveApplicationManager:
+      description: Leave Application Manager Model
+      properties:
+        id:
+          type: string
+          example: lEgFK5pUNvkUtqzE8jcmjYsvk0WlKqx9f_fHbMrk_0VIsw--
+        name:
+          type: string
+          example: John Doe
+        unit:
+          type: string
+          example: Unit name
+        section:
+          type: string
+          example: Section name
+        defaultManager:
+          type: boolean
+          example: false
+      type: object
+    LeaveApplication:
+      description: Leave Application Model
+      properties:
+        id:
+          type: string
+          example: aidhjTypVxiWxO.E8dXmixitUDIUDj175Av8YZyUjtjxWuWm
+        employeeName:
+          type: string
+          example: John Doe
+        leaveReason:
+          type: string
+          example: Sick
+        from:
+          type: string
+          example: '2020-09-01 00:00:00'
+        to:
+          type: string
+          example: '2020-09-01 00:00:00'
+        sendDate:
+          type: string
+          example: '2020-08-20 12:25:00'
+        status:
+          type: string
+          enum:
+            - PENDING
+            - APPROVED
+            - DENIED
+          example: PENDING
+        comment:
+          type: string
+          example: Employee's comment
+        allDay:
+          type: boolean
+          example: true
+      type: object
+    LeaveReason:
+      description: Leave Reason Model
+      properties:
+        id:
+          type: string
+          example: I2WBgosnFVE_8v58HOxF1.ARrDgOqLcihwZAkPusTGU-
+        name:
+          type: string
+          example: Sick leave
+      type: object
+    TokenResponse:
+      description: Token object
+      properties:
+        tokenType:
+          description: Token type. It is always Bearer.
+          type: string
+          enum:
+            - Bearer
+          example: Bearer
+        accessToken:
+          description: >-
+            Access token used for authorization. Copy it to 'Authorization'
+            header in format 'Bearer accessToken'
+          type: string
+          example: receivedAccessToken
+        expiredIn:
+          description: Expiration time for access tokens in seconds, default is 900.
+          type: integer
+          example: 900
+        refreshToken:
+          description: >-
+            Refresh token used for getting new access token. It will expire in
+            30 days.
+          type: string
+          example: receivedRefreshToken
+      type: object
+    Break:
+      description: Shift Break Model
+      properties:
+        start:
+          type: string
+          example: '2019-02-01 11:30:00'
+        end:
+          type: string
+          example: '2019-02-01 12:30:00'
+      type: object
+    Shift:
+      description: Shift Model
+      properties:
+        id:
+          type: string
+          example: fQRK0r5s9S4dXwRa_u5vjIKfHzBhzO9wpCjJ583dRX6.oxr63g--
+        employeeName:
+          type: string
+          example: John Doe
+        from:
+          type: string
+          example: '2019-02-01 09:00:00'
+        to:
+          type: string
+          example: '2019-02-01 17:00:00'
+        shiftType:
+          type: string
+          example: Day Shift
+        unit:
+          type: string
+          example: Unit name
+        section:
+          type: string
+          example: Section name
+        breaksDuration:
+          type: integer
+          example: 60
+        breaks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Break'
+      type: object
+  securitySchemes:
+    BearerAuth:
+      type: apiKey
+      in: header
+      name: Authorization

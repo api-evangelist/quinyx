@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/quinyx-api-v3-openapi.yml, https://developer.quinyx.com/api/v3
+notes: Cross-cutting standards conformance derived from the v3 OpenAPI and the
+  developer portal. Compliance/certification posture (SOC 2, ISO 27001, etc.) is
+  managed on the gated trust center (https://trust.quinyx.com) and is not
+  asserted here without verification.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OpenAPI securitySchemes type oauth2, clientCredentials flow
+- id: oidc
+  conforms: false
+  evidence: no openIdConnect scheme; client-credentials only
+- id: rfc9457-problem-details
+  conforms: true
+  evidence: v3 responses use application/problem+json with a public Problem Registry
+- id: rfc8594-deprecation
+  conforms: partial
+  evidence: uses Deprecation-Date / Sunset-Date headers (not the bare RFC 8594
+    Deprecation/Sunset header names)
+- id: cursor-pagination
+  conforms: true
+  evidence: opaque pageToken / nextPageToken cursor pagination documented
+- id: rfc3339-datetime
+  conforms: true
+  evidence: all date-time values rendered in UTC using RFC-3339
+- id: json-api
+  conforms: false
+- id: fhir
+  conforms: false
+- id: scim
+  conforms: false

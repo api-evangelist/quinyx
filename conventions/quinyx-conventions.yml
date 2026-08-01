@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.quinyx.com/api/v3
+notes: Cross-cutting request/response semantics for the Quinyx API v3, searched
+  from the developer portal and derived from the v3 OpenAPI.
+authentication:
+  style: oauth2-client-credentials
+  token_endpoint: https://api.{region}.quinyx.com/oauth/v3/token
+  token_type: bearer
+  token_ttl_seconds: 3600
+  ref: authentication/quinyx-authentication.yml
+pagination:
+  style: cursor
+  request_params: [pageToken]
+  page_size_default: 50
+  page_size_max: 100
+  response_envelope:
+    data: array of resource objects
+    pagination:
+      nextPageToken: opaque cursor for the next page
+      previousPageToken: opaque cursor for the previous page
+  guidance: Treat the cursor as an opaque string; do not construct it manually.
+  docs: https://developer.quinyx.com/api/v3/pagination
+identifiers:
+  external_ids: Resources can be addressed by Quinyx id or by a caller-supplied
+    external id.
+  docs: https://developer.quinyx.com/api/v3/external-ids
+datetime:
+  format: RFC-3339
+  default_timezone: UTC
+  timezone_override: optional via HTTP header
+error_envelope:
+  format: rfc9457
+  media_type: application/problem+json
+  ref: errors/quinyx-problem-types.yml
+rate_limiting:
+  scope: per customer
+  exceed_status: 429
+  ref: https://developer.quinyx.com/api/v3/rate-limit
+versioning:
+  scheme: uri-path
+  current: v3
+  ref: lifecycle/quinyx-lifecycle.yml
+idempotency:
+  supported: false
+  notes: No idempotency-key header/parameter is documented for the Quinyx API v3
+    as of this pass.

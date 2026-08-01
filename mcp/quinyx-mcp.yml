@@ -1,0 +1,67 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/quinyx-api-v3-openapi.yml
+notes: >-
+  No official hosted/remote Quinyx MCP server was found (developer portal, npm
+  @modelcontextprotocol, MCP registries). This is a CANDIDATE tool list derived
+  one-tool-per-operation from the Quinyx API v3 OpenAPI, offered as a starting
+  point for an MCP wrapper. Not an authoritative provider claim.
+server:
+  name: quinyx
+  transport: http
+tools:
+- name: get_employee
+  description: Get an employee
+  source_operation: openapi/quinyx-api-v3-openapi.yml#getEmployee
+- name: list_employees
+  description: List employees
+  source_operation: openapi/quinyx-api-v3-openapi.yml#getEmployees
+- name: create_employee
+  description: Create an employee
+  source_operation: openapi/quinyx-api-v3-openapi.yml#createEmployee
+- name: update_employee
+  description: Update an employee
+  source_operation: openapi/quinyx-api-v3-openapi.yml#updateEmployee
+- name: patch_employee
+  description: Partially update an employee
+  source_operation: openapi/quinyx-api-v3-openapi.yml#patchEmployee
+- name: delete_employee
+  description: Delete an employee
+  source_operation: openapi/quinyx-api-v3-openapi.yml#deleteEmployee
+- name: list_groups
+  description: List organizational groups
+  source_operation: openapi/quinyx-api-v3-openapi.yml#getGroups
+- name: get_group
+  description: Get a group
+  source_operation: openapi/quinyx-api-v3-openapi.yml#getGroup
+- name: create_group
+  description: Create a group
+  source_operation: openapi/quinyx-api-v3-openapi.yml#createGroup
+- name: update_group
+  description: Update a group
+  source_operation: openapi/quinyx-api-v3-openapi.yml#updateGroup
+- name: delete_group
+  description: Delete a group
+  source_operation: openapi/quinyx-api-v3-openapi.yml#deleteGroup
+- name: list_role_assignments
+  description: List role assignments
+  source_operation: openapi/quinyx-api-v3-openapi.yml#listRoleAssignments
+- name: create_role_assignment
+  description: Create a role assignment
+  source_operation: openapi/quinyx-api-v3-openapi.yml#createRoleAssignment
+- name: update_role_assignment
+  description: Update a role assignment
+  source_operation: openapi/quinyx-api-v3-openapi.yml#updateRoleAssignment
+- name: delete_role_assignment
+  description: Delete a role assignment
+  source_operation: openapi/quinyx-api-v3-openapi.yml#deleteRoleAssignment
+- name: list_roles
+  description: List roles
+  source_operation: openapi/quinyx-api-v3-openapi.yml#getRoles
+- name: get_role
+  description: Get a role
+  source_operation: openapi/quinyx-api-v3-openapi.yml#getRole
+- name: list_shifts
+  description: List schedule shifts
+  source_operation: openapi/quinyx-api-v3-openapi.yml#getShifts

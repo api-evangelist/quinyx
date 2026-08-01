@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/quinyx-api-v3-openapi.yml
+notes: Entity-relationship graph derived from the Quinyx API v3 OpenAPI resource
+  groups and id-reference fields.
+entities:
+- name: Employee
+  path: /hr/v3/employees
+  description: A worker/frontline employee record (personal info, employment,
+    contact, punch settings).
+- name: Group
+  path: /organization/v3/groups
+  description: An organizational unit / group in the org hierarchy.
+- name: Role
+  path: /organization/v3/roles
+  description: A role definition that can be assigned to employees.
+- name: RoleAssignment
+  path: /hr/v3/role-assignments
+  description: The assignment of a role to an employee, typically scoped to a group.
+- name: Shift
+  path: /schedule/v3/shifts
+  description: A scheduled shift.
+relationships:
+- from: RoleAssignment
+  to: Employee
+  type: belongs_to
+  via: employee reference
+- from: RoleAssignment
+  to: Role
+  type: belongs_to
+  via: role reference
+- from: RoleAssignment
+  to: Group
+  type: belongs_to
+  via: group reference
+- from: Shift
+  to: Employee
+  type: belongs_to
+  via: employee reference
+- from: Shift
+  to: Group
+  type: belongs_to
+  via: group/unit reference
+- from: Employee
+  to: Group
+  type: belongs_to
+  via: home group reference

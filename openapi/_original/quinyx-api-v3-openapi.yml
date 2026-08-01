@@ -1,0 +1,4008 @@
+openapi: 3.1.0
+info:
+  title: Quinyx API
+  version: v3
+  x-service: dummy
+  description: null
+tags: []
+paths:
+  /hr/v3/employees/{id}:
+    get:
+      tags:
+        - Employee
+      summary: Get an employee
+      description: Retrieves a single employee by its identifier.
+      operationId: getEmployee
+      parameters:
+        - name: id
+          in: path
+          description: Employee identifier
+          required: true
+          schema:
+            description: >-
+              An identifier that can be either a Quinyx ID or a prefixed
+              external ID string.
+            oneOf:
+              - type: string
+                description: The Quinyx ID of the resource.
+                pattern: ^[0-9]+$
+              - type: string
+                description: The external string ID, which must start with 'badgeNumber:'.
+                example: badgeNumber:1234
+                pattern: ^badgeNumber:[a-zA-Z0-9._-]{1,64}$
+          examples:
+            internal-id:
+              summary: Internal ID
+              description: The internal ID of the resource
+              value: '12345'
+            badge-number:
+              summary: Badge number
+              description: >-
+                Badge number prefixed with 'badgeNumber:', 1-64 characters long,
+                consisting of alphanumerics and . _ -
+              value: badgeNumber:B001
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee_IntegrationEmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/employee_ProblemDetail'
+                  - $ref: '#/components/schemas/employee_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/employees/{id}
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /hr/v3/employees/{id}
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/employees/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/employees/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/employees/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/employees/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - hr:employees:read
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Employee
+    put:
+      tags:
+        - Employee
+      summary: Update an employee
+      description: >-
+        Updates the specified employee with the provided attributes and returns
+        it
+      operationId: updateEmployee
+      parameters:
+        - name: id
+          in: path
+          description: Employee identifier
+          required: true
+          schema:
+            description: >-
+              An identifier that can be either a Quinyx ID or a prefixed
+              external ID string.
+            oneOf:
+              - type: string
+                description: The Quinyx ID of the resource.
+                pattern: ^[0-9]+$
+              - type: string
+                description: The external string ID, which must start with 'badgeNumber:'.
+                example: badgeNumber:1234
+                pattern: ^badgeNumber:[a-zA-Z0-9._-]{1,64}$
+          examples:
+            internal-id:
+              summary: Internal ID
+              description: The internal ID of the resource
+              value: '12345'
+            badge-number:
+              summary: Badge number
+              description: >-
+                Badge number prefixed with 'badgeNumber:', 1-64 characters long,
+                consisting of alphanumerics and . _ -
+              value: badgeNumber:B001
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employee_IntegrationEmployeeUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee_IntegrationEmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/employee_ProblemDetail'
+                  - $ref: '#/components/schemas/employee_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/employees/{id}
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /hr/v3/employees/{id}
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/employees/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/employees/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/employees/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/employees/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - hr:employees:update
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Employee
+    delete:
+      tags:
+        - Employee
+      summary: Delete an employee
+      description: Permanently deletes an employee
+      operationId: deleteEmployee
+      parameters:
+        - name: id
+          in: path
+          description: Employee identifier
+          required: true
+          schema:
+            description: >-
+              An identifier that can be either a Quinyx ID or a prefixed
+              external ID string.
+            oneOf:
+              - type: string
+                description: The Quinyx ID of the resource.
+                pattern: ^[0-9]+$
+              - type: string
+                description: The external string ID, which must start with 'badgeNumber:'.
+                example: badgeNumber:1234
+                pattern: ^badgeNumber:[a-zA-Z0-9._-]{1,64}$
+          examples:
+            internal-id:
+              summary: Internal ID
+              description: The internal ID of the resource
+              value: '12345'
+            badge-number:
+              summary: Badge number
+              description: >-
+                Badge number prefixed with 'badgeNumber:', 1-64 characters long,
+                consisting of alphanumerics and . _ -
+              value: badgeNumber:B001
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/employees/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/employees/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/employees/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/employees/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - hr:employees:delete
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Employee
+    patch:
+      tags:
+        - Employee
+      summary: Partially update an employee
+      description: >-
+        Partially updates the specified employee with the provided attributes
+        and returns it.
+      operationId: patchEmployee
+      parameters:
+        - name: id
+          in: path
+          description: Employee identifier
+          required: true
+          schema:
+            description: >-
+              An identifier that can be either a Quinyx ID or a prefixed
+              external ID string.
+            oneOf:
+              - type: string
+                description: The Quinyx ID of the resource.
+                pattern: ^[0-9]+$
+              - type: string
+                description: The external string ID, which must start with 'badgeNumber:'.
+                example: badgeNumber:1234
+                pattern: ^badgeNumber:[a-zA-Z0-9._-]{1,64}$
+          examples:
+            internal-id:
+              summary: Internal ID
+              description: The internal ID of the resource
+              value: '12345'
+            badge-number:
+              summary: Badge number
+              description: >-
+                Badge number prefixed with 'badgeNumber:', 1-64 characters long,
+                consisting of alphanumerics and . _ -
+              value: badgeNumber:B001
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employee_IntegrationEmployeePatchRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee_IntegrationEmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/employee_ProblemDetail'
+                  - $ref: '#/components/schemas/employee_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/employees/{id}
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /hr/v3/employees/{id}
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/employees/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/employees/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/employees/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/employees/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - hr:employees:update
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Employee
+  /hr/v3/employees:
+    get:
+      tags:
+        - Employee
+      summary: List employees
+      description: Returns a paginated list of employees.
+      operationId: getEmployees
+      parameters:
+        - name: idIn
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+            maxItems: 50
+        - name: pageToken
+          in: query
+          description: Cursor for the next page of results.
+          required: false
+          schema:
+            type: string
+            example: eyJpZCI6MTAwfQ
+        - name: pageSize
+          in: query
+          description: Maximum number of items to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 50
+            example: 50
+            maximum: 100
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/employee_CursorPageIntegrationEmployeeResponse
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/employee_ProblemDetail'
+                  - $ref: '#/components/schemas/employee_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/employees
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /hr/v3/employees
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/employees
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/employees
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/employees
+      security:
+        - OAuth2ClientCredentials:
+            - hr:employees:read
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Employee
+    post:
+      tags:
+        - Employee
+      summary: Create an employee
+      description: Creates and returns the created employee.
+      operationId: createEmployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employee_IntegrationEmployeeCreateRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee_IntegrationEmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/employee_ProblemDetail'
+                  - $ref: '#/components/schemas/employee_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/employees
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /hr/v3/employees
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/employees
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/employees
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/employee_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/employees
+      security:
+        - OAuth2ClientCredentials:
+            - hr:employees:create
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Employee
+  /organization/v3/groups/{id}:
+    get:
+      summary: Get a group
+      description: Returns a group by ID.
+      operationId: getGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            description: >-
+              An identifier that can be either a Quinyx ID or a prefixed
+              external ID string.
+            oneOf:
+              - type: string
+                description: The Quinyx ID of the resource.
+                pattern: ^[0-9]+$
+              - type: string
+                description: The external string ID, which must start with 'xrefId:'.
+                example: xrefId:f47ac10b-58cc-3
+                pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /organization/v3/groups/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /organization/v3/groups/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /organization/v3/groups/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - organization:groups:read
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+        - Group
+    put:
+      summary: Update a group
+      description: >-
+        Updates the specified group with the provided attributes and returns the
+        updated group.
+      operationId: updateGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            description: >-
+              An identifier that can be either a Quinyx ID or a prefixed
+              external ID string.
+            oneOf:
+              - type: string
+                description: The Quinyx ID of the resource.
+                pattern: ^[0-9]+$
+              - type: string
+                description: The external string ID, which must start with 'xrefId:'.
+                example: xrefId:f47ac10b-58cc-3
+                pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organisation_CreateGroupRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/organisation_ProblemDetail'
+                  - $ref: '#/components/schemas/organisation_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /organization/v3/groups/{id}
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /organization/v3/groups/{id}
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /organization/v3/groups/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /organization/v3/groups/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /organization/v3/groups/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - organization:groups:update
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+        - Group
+    delete:
+      summary: Deletes a group
+      description: >-
+        Permanently deletes the specified group and all associated data,
+        including but not limited to employees, shifts, and punches.
+      operationId: deleteGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            description: >-
+              An identifier that can be either a Quinyx ID or a prefixed
+              external ID string.
+            oneOf:
+              - type: string
+                description: The Quinyx ID of the resource.
+                pattern: ^[0-9]+$
+              - type: string
+                description: The external string ID, which must start with 'xrefId:'.
+                example: xrefId:f47ac10b-58cc-3
+                pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+      responses:
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /organization/v3/groups/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /organization/v3/groups/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /organization/v3/groups/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - organization:groups:delete
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+        - Group
+  /organization/v3/groups:
+    get:
+      summary: List groups
+      description: Returns a paginated list of groups.
+      operationId: getGroups
+      parameters:
+        - name: pageToken
+          in: query
+          description: Cursor for the next page of results.
+          required: false
+          schema:
+            type: string
+            example: eyJpZCI6MTAwfQ
+        - name: pageSize
+          in: query
+          description: Maximum number of items to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 50
+            example: 50
+            maximum: 100
+            minimum: 1
+        - name: idIn
+          in: query
+          description: 'Filter by id (IN). Supports external ids of types: xrefId'
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for id with operator IN
+            items:
+              description: >-
+                An identifier that can be either a Quinyx ID or a prefixed
+                external ID string.
+              oneOf:
+                - type: string
+                  description: The Quinyx ID of the resource.
+                - type: string
+                  description: The external string ID, which must start with 'xrefId:'.
+                  example: xrefId:example-external-id
+                  pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+            maxItems: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_CursorPageGroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/organisation_ProblemDetail'
+                  - $ref: '#/components/schemas/organisation_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /organization/v3/groups
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /organization/v3/groups
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /organization/v3/groups
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /organization/v3/groups
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups
+      security:
+        - OAuth2ClientCredentials:
+            - organization:groups:read
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+        - Group
+    post:
+      summary: Create a group
+      description: Creates a new group and returns the created group.
+      operationId: createGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organisation_CreateGroupRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation_GroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/organisation_ProblemDetail'
+                  - $ref: '#/components/schemas/organisation_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /organization/v3/groups
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /organization/v3/groups
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /organization/v3/groups
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /organization/v3/groups
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/organisation_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/groups
+      security:
+        - OAuth2ClientCredentials:
+            - organization:groups:create
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Group
+      tags:
+        - Group
+  /oauth/v3/token:
+    post:
+      summary: Obtain access token
+      description: Operation returns the OAuth2 token that can be used in API calls
+      operationId: getToken
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/rest-api-uaa_OAuth2TokenRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2TokenResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2ErrorResponse'
+              example:
+                error: unsupported_grant_type
+                error_description: 'Unsupported grant type: invalid_type'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2ErrorResponse'
+              example:
+                error: invalid_client
+                error_description: 'Client not found: my-client-id'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest-api-uaa_OAuth2ErrorResponse'
+              example:
+                error: server_error
+                error_description: Token generation failed
+      security: []
+      x-audience: public
+      x-resource-group: OAuth
+      x-resource: Access Token
+      tags:
+        - Access Token
+  /hr/v3/role-assignments:
+    get:
+      summary: List role assignments
+      description: Returns a paginated list of role assignments.
+      operationId: listRoleAssignments
+      parameters:
+        - name: pageToken
+          in: query
+          description: Cursor for the next page of results.
+          required: false
+          schema:
+            type: string
+            example: eyJpZCI6MTAwfQ
+        - name: pageSize
+          in: query
+          description: Maximum number of items to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 50
+            example: 50
+            maximum: 100
+            minimum: 1
+        - name: idIn
+          in: query
+          description: Filter by id (IN)
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for id with operator IN
+            items:
+              type: string
+            maxItems: 50
+        - name: employeeIdIn
+          in: query
+          description: Filter by employeeId (IN)
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for employeeId with operator IN
+            items:
+              type: string
+            maxItems: 50
+        - name: groupIdIn
+          in: query
+          description: Filter by groupId (IN)
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for groupId with operator IN
+            items:
+              type: string
+            maxItems: 50
+        - name: roleIdIn
+          in: query
+          description: Filter by roleId (IN)
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for roleId with operator IN
+            items:
+              type: string
+            maxItems: 50
+        - name: startDateGte
+          in: query
+          description: Filter by startDate (GTE)
+          schema:
+            type: string
+        - name: startDateLte
+          in: query
+          description: Filter by startDate (LTE)
+          schema:
+            type: string
+        - name: endDateGte
+          in: query
+          description: Filter by endDate (GTE)
+          schema:
+            type: string
+        - name: endDateLte
+          in: query
+          description: Filter by endDate (LTE)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security_CursorPageRoleAssignmentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/security_ProblemDetail'
+                  - $ref: '#/components/schemas/security_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/role-assignments
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /hr/v3/role-assignments
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/role-assignments
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/role-assignments
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/role-assignments
+      security:
+        - OAuth2ClientCredentials:
+            - hr:role-assignments:read
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Role Assignment
+      tags:
+        - Role Assignment
+    post:
+      summary: Create a role assignment
+      description: Creates a new role assignment for an employee.
+      operationId: createRoleAssignment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/security_RoleAssignmentRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security_RoleAssignmentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/security_ProblemDetail'
+                  - $ref: '#/components/schemas/security_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/role-assignments
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /hr/v3/role-assignments
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/role-assignments
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/role-assignments
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/role-assignments
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/role-assignments
+      security:
+        - OAuth2ClientCredentials:
+            - hr:role-assignments:create
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Role Assignment
+      tags:
+        - Role Assignment
+  /hr/v3/role-assignments/{id}:
+    delete:
+      summary: Delete a role assignment
+      description: Deletes a role assignment by ID.
+      operationId: deleteRoleAssignment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/role-assignments/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/role-assignments/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/role-assignments/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/role-assignments/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - hr:role-assignments:delete
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Role Assignment
+      tags:
+        - Role Assignment
+    patch:
+      summary: Update a role assignment
+      description: Updates the start date and/or end date of a role assignment.
+      operationId: updateRoleAssignment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/security_RoleAssignmentUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security_RoleAssignmentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/security_ProblemDetail'
+                  - $ref: '#/components/schemas/security_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /hr/v3/role-assignments/{id}
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /hr/v3/role-assignments/{id}
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /hr/v3/role-assignments/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /hr/v3/role-assignments/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /hr/v3/role-assignments/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /hr/v3/role-assignments/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - hr:role-assignments:update
+      x-audience: public
+      x-resource-group: HR
+      x-resource: Role Assignment
+      tags:
+        - Role Assignment
+  /organization/v3/roles:
+    get:
+      summary: List roles
+      description: Returns a paginated list of roles.
+      operationId: getRoles
+      parameters:
+        - name: pageToken
+          in: query
+          description: Cursor for the next page of results.
+          required: false
+          schema:
+            type: string
+            example: eyJpZCI6MTAwfQ
+        - name: pageSize
+          in: query
+          description: Maximum number of items to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 50
+            example: 50
+            maximum: 100
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security_CursorPageRoleResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/security_ProblemDetail'
+                  - $ref: '#/components/schemas/security_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /organization/v3/roles
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /organization/v3/roles
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /organization/v3/roles
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /organization/v3/roles
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/roles
+      security:
+        - OAuth2ClientCredentials:
+            - organization:roles:read
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Role
+      tags:
+        - Role
+  /organization/v3/roles/{id}:
+    get:
+      summary: Get a role
+      description: Returns a role by ID.
+      operationId: getRole
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            description: >-
+              An identifier that can be either a Quinyx ID or a prefixed
+              external ID string.
+            oneOf:
+              - type: string
+                description: The Quinyx ID of the resource.
+                pattern: ^[0-9]+$
+              - type: string
+                description: The external string ID, which must start with 'xrefId:'.
+                example: xrefId:f47ac10b-58cc-4
+                pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security_RoleResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /organization/v3/roles/{id}
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /organization/v3/roles/{id}
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                notFound:
+                  summary: Not found
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/not-found
+                    title: Not Found
+                    status: 404
+                    detail: The requested resource was not found
+                    instance: /organization/v3/roles/{id}
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/security_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /organization/v3/roles/{id}
+      security:
+        - OAuth2ClientCredentials:
+            - organization:roles:read
+      x-audience: public
+      x-resource-group: Organization
+      x-resource: Role
+      tags:
+        - Role
+  /schedule/v3/shifts:
+    get:
+      summary: List shifts
+      description: >
+        Returns shifts using cursor-based pagination.
+
+
+        Supports:
+
+        - Numeric internal IDs
+
+        - External IDs using prefix 'xrefId:'
+
+        - Employee badge numbers using prefix 'badgeNumber:'
+
+        - Timezone override via Prefer header
+
+
+        Pagination is cursor-based. Use the returned pageToken for next/previous
+        navigation.
+      operationId: getShifts
+      parameters:
+        - name: Prefer
+          in: header
+          description: |
+            Optional header for response formatting.
+
+            Example:
+            Prefer: timezone=Europe/Belgrade
+
+            Affects only response date-time values.
+            Does NOT affect filtering parameters.
+
+            Default response timezone is UTC.
+          required: false
+          schema:
+            type: string
+          example: timezone=Europe/Belgrade
+        - name: pageToken
+          in: query
+          description: Cursor for the next page of results.
+          required: false
+          schema:
+            type: string
+            example: eyJpZCI6MTAwfQ
+        - name: pageSize
+          in: query
+          description: Maximum number of items to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 50
+            example: 50
+            maximum: 100
+            minimum: 1
+        - name: idIn
+          in: query
+          description: 'Filter by id (IN). Supports external ids of types: xrefId'
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for id with operator IN
+            items:
+              description: >-
+                An identifier that can be either a Quinyx ID or a prefixed
+                external ID string.
+              oneOf:
+                - type: string
+                  description: The Quinyx ID of the resource.
+                  pattern: ^[0-9]+$
+                - type: string
+                  description: The external string ID, which must start with 'xrefId:'.
+                  example: xrefId:example-external-id
+                  pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+            maxItems: 50
+        - name: groupIdIn
+          in: query
+          description: 'Filter by groupId (IN). Supports external ids of types: xrefId'
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for groupId with operator IN
+            items:
+              description: >-
+                An identifier that can be either a Quinyx ID or a prefixed
+                external ID string.
+              oneOf:
+                - type: string
+                  description: The Quinyx ID of the resource.
+                  pattern: ^[0-9]+$
+                - type: string
+                  description: The external string ID, which must start with 'xrefId:'.
+                  example: xrefId:example-external-id
+                  pattern: ^xrefId:[a-zA-Z0-9._-]{1,64}$
+            maxItems: 50
+        - name: employeeIdIn
+          in: query
+          description: >-
+            Filter by employeeId (IN). Supports external ids of types:
+            badgeNumber
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for employeeId with operator IN
+            items:
+              description: >-
+                An identifier that can be either a Quinyx ID or a prefixed
+                external ID string.
+              oneOf:
+                - type: string
+                  description: The Quinyx ID of the resource.
+                  pattern: ^[0-9]+$
+                - type: string
+                  description: >-
+                    The external string ID, which must start with
+                    'badgeNumber:'.
+                  example: badgeNumber:example-external-id
+                  pattern: ^badgeNumber:[a-zA-Z0-9._-]{1,64}$
+            maxItems: 50
+        - name: beginGte
+          in: query
+          description: Filter by begin (GTE)
+          schema:
+            type: string
+            format: date-time
+        - name: beginLte
+          in: query
+          description: Filter by begin (LTE)
+          schema:
+            type: string
+            format: date-time
+        - name: statusIn
+          in: query
+          description: Filter by status (IN)
+          style: form
+          explode: true
+          schema:
+            type: array
+            description: Multiple values for status with operator IN
+            items:
+              type: string
+            maxItems: 50
+        - name: deleted
+          in: query
+          description: Filter by deleted (EQ)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shifts_CursorPageShift'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/shifts_ProblemDetail'
+                  - $ref: '#/components/schemas/shifts_ValidationError'
+              examples:
+                badRequestProblemDetail:
+                  summary: Bad request
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    detail: The request is invalid or malformed
+                    instance: /schedule/v3/shifts
+                badRequestValidationError:
+                  summary: Bad request
+                  description: Example ValidationError response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/bad-request
+                    title: Bad Request
+                    status: 400
+                    errors:
+                      - detail: name is mandatory
+                        pointer: '#/name'
+                    instance: /schedule/v3/shifts
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/shifts_ProblemDetail'
+              examples:
+                unauthorized:
+                  summary: Unauthorized
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/unauthorized
+                    title: Unauthorized
+                    status: 401
+                    detail: >-
+                      Access token not set or invalid, and the requested
+                      resource could not be returned
+                    instance: /schedule/v3/shifts
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/shifts_ProblemDetail'
+              examples:
+                forbidden:
+                  summary: Forbidden
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/forbidden
+                    title: Forbidden
+                    status: 403
+                    detail: >-
+                      The resource could not be returned as the requestor is not
+                      authorized
+                    instance: /schedule/v3/shifts
+        '500':
+          description: Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/shifts_ProblemDetail'
+              examples:
+                serverError:
+                  summary: Server error
+                  description: Example ProblemDetail response
+                  value:
+                    type: https://developer.quinyx.com/api/problems/server-error
+                    title: Server Error
+                    status: 500
+                    detail: The server encountered an unexpected error
+                    instance: /schedule/v3/shifts
+      security:
+        - OAuth2ClientCredentials:
+            - schedule:shifts:read
+      x-audience: public
+      x-resource-group: Schedule
+      x-resource: Shift
+      tags:
+        - Shift
+components:
+  schemas:
+    employee_IntegrationEmployeeUpdateRequest:
+      type: object
+      properties:
+        badgeNumber:
+          type: string
+          description: Unique badge number identifying the employee
+          example: '001'
+          maxLength: 20
+          minLength: 0
+        email:
+          type: string
+          format: email
+          description: Employee email address
+          example: employee@example.com
+          maxLength: 255
+          minLength: 0
+        personalInformation:
+          $ref: '#/components/schemas/employee_UpdatePersonalInformation'
+        contactInformation:
+          $ref: '#/components/schemas/employee_UpdateContactInformation'
+        address:
+          $ref: '#/components/schemas/employee_UpdateAddress'
+        employment:
+          $ref: '#/components/schemas/employee_UpdateEmployment'
+        emergencyContact:
+          $ref: '#/components/schemas/employee_UpdateEmergencyContact'
+        punchSettings:
+          $ref: '#/components/schemas/employee_UpdatePunchSettings'
+      required:
+        - address
+        - badgeNumber
+        - contactInformation
+        - email
+        - emergencyContact
+        - employment
+        - personalInformation
+        - punchSettings
+    employee_UpdateAddress:
+      type: object
+      properties:
+        address1:
+          type: string
+          description: Primary address line
+          example: 123 Example Street
+          maxLength: 50
+          minLength: 0
+        address2:
+          type: string
+          description: Secondary address line
+          example: Apt 1
+          maxLength: 50
+          minLength: 0
+        zip:
+          type: string
+          description: Postal or ZIP code
+          example: SE-10000
+          maxLength: 20
+          minLength: 0
+        city:
+          type: string
+          description: City of residence
+          example: Stockholm
+          maxLength: 50
+          minLength: 0
+        country:
+          type: string
+          description: Country of residence
+          example: Sweden
+          maxLength: 50
+          minLength: 0
+      required:
+        - address1
+        - address2
+        - city
+        - country
+        - zip
+    employee_UpdateContactInformation:
+      type: object
+      properties:
+        mobileNumber:
+          type: string
+          description: Employee's mobile phone number
+          example: '+46700000000'
+          maxLength: 20
+          minLength: 0
+        phoneNumber:
+          type: string
+          description: Employee's work phone number
+          example: '+46800000000'
+          maxLength: 20
+          minLength: 0
+      required:
+        - mobileNumber
+        - phoneNumber
+    employee_UpdateEmergencyContact:
+      type: object
+      properties:
+        nextOfKinName:
+          type: string
+          description: Name of the employee's next of kin
+          example: John Doe
+          maxLength: 50
+          minLength: 0
+        nextOfKinPhone:
+          type: string
+          description: Phone number of the employee's next of kin
+          example: '+46700000000'
+          maxLength: 20
+          minLength: 0
+        legalGuardianName:
+          type: string
+          description: Name of the employee's legal guardian
+          example: Jane Doe
+          maxLength: 50
+          minLength: 0
+        legalGuardianEmail:
+          type: string
+          description: Email address of the employee's legal guardian
+          example: guardian@example.com
+          maxLength: 50
+          minLength: 0
+      required:
+        - legalGuardianEmail
+        - legalGuardianName
+        - nextOfKinName
+        - nextOfKinPhone
+    employee_UpdateEmployment:
+      type: object
+      properties:
+        homeGroupId:
+          type: string
+          description: ID of the employee's home group
+          example: '123'
+          minLength: 1
+        staffCategoryId:
+          type: string
+          description: ID of the staff category assigned to the employee
+          example: '123'
+        managerId:
+          type: string
+          description: ID of the employee's manager
+          example: '1234'
+        passive:
+          type: boolean
+          description: Whether the employee is passive
+          example: false
+        locked:
+          type: string
+          description: Lock status of the employee account
+          enum:
+            - NOT_LOCKED
+            - LOCKED_BY_MANAGER
+            - LOCKED_BY_SYSTEM
+          example: NOT_LOCKED
+        employmentStartDate:
+          type: string
+          format: date
+          description: Date when the employment started
+          example: '2020-01-01'
+        employmentEndDate:
+          type:
+            - string
+            - 'null'
+          format: date
+          description: Date when the employment ends, or `null` if employed indefinitely
+          example: '2025-12-31'
+        industryStartDate:
+          type: string
+          format: date
+          description: Date when the employee started working in the industry
+          example: '2015-01-01'
+        costCentreId:
+          type: string
+          description: Cost centre ID
+          example: '1234'
+      required:
+        - employmentStartDate
+        - homeGroupId
+        - industryStartDate
+        - locked
+        - passive
+        - staffCategoryId
+    employee_UpdatePersonalInformation:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Employee's first name
+          example: John
+          maxLength: 40
+          minLength: 0
+        lastName:
+          type: string
+          description: Employee's last name
+          example: Doe
+          maxLength: 40
+          minLength: 0
+        dateOfBirth:
+          type: string
+          format: date
+          description: 'Employee''s date of birth '
+          example: '1990-01-01'
+        gender:
+          type: string
+          description: Employee's gender
+          enum:
+            - MALE
+            - FEMALE
+            - OTHER
+            - NOT_SPECIFIED
+          example: MALE
+        socialSecurityNumber:
+          type: string
+          description: 'Employee''s social security number '
+          example: 000000-0000
+        pictureURL:
+          type: string
+          description: URL to the employee's profile picture
+          example: https://example.com/pictures/placeholder.jpg
+      required:
+        - dateOfBirth
+        - firstName
+        - gender
+        - lastName
+        - pictureURL
+        - socialSecurityNumber
+    employee_UpdatePunchSettings:
+      type: object
+      properties:
+        allowAttestOfOwnPunches:
+          type: boolean
+          description: Whether the employee is allowed to attest their own time punches
+          example: false
+      required:
+        - allowAttestOfOwnPunches
+    employee_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem
+          example: /api/endpoint
+      required:
+        - status
+        - title
+        - type
+      title: ProblemDetail
+    employee_ValidationError:
+      type: object
+      description: Validation errors, conforming to RFC 9457.
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/validation-error
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+          example: The request is not valid.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 422
+        errors:
+          type: array
+          description: A list of validation errors.
+          items:
+            $ref: '#/components/schemas/employee_ValidationErrorDetail'
+          maxItems: 50
+          minItems: 1
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.
+          example: /api/endpoint
+      required:
+        - errors
+        - status
+        - title
+        - type
+      title: ValidationError
+    employee_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: >-
+            A JSON Pointer [RFC6901] to the associated entity in the request
+            body.
+          example: '#/name'
+    employee_Address:
+      type: object
+      properties:
+        address1:
+          type: string
+          description: Primary address line
+          example: 123 Example Street
+          maxLength: 50
+          minLength: 0
+        address2:
+          type: string
+          description: Secondary address line
+          example: Apt 1
+          maxLength: 50
+          minLength: 0
+        zip:
+          type: string
+          description: Postal or ZIP code
+          example: SE-10000
+          maxLength: 20
+          minLength: 0
+        city:
+          type: string
+          description: City of residence
+          example: Stockholm
+          maxLength: 50
+          minLength: 0
+        country:
+          type: string
+          description: Country of residence
+          example: Sweden
+          maxLength: 50
+          minLength: 0
+    employee_ContactInformation:
+      type: object
+      properties:
+        mobileNumber:
+          type: string
+          description: Employee's mobile phone number
+          example: '+46700000000'
+          maxLength: 20
+          minLength: 0
+        phoneNumber:
+          type: string
+          description: Employee's work phone number
+          example: '+46800000000'
+          maxLength: 20
+          minLength: 0
+    employee_EmergencyContact:
+      type: object
+      properties:
+        nextOfKinName:
+          type: string
+          description: Name of the employee's next of kin
+          example: John Doe
+          maxLength: 50
+          minLength: 0
+        nextOfKinPhone:
+          type: string
+          description: Phone number of the employee's next of kin
+          example: '+46700000000'
+          maxLength: 20
+          minLength: 0
+        legalGuardianName:
+          type: string
+          description: Name of the employee's legal guardian
+          example: Jane Doe
+          maxLength: 50
+          minLength: 0
+        legalGuardianEmail:
+          type: string
+          description: Email address of the employee's legal guardian
+          example: guardian@example.com
+          maxLength: 50
+          minLength: 0
+    employee_Employment:
+      type: object
+      properties:
+        homeGroupId:
+          type: string
+          description: ID of the employee's home group
+          example: '123'
+        staffCategoryId:
+          type: string
+          description: ID of the staff category assigned to the employee
+          example: '123'
+        passive:
+          type: boolean
+          description: Whether the employee is passive
+          example: false
+        locked:
+          type: string
+          description: Lock status of the employee account
+          enum:
+            - NOT_LOCKED
+            - LOCKED_BY_MANAGER
+            - LOCKED_BY_SYSTEM
+          example: NOT_LOCKED
+        employmentStartDate:
+          type: string
+          format: date
+          description: Date when the employment started
+          example: '2020-01-01'
+        industryStartDate:
+          type: string
+          format: date
+          description: Date when the employee started working in the industry
+          example: '2015-01-01'
+        managerId:
+          type: string
+          description: ID of the employee's manager
+          example: '1234'
+        employmentEndDate:
+          type: string
+          format: date
+          description: Date when the employment ends, if applicable
+          example: '2025-12-31'
+        costCentreId:
+          type: string
+          description: Cost centre ID
+          example: '1234'
+    employee_IntegrationEmployeeResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Internal employee ID, assigned by the system
+          example: '12345'
+          readOnly: true
+        badgeNumber:
+          type: string
+          description: Unique badge number identifying the employee
+          example: '001'
+          maxLength: 20
+          minLength: 0
+        email:
+          type: string
+          format: email
+          description: Employee email address
+          example: employee@example.com
+          maxLength: 255
+          minLength: 0
+        personalInformation:
+          $ref: '#/components/schemas/employee_PersonalInformation'
+        contactInformation:
+          $ref: '#/components/schemas/employee_ContactInformation'
+        address:
+          $ref: '#/components/schemas/employee_Address'
+        employment:
+          $ref: '#/components/schemas/employee_Employment'
+        emergencyContact:
+          $ref: '#/components/schemas/employee_EmergencyContact'
+        punchSettings:
+          $ref: '#/components/schemas/employee_PunchSettings'
+        updated:
+          type: string
+          format: date-time
+          description: Timestamp of the last update to the employee record
+          example: '2024-06-01T10:00:00Z'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Timestamp when the employee record was created
+          example: '2024-06-01T10:00:00Z'
+          readOnly: true
+    employee_PersonalInformation:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Employee's first name
+          example: John
+          maxLength: 40
+          minLength: 0
+        lastName:
+          type: string
+          description: Employee's last name
+          example: Doe
+          maxLength: 40
+          minLength: 0
+        dateOfBirth:
+          type: string
+          format: date
+          description: Employee's date of birth
+          example: '1990-01-01'
+        gender:
+          type: string
+          description: Employee's gender
+          enum:
+            - MALE
+            - FEMALE
+            - OTHER
+            - NOT_SPECIFIED
+          example: MALE
+        socialSecurityNumber:
+          type: string
+          description: Employee's social security number
+          example: 000000-0000
+        pictureURL:
+          type: string
+          description: URL to the employee's profile picture
+          example: https://example.com/pictures/placeholder.jpg
+    employee_PunchSettings:
+      type: object
+      properties:
+        allowAttestOfOwnPunches:
+          type: boolean
+          description: Whether the employee is allowed to attest their own time punches
+          example: false
+    employee_CreateEmployment:
+      type: object
+      properties:
+        homeGroupId:
+          type: string
+          description: ID of the employee's home group
+          example: '123'
+          minLength: 1
+        staffCategoryId:
+          type: string
+          description: ID of the staff category assigned to the employee
+          example: '123'
+        managerId:
+          type: string
+          description: ID of the employee's manager
+          example: '1234'
+        passive:
+          type: boolean
+          description: Whether the employee is passive
+          example: false
+        locked:
+          type: string
+          description: Lock status of the employee account
+          enum:
+            - NOT_LOCKED
+            - LOCKED_BY_MANAGER
+            - LOCKED_BY_SYSTEM
+          example: NOT_LOCKED
+        employmentStartDate:
+          type: string
+          format: date
+          description: Date when the employment started
+          example: '2020-01-01'
+        employmentEndDate:
+          type: string
+          format: date
+          description: Date when the employment ends, if applicable
+          example: '2025-12-31'
+        industryStartDate:
+          type: string
+          format: date
+          description: Date when the employee started working in the industry
+          example: '2015-01-01'
+        costCentreId:
+          type: string
+          description: Cost centre ID
+          example: '1234'
+      required:
+        - employmentStartDate
+        - homeGroupId
+    employee_CreatePersonalInformation:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Employee's first name
+          example: John
+          maxLength: 40
+          minLength: 0
+        lastName:
+          type: string
+          description: Employee's last name
+          example: Doe
+          maxLength: 40
+          minLength: 0
+        dateOfBirth:
+          type: string
+          format: date
+          description: Employee's date of birth
+          example: '1990-01-01'
+        gender:
+          type: string
+          description: Employee's gender
+          enum:
+            - MALE
+            - FEMALE
+            - OTHER
+            - NOT_SPECIFIED
+          example: MALE
+        socialSecurityNumber:
+          type: string
+          description: Employee's social security number
+          example: 000000-0000
+        pictureURL:
+          type: string
+          description: URL to the employee's profile picture
+          example: https://example.com/pictures/placeholder.jpg
+      required:
+        - firstName
+        - lastName
+    employee_IntegrationEmployeeCreateRequest:
+      type: object
+      properties:
+        badgeNumber:
+          type: string
+          description: Unique badge number identifying the employee
+          example: '001'
+          maxLength: 20
+          minLength: 0
+        email:
+          type: string
+          format: email
+          description: Employee email address
+          example: employee@example.com
+          maxLength: 255
+          minLength: 0
+        personalInformation:
+          $ref: '#/components/schemas/employee_CreatePersonalInformation'
+        contactInformation:
+          $ref: '#/components/schemas/employee_ContactInformation'
+        address:
+          $ref: '#/components/schemas/employee_Address'
+        employment:
+          $ref: '#/components/schemas/employee_CreateEmployment'
+        emergencyContact:
+          $ref: '#/components/schemas/employee_EmergencyContact'
+        punchSettings:
+          $ref: '#/components/schemas/employee_PunchSettings'
+      required:
+        - badgeNumber
+        - email
+        - employment
+        - personalInformation
+    employee_IntegrationEmployeePatchRequest:
+      type: object
+      properties:
+        badgeNumber:
+          type: string
+          description: Unique badge number identifying the employee
+          example: '001'
+          maxLength: 20
+          minLength: 0
+        email:
+          type: string
+          format: email
+          description: Employee email address
+          example: employee@example.com
+          maxLength: 255
+          minLength: 0
+        personalInformation:
+          $ref: '#/components/schemas/employee_PersonalInformation'
+        contactInformation:
+          $ref: '#/components/schemas/employee_ContactInformation'
+        address:
+          $ref: '#/components/schemas/employee_Address'
+        employment:
+          $ref: '#/components/schemas/employee_Employment'
+        emergencyContact:
+          $ref: '#/components/schemas/employee_EmergencyContact'
+        punchSettings:
+          $ref: '#/components/schemas/employee_PunchSettings'
+    employee_CursorPageIntegrationEmployeeResponse:
+      type: object
+      description: >-
+        A page of data along with pagination information for cursor-based
+        pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/employee_IntegrationEmployeeResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/employee_CursorPaginationInfo'
+    employee_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
+    organisation_CreateGroupRequest:
+      type: object
+      description: Request payload used to create a new group
+      properties:
+        name:
+          type: string
+          description: The name of the group
+          example: Engineering
+          maxLength: 50
+          minLength: 0
+        groupType:
+          type: string
+          description: Type of group
+          enum:
+            - DISTRICT
+            - UNIT
+            - SECTION
+          example: UNIT
+          minLength: 1
+        parentGroupId:
+          type: string
+          description: Identifier of the parent group
+          example: '10'
+        managerId:
+          type: string
+          description: Employee ID of the group manager
+          example: '1001'
+        costCentreId:
+          type: string
+          description: Associated cost centre identifier
+          example: '200'
+        xrefIds:
+          type: array
+          description: External reference identifiers
+          example:
+            - AD-ENG
+            - COST-ENG-01
+          items:
+            type: string
+          maxItems: 50
+          minItems: 0
+      required:
+        - groupType
+        - name
+        - parentGroupId
+    organisation_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem
+          example: /api/endpoint
+      required:
+        - status
+        - title
+        - type
+      title: ProblemDetail
+    organisation_ValidationError:
+      type: object
+      description: Validation errors, conforming to RFC 9457.
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/validation-error
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+          example: The request is not valid.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 422
+        errors:
+          type: array
+          description: A list of validation errors.
+          items:
+            $ref: '#/components/schemas/organisation_ValidationErrorDetail'
+          maxItems: 50
+          minItems: 1
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.
+          example: /api/endpoint
+      required:
+        - errors
+        - status
+        - title
+        - type
+      title: ValidationError
+    organisation_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: >-
+            A JSON Pointer [RFC6901] to the associated entity in the request
+            body.
+          example: '#/name'
+    organisation_GroupResponse:
+      type: object
+      description: Represents a group within the organization hierarchy
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the group
+          example: '42'
+        name:
+          type: string
+          description: The name of the group
+          example: Engineering
+          maxLength: 50
+          minLength: 0
+        groupType:
+          type: string
+          description: Type of group
+          enum:
+            - DISTRICT
+            - UNIT
+            - SECTION
+          example: UNIT
+        parentGroupId:
+          type: string
+          description: Identifier of the parent group
+          example: '10'
+        managerId:
+          type: string
+          description: Employee ID of the group manager
+          example: '1001'
+        costCentreId:
+          type: string
+          description: Associated cost centre identifier
+          example: '200'
+        xrefIds:
+          type: array
+          description: External reference identifiers
+          example:
+            - AD-ENG
+            - COST-ENG-01
+          items:
+            type: string
+          maxItems: 50
+          minItems: 0
+        created:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp when the group was created
+          example: '2024-01-10T09:15:30Z'
+        updated:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp when the group was last updated
+          example: '2024-01-12T17:42:10Z'
+    organisation_CursorPageGroupResponse:
+      type: object
+      description: >-
+        A page of data along with pagination information for cursor-based
+        pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/organisation_GroupResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/organisation_CursorPaginationInfo'
+    organisation_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
+    rest-api-uaa_OAuth2TokenRequest:
+      type: object
+      description: OAuth2 client credentials token request
+      properties:
+        grant_type:
+          type: string
+          description: OAuth2 grant type
+          example: client_credentials
+          minLength: 1
+        client_id:
+          type: string
+          description: Client identifier
+          example: my-client-id
+          minLength: 1
+        client_secret:
+          type: string
+          description: Client secret
+          example: my-client-secret
+          minLength: 1
+        scope:
+          type: string
+          description: >-
+            Space-delimited subset of the originally granted scopes. Allows the
+            client to request a narrower set of permissions for the issued
+            access token. If omitted, all originally authorized scopes apply.
+          example: organization:groups:read organization:groups:create
+      required:
+        - client_id
+        - client_secret
+        - grant_type
+    rest-api-uaa_OAuth2ErrorResponse:
+      type: object
+      description: OAuth2 error response per RFC 6749
+      properties:
+        error:
+          type: string
+          description: An error code defined in RFC 6749 or other extensions
+          example: invalid_client
+        error_description:
+          type: string
+          description: >-
+            A short description of what caused this error. Sometimes this
+            contains dynamically-generated information about your specific
+            error.
+          example: 'Client not found: my-client-id'
+    rest-api-uaa_OAuth2TokenResponse:
+      type: object
+      description: OAuth2 token response
+      properties:
+        access_token:
+          type: string
+          description: The access token
+          example: eyJhbGciOiJSUzI1NiJ9...
+          minLength: 1
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+          minLength: 1
+        expires_in:
+          type: integer
+          format: int64
+          description: Token validity in seconds
+          example: 3600
+        scope:
+          type: string
+          description: Granted scope
+          example: organization:groups:read organization:groups:create
+          minLength: 1
+      required:
+        - access_token
+        - expires_in
+        - scope
+        - token_type
+    security_RoleAssignmentRequest:
+      type: object
+      description: Request body for creating a role assignment
+      properties:
+        employeeId:
+          type: string
+          description: 'Employee identifier. Supports badgeNumber: prefix.'
+          examples:
+            - '10'
+            - badgeNumber:EMP001
+        groupId:
+          type: string
+          description: 'Group identifier. Supports xrefId: prefix.'
+          examples:
+            - '10'
+            - xrefId:GRP-16
+        roleId:
+          type: string
+          description: 'Role identifier. Supports xrefId: prefix.'
+          examples:
+            - '10'
+            - xrefId:admin
+        startDate:
+          type: string
+          format: date
+          description: Start date of the assignment. Defaults to today.
+          example: '2025-10-01'
+        endDate:
+          type: string
+          format: date
+          description: End date of the assignment. Defaults to null.
+          example: '2026-01-01'
+      required:
+        - employeeId
+        - groupId
+        - roleId
+    security_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem
+          example: /api/endpoint
+      required:
+        - status
+        - title
+        - type
+      title: ProblemDetail
+    security_ValidationError:
+      type: object
+      description: Validation errors, conforming to RFC 9457.
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/validation-error
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+          example: The request is not valid.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 422
+        errors:
+          type: array
+          description: A list of validation errors.
+          items:
+            $ref: '#/components/schemas/security_ValidationErrorDetail'
+          maxItems: 50
+          minItems: 1
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.
+          example: /api/endpoint
+      required:
+        - errors
+        - status
+        - title
+        - type
+      title: ValidationError
+    security_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: >-
+            A JSON Pointer [RFC6901] to the associated entity in the request
+            body.
+          example: '#/name'
+    security_RoleAssignmentResponse:
+      type: object
+      description: Represents a role assignment
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the role assignment
+          example: '12345'
+        employeeId:
+          type: string
+          description: Employee identifier
+          example: '12345'
+        groupId:
+          type: string
+          description: Group identifier
+          example: '16'
+        roleId:
+          type: string
+          description: Role identifier
+          example: '12'
+        startDate:
+          type: string
+          format: date
+          description: Start date of the assignment
+          example: '2025-10-01'
+        endDate:
+          type: string
+          format: date
+          description: End date of the assignment
+          example: '2026-12-31'
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+          example: '2025-10-01T14:18:41Z'
+        updated:
+          type: string
+          format: date-time
+          description: Last update timestamp
+          example: '2025-10-16T09:34:27Z'
+    security_RoleAssignmentUpdateRequest:
+      type: object
+      description: Request to update a role assignment
+      properties:
+        startDate:
+          type: string
+          format: date
+          description: Start date of the assignment
+          example: '2026-06-01'
+        endDate:
+          type: string
+          format: date
+          description: End date of the assignment
+          example: '2026-12-31'
+    security_CursorPageRoleResponse:
+      type: object
+      description: >-
+        A page of data along with pagination information for cursor-based
+        pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/security_RoleResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/security_CursorPaginationInfo'
+    security_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
+    security_RoleResponse:
+      type: object
+      description: Represents a role within the organization
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the role
+          example: '42'
+        name:
+          type: string
+          description: The name of the role
+          example: Manager
+        xrefId:
+          type: string
+          description: External reference identifier
+          example: ext-role-123
+        levelId:
+          type: string
+          description: Identifier of the associated level (rank)
+          example: '5'
+    security_CursorPageRoleAssignmentResponse:
+      type: object
+      description: >-
+        A page of data along with pagination information for cursor-based
+        pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/security_RoleAssignmentResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/security_CursorPaginationInfo'
+    shifts_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem
+          example: /api/endpoint
+      required:
+        - status
+        - title
+        - type
+      title: ProblemDetail
+    shifts_ValidationError:
+      type: object
+      description: Validation errors, conforming to RFC 9457.
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/validation-error
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+          example: The request is not valid.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 422
+        errors:
+          type: array
+          description: A list of validation errors.
+          items:
+            $ref: '#/components/schemas/shifts_ValidationErrorDetail'
+          maxItems: 50
+          minItems: 1
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.
+          example: /api/endpoint
+      required:
+        - errors
+        - status
+        - title
+        - type
+      title: ValidationError
+    shifts_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: >-
+            A JSON Pointer [RFC6901] to the associated entity in the request
+            body.
+          example: '#/name'
+    shifts_CursorPageShift:
+      type: object
+      description: >-
+        A page of data along with pagination information for cursor-based
+        pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/shifts_Shift'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/shifts_CursorPaginationInfo'
+    shifts_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page, or null if there is no next page.
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: >-
+            The token for the previous page, or null if there is no previous
+            page.
+          example: eyJpZCI6ODB9
+    shifts_Shift:
+      type: object
+      description: Represents a scheduled shift for an employee within a group
+      properties:
+        id:
+          type: string
+          description: Internal numeric ID of the shift
+          example: '123456789'
+        xrefId:
+          type: string
+          description: External reference ID of the shift.
+          example: ext-shift-001
+        groupId:
+          type: string
+          description: ID of the group this shift belongs to
+          example: '42'
+        begin:
+          type: string
+          format: date-time
+          description: Start date and time of the shift
+          example: '2024-06-01T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the shift
+          example: '2024-06-01T16:00:00Z'
+        status:
+          type: string
+          description: Current status of the shift
+          example: ASSIGNED
+        deleted:
+          type: boolean
+          description: Indicates whether the shift has been soft-deleted
+          example: false
+        shiftTypeId:
+          type: string
+          description: ID of the shift type associated with this shift
+          example: '7'
+        employeeId:
+          type: string
+          description: >-
+            ID of the employee assigned to this shift. Use prefix 'badgeNumber:'
+            when filtering
+          example: '99'
+        countScheduleHours:
+          type: boolean
+          description: Whether the shift hours count toward scheduled hours
+          example: true
+        countWorkedHours:
+          type: boolean
+          description: Whether the shift hours count toward worked hours
+          example: true
+        freeDay:
+          type: boolean
+          description: Indicates whether this shift represents a free/day-off day
+          example: false
+        productiveTime:
+          type: string
+          description: Productive time
+          example: SCHEDULED_TIME
+        comment:
+          type: string
+          description: Optional comment or note attached to the shift
+          example: Morning shift - opening duties
+        costCentreId:
+          type: string
+          description: ID of the cost centre associated with this shift
+          example: '5'
+        projectId:
+          type: string
+          description: ID of the project associated with this shift
+          example: '12'
+        agreementId:
+          type: string
+          description: ID of the agreement governing this shift
+          example: '3'
+        scheduledDuration:
+          type: string
+          description: Total scheduled duration of the shift in ISO-8601 duration format
+          example: PT8H
+        created:
+          type: string
+          format: date-time
+          description: Timestamp when the shift was created
+          example: '2024-01-15T10:30:00Z'
+        updated:
+          type: string
+          format: date-time
+          description: Timestamp when the shift was last updated
+          example: '2024-05-20T14:00:00Z'
+        breaks:
+          type: array
+          description: List of breaks within the shift
+          items:
+            $ref: '#/components/schemas/shifts_Task'
+          maxItems: 20
+        tasks:
+          type: array
+          description: List of tasks assigned within the shift
+          items:
+            $ref: '#/components/schemas/shifts_TaskIntegrationModel'
+          maxItems: 100
+        additionalTimeLevel:
+          type: string
+          description: Additional time level on a shift
+          example: '4'
+    shifts_Task:
+      type: object
+      description: Represents a task segment within a shift
+      properties:
+        begin:
+          type: string
+          format: date-time
+          description: Start date and time of the break
+          example: '2024-06-01T12:00:00Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the break
+          example: '2024-06-01T12:30:00Z'
+    shifts_TaskIntegrationModel:
+      type: object
+      description: Represents a task segment within a shift
+      properties:
+        id:
+          type: string
+          description: Internal numeric ID of the task
+          example: '987654321'
+        shiftTypeId:
+          type: string
+          description: ID of the shift type associated with this task
+          example: '7'
+        begin:
+          type: string
+          format: date-time
+          description: Start date and time of the task
+          example: '2024-06-01T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the task
+          example: '2024-06-01T10:00:00Z'
+        countAsScheduledHours:
+          type: boolean
+          description: Whether this task's hours count toward scheduled hours
+          example: true
+        countAsWorkedHours:
+          type: boolean
+          description: Whether this task's hours count toward worked hours
+          example: true
+        productiveTime:
+          type: string
+          description: Productive time
+          example: ALWAYS
+        costCentreId:
+          type: string
+          description: ID of the cost centre associated with this task
+          example: '5'
+        projectId:
+          type: string
+          description: ID of the project associated with this task
+          example: '12'
+        comment:
+          type: string
+          description: Optional comment or note attached to the task
+          example: Customer service desk coverage
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      description: >-
+        OAuth2 Client Credentials flow. See
+        https://developer.quinyx.com/api/authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/v3/token
+          scopes:
+            hr:employees:create: ''
+            hr:employees:delete: ''
+            hr:employees:read: ''
+            hr:employees:update: ''
+            organization:groups:create: ''
+            organization:groups:delete: ''
+            organization:groups:read: ''
+            organization:groups:update: ''
+            hr:role-assignments:create: ''
+            hr:role-assignments:delete: ''
+            hr:role-assignments:read: ''
+            hr:role-assignments:update: ''
+            organization:roles:read: ''
+            schedule:shifts:read: ''
+servers:
+  - url: https://api.{region}.quinyx.com
+    description: Production
+    variables:
+      region:
+        default: eu
+        enum:
+          - eu
+          - na
+  - url: https://api.{region}.rc.quinyx.com
+    description: RC
+    variables:
+      region:
+        default: eu
+        enum:
+          - eu
+          - na
+x-tagGroups:
+  - name: OAuth
+    tags:
+      - Access Token
+  - name: Organization
+    tags:
+      - Group
+      - Role
+  - name: HR
+    tags:
+      - Employee
+      - Role Assignment
+  - name: Schedule
+    tags:
+      - Shift

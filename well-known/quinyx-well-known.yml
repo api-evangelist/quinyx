@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+notes: >-
+  Probed the standard /.well-known/ discovery surface on the Quinyx developer
+  portal, marketing site, and API hosts. No public well-known documents were
+  found: the OIDC/OAuth discovery paths on the API host return 401 (auth-gated,
+  not a public catalog) and security.txt is absent. Absence recorded as valid
+  data. No raw files saved.
+hosts:
+- host: https://developer.quinyx.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://www.quinyx.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://api.eu.quinyx.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+  - path: /.well-known/security.txt
+    status: 401

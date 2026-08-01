@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/quinyx-api-v3-openapi.yml
+skills:
+- file: quinyx-onboard-employee.md
+  name: Onboard an employee in Quinyx
+  api: openapi/quinyx-api-v3-openapi.yml
+  operations: [getToken, getGroups, createGroup, createEmployee, getRoles, createRoleAssignment]
+- file: quinyx-read-schedule.md
+  name: Read an employee's schedule
+  api: openapi/quinyx-api-v3-openapi.yml
+  operations: [getToken, getEmployees, getEmployee, getShifts]

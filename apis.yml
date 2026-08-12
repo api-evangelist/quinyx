@@ -408,6 +408,8 @@ apis:
   - type: OpenAPI
     url: openapi/quinyx-tags-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/quinyx-api-v2-overlay.yaml
 - type: DeveloperPortal
   url: https://developer.quinyx.com
 - type: Documentation

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Standard Variables API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Standard Variables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List standard variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/statistics/standard-variables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetches standard variables from the statistics service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

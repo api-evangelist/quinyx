@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "6144caee-ce3a-4172-accc-78870e562146",
+      "name": "Pay Schedules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e912b0bb-d7c8-4ad6-9c07-6cb1de97eb47",
+          "name": "Get most recent pay period ending before date",
+          "request": {
+            "name": "Get most recent pay period ending before date",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "employee",
+                "pay-schedules",
+                ":id",
+                "periods",
+                ":periodDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "payScheduleRestId",
+                  "value": "<string>",
+                  "description": "(Required) Pay Schedule identifier"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "periodDate",
+                  "description": "(Required) Returned period will be the most recent one that ended before this date. Usually: current date. Format: YYYY-MM-DD."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a2acdf6-ef2f-4065-a0fd-891a15dfafa5",
+              "name": "Previous pay period along with list of allowed employees and unit IDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "employee",
+                    "pay-schedules",
+                    ":id",
+                    "periods",
+                    ":periodDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payScheduleRestId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "periodDate",
+                      "description": "(Required) Returned period will be the most recent one that ended before this date. Usually: current date. Format: YYYY-MM-DD."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payrollSystemId\": 8517,\n  \"payPeriod\": {\n    \"start\": \"2023-05-15\",\n    \"end\": \"1964-07-17\"\n  },\n  \"employeeIds\": [\n    8103,\n    1432\n  ],\n  \"unitIds\": [\n    8732,\n    2907\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c52f89a-fb35-46cb-a7c5-f482655120b5",
+              "name": "Unauthorized. Missing Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "employee",
+                    "pay-schedules",
+                    ":id",
+                    "periods",
+                    ":periodDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payScheduleRestId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "periodDate",
+                      "description": "(Required) Returned period will be the most recent one that ended before this date. Usually: current date. Format: YYYY-MM-DD."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3263456e-3396-45e5-9dd1-833729a95d0c",
+              "name": "Forbidden. Missing permission: pay_schedules:read",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "employee",
+                    "pay-schedules",
+                    ":id",
+                    "periods",
+                    ":periodDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payScheduleRestId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "periodDate",
+                      "description": "(Required) Returned period will be the most recent one that ended before this date. Usually: current date. Format: YYYY-MM-DD."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "270e1781-c913-48cd-aa3f-9815de4a40bd",
+              "name": "Pay schedule, or credential's customer is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "employee",
+                    "pay-schedules",
+                    ":id",
+                    "periods",
+                    ":periodDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payScheduleRestId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "periodDate",
+                      "description": "(Required) Returned period will be the most recent one that ended before this date. Usually: current date. Format: YYYY-MM-DD."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ca97feb8-5d40-4934-b54d-e70bbfbb6ff5",
+    "name": "Quinyx Absence Schedules Pay Schedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

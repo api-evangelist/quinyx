@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Mappings API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mappings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update mapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/mapping/:mappingId",
+            "params": [
+              {
+                "name": "mappingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update mapping"
+        },
+        {
+          "info": {
+            "name": "Delete mapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/mapping/:mappingId",
+            "params": [
+              {
+                "name": "mappingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete mapping"
+        },
+        {
+          "info": {
+            "name": "Create mapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/mapping/groups/:domainGroupId",
+            "params": [
+              {
+                "name": "domainGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create mapping"
+        },
+        {
+          "info": {
+            "name": "Search mappings by domain and type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/mapping/domains/:domainId/mappings/:mappingType",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mappingType",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves mapping records for the given domainId and mappingType, narrowed down by quinyxValue or/and externalValue."
+        },
+        {
+          "info": {
+            "name": "List existing mapping types that can be used in a request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/mapping/mappingTypes"
+          },
+          "docs": "List existing mapping types that can be used in a request"
+        },
+        {
+          "info": {
+            "name": "List mappings by type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/mapping/mappingTypes/:mappingType/mappings",
+            "params": [
+              {
+                "name": "mappingType",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "quinyxValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalValue",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List mappings by type"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

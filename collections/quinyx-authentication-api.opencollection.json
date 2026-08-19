@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Authentication API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/oauth/token",
+            "params": [
+              {
+                "name": "grant_type",
+                "value": "client_credentials",
+                "type": "query",
+                "description": "Grant type requested"
+              }
+            ]
+          },
+          "docs": "Operation returns the security token to be used for subsequent calls to API"
+        },
+        {
+          "info": {
+            "name": "Get new access and refresh token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "To get tokens using your login credentials you will need to set 'grantType' to 'password' and send it together with the 'username' and 'password'. To get tokens using refresh token you will need to set 'grantType' to 'refresh_token' and sent it together with the 'refreshToken'."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

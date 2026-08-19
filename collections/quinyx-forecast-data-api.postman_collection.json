@@ -1,0 +1,3911 @@
+{
+  "item": [
+    {
+      "id": "afd89758-cfce-4a73-b579-5d728043a131",
+      "name": "Forecast Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c3512590-d1bb-4665-8475-373b14f3eb27",
+          "name": "Upload actual data with maximum 366 rows",
+          "request": {
+            "name": "Upload actual data with maximum 366 rows",
+            "description": {
+              "content": "Operation used to upload actual data. The total amount of data rows must not exceed 366. Deprecated. Use /actual-data instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "raw-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appendData",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    },\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad031cce-7493-4538-a1c9-dad41f12e0fa",
+              "name": "Data successfully uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "raw-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appendData",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3e4919e-9da7-46c5-afa2-64980779e33f",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "raw-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appendData",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37e62f80-3911-4b20-9e12-71e5b5242878",
+          "name": "Upload prediction data with maximum 366 rows at the variable resolution",
+          "request": {
+            "name": "Upload prediction data with maximum 366 rows at the variable resolution",
+            "description": {
+              "content": "Operation used to upload generated prediction data. Resolution of datapoints must match expected resolution of variable. The total amount of data rows must not exceed 366.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "predicted-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastConfigurationId\": \"<string>\",\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"runIdentifier\": \"<string>\",\n      \"runTimestamp\": \"<dateTime>\",\n      \"externalSectionId\": \"<string>\"\n    },\n    {\n      \"externalForecastConfigurationId\": \"<string>\",\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"runIdentifier\": \"<string>\",\n      \"runTimestamp\": \"<dateTime>\",\n      \"externalSectionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fda7f97-68fd-4422-b577-a626096c0234",
+              "name": "Data successfully uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "predicted-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastConfigurationId\": \"config-1\",\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"runIdentifier\": \"run-1\",\n      \"runTimestamp\": \"2026-01-15T12:00:00Z\",\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastConfigurationId\": \"config-1\",\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"runIdentifier\": \"run-1\",\n      \"runTimestamp\": \"2026-01-15T12:00:00Z\",\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a6aef76-2d25-4c61-b2ca-924524dfb48d",
+              "name": "Unexpected input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "predicted-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastConfigurationId\": \"config-1\",\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"runIdentifier\": \"run-1\",\n      \"runTimestamp\": \"2026-01-15T12:00:00Z\",\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastConfigurationId\": \"config-1\",\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"runIdentifier\": \"run-1\",\n      \"runTimestamp\": \"2026-01-15T12:00:00Z\",\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e3d0aa13-7c5f-4579-a3ea-204829cccc0e",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "predicted-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastConfigurationId\": \"config-1\",\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"runIdentifier\": \"run-1\",\n      \"runTimestamp\": \"2026-01-15T12:00:00Z\",\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastConfigurationId\": \"config-1\",\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"runIdentifier\": \"run-1\",\n      \"runTimestamp\": \"2026-01-15T12:00:00Z\",\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa4d92ee-b484-45f0-ad8a-a920f9bad33b",
+          "name": "Update forecast configuration and related data",
+          "request": {
+            "name": "Update forecast configuration and related data",
+            "description": {
+              "content": "Operation used to edit forecast configurations and update related forecast data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "forecast-configurations",
+                ":externalForecastConfigurationId",
+                "edit-forecast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastConfigurationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endTime\": \"<dateTime>\",\n  \"startTime\": \"<dateTime>\",\n  \"percentageModification\": \"<double>\",\n  \"newValueForPeriod\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f76ff09a-fe4b-428a-af25-c4b183777a74",
+              "name": "Forecast successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "forecast-configurations",
+                    ":externalForecastConfigurationId",
+                    "edit-forecast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastConfigurationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endTime\": \"2026-01-15T13:00:00Z\",\n  \"startTime\": \"2026-01-15T12:00:00Z\",\n  \"percentageModification\": 10,\n  \"newValueForPeriod\": 120\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ca2d2d5-134c-40f5-b542-91277af82000",
+              "name": "Unexpected input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "forecast-configurations",
+                    ":externalForecastConfigurationId",
+                    "edit-forecast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastConfigurationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endTime\": \"2026-01-15T13:00:00Z\",\n  \"startTime\": \"2026-01-15T12:00:00Z\",\n  \"percentageModification\": 10,\n  \"newValueForPeriod\": 120\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c044afe-da19-4121-bb9b-0c2c6282aaf7",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "forecast-configurations",
+                    ":externalForecastConfigurationId",
+                    "edit-forecast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastConfigurationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endTime\": \"2026-01-15T13:00:00Z\",\n  \"startTime\": \"2026-01-15T12:00:00Z\",\n  \"percentageModification\": 10,\n  \"newValueForPeriod\": 120\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23e57dbc-4c18-4f40-8acc-1f439e19d1f3",
+          "name": "Upload forecast data with maximum 366 rows",
+          "request": {
+            "name": "Upload forecast data with maximum 366 rows",
+            "description": {
+              "content": "Operation used to upload forecast data. The total amount of data rows must not exceed 366. Deprecated. Use /budget-data instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appendData",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    },\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "27fceab5-bb3b-45b0-b5fe-63bf63fc9e1b",
+              "name": "Data successfully uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appendData",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7111c09a-3e72-4a41-a9f9-c7cae485c9b6",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appendData",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf7795a0-1f76-4ae9-b530-c6f5f9a37a7d",
+          "name": "Upload budget data with maximum 366 rows",
+          "request": {
+            "name": "Upload budget data with maximum 366 rows",
+            "description": {
+              "content": "Operation used to upload budget data. The total amount of data rows must not exceed 366.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "budget-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appendData",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    },\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "129bb5cf-edb6-4ce1-8044-920eb1acb44c",
+              "name": "Data successfully uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "budget-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appendData",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68722455-faaf-452f-87e4-db7dd64f6b95",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "budget-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appendData",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01067065-f0d7-4e32-94cb-a782c72cdfe5",
+          "name": "Upload pre-aggregated data with maximum 366 rows",
+          "request": {
+            "name": "Upload pre-aggregated data with maximum 366 rows",
+            "description": {
+              "content": "Operation used to upload data already grouped at input data resolution. The total amount of data rows must not exceed 366.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "aggregated-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    },\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1c66523-6a60-4cb8-a4b0-28920a01ecc7",
+              "name": "Data successfully uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "aggregated-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e225ddab-f0bd-46a2-8109-a8adaf89cdf6",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "aggregated-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0dd4db63-f024-4bcf-b82e-bc673ae6d348",
+          "name": "Upload actual data with maximum 366 rows",
+          "request": {
+            "name": "Upload actual data with maximum 366 rows",
+            "description": {
+              "content": "Operation used to upload actual data. The total amount of data rows must not exceed 366.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "actual-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appendData",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    },\n    {\n      \"externalForecastVariableId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": \"<double>\",\n          \"timestamp\": \"<string>\"\n        }\n      ],\n      \"externalSectionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72042c4b-11d2-4fd9-8761-7e251ffb3208",
+              "name": "Data successfully uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "actual-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appendData",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "298ac559-8660-4379-a670-7a1acc7f5821",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "actual-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appendData",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    },\n    {\n      \"externalForecastVariableId\": \"var-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"forecastDataPayload\": [\n        {\n          \"data\": 100,\n          \"timestamp\": \"2026-01-15T12:00:00Z\"\n        }\n      ],\n      \"externalSectionId\": \"section-1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b78037ff-c1e2-4127-8a4c-af862b779272",
+          "name": "Get uploaded raw data for forecast variable, up to 120 days",
+          "request": {
+            "name": "Get uploaded raw data for forecast variable, up to 120 days",
+            "description": {
+              "content": "Getting the actual data previously uploaded for the given forecast variable. The range between these two dates can not exceed 120 days. Deprecated. Use ../actual-data instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "raw-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb194666-75f9-44c0-921d-234161dd0f73",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "raw-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b52e8cc-9a13-4256-8be3-c55ec92e2ba2",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "raw-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8df1a9ce-5912-431e-994d-fea5045d7486",
+          "name": "Delete uploaded raw data and matching calculated forecast",
+          "request": {
+            "name": "Delete uploaded raw data and matching calculated forecast",
+            "description": {
+              "content": "Deleting the actual data previously uploaded for the given forecast variable. This operation will also delete the corresponding calculated forecast data. The startTime and endTime must be at the start of hour and the range between these two dates can not exceed 120 days. Deprecated. Use ../actual-data instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "raw-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43680e5c-5aa5-4bec-8901-19b2fdfca5d6",
+              "name": "The delete request was received successfully and the operation will be performed asynchronously",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "raw-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e695b78d-65f6-442f-9b40-dee801ccc6af",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "raw-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "562700a1-2da0-42e6-9e4d-df840381dc2f",
+          "name": "Stream uploaded raw data for forecast variable, up to 120 days",
+          "request": {
+            "name": "Stream uploaded raw data for forecast variable, up to 120 days",
+            "description": {
+              "content": "Stream the actual data previously uploaded for the given forecast variable. The range between these two dates can not exceed 120 days. Deprecated. Use ../actual-data instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "raw-data-stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b427908-2c70-4211-88e6-4ddd6ae133ce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "raw-data-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "900c9e40-f91b-43d0-835b-e618c4a9456d",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "raw-data-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ad9b0cd-36e0-477e-9018-27771eecbc93",
+          "name": "Get uploaded forecast data for a forecast variable, up to 120 days",
+          "request": {
+            "name": "Get uploaded forecast data for a forecast variable, up to 120 days",
+            "description": {
+              "content": "Getting the uploaded forecast data for the given forecast variable. The range between these two dates can not exceed 120 days. Deprecated. Use /budget-data instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "forecast-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6fc61ed5-141c-4eb1-99eb-dafe82a9e953",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "forecast-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9ef8203-3799-4e9a-88d4-794f5653f1c2",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "forecast-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2f546a9-d780-44c3-8fe3-fdeea1b3773e",
+          "name": "Delete previously uploaded forecast data for a forecast variable",
+          "request": {
+            "name": "Delete previously uploaded forecast data for a forecast variable",
+            "description": {
+              "content": "Deleting the previously uploaded forecast data for the given forecast variable. The startTime and endTime must be at the start of hour and the range between these two dates can not exceed 120 days. Deprecated. Use /forecast-variables/{externalForecastVariableId}/budget-data instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "forecast-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1e8e5b6-f8ce-4eee-85eb-b7839cdfb774",
+              "name": "The delete request was received successfully and the operation will be performed asynchronously",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "forecast-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35046336-2266-418a-9c29-bb1f844a3bd0",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "forecast-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dee8601-3b5b-42bb-92ae-7410fddbf2d0",
+          "name": "Get the calculated forecast for a forecast variable, ignoring forecast events",
+          "request": {
+            "name": "Get the calculated forecast for a forecast variable, ignoring forecast events",
+            "description": {
+              "content": "Getting the calculated forecast for the given forecast variable. The range between these two dates can not exceed 120 days. Forecast events are NOT taken into consideration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "calculated-forecast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54c2d924-cbfc-4a0e-be15-502705c4b97e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "calculated-forecast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastConfigurationId\": \"config-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"editedData\": 105,\n        \"startTime\": \"2026-01-15T12:00:00Z\",\n        \"endTime\": \"2026-01-15T13:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"editedData\": 105,\n        \"startTime\": \"2026-01-15T12:00:00Z\",\n        \"endTime\": \"2026-01-15T13:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastConfigurationId\": \"config-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"editedData\": 105,\n        \"startTime\": \"2026-01-15T12:00:00Z\",\n        \"endTime\": \"2026-01-15T13:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"editedData\": 105,\n        \"startTime\": \"2026-01-15T12:00:00Z\",\n        \"endTime\": \"2026-01-15T13:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93f46c9e-374b-4278-bf7a-186db4e349d2",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "calculated-forecast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastConfigurationId\": \"config-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"editedData\": 105,\n        \"startTime\": \"2026-01-15T12:00:00Z\",\n        \"endTime\": \"2026-01-15T13:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"editedData\": 105,\n        \"startTime\": \"2026-01-15T12:00:00Z\",\n        \"endTime\": \"2026-01-15T13:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastConfigurationId\": \"config-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"editedData\": 105,\n        \"startTime\": \"2026-01-15T12:00:00Z\",\n        \"endTime\": \"2026-01-15T13:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"editedData\": 105,\n        \"startTime\": \"2026-01-15T12:00:00Z\",\n        \"endTime\": \"2026-01-15T13:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c46411c4-7d54-4bbf-a409-f01708b14bbc",
+          "name": "Get uploaded budget data for a forecast variable, up to 120 days",
+          "request": {
+            "name": "Get uploaded budget data for a forecast variable, up to 120 days",
+            "description": {
+              "content": "Getting the uploaded budget data for the given forecast variable. The range between these two dates can not exceed 120 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "budget-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4343446e-08ad-4cfb-aaaf-84c4d17f631a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "budget-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "087ce3d7-20fb-48c7-ba30-3958f671dd5a",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "budget-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2741f9f1-0b42-4cdb-90e5-d884b5c14cf6",
+          "name": "Delete previously uploaded budget data for a forecast variable",
+          "request": {
+            "name": "Delete previously uploaded budget data for a forecast variable",
+            "description": {
+              "content": "Deleting the previously uploaded budget data for the given forecast variable. The startTime and endTime must be at the start of hour and the range between these two dates can not exceed 120 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "budget-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb80c942-32c6-43c4-be4f-79f66637c834",
+              "name": "The delete request was received successfully and the operation will be performed asynchronously",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "budget-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1da2a104-e1bc-4cb0-bfb0-b444f85f3105",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "budget-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86724c86-c547-403f-80f0-0b7b8c496c7b",
+          "name": "Get aggregated data for a forecast variable, up to 120 days",
+          "request": {
+            "name": "Get aggregated data for a forecast variable, up to 120 days",
+            "description": {
+              "content": "Getting the aggregated data for the given forecast variable. The range between these two dates can not exceed 120 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "aggregated-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0aeb3b8-5d45-4947-b416-25b261db5fcc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "aggregated-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"groupId\": 1,\n    \"forecastVariableId\": 1,\n    \"startTime\": \"2026-01-15T12:00:00Z\",\n    \"endTime\": \"2026-01-15T13:00:00Z\",\n    \"data\": 100,\n    \"skip\": false,\n    \"dataType\": \"ACTUAL\"\n  },\n  {\n    \"groupId\": 1,\n    \"forecastVariableId\": 1,\n    \"startTime\": \"2026-01-15T12:00:00Z\",\n    \"endTime\": \"2026-01-15T13:00:00Z\",\n    \"data\": 100,\n    \"skip\": false,\n    \"dataType\": \"ACTUAL\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "040c90b0-fc7d-4c50-b15d-25a6cb006906",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "aggregated-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"groupId\": 1,\n    \"forecastVariableId\": 1,\n    \"startTime\": \"2026-01-15T12:00:00Z\",\n    \"endTime\": \"2026-01-15T13:00:00Z\",\n    \"data\": 100,\n    \"skip\": false,\n    \"dataType\": \"ACTUAL\"\n  },\n  {\n    \"groupId\": 1,\n    \"forecastVariableId\": 1,\n    \"startTime\": \"2026-01-15T12:00:00Z\",\n    \"endTime\": \"2026-01-15T13:00:00Z\",\n    \"data\": 100,\n    \"skip\": false,\n    \"dataType\": \"ACTUAL\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b75535a5-51fd-4d50-866d-ecc1d22ae67f",
+          "name": "Get previously uploaded actual data for a forecast variable, up to 120 days",
+          "request": {
+            "name": "Get previously uploaded actual data for a forecast variable, up to 120 days",
+            "description": {
+              "content": "Getting the actual data previously uploaded for the given forecast variable. The range between these two dates can not exceed 120 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "actual-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "692d78db-91c1-4db4-b0ce-7edcc51c36e5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "actual-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba73036f-741d-4f53-9850-ea87cb666b46",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "actual-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5042e307-814c-41cd-ad54-4c4f02e02f8f",
+          "name": "Delete previously uploaded actual data and the matching calculated forecast",
+          "request": {
+            "name": "Delete previously uploaded actual data and the matching calculated forecast",
+            "description": {
+              "content": "Deleting the actual data previously uploaded for the given forecast variable. This operation will also delete the corresponding calculated forecast data. The startTime and endTime must be at the start of hour and the range between these two dates can not exceed 120 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "actual-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dd8e434-ec34-47be-95fa-4f639be0f2cf",
+              "name": "The delete request was received successfully and the operation will be performed asynchronously",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "actual-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18f88bd7-12d5-4524-bf3b-31ecfed2b638",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "actual-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "203c5d84-fd64-40fb-95cd-3274d690d268",
+          "name": "Stream previously uploaded actual data for a forecast variable, up to 120 days",
+          "request": {
+            "name": "Stream previously uploaded actual data for a forecast variable, up to 120 days",
+            "description": {
+              "content": "Stream the actual data previously uploaded for the given forecast variable. The range between these two dates can not exceed 120 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "forecast-variables",
+                ":externalForecastVariableId",
+                "actual-data-stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalForecastVariableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b99c4a1a-f2ee-46a8-b0ee-e00eeffc8672",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "actual-data-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c52e028c-6e3c-4017-8898-fb9f3f17db3f",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "forecast-variables",
+                    ":externalForecastVariableId",
+                    "actual-data-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalForecastVariableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  },\n  {\n    \"externalForecastVariableId\": \"var-1\",\n    \"externalUnitId\": \"unit-1\",\n    \"externalSectionId\": \"section-1\",\n    \"dataPayload\": [\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      },\n      {\n        \"data\": 100,\n        \"timestamp\": \"2026-01-15T12:00:00Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a58862d-172a-49f7-abd2-ae32db194fa0",
+          "name": "Get calculated variable data by external id, up to 120 days",
+          "request": {
+            "name": "Get calculated variable data by external id, up to 120 days",
+            "description": {
+              "content": "Getting the data for calculated variable identified by externalId. The range between these two dates can not exceed 120 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "calculated-variables",
+                ":extCalculatedVarId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) External Group Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start of the period in ISO format"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) End of the period ISO format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "extCalculatedVarId",
+                  "description": "(Required) Calculated Variable External Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d30ca5ea-a638-4316-b7a2-082f46f6718e",
+              "name": "Calculated variable data for given period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "calculated-variables",
+                    ":extCalculatedVarId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "unitId"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "2020-01-26T00:00:00Z"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "2020-01-27T00:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "extCalculatedVarId",
+                      "description": "(Required) Calculated Variable External Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"extCalculatedVarId\": \"calc-var-1\",\n  \"externalUnitId\": \"unit-1\",\n  \"externalSectionId\": \"section-1\",\n  \"data\": [\n    {\n      \"data\": 100,\n      \"timestamp\": \"2026-01-15T12:00:00Z\"\n    },\n    {\n      \"data\": 100,\n      \"timestamp\": \"2026-01-15T12:00:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8745e9c4-19e8-4753-9803-b4df9ed05a4c",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "calculated-variables",
+                    ":extCalculatedVarId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "unitId"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "2020-01-26T00:00:00Z"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "2020-01-27T00:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "extCalculatedVarId",
+                      "description": "(Required) Calculated Variable External Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"extCalculatedVarId\": \"calc-var-1\",\n  \"externalUnitId\": \"unit-1\",\n  \"externalSectionId\": \"section-1\",\n  \"data\": [\n    {\n      \"data\": 100,\n      \"timestamp\": \"2026-01-15T12:00:00Z\"\n    },\n    {\n      \"data\": 100,\n      \"timestamp\": \"2026-01-15T12:00:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8fc0cda-081c-4daa-90ab-cfe3ba8086d9",
+              "name": "Calculated variable was not found for given externalId and externalUnitId",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "calculated-variables",
+                    ":extCalculatedVarId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "unitId"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "2020-01-26T00:00:00Z"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "2020-01-27T00:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "extCalculatedVarId",
+                      "description": "(Required) Calculated Variable External Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"extCalculatedVarId\": \"calc-var-1\",\n  \"externalUnitId\": \"unit-1\",\n  \"externalSectionId\": \"section-1\",\n  \"data\": [\n    {\n      \"data\": 100,\n      \"timestamp\": \"2026-01-15T12:00:00Z\"\n    },\n    {\n      \"data\": 100,\n      \"timestamp\": \"2026-01-15T12:00:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bbe952b9-c1ad-4e0e-beaf-6d3a0662c740",
+    "name": "Quinyx Absence Schedules Forecast Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

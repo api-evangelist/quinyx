@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Pay Schedules API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pay Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get most recent pay period ending before date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/employee/pay-schedules/:id/periods/:periodDate",
+            "params": [
+              {
+                "name": "payScheduleRestId",
+                "value": "",
+                "type": "query",
+                "description": "Pay Schedule identifier"
+              },
+              {
+                "name": "periodDate",
+                "value": "2026-02-10",
+                "type": "path",
+                "description": "Returned period will be the most recent one that ended before this date. Usually: current date. Format: YYYY-MM-DD."
+              }
+            ]
+          },
+          "docs": "Get most recent pay period ending before date"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

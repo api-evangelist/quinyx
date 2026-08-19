@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Forecast Target Data API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecast Target Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload daily target data with maximum 366 rows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/forecasts/target-data",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Operation used to upload target data for daily basic. The total amount of data rows must not exceed 366."
+        },
+        {
+          "info": {
+            "name": "Get target data for a target configuration, up to 360 days",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/forecasts/target-data/:externalId",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path",
+                "description": "External ID of the target configuration"
+              },
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Getting the Target data for the given target configuration. The range between these two dates can not exceed 360 days."
+        },
+        {
+          "info": {
+            "name": "Delete target data for a target configuration, up to 360 days",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/forecasts/target-data/:externalId",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete the Target data for the given target configuration. The range between these two dates can not exceed 360 days."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

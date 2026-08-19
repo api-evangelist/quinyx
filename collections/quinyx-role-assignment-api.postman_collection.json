@@ -1,0 +1,1593 @@
+{
+  "item": [
+    {
+      "id": "3a88958e-e541-41f7-a295-5a458228cc66",
+      "name": "Role Assignment",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "56a5fa28-b38b-4f4a-99d8-360c8fc494f3",
+          "name": "List role assignments",
+          "request": {
+            "name": "List role assignments",
+            "description": {
+              "content": "Returns a paginated list of role assignments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "role-assignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Cursor for the next page of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50",
+                  "description": "Maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "idIn",
+                  "value": "<string>",
+                  "description": "Filter by id (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "idIn",
+                  "value": "<string>",
+                  "description": "Filter by id (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "employeeIdIn",
+                  "value": "<string>",
+                  "description": "Filter by employeeId (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "employeeIdIn",
+                  "value": "<string>",
+                  "description": "Filter by employeeId (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdIn",
+                  "value": "<string>",
+                  "description": "Filter by groupId (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdIn",
+                  "value": "<string>",
+                  "description": "Filter by groupId (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "roleIdIn",
+                  "value": "<string>",
+                  "description": "Filter by roleId (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "roleIdIn",
+                  "value": "<string>",
+                  "description": "Filter by roleId (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateGte",
+                  "value": "<string>",
+                  "description": "Filter by startDate (GTE)"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateLte",
+                  "value": "<string>",
+                  "description": "Filter by startDate (LTE)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateGte",
+                  "value": "<string>",
+                  "description": "Filter by endDate (GTE)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateLte",
+                  "value": "<string>",
+                  "description": "Filter by endDate (LTE)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "86167d21-15e7-40bb-93c3-c290e387894d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateLte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"12345\",\n      \"employeeId\": \"12345\",\n      \"groupId\": \"16\",\n      \"roleId\": \"12\",\n      \"startDate\": \"2025-10-01\",\n      \"endDate\": \"2026-12-31\",\n      \"created\": \"2025-10-01T14:18:41Z\",\n      \"updated\": \"2025-10-16T09:34:27Z\"\n    },\n    {\n      \"id\": \"12345\",\n      \"employeeId\": \"12345\",\n      \"groupId\": \"16\",\n      \"roleId\": \"12\",\n      \"startDate\": \"2025-10-01\",\n      \"endDate\": \"2026-12-31\",\n      \"created\": \"2025-10-01T14:18:41Z\",\n      \"updated\": \"2025-10-16T09:34:27Z\"\n    }\n  ],\n  \"pagination\": {\n    \"nextPageToken\": \"eyJpZCI6MTIwfQ\",\n    \"previousPageToken\": \"eyJpZCI6ODB9\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24d31921-2af0-4e2a-880a-5d13901d0268",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateLte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bda73684-824f-4319-b761-e6bbd3eca45c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateLte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44cbbaa1-4545-448f-918a-db5a78396c86",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateLte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12131ee2-2f8a-4fa8-b756-d4119cdcaa98",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateLte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDateLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b58bca8b-19b7-4390-abb1-52d84fe7d33c",
+          "name": "Create a role assignment",
+          "request": {
+            "name": "Create a role assignment",
+            "description": {
+              "content": "Creates a new role assignment for an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "role-assignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"roleId\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ae08be3-5731-40e5-ab8a-983a724b3db7",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"10\",\n  \"groupId\": \"10\",\n  \"roleId\": \"10\",\n  \"startDate\": \"2025-10-01\",\n  \"endDate\": \"2026-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345\",\n  \"employeeId\": \"12345\",\n  \"groupId\": \"16\",\n  \"roleId\": \"12\",\n  \"startDate\": \"2025-10-01\",\n  \"endDate\": \"2026-12-31\",\n  \"created\": \"2025-10-01T14:18:41Z\",\n  \"updated\": \"2025-10-16T09:34:27Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2dc90e62-dfba-431a-abb4-51311ca804d6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"10\",\n  \"groupId\": \"10\",\n  \"roleId\": \"10\",\n  \"startDate\": \"2025-10-01\",\n  \"endDate\": \"2026-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0817c7b9-4aab-4c4f-8bad-e16133ba39e1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"10\",\n  \"groupId\": \"10\",\n  \"roleId\": \"10\",\n  \"startDate\": \"2025-10-01\",\n  \"endDate\": \"2026-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab0bd6f0-fe4d-4aca-971b-c70f6af83b6e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"10\",\n  \"groupId\": \"10\",\n  \"roleId\": \"10\",\n  \"startDate\": \"2025-10-01\",\n  \"endDate\": \"2026-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad71b44a-8c27-44a9-8f8b-a4c386b0c967",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"10\",\n  \"groupId\": \"10\",\n  \"roleId\": \"10\",\n  \"startDate\": \"2025-10-01\",\n  \"endDate\": \"2026-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/not-found\",\n  \"title\": \"Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource was not found\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11ddd679-2284-494a-bd65-577443a4bef0",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"10\",\n  \"groupId\": \"10\",\n  \"roleId\": \"10\",\n  \"startDate\": \"2025-10-01\",\n  \"endDate\": \"2026-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/role-assignments\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e912fd2-c39f-4199-bf22-11cded0915d9",
+          "name": "Delete a role assignment",
+          "request": {
+            "name": "Delete a role assignment",
+            "description": {
+              "content": "Deletes a role assignment by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "role-assignments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "f004eeae-877e-4e75-bf10-8ea83b3bfe65",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "770d3893-bdfc-4bb7-8372-0f52ee32413e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ed93ae2-5c1b-41a4-b8e0-a40433894f6d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "275de98b-fd07-4b55-a92b-0e73e7b4230e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/not-found\",\n  \"title\": \"Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource was not found\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b597fb2-6716-4cf6-b89b-c91c666ffd6f",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "446aacb1-30e3-4aeb-885e-ff1cbe83f218",
+          "name": "Update a role assignment",
+          "request": {
+            "name": "Update a role assignment",
+            "description": {
+              "content": "Updates the start date and/or end date of a role assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "role-assignments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "380cf0a0-0bf2-470f-9ce2-c7f2ed34960e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2026-06-01\",\n  \"endDate\": \"2026-12-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345\",\n  \"employeeId\": \"12345\",\n  \"groupId\": \"16\",\n  \"roleId\": \"12\",\n  \"startDate\": \"2025-10-01\",\n  \"endDate\": \"2026-12-31\",\n  \"created\": \"2025-10-01T14:18:41Z\",\n  \"updated\": \"2025-10-16T09:34:27Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c26c9cf-737a-4187-b067-0c0e6e10c384",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2026-06-01\",\n  \"endDate\": \"2026-12-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07bf4816-1d38-440a-ab9b-e6fe88bd4d86",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2026-06-01\",\n  \"endDate\": \"2026-12-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75ee37a2-8fae-4af5-a7ae-76012848baaf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2026-06-01\",\n  \"endDate\": \"2026-12-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc6d8c04-879a-4b62-a558-d2556a034809",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2026-06-01\",\n  \"endDate\": \"2026-12-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/not-found\",\n  \"title\": \"Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource was not found\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd68ed4c-9fbf-45d1-99a2-68e56b33d49a",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "role-assignments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2026-06-01\",\n  \"endDate\": \"2026-12-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/role-assignments/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8ae5052d-34b1-4a8c-8f34-971b081cc2b1",
+    "name": "Quinyx Absence Schedules Role Assignment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

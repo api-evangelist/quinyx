@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Labor Standards API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Labor Standards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update a labor standard",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/labor-standards/labor-standards/:laborStandardId",
+            "params": [
+              {
+                "name": "laborStandardId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a labor standard"
+        },
+        {
+          "info": {
+            "name": "Delete a labor standard",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/labor-standards/labor-standards/:laborStandardId",
+            "params": [
+              {
+                "name": "laborStandardId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a labor standard"
+        },
+        {
+          "info": {
+            "name": "Read labor standards by external optimal headcount id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/labor-standards/labor-standards",
+            "params": [
+              {
+                "name": "externalOptimalHeadcountId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Read labor standards by external optimal headcount id"
+        },
+        {
+          "info": {
+            "name": "Create a labor standard",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/labor-standards/labor-standards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a labor standard"
+        },
+        {
+          "info": {
+            "name": "Read limit configurations by group for a period",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/labor-standards/groups/:groupId/labor-standards/limit-configurations",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Read limit configurations by group for a period"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

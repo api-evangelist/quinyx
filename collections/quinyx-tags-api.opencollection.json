@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Tags API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get tag by external category id and external tag id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/tags/categories/:categoryExternalId/tags/:tagExternalId",
+            "params": [
+              {
+                "name": "categoryExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag category"
+              },
+              {
+                "name": "tagExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag"
+              }
+            ]
+          },
+          "docs": "Retrieves a specific tag using its category external ID and tag external ID"
+        },
+        {
+          "info": {
+            "name": "Update tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/tags/categories/:categoryExternalId/tags/:tagExternalId",
+            "params": [
+              {
+                "name": "categoryExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag category"
+              },
+              {
+                "name": "tagExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates all values of an existing tag. The categoryExternalId cannot be changed"
+        },
+        {
+          "info": {
+            "name": "Delete tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/tags/categories/:categoryExternalId/tags/:tagExternalId",
+            "params": [
+              {
+                "name": "categoryExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag category"
+              },
+              {
+                "name": "tagExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag to delete"
+              }
+            ]
+          },
+          "docs": "Deletes the tag with the given external category and tag ID"
+        },
+        {
+          "info": {
+            "name": "List tags by external category id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/tags/categories/:categoryExternalId/tags",
+            "params": [
+              {
+                "name": "categoryExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag category"
+              }
+            ]
+          },
+          "docs": "Retrieves all tags associated with the specified category external ID.<br />Please use [GET /v2/categories/{categoryExternalId}/tags](#/Tag%20Integration%20API/getPagedTagsByExternalCategoryId) instead.<br />Removal date: December 10, 2025."
+        },
+        {
+          "info": {
+            "name": "Create tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/tags/categories/:categoryExternalId/tags",
+            "params": [
+              {
+                "name": "categoryExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag category"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tag within the specified category. The created tag is returned"
+        },
+        {
+          "info": {
+            "name": "List paginated tags by external category id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/tags/v2/categories/:categoryExternalId/tags",
+            "params": [
+              {
+                "name": "categoryExternalId",
+                "value": "LOC-001",
+                "type": "path",
+                "description": "External identifier of the tag category"
+              },
+              {
+                "name": "cursor",
+                "value": "abcdefghijklmnopqrstuvwxyz==",
+                "type": "query",
+                "description": "The reference point to fetch a set of results. If omitted or empty, the first page of results will be returned"
+              },
+              {
+                "name": "size",
+                "value": "100",
+                "type": "query",
+                "description": "Number of items per page (default value: 1000, min value: 1, max value: 10000)"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated collection of tags associated with the specified category external ID.<br />Pagination is defined by cursor and size.<br />If the cursor is omitted, the first page will be returned.<br />If the size is omitted, a default size of 1000 will be used"
+        },
+        {
+          "info": {
+            "name": "List tag categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/tags/categories"
+          },
+          "docs": "Retrieves a list of all tag categories associated with the domain group"
+        },
+        {
+          "info": {
+            "name": "Get tag category by external id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/tags/categories/:categoryExternalId",
+            "params": [
+              {
+                "name": "categoryExternalId",
+                "value": "",
+                "type": "path",
+                "description": "External identifier of the tag category"
+              }
+            ]
+          },
+          "docs": "Retrieves a tag category using its external identifier"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

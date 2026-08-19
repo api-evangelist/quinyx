@@ -1,0 +1,509 @@
+{
+  "item": [
+    {
+      "id": "30a48ce9-0082-4c8e-909d-866d3c0cd507",
+      "name": "Labor Standards",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93586868-21e2-41ca-ab9c-9fb7fcaf1601",
+          "name": "Update a labor standard",
+          "request": {
+            "name": "Update a labor standard",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "labor-standards",
+                "labor-standards",
+                ":laborStandardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "laborStandardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalOptimalHeadcountId\": \"<string>\",\n  \"groupIds\": [\n    \"<integer>\"\n  ],\n  \"name\": \"<string>\",\n  \"roundingMethod\": \"<string>\",\n  \"rules\": [\n    {\n      \"configurations\": [\n        {\n          \"endValue\": \"<double>\",\n          \"headcount\": \"<double>\",\n          \"startValue\": \"<double>\"\n        }\n      ],\n      \"externalForecastConfigurationId\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"domainGroupId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad0b9c8b-150f-49a7-8279-ebcab4351e02",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "labor-standards",
+                    "labor-standards",
+                    ":laborStandardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "laborStandardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalOptimalHeadcountId\": \"external-headcount-1\",\n  \"groupIds\": [\n    \"<integer>\"\n  ],\n  \"name\": \"Example labor standard\",\n  \"roundingMethod\": \"UP\",\n  \"rules\": [\n    {\n      \"configurations\": [\n        {\n          \"endValue\": 100,\n          \"headcount\": 5,\n          \"startValue\": 0\n        }\n      ],\n      \"externalForecastConfigurationId\": \"external-fc-1\",\n      \"type\": \"LINEAR\",\n      \"id\": \"rule-1\"\n    }\n  ],\n  \"id\": \"abc123\",\n  \"domainGroupId\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"groupIds\": [\n    3247\n  ],\n  \"name\": \"Example labor standard\",\n  \"optimalHeadcountId\": \"headcount-1\",\n  \"roundingMethod\": \"UP\",\n  \"rules\": [\n    {\n      \"configurations\": [\n        {\n          \"endValue\": 100,\n          \"headcount\": 5,\n          \"startValue\": 0\n        }\n      ],\n      \"forecastConfigurationId\": 1,\n      \"type\": \"LINEAR\",\n      \"id\": \"rule-1\"\n    }\n  ],\n  \"id\": \"abc123\",\n  \"domainGroupId\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb6db40a-acb5-4d6a-92b6-a2850de305bb",
+          "name": "Delete a labor standard",
+          "request": {
+            "name": "Delete a labor standard",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "labor-standards",
+                "labor-standards",
+                ":laborStandardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "laborStandardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e624deb-d0d7-4dc8-b2b2-17500f6d5255",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "labor-standards",
+                    "labor-standards",
+                    ":laborStandardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "laborStandardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "678fb786-117f-4e1f-a9aa-0daeb3d324e5",
+          "name": "Read labor standards by external optimal headcount id",
+          "request": {
+            "name": "Read labor standards by external optimal headcount id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "labor-standards",
+                "labor-standards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalOptimalHeadcountId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3aa24e7-657d-4e75-b7ad-74455c57b3e6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "labor-standards",
+                    "labor-standards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalOptimalHeadcountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"groupIds\": [\n      2579\n    ],\n    \"name\": \"Example labor standard\",\n    \"optimalHeadcountId\": \"headcount-1\",\n    \"roundingMethod\": \"UP\",\n    \"rules\": [\n      {\n        \"configurations\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"forecastConfigurationId\": 1,\n        \"type\": \"LINEAR\",\n        \"id\": \"rule-1\"\n      }\n    ],\n    \"id\": \"abc123\",\n    \"domainGroupId\": 100\n  },\n  {\n    \"groupIds\": [\n      1498\n    ],\n    \"name\": \"Example labor standard\",\n    \"optimalHeadcountId\": \"headcount-1\",\n    \"roundingMethod\": \"UP\",\n    \"rules\": [\n      {\n        \"configurations\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"forecastConfigurationId\": 1,\n        \"type\": \"LINEAR\",\n        \"id\": \"rule-1\"\n      }\n    ],\n    \"id\": \"abc123\",\n    \"domainGroupId\": 100\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "440cf497-5ab4-4d64-9cd8-0dff031aa889",
+          "name": "Create a labor standard",
+          "request": {
+            "name": "Create a labor standard",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "labor-standards",
+                "labor-standards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalOptimalHeadcountId\": \"<string>\",\n  \"groupIds\": [\n    \"<integer>\"\n  ],\n  \"name\": \"<string>\",\n  \"roundingMethod\": \"<string>\",\n  \"rules\": [\n    {\n      \"configurations\": [\n        {\n          \"endValue\": \"<double>\",\n          \"headcount\": \"<double>\",\n          \"startValue\": \"<double>\"\n        }\n      ],\n      \"externalForecastConfigurationId\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"domainGroupId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fd23a10-66d4-4df6-8408-bae40e9055ec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "labor-standards",
+                    "labor-standards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalOptimalHeadcountId\": \"external-headcount-1\",\n  \"groupIds\": [\n    \"<integer>\"\n  ],\n  \"name\": \"Example labor standard\",\n  \"roundingMethod\": \"UP\",\n  \"rules\": [\n    {\n      \"configurations\": [\n        {\n          \"endValue\": 100,\n          \"headcount\": 5,\n          \"startValue\": 0\n        }\n      ],\n      \"externalForecastConfigurationId\": \"external-fc-1\",\n      \"type\": \"LINEAR\",\n      \"id\": \"rule-1\"\n    }\n  ],\n  \"id\": \"abc123\",\n  \"domainGroupId\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"groupIds\": [\n    3247\n  ],\n  \"name\": \"Example labor standard\",\n  \"optimalHeadcountId\": \"headcount-1\",\n  \"roundingMethod\": \"UP\",\n  \"rules\": [\n    {\n      \"configurations\": [\n        {\n          \"endValue\": 100,\n          \"headcount\": 5,\n          \"startValue\": 0\n        }\n      ],\n      \"forecastConfigurationId\": 1,\n      \"type\": \"LINEAR\",\n      \"id\": \"rule-1\"\n    }\n  ],\n  \"id\": \"abc123\",\n  \"domainGroupId\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2abc7112-9053-4fd0-8860-efb0affd56d5",
+          "name": "Read limit configurations by group for a period",
+          "request": {
+            "name": "Read limit configurations by group for a period",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "labor-standards",
+                "groups",
+                ":groupId",
+                "labor-standards",
+                "limit-configurations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "periodStart",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "periodEnd",
+                  "value": "<date>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e28cfecd-835e-49c2-86c0-b5cd5aefa6d9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "labor-standards",
+                    "groups",
+                    ":groupId",
+                    "labor-standards",
+                    "limit-configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "periodStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "periodEnd",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"optimalHeadcountId\": \"headcount-1\",\n    \"shiftTypeId\": 1,\n    \"shiftTypeIds\": [\n      8295,\n      4099\n    ],\n    \"limitConfigurationsByGroupId\": {\n      \"key_0\": [\n        {\n          \"headcount\": 5,\n          \"type\": \"MIN\",\n          \"useOpeningHours\": true,\n          \"weekdays\": [\n            1\n          ],\n          \"startTime\": \"08:00\",\n          \"endTime\": \"17:00\",\n          \"startOffset\": 0,\n          \"endOffset\": 0,\n          \"start\": \"2026-01-01T08:00:00\",\n          \"end\": \"2026-01-01T17:00:00\"\n        },\n        {\n          \"headcount\": 5,\n          \"type\": \"MIN\",\n          \"useOpeningHours\": true,\n          \"weekdays\": [\n            0\n          ],\n          \"startTime\": \"08:00\",\n          \"endTime\": \"17:00\",\n          \"startOffset\": 0,\n          \"endOffset\": 0,\n          \"start\": \"2026-01-01T08:00:00\",\n          \"end\": \"2026-01-01T17:00:00\"\n        }\n      ]\n    }\n  },\n  {\n    \"optimalHeadcountId\": \"headcount-1\",\n    \"shiftTypeId\": 1,\n    \"shiftTypeIds\": [\n      8953,\n      1355\n    ],\n    \"limitConfigurationsByGroupId\": {\n      \"key_0\": [\n        {\n          \"headcount\": 5,\n          \"type\": \"MIN\",\n          \"useOpeningHours\": true,\n          \"weekdays\": [\n            2\n          ],\n          \"startTime\": \"08:00\",\n          \"endTime\": \"17:00\",\n          \"startOffset\": 0,\n          \"endOffset\": 0,\n          \"start\": \"2026-01-01T08:00:00\",\n          \"end\": \"2026-01-01T17:00:00\"\n        },\n        {\n          \"headcount\": 5,\n          \"type\": \"MIN\",\n          \"useOpeningHours\": true,\n          \"weekdays\": [\n            1\n          ],\n          \"startTime\": \"08:00\",\n          \"endTime\": \"17:00\",\n          \"startOffset\": 0,\n          \"endOffset\": 0,\n          \"start\": \"2026-01-01T08:00:00\",\n          \"end\": \"2026-01-01T17:00:00\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"headcount\": 5,\n          \"type\": \"MIN\",\n          \"useOpeningHours\": true,\n          \"weekdays\": [\n            3\n          ],\n          \"startTime\": \"08:00\",\n          \"endTime\": \"17:00\",\n          \"startOffset\": 0,\n          \"endOffset\": 0,\n          \"start\": \"2026-01-01T08:00:00\",\n          \"end\": \"2026-01-01T17:00:00\"\n        },\n        {\n          \"headcount\": 5,\n          \"type\": \"MIN\",\n          \"useOpeningHours\": true,\n          \"weekdays\": [\n            4\n          ],\n          \"startTime\": \"08:00\",\n          \"endTime\": \"17:00\",\n          \"startOffset\": 0,\n          \"endOffset\": 0,\n          \"start\": \"2026-01-01T08:00:00\",\n          \"end\": \"2026-01-01T17:00:00\"\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "63c5f403-c946-4bcd-93f5-1f6311e26bfb",
+    "name": "Quinyx Absence Schedules Labor Standards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

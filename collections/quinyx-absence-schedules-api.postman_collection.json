@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "a8e2b4e1-27c2-4be4-a05a-ae7049722841",
+      "name": "Absence Schedules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "949bc2b9-0d83-4e9c-afc4-b2e27462082c",
+          "name": "List absence schedules for group",
+          "request": {
+            "name": "List absence schedules for group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "absence-schedule",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "290cdbaf-a399-4c51-b20f-0319c95ad6b4",
+              "name": "Response where you see the absence schedules for group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-schedule",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"absenceScheduleId\": 1,\n    \"absenceScheduleName\": \"Sick leave\",\n    \"absenceScheduleShiftTypeId\": 10,\n    \"adjustmentLogic\": \"USE_NOMINAL_HOURS\",\n    \"shiftReplacement\": \"ALL_DAYS\",\n    \"comment\": \"Schedule comment\",\n    \"bankHolidayCreation\": true,\n    \"dayAndTime\": [\n      {\n        \"startTime\": \"08:00:00\",\n        \"endTime\": \"17:00:00\",\n        \"days\": [\n          \"TUESDAY\",\n          \"FRIDAY\"\n        ]\n      },\n      {\n        \"startTime\": \"08:00:00\",\n        \"endTime\": \"17:00:00\",\n        \"days\": [\n          \"SUNDAY\",\n          \"THURSDAY\"\n        ]\n      }\n    ]\n  },\n  {\n    \"absenceScheduleId\": 1,\n    \"absenceScheduleName\": \"Sick leave\",\n    \"absenceScheduleShiftTypeId\": 10,\n    \"adjustmentLogic\": \"USE_NOMINAL_HOURS\",\n    \"shiftReplacement\": \"ALL_DAYS\",\n    \"comment\": \"Schedule comment\",\n    \"bankHolidayCreation\": true,\n    \"dayAndTime\": [\n      {\n        \"startTime\": \"08:00:00\",\n        \"endTime\": \"17:00:00\",\n        \"days\": [\n          \"FRIDAY\",\n          \"TUESDAY\"\n        ]\n      },\n      {\n        \"startTime\": \"08:00:00\",\n        \"endTime\": \"17:00:00\",\n        \"days\": [\n          \"FRIDAY\",\n          \"MONDAY\"\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ff6a645-b640-41c1-b6e5-74aed34af575",
+              "name": "In case you send groupId which is not domain groupId.\nOr if groupId is invalid.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-schedule",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field\": \"externalValue\",\n  \"message\": \"must not be blank\",\n  \"severity\": \"ERROR\",\n  \"localisedMessage\": \"External value must not be blank\",\n  \"groupingMessage\": \"validation\",\n  \"additionalErrorParameters\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b43bf75e-5750-403d-92f9-b5c7fcb8b7ed",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-schedule",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f6870f8-3372-45e5-9b7e-06aaeb362e47",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-schedule",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d259e0aa-efd5-4558-ac3f-2bc956b8c237",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-schedule",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f3bc3c1e-39a5-478e-a705-f0718a83ffd0",
+    "name": "Quinyx Absence Schedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

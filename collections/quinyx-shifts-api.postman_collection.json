@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "id": "d2ec40a1-2a3f-419a-a105-c1688fa605ad",
+      "name": "Shifts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78f9cec4-4be8-4822-acaa-eb9f6d66a64a",
+          "name": "Returns upcoming or unassigned shifts",
+          "request": {
+            "name": "Returns upcoming or unassigned shifts",
+            "description": {
+              "content": "Get employee upcoming or unassigned shifts, starting from today",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "shifts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) Choose upcoming or unassigned shifts"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "daa4d405-33b7-40b6-b5d1-fd89bd4b50a8",
+              "name": "All shifts are sorted by the start time in ascending order (limited to 20 shifts, in published period, up to 90 days in the future)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shifts\": [\n    {\n      \"id\": \"fQRK0r5s9S4dXwRa_u5vjIKfHzBhzO9wpCjJ583dRX6.oxr63g--\",\n      \"employeeName\": \"John Doe\",\n      \"from\": \"2019-02-01 09:00:00\",\n      \"to\": \"2019-02-01 17:00:00\",\n      \"shiftType\": \"Day Shift\",\n      \"unit\": \"Unit name\",\n      \"section\": \"Section name\",\n      \"breaksDuration\": 60,\n      \"breaks\": [\n        {\n          \"start\": \"2019-02-01 11:30:00\",\n          \"end\": \"2019-02-01 12:30:00\"\n        },\n        {\n          \"start\": \"2019-02-01 11:30:00\",\n          \"end\": \"2019-02-01 12:30:00\"\n        }\n      ]\n    },\n    {\n      \"id\": \"fQRK0r5s9S4dXwRa_u5vjIKfHzBhzO9wpCjJ583dRX6.oxr63g--\",\n      \"employeeName\": \"John Doe\",\n      \"from\": \"2019-02-01 09:00:00\",\n      \"to\": \"2019-02-01 17:00:00\",\n      \"shiftType\": \"Day Shift\",\n      \"unit\": \"Unit name\",\n      \"section\": \"Section name\",\n      \"breaksDuration\": 60,\n      \"breaks\": [\n        {\n          \"start\": \"2019-02-01 11:30:00\",\n          \"end\": \"2019-02-01 12:30:00\"\n        },\n        {\n          \"start\": \"2019-02-01 11:30:00\",\n          \"end\": \"2019-02-01 12:30:00\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9049c12a-b272-48ac-8798-245ca8566b4f",
+              "name": "When invalid filter is applied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": {\n    \"code\": 400,\n    \"msg\": \"INVALID_FILTER, MUST BE ONE OF: upcoming, unassigned\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9ddcf9a6-ddd7-4da6-9abd-cf4e8b7f1eba",
+    "name": "Quinyx Absence Schedules Shifts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

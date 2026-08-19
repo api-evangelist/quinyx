@@ -1,0 +1,565 @@
+{
+  "item": [
+    {
+      "id": "80d4df4f-f9b5-4b47-93ee-d5b668d62f8a",
+      "name": "Forecast Event Categories",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6bdafee-049f-4ff8-9af6-13666735af10",
+          "name": "Get forecast event category",
+          "request": {
+            "name": "Get forecast event category",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-events",
+                "groups",
+                ":groupId",
+                "event-categories",
+                ":eventCategoryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventCategoryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5af8e6af-f450-4cbd-acf5-7f770821b3bf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-events",
+                    "groups",
+                    ":groupId",
+                    "event-categories",
+                    ":eventCategoryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventCategoryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"name\": \"Local football match\",\n  \"type\": \"CUSTOM\",\n  \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n  \"hasEvents\": true,\n  \"hasAutomaticEffect\": false,\n  \"defaultEventEffectType\": \"RELATIVE\",\n  \"defaultEventEffectValue\": 1.25\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "711a0342-1b3d-42d1-af9e-d91f916fbdf8",
+          "name": "Update forecast event category",
+          "request": {
+            "name": "Update forecast event category",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-events",
+                "groups",
+                ":groupId",
+                "event-categories",
+                ":eventCategoryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventCategoryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"active\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"hasEvents\": \"<boolean>\",\n  \"hasAutomaticEffect\": \"<boolean>\",\n  \"defaultEventEffectType\": \"<string>\",\n  \"defaultEventEffectValue\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2efa0d1d-49c9-4725-9a89-aaaa66b9e64a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-events",
+                    "groups",
+                    ":groupId",
+                    "event-categories",
+                    ":eventCategoryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventCategoryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"active\": true,\n  \"name\": \"Local football match\",\n  \"type\": \"CUSTOM\",\n  \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n  \"hasEvents\": true,\n  \"hasAutomaticEffect\": false,\n  \"defaultEventEffectType\": \"RELATIVE\",\n  \"defaultEventEffectValue\": 1.25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"name\": \"Local football match\",\n  \"type\": \"CUSTOM\",\n  \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n  \"hasEvents\": true,\n  \"hasAutomaticEffect\": false,\n  \"defaultEventEffectType\": \"RELATIVE\",\n  \"defaultEventEffectValue\": 1.25\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dd456e9-d424-4193-b793-a92497bbfed2",
+          "name": "Delete forecast event category",
+          "request": {
+            "name": "Delete forecast event category",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-events",
+                "groups",
+                ":groupId",
+                "event-categories",
+                ":eventCategoryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventCategoryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "406cb6b4-c259-46e7-b3a8-f244dac28338",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-events",
+                    "groups",
+                    ":groupId",
+                    "event-categories",
+                    ":eventCategoryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventCategoryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b02eac3-ee38-4ae6-a23e-9cc360a9b9d1",
+          "name": "List forecast event categories for group",
+          "request": {
+            "name": "List forecast event categories for group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-events",
+                "groups",
+                ":groupId",
+                "event-categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "abb06760-5be5-4636-a0ce-ed796f28c237",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-events",
+                    "groups",
+                    ":groupId",
+                    "event-categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"active\": true,\n    \"name\": \"Local football match\",\n    \"type\": \"CUSTOM\",\n    \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n    \"hasEvents\": true,\n    \"hasAutomaticEffect\": false,\n    \"defaultEventEffectType\": \"RELATIVE\",\n    \"defaultEventEffectValue\": 1.25\n  },\n  {\n    \"active\": true,\n    \"name\": \"Local football match\",\n    \"type\": \"CUSTOM\",\n    \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n    \"hasEvents\": true,\n    \"hasAutomaticEffect\": false,\n    \"defaultEventEffectType\": \"RELATIVE\",\n    \"defaultEventEffectValue\": 1.25\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebbab481-4a66-41e4-9662-6c14920e9618",
+          "name": "Create forecast event category for the domain",
+          "request": {
+            "name": "Create forecast event category for the domain",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-events",
+                "groups",
+                ":groupId",
+                "event-categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"active\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"hasEvents\": \"<boolean>\",\n  \"hasAutomaticEffect\": \"<boolean>\",\n  \"defaultEventEffectType\": \"<string>\",\n  \"defaultEventEffectValue\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "014543e7-b5fb-4c77-b910-a32637f10610",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-events",
+                    "groups",
+                    ":groupId",
+                    "event-categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"active\": true,\n  \"name\": \"Local football match\",\n  \"type\": \"CUSTOM\",\n  \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n  \"hasEvents\": true,\n  \"hasAutomaticEffect\": false,\n  \"defaultEventEffectType\": \"RELATIVE\",\n  \"defaultEventEffectValue\": 1.25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"name\": \"Local football match\",\n  \"type\": \"CUSTOM\",\n  \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n  \"hasEvents\": true,\n  \"hasAutomaticEffect\": false,\n  \"defaultEventEffectType\": \"RELATIVE\",\n  \"defaultEventEffectValue\": 1.25\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e33960ae-129a-4c20-bf23-e0e04cecea3e",
+    "name": "Quinyx Absence Schedules Forecast Event Categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

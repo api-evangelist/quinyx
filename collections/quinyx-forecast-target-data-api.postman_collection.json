@@ -1,0 +1,609 @@
+{
+  "item": [
+    {
+      "id": "167db452-54f4-433b-a53c-e11a62899618",
+      "name": "Forecast Target Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c46f021-fdb1-4835-bc04-395c21fa3895",
+          "name": "Upload daily target data with maximum 366 rows",
+          "request": {
+            "name": "Upload daily target data with maximum 366 rows",
+            "description": {
+              "content": "Operation used to upload target data for daily basic. The total amount of data rows must not exceed 366.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "target-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": [\n    {\n      \"externalId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"externalSectionId\": \"<string>\",\n      \"targetPayload\": [\n        {\n          \"date\": \"<date>\",\n          \"rangeType\": \"<string>\",\n          \"value\": \"<double>\",\n          \"fromValue\": \"<double>\",\n          \"toValue\": \"<double>\"\n        },\n        {\n          \"date\": \"<date>\",\n          \"rangeType\": \"<string>\",\n          \"value\": \"<double>\",\n          \"fromValue\": \"<double>\",\n          \"toValue\": \"<double>\"\n        }\n      ]\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"externalUnitId\": \"<string>\",\n      \"externalSectionId\": \"<string>\",\n      \"targetPayload\": [\n        {\n          \"date\": \"<date>\",\n          \"rangeType\": \"<string>\",\n          \"value\": \"<double>\",\n          \"fromValue\": \"<double>\",\n          \"toValue\": \"<double>\"\n        },\n        {\n          \"date\": \"<date>\",\n          \"rangeType\": \"<string>\",\n          \"value\": \"<double>\",\n          \"fromValue\": \"<double>\",\n          \"toValue\": \"<double>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0cf2dd7-fa9d-4472-a615-8547903cc314",
+              "name": "Data successfully uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "target-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalId\": \"target-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"externalSectionId\": \"section-1\",\n      \"targetPayload\": [\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        },\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        }\n      ]\n    },\n    {\n      \"externalId\": \"target-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"externalSectionId\": \"section-1\",\n      \"targetPayload\": [\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        },\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c93b8cd9-0ab7-4d27-88a1-0b77f35c7644",
+              "name": "Unexpected input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "target-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalId\": \"target-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"externalSectionId\": \"section-1\",\n      \"targetPayload\": [\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        },\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        }\n      ]\n    },\n    {\n      \"externalId\": \"target-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"externalSectionId\": \"section-1\",\n      \"targetPayload\": [\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        },\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba026077-2267-44ad-851d-594d06a98803",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "target-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"externalId\": \"target-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"externalSectionId\": \"section-1\",\n      \"targetPayload\": [\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        },\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        }\n      ]\n    },\n    {\n      \"externalId\": \"target-1\",\n      \"externalUnitId\": \"unit-1\",\n      \"externalSectionId\": \"section-1\",\n      \"targetPayload\": [\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        },\n        {\n          \"date\": \"2026-01-15\",\n          \"rangeType\": \"EXACT\",\n          \"value\": 100,\n          \"fromValue\": 0,\n          \"toValue\": 100\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83ff04cd-9178-477c-a386-417912da51c4",
+          "name": "Get target data for a target configuration, up to 360 days",
+          "request": {
+            "name": "Get target data for a target configuration, up to 360 days",
+            "description": {
+              "content": "Getting the Target data for the given target configuration. The range between these two dates can not exceed 360 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "target-data",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) External ID of the target configuration"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2171c747-43d8-4746-a776-1cccca769970",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "target-data",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) External ID of the target configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"externalId\": \"target-1\",\n  \"externalUnitId\": \"unit-1\",\n  \"externalSectionId\": \"section-1\",\n  \"targetPayload\": [\n    {\n      \"date\": \"2026-01-15\",\n      \"rangeType\": \"EXACT\",\n      \"value\": 100,\n      \"fromValue\": 0,\n      \"toValue\": 100\n    },\n    {\n      \"date\": \"2026-01-15\",\n      \"rangeType\": \"EXACT\",\n      \"value\": 100,\n      \"fromValue\": 0,\n      \"toValue\": 100\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0256ac3-2376-4907-a24a-97f5664a8fa8",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "target-data",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) External ID of the target configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"externalId\": \"target-1\",\n  \"externalUnitId\": \"unit-1\",\n  \"externalSectionId\": \"section-1\",\n  \"targetPayload\": [\n    {\n      \"date\": \"2026-01-15\",\n      \"rangeType\": \"EXACT\",\n      \"value\": 100,\n      \"fromValue\": 0,\n      \"toValue\": 100\n    },\n    {\n      \"date\": \"2026-01-15\",\n      \"rangeType\": \"EXACT\",\n      \"value\": 100,\n      \"fromValue\": 0,\n      \"toValue\": 100\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ee3f593-24e0-46f4-bd2e-669a3cc8853d",
+          "name": "Delete target data for a target configuration, up to 360 days",
+          "request": {
+            "name": "Delete target data for a target configuration, up to 360 days",
+            "description": {
+              "content": "Delete the Target data for the given target configuration. The range between these two dates can not exceed 360 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "target-data",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f2e9da6-8b70-4cfb-a988-f54071666fa2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "target-data",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b68d0a36-d32e-4fdd-97fe-42adb4fe1c8d",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "target-data",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e2a361bd-3246-4ec6-ac8f-d4fdb0c58d0f",
+    "name": "Quinyx Absence Schedules Forecast Target Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

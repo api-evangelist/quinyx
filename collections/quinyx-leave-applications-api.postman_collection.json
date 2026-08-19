@@ -1,0 +1,409 @@
+{
+  "item": [
+    {
+      "id": "e9c98245-450c-4b01-b674-ae61ec7c1ccc",
+      "name": "Leave Applications",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1494ebc5-2bbb-4657-854e-27db87e83bfa",
+          "name": "Returns historical or upcoming leave applications",
+          "request": {
+            "name": "Returns historical or upcoming leave applications",
+            "description": {
+              "content": "Get upcoming leave applications, starting from today, or historical applications, ending today or earlier",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "leave-applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) Choose upcoming or historical leave applications"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "6a0b742b-c5e7-4cfe-80ad-93c35f4e81c2",
+              "name": "All leave applications are sorted by the time they have been created in descending order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "leave-applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"leaveApplications\": [\n    {\n      \"id\": \"aidhjTypVxiWxO.E8dXmixitUDIUDj175Av8YZyUjtjxWuWm\",\n      \"employeeName\": \"John Doe\",\n      \"leaveReason\": \"Sick\",\n      \"from\": \"2020-09-01 00:00:00\",\n      \"to\": \"2020-09-01 00:00:00\",\n      \"sendDate\": \"2020-08-20 12:25:00\",\n      \"status\": \"PENDING\",\n      \"comment\": \"Employee's comment\",\n      \"allDay\": true\n    },\n    {\n      \"id\": \"aidhjTypVxiWxO.E8dXmixitUDIUDj175Av8YZyUjtjxWuWm\",\n      \"employeeName\": \"John Doe\",\n      \"leaveReason\": \"Sick\",\n      \"from\": \"2020-09-01 00:00:00\",\n      \"to\": \"2020-09-01 00:00:00\",\n      \"sendDate\": \"2020-08-20 12:25:00\",\n      \"status\": \"PENDING\",\n      \"comment\": \"Employee's comment\",\n      \"allDay\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff0af1eb-7b93-49ab-bbc2-88579717d941",
+              "name": "When invalid filter is applied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "leave-applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": {\n    \"code\": 400,\n    \"msg\": \"INVALID_FILTER, MUST BE ONE OF: upcoming, historical\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ba6ef83-2d58-4345-bea2-278e0be8756e",
+          "name": "Create leave application",
+          "request": {
+            "name": "Create leave application",
+            "description": {
+              "content": "Create leave application",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "leave-applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"leaveReasonId\": \"<string>\",\n  \"managerId\": \"<string>\",\n  \"leaveMessage\": \"<string>\",\n  \"allDay\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "658ffdce-e365-4cc4-973d-a0df600e0b9f",
+              "name": "Created leave application",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "leave-applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"2020-06-27 00:00:00\",\n  \"to\": \"2020-06-27 00:00:00\",\n  \"leaveReasonId\": \"kBep_ZtJ1sce0EXuI_9Evt.4qUR7INSe06UTygqpqLxc\",\n  \"managerId\": \"hd58ElPA.IW0FHctO8oCRAhGTetM2yCxIs.63wgYdfB75C0--\",\n  \"leaveMessage\": \"I am going on vacation\",\n  \"allDay\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"leaveApp\": {\n    \"id\": \"aidhjTypVxiWxO.E8dXmixitUDIUDj175Av8YZyUjtjxWuWm\",\n    \"employeeName\": \"John Doe\",\n    \"leaveReason\": \"Sick\",\n    \"from\": \"2020-09-01 00:00:00\",\n    \"to\": \"2020-09-01 00:00:00\",\n    \"sendDate\": \"2020-08-20 12:25:00\",\n    \"status\": \"PENDING\",\n    \"comment\": \"Employee's comment\",\n    \"allDay\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c576865-a487-4eac-9194-553c99000186",
+              "name": "When some validation is failing, msg property closely describes what was the problem",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "leave-applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"2020-06-27 00:00:00\",\n  \"to\": \"2020-06-27 00:00:00\",\n  \"leaveReasonId\": \"kBep_ZtJ1sce0EXuI_9Evt.4qUR7INSe06UTygqpqLxc\",\n  \"managerId\": \"hd58ElPA.IW0FHctO8oCRAhGTetM2yCxIs.63wgYdfB75C0--\",\n  \"leaveMessage\": \"I am going on vacation\",\n  \"allDay\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"msg\": \"One of the: INVALID_LEAVE_REASON, OVERLAPPING_LEAVES, INVALID_LEAVE_MANAGER, INVALID_ID: hashedInvalidId, LEAVEAPP_MAX_CONSECUTIVE_DAYS, LEAVEAPP_MAX_OCCASIONS, LEAVEAPP_MAX_DAYS_IN_PERIOD, LEAVEAPP_MIN_DAYS_BETWEEN, LEAVEAPP_APPROVED_PUNCH_IN_PERIOD, LEAVEAPP_LOCKED_SALARIES_IN_PERIOD, LEAVEAPP_PRECEEDING_LEAVE_WITHOUT_WORK, CANT_EDIT_LEAVE_APP, NO_VALID_RECEIVER_FOUND, NOT_VALID_TIME_TRACKER_BALANCE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "018f9e28-419e-457f-9a26-04a186beddc2",
+              "name": "When salary period is locked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "leave-applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"2020-06-27 00:00:00\",\n  \"to\": \"2020-06-27 00:00:00\",\n  \"leaveReasonId\": \"kBep_ZtJ1sce0EXuI_9Evt.4qUR7INSe06UTygqpqLxc\",\n  \"managerId\": \"hd58ElPA.IW0FHctO8oCRAhGTetM2yCxIs.63wgYdfB75C0--\",\n  \"leaveMessage\": \"I am going on vacation\",\n  \"allDay\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"msg\": \"SALARY_PERIOD_LOCKED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "facfe9f7-7f9e-424a-8504-7390e4a64bc8",
+          "name": "Returns list of leave applications managers",
+          "request": {
+            "name": "Returns list of leave applications managers",
+            "description": {
+              "content": "Returns list of leave applications managers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "leave-applications",
+                "managers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "84315225-6b92-42db-b998-e80f989f61ad",
+              "name": "Leave applications manager list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "leave-applications",
+                    "managers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"leaveManagers\": [\n    {\n      \"id\": \"lEgFK5pUNvkUtqzE8jcmjYsvk0WlKqx9f_fHbMrk_0VIsw--\",\n      \"name\": \"John Doe\",\n      \"unit\": \"Unit name\",\n      \"section\": \"Section name\",\n      \"defaultManager\": false\n    },\n    {\n      \"id\": \"lEgFK5pUNvkUtqzE8jcmjYsvk0WlKqx9f_fHbMrk_0VIsw--\",\n      \"name\": \"John Doe\",\n      \"unit\": \"Unit name\",\n      \"section\": \"Section name\",\n      \"defaultManager\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "14b919fd-68ec-4371-8698-66c57f7b1c61",
+    "name": "Quinyx Absence Schedules Leave Applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

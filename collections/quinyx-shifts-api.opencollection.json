@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Shifts API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shifts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns upcoming or unassigned shifts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/users/shifts",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Choose upcoming or unassigned shifts"
+              }
+            ]
+          },
+          "docs": "Get employee upcoming or unassigned shifts, starting from today"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

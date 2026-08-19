@@ -1,0 +1,1826 @@
+{
+  "item": [
+    {
+      "id": "681d1de7-0e3c-4548-8996-927438657858",
+      "name": "Collaboration Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "82a6a79f-fc16-4abc-891a-411033d5d773",
+          "name": "Get collaboration group by id",
+          "request": {
+            "name": "Get collaboration group by id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":collaborationGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeArchived",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "collaborationGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbd3cf57-1647-4899-b9f6-45f48748c357",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":collaborationGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeArchived",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "collaborationGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Region North\",\n  \"groups\": [\n    3039,\n    582\n  ],\n  \"employees\": [\n    6594,\n    8391\n  ],\n  \"parent\": 10,\n  \"children\": [\n    3130,\n    3395\n  ],\n  \"labelId\": 5,\n  \"domoDashboardId\": \"abc12\",\n  \"isArchived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83ba944b-0982-4e8b-8d76-202f24d3f389",
+          "name": "Update collaboration group",
+          "request": {
+            "name": "Update collaboration group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":collaborationGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "collaborationGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"labelId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"domoDashboardId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fb357ff0-2df3-431b-a451-940613975c4a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":collaborationGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "collaborationGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"labelId\": 5,\n  \"name\": \"Region North\",\n  \"domoDashboardId\": \"abc12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Region North\",\n  \"parentId\": 10,\n  \"domainId\": 100,\n  \"labelId\": 5,\n  \"domoDashboardId\": \"abc-123\",\n  \"isArchived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e925e44c-904a-4bbc-9361-1e4e56b6a5c6",
+          "name": "Delete collaboration group with its children",
+          "request": {
+            "name": "Delete collaboration group with its children",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":collaborationGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeArchived",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "collaborationGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "373b4838-9ab6-4cf9-9623-e8c3b3682d44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":collaborationGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeArchived",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "collaborationGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aefaac07-66af-4f35-bf18-5cdb6a5f9ed4",
+          "name": "Unarchive collaboration group",
+          "request": {
+            "name": "Unarchive collaboration group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":collaborationGroupId",
+                "unarchive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "collaborationGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a153d70-e826-4b32-adde-a45d34b5f2ac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":collaborationGroupId",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "collaborationGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c60d7bf7-eba9-4bd4-aaf1-e3e215f5bfb7",
+          "name": "Move a collaboration group to a new parent",
+          "request": {
+            "name": "Move a collaboration group to a new parent",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":collaborationGroupId",
+                "move"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "collaborationGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newParentId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af388cd9-f4f0-400c-bbf6-8fab89d49736",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":collaborationGroupId",
+                    "move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "collaborationGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"newParentId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Region North\",\n  \"parentId\": 10,\n  \"domainId\": 100,\n  \"labelId\": 5,\n  \"domoDashboardId\": \"abc-123\",\n  \"isArchived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1a5288b-2a74-42c8-ac48-38af6feee5e9",
+          "name": "Archive collaboration group",
+          "request": {
+            "name": "Archive collaboration group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":collaborationGroupId",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "collaborationGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b302e8ce-d8c4-4993-b548-783a9c079dea",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":collaborationGroupId",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "collaborationGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "141d7e81-bd58-4568-aec6-e2ce6ee8e94e",
+          "name": "Create collaboration group for domain",
+          "request": {
+            "name": "Create collaboration group for domain",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domainId\": \"<integer>\",\n  \"labelId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"parentId\": \"<long>\",\n  \"domoDashboardId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bae88713-0af8-455e-8380-944100d0ec3d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domainId\": 100,\n  \"labelId\": 5,\n  \"name\": \"Region North\",\n  \"parentId\": 10,\n  \"domoDashboardId\": \"abc12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Region North\",\n  \"parentId\": 10,\n  \"domainId\": 100,\n  \"labelId\": 5,\n  \"domoDashboardId\": \"abc-123\",\n  \"isArchived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69e23593-0fe6-4b6d-b407-9ead21b8b735",
+          "name": "Associate groups to a collaboration group",
+          "request": {
+            "name": "Associate groups to a collaboration group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "associate-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collaborationGroupId\": \"<long>\",\n  \"groupIds\": [\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d2e16cd-0085-41a5-a385-ada8016f2ccc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "associate-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collaborationGroupId\": 1,\n  \"groupIds\": [\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collaborationGroupId\": 1,\n  \"groupIds\": [\n    505,\n    9005\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f26c465d-425a-4e36-ba89-add2fdda5ffe",
+          "name": "Associate employees to a collaboration group",
+          "request": {
+            "name": "Associate employees to a collaboration group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "associate-employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collaborationGroupId\": \"<long>\",\n  \"employeeIds\": [\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c825ba4d-1c3e-49e7-b3bc-7c31723715ed",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "associate-employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collaborationGroupId\": 1,\n  \"employeeIds\": [\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collaborationGroupId\": 1,\n  \"employeeIds\": [\n    3698,\n    6487\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aaa628e0-9c92-4e6e-b577-f20304a9751e",
+          "name": "Get root collaboration group by domain id",
+          "request": {
+            "name": "Get root collaboration group by domain id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "root-by-domain",
+                ":domainId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "domainId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7eae0b9e-8871-4db5-ae31-652572638a38",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "root-by-domain",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "domainId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      1947,\n      2909\n    ],\n    \"employees\": [\n      5003,\n      6932\n    ],\n    \"parent\": 10,\n    \"children\": [\n      9391,\n      8549\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      6774,\n      3927\n    ],\n    \"employees\": [\n      2707,\n      6293\n    ],\n    \"parent\": 10,\n    \"children\": [\n      5328,\n      9119\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3767ac15-e0bc-4f66-b43c-e69cf1607c9d",
+          "name": "List collaboration groups under root",
+          "request": {
+            "name": "List collaboration groups under root",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":rootGroupId",
+                "all-under-root"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeArchived",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "rootGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11e428d2-137c-4a67-9a36-acef7b4ae8a5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":rootGroupId",
+                    "all-under-root"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeArchived",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "rootGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      1947,\n      2909\n    ],\n    \"employees\": [\n      5003,\n      6932\n    ],\n    \"parent\": 10,\n    \"children\": [\n      9391,\n      8549\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      6774,\n      3927\n    ],\n    \"employees\": [\n      2707,\n      6293\n    ],\n    \"parent\": 10,\n    \"children\": [\n      5328,\n      9119\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "509ccc6a-9d81-4cab-9d8d-3ac7150c8385",
+          "name": "List child collaboration groups",
+          "request": {
+            "name": "List child collaboration groups",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":parentId",
+                "children"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "parentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfb4a9e2-627b-48c8-8db8-1dc3da6df8f1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":parentId",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "parentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      1947,\n      2909\n    ],\n    \"employees\": [\n      5003,\n      6932\n    ],\n    \"parent\": 10,\n    \"children\": [\n      9391,\n      8549\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      6774,\n      3927\n    ],\n    \"employees\": [\n      2707,\n      6293\n    ],\n    \"parent\": 10,\n    \"children\": [\n      5328,\n      9119\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c73d1f9c-b741-42d2-9c0e-5102377cb3a1",
+          "name": "List employee ids in collaboration group",
+          "request": {
+            "name": "List employee ids in collaboration group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":collaborationGroupId",
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeArchived",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "collaborationGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "730ee83e-e149-405c-9404-1fdce732c188",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":collaborationGroupId",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeArchived",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "collaborationGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  8861,\n  7137\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40d5c9d6-ad34-40b2-8e98-5ae37f32009f",
+          "name": "List eligible parent collaboration groups",
+          "request": {
+            "name": "List eligible parent collaboration groups",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                ":collaborationGroupId",
+                "eligible-parents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "collaborationGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e30b431a-223a-4e40-a940-14b8e5395c77",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    ":collaborationGroupId",
+                    "eligible-parents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "collaborationGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"parentId\": 10,\n    \"domainId\": 100,\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc-123\",\n    \"isArchived\": false\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"parentId\": 10,\n    \"domainId\": 100,\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc-123\",\n    \"isArchived\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e9ec395-1edd-48db-9a7d-c0d09679d9ce",
+          "name": "List collaboration groups for group",
+          "request": {
+            "name": "List collaboration groups for group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                "group",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56069431-801d-4916-aebd-10bedf3cdae4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    "group",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      1947,\n      2909\n    ],\n    \"employees\": [\n      5003,\n      6932\n    ],\n    \"parent\": 10,\n    \"children\": [\n      9391,\n      8549\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      6774,\n      3927\n    ],\n    \"employees\": [\n      2707,\n      6293\n    ],\n    \"parent\": 10,\n    \"children\": [\n      5328,\n      9119\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6df84612-93c0-49be-ab31-7a76e5a0a46e",
+          "name": "List collaboration groups for employee",
+          "request": {
+            "name": "List collaboration groups for employee",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "groups",
+                "employee",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b109a06-4347-4014-8c61-223bb2dc7629",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "groups",
+                    "employee",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      1947,\n      2909\n    ],\n    \"employees\": [\n      5003,\n      6932\n    ],\n    \"parent\": 10,\n    \"children\": [\n      9391,\n      8549\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Region North\",\n    \"groups\": [\n      6774,\n      3927\n    ],\n    \"employees\": [\n      2707,\n      6293\n    ],\n    \"parent\": 10,\n    \"children\": [\n      5328,\n      9119\n    ],\n    \"labelId\": 5,\n    \"domoDashboardId\": \"abc12\",\n    \"isArchived\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a949e66f-3fa4-4ff4-8d6f-fb1bea738bf1",
+          "name": "Get collaboration group by root id and employee id",
+          "request": {
+            "name": "Get collaboration group by root id and employee id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "by-root",
+                ":rootCollaborationGroupId",
+                "employee",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "rootCollaborationGroupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f8d8279-0be3-434a-9ffe-f2a2fe7292f8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "by-root",
+                    ":rootCollaborationGroupId",
+                    "employee",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "rootCollaborationGroupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Region North\",\n  \"groups\": [\n    3039,\n    582\n  ],\n  \"employees\": [\n    6594,\n    8391\n  ],\n  \"parent\": 10,\n  \"children\": [\n    3130,\n    3395\n  ],\n  \"labelId\": 5,\n  \"domoDashboardId\": \"abc12\",\n  \"isArchived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2a744c4-689a-4c01-a77b-f86340aa8b8f",
+          "name": "Remove groups from a collaboration group, optionally including archived collaboration groups",
+          "request": {
+            "name": "Remove groups from a collaboration group, optionally including archived collaboration groups",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "delete-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeArchived",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collaborationGroupId\": \"<long>\",\n  \"groupIds\": [\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47ed8069-4dda-4ed5-a9c2-dfa8bb5d9382",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "delete-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeArchived",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collaborationGroupId\": 1,\n  \"groupIds\": [\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31528f77-2dc9-4cdd-8fa9-35a0027632fa",
+          "name": "Remove employees from a collaboration group, optionally including archived collaboration groups",
+          "request": {
+            "name": "Remove employees from a collaboration group, optionally including archived collaboration groups",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "collaboration-groups",
+                "delete-employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeArchived",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collaborationGroupId\": \"<long>\",\n  \"employeeIds\": [\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d81dd514-b73c-4e27-969c-3ef0b3bab615",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "collaboration-groups",
+                    "delete-employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeArchived",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collaborationGroupId\": 1,\n  \"employeeIds\": [\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "afa4076b-640e-4c36-802f-88cba06921e0",
+    "name": "Quinyx Absence Schedules Collaboration Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

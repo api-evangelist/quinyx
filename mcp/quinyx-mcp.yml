@@ -2,11 +2,9 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/quinyx-api-v3-openapi.yml
-notes: >-
-  No official hosted/remote Quinyx MCP server was found (developer portal, npm
-  @modelcontextprotocol, MCP registries). This is a CANDIDATE tool list derived
-  one-tool-per-operation from the Quinyx API v3 OpenAPI, offered as a starting
-  point for an MCP wrapper. Not an authoritative provider claim.
+notes: No official hosted/remote Quinyx MCP server was found (developer portal, npm @modelcontextprotocol,
+  MCP registries). This is a CANDIDATE tool list derived one-tool-per-operation from the Quinyx API v3
+  OpenAPI, offered as a starting point for an MCP wrapper. Not an authoritative provider claim.
 server:
   name: quinyx
   transport: http
@@ -65,3 +63,9 @@ tools:
 - name: list_shifts
   description: List schedule shifts
   source_operation: openapi/quinyx-api-v3-openapi.yml#getShifts
+deployment:
+  mode: none
+  verified: derived
+  tools: 18
+  checked: '2026-08-12'
+  source: catalog MCP census

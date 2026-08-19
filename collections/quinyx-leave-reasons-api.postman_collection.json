@@ -1,0 +1,103 @@
+{
+  "item": [
+    {
+      "id": "f967f619-df57-4f23-aaa3-fdbebeaf459d",
+      "name": "Leave Reasons",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2115180-abfe-434b-b2ff-1baad4afd2f6",
+          "name": "Returns list of leave reasons",
+          "request": {
+            "name": "Returns list of leave reasons",
+            "description": {
+              "content": "Returns list of leave reasons",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "leave-reasons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d8b20ccd-bce9-4cb3-b3f5-0b9dee6a0d33",
+              "name": "Leave reason list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "leave-reasons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"leaveReasons\": [\n    {\n      \"id\": \"I2WBgosnFVE_8v58HOxF1.ARrDgOqLcihwZAkPusTGU-\",\n      \"name\": \"Sick leave\"\n    },\n    {\n      \"id\": \"I2WBgosnFVE_8v58HOxF1.ARrDgOqLcihwZAkPusTGU-\",\n      \"name\": \"Sick leave\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6534d3eb-4930-4c69-8b91-302da98def78",
+    "name": "Quinyx Absence Schedules Leave Reasons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

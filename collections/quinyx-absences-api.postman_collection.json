@@ -1,0 +1,1232 @@
+{
+  "item": [
+    {
+      "id": "c24d4bed-2332-4b2d-82a1-33799ca90b73",
+      "name": "Absences",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be3b6589-cbb6-42c1-af24-5bccfa608d31",
+          "name": "Create full-time absence for employee",
+          "request": {
+            "name": "Create full-time absence for employee",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "schedule",
+                "groups",
+                ":groupId",
+                "absences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "overlapAbsences",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "ignoreOverridableValidations",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"absenceTypeId\": \"<integer>\",\n  \"begin\": \"<string>\",\n  \"employeeId\": \"<integer>\",\n  \"end\": \"<string>\",\n  \"employeeAttested\": \"<boolean>\",\n  \"managerAttested\": \"<boolean>\",\n  \"absenceScheduleId\": \"<long>\",\n  \"shiftsInThisPeriod\": \"<string>\",\n  \"managerComment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4404ca95-1440-41d9-835b-6950cf26dfca",
+              "name": "Response created absence details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"groupId\": 100,\n  \"absenceTypeId\": 1,\n  \"employeeId\": 100,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee133584-de2b-4dff-a926-27d11b6191ea",
+              "name": "In case one of the input values (shiftsInThisPeriod, begin, end,\n  absenceRateDirection, splitType, ignoreOverridableValidations\n   overlapAbsences) are invalid.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "585a3301-9615-4a39-93ea-90add1e8f543",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f878b81b-1bcc-4b44-af5b-34af7754b317",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd6b7558-4de8-4a0d-a333-a8cb71375a67",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46382299-1e97-4c26-8f74-e2eb640a028a",
+          "name": "Create part-time absence for employee",
+          "request": {
+            "name": "Create part-time absence for employee",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "schedule",
+                "groups",
+                ":groupId",
+                "absences",
+                "part-time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "overlapAbsences",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "ignoreOverridableValidations",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "absenceRate",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "absenceRateDirection",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "splitType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"absenceTypeId\": \"<integer>\",\n  \"begin\": \"<string>\",\n  \"employeeId\": \"<integer>\",\n  \"end\": \"<string>\",\n  \"employeeAttested\": \"<boolean>\",\n  \"managerAttested\": \"<boolean>\",\n  \"absenceScheduleId\": \"<long>\",\n  \"shiftsInThisPeriod\": \"<string>\",\n  \"managerComment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91ae11ec-1470-471c-9bf6-41934c64847b",
+              "name": "Response created part-time absence details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    "part-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "absenceRate",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "absenceRateDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "splitType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"groupId\": 100,\n  \"absenceTypeId\": 1,\n  \"employeeId\": 100,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df319fb6-872b-474b-ae3a-67ab18893bcb",
+              "name": "                      In case one of the input values (shiftsInThisPeriod, begin, end, absenceRateDirection, splitType, ignoreOverridableValidations overlapAbsences, splitType, absenceRate, absenceRateDirection) are invalid.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    "part-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "absenceRate",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "absenceRateDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "splitType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b32437e6-1d6b-4b05-b839-ff68850e234a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    "part-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "absenceRate",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "absenceRateDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "splitType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d0f6b3a-6b2b-48d6-8308-6bddedd7307e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    "part-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "absenceRate",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "absenceRateDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "splitType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc0c8510-2a20-4c90-9c82-2dc2af81c2d6",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    "part-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overlapAbsences",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignoreOverridableValidations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "absenceRate",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "absenceRateDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "splitType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceTypeId\": 1,\n  \"begin\": \"2026-01-01T08:00:00\",\n  \"employeeId\": 100,\n  \"end\": \"2026-01-01T17:00:00\",\n  \"employeeAttested\": false,\n  \"managerAttested\": false,\n  \"absenceScheduleId\": 10,\n  \"shiftsInThisPeriod\": \"UNASSIGN\",\n  \"managerComment\": \"Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d758de39-baa0-4473-adb7-bec6b5aeba63",
+          "name": "Delete absence for employee",
+          "request": {
+            "name": "Delete absence for employee",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "schedule",
+                "groups",
+                ":groupId",
+                "absences",
+                ":absenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reassignBackShifts",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "absenceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7301fcd7-e18b-4429-84b3-3820b597acd1",
+              "name": "Absence has been successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    ":absenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reassignBackShifts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "absenceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "784196f4-f6dc-49f1-8bfc-01edc85996ff",
+              "name": "                      In case one of the input values (groupId, absenceId, reassignBackShifts) are invalid.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    ":absenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reassignBackShifts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "absenceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ef1bafc-8abc-4c4b-80b1-0ed03fc57f07",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    ":absenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reassignBackShifts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "absenceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f190cd67-5cd8-4530-8591-999604c3874b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    ":absenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reassignBackShifts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "absenceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff80f3a9-4eb7-4070-81d8-31fb11992310",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    ":absenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reassignBackShifts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "absenceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15e597d1-083e-4d4c-8b14-918136ab7d2e",
+              "name": "Not Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule",
+                    "groups",
+                    ":groupId",
+                    "absences",
+                    ":absenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reassignBackShifts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "absenceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"ABSENCE_OVERLAP\",\n  \"text\": \"Absence overlaps with existing absence\",\n  \"severity\": \"ERROR\",\n  \"localisedMessage\": \"Absence overlaps with existing absence\",\n  \"shiftId\": 1,\n  \"additionalErrorParameters\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0e313505-6b5b-4d1e-a991-6159845a1906",
+    "name": "Quinyx Absence Schedules Absences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,913 @@
+{
+  "item": [
+    {
+      "id": "d5b2592b-240f-47f6-8dff-7d2cb7443f2e",
+      "name": "Tags",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88cd2d61-0e9c-440a-a832-69ae6d3cf0da",
+          "name": "Get tag by external category id and external tag id",
+          "request": {
+            "name": "Get tag by external category id and external tag id",
+            "description": {
+              "content": "Retrieves a specific tag using its category external ID and tag external ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tags",
+                "categories",
+                ":categoryExternalId",
+                "tags",
+                ":tagExternalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryExternalId",
+                  "description": "(Required) External identifier of the tag category"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tagExternalId",
+                  "description": "(Required) External identifier of the tag"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79e741c5-3a58-4373-942e-97fb11c00699",
+              "name": "Tag found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "categories",
+                    ":categoryExternalId",
+                    "tags",
+                    ":tagExternalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryExternalId",
+                      "description": "(Required) External identifier of the tag category"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tagExternalId",
+                      "description": "(Required) External identifier of the tag"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"categoryExternalId\": \"LOC-001\",\n  \"name\": \"Downtown Store\",\n  \"unitExternalId\": \"UNIT-001\",\n  \"code\": \"DT-001\",\n  \"externalId\": \"store-123\",\n  \"information\": \"Main downtown location with parking\",\n  \"uniqueScheduling\": true,\n  \"startDate\": \"2024-01-01\",\n  \"endDate\": \"2024-12-31\",\n  \"periods\": [\n    {\n      \"from\": \"2022-01-01\",\n      \"to\": \"2022-01-31\",\n      \"hours\": 8,\n      \"type\": \"DAYS\",\n      \"count\": 1\n    }\n  ],\n  \"coordinates\": [\n    {\n      \"latitude\": 59.334591,\n      \"longitude\": 18.06324,\n      \"name\": \"Stockholm Mall\",\n      \"radius\": 100\n    }\n  ],\n  \"customFields\": [\n    {\n      \"label\": \"phoneNumber\",\n      \"value\": \"+46123456789\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43f937a3-e0ba-4e31-bc5a-3840dfdaa34b",
+          "name": "Update tag",
+          "request": {
+            "name": "Update tag",
+            "description": {
+              "content": "Updates all values of an existing tag. The categoryExternalId cannot be changed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tags",
+                "categories",
+                ":categoryExternalId",
+                "tags",
+                ":tagExternalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryExternalId",
+                  "description": "(Required) External identifier of the tag category"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tagExternalId",
+                  "description": "(Required) External identifier of the tag to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryExternalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"unitExternalId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"information\": \"<string>\",\n  \"uniqueScheduling\": \"<boolean>\",\n  \"startDate\": \"<string,null-date>\",\n  \"endDate\": \"<string,null-date>\",\n  \"periods\": [\n    {\n      \"count\": \"<float>\",\n      \"from\": \"<date>\",\n      \"hours\": \"<float>\",\n      \"type\": \"<string>\",\n      \"to\": \"<date>\"\n    },\n    {\n      \"count\": \"<float>\",\n      \"from\": \"<date>\",\n      \"hours\": \"<float>\",\n      \"type\": \"<string>\",\n      \"to\": \"<date>\"\n    }\n  ],\n  \"coordinates\": [\n    {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"radius\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"radius\": \"<integer>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"customFields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22ec2d6c-9ade-47cd-87db-c587e0dc80fe",
+              "name": "Tag successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "categories",
+                    ":categoryExternalId",
+                    "tags",
+                    ":tagExternalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryExternalId",
+                      "description": "(Required) External identifier of the tag category"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tagExternalId",
+                      "description": "(Required) External identifier of the tag to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryExternalId\": \"LOC-001\",\n  \"name\": \"Downtown Store\",\n  \"unitExternalId\": \"UNIT-001\",\n  \"code\": \"DT-001\",\n  \"externalId\": \"store-123\",\n  \"information\": \"Main downtown location with parking\",\n  \"uniqueScheduling\": true,\n  \"startDate\": \"2024-01-01\",\n  \"endDate\": \"2024-12-31\",\n  \"periods\": [\n    {\n      \"from\": \"2022-01-01\",\n      \"to\": \"2022-01-31\",\n      \"hours\": 8,\n      \"type\": \"DAYS\",\n      \"count\": 1\n    }\n  ],\n  \"coordinates\": [\n    {\n      \"latitude\": 59.334591,\n      \"longitude\": 18.06324,\n      \"name\": \"Stockholm Mall\",\n      \"radius\": 100\n    }\n  ],\n  \"customFields\": [\n    {\n      \"label\": \"phoneNumber\",\n      \"value\": \"+46123456789\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"categoryExternalId\": \"LOC-001\",\n  \"name\": \"Downtown Store\",\n  \"unitExternalId\": \"UNIT-001\",\n  \"code\": \"DT-001\",\n  \"externalId\": \"store-123\",\n  \"information\": \"Main downtown location with parking\",\n  \"uniqueScheduling\": true,\n  \"startDate\": \"2024-01-01\",\n  \"endDate\": \"2024-12-31\",\n  \"periods\": [\n    {\n      \"from\": \"2022-01-01\",\n      \"to\": \"2022-01-31\",\n      \"hours\": 8,\n      \"type\": \"DAYS\",\n      \"count\": 1\n    }\n  ],\n  \"coordinates\": [\n    {\n      \"latitude\": 59.334591,\n      \"longitude\": 18.06324,\n      \"name\": \"Stockholm Mall\",\n      \"radius\": 100\n    }\n  ],\n  \"customFields\": [\n    {\n      \"label\": \"phoneNumber\",\n      \"value\": \"+46123456789\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90e9445d-1209-488d-ac89-fd5a409eb044",
+          "name": "Delete tag",
+          "request": {
+            "name": "Delete tag",
+            "description": {
+              "content": "Deletes the tag with the given external category and tag ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tags",
+                "categories",
+                ":categoryExternalId",
+                "tags",
+                ":tagExternalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryExternalId",
+                  "description": "(Required) External identifier of the tag category"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tagExternalId",
+                  "description": "(Required) External identifier of the tag to delete"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d9a9774-ce32-4592-affa-6a64a7069a6e",
+              "name": "Tag successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "categories",
+                    ":categoryExternalId",
+                    "tags",
+                    ":tagExternalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryExternalId",
+                      "description": "(Required) External identifier of the tag category"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tagExternalId",
+                      "description": "(Required) External identifier of the tag to delete"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24c6f063-71f2-40e4-90aa-7587e1cd4f88",
+              "name": "Tag or tag category not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "categories",
+                    ":categoryExternalId",
+                    "tags",
+                    ":tagExternalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryExternalId",
+                      "description": "(Required) External identifier of the tag category"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tagExternalId",
+                      "description": "(Required) External identifier of the tag to delete"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cb2d8f7-b476-4072-89f5-3e590aea0e79",
+          "name": "List tags by external category id",
+          "request": {
+            "name": "List tags by external category id",
+            "description": {
+              "content": "Retrieves all tags associated with the specified category external ID.<br />Please use [GET /v2/categories/{categoryExternalId}/tags](#/Tag%20Integration%20API/getPagedTagsByExternalCategoryId) instead.<br />Removal date: December 10, 2025.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tags",
+                "categories",
+                ":categoryExternalId",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryExternalId",
+                  "description": "(Required) External identifier of the tag category"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e42bc6a-a828-4c77-b8d0-ad65cbf99440",
+              "name": "List of tags retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "categories",
+                    ":categoryExternalId",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryExternalId",
+                      "description": "(Required) External identifier of the tag category"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"categoryExternalId\": \"LOC-001\",\n    \"name\": \"Downtown Store\",\n    \"unitExternalId\": \"UNIT-001\",\n    \"code\": \"DT-001\",\n    \"externalId\": \"store-123\",\n    \"information\": \"Main downtown location with parking\",\n    \"uniqueScheduling\": true,\n    \"startDate\": \"2024-01-01\",\n    \"endDate\": \"2024-12-31\",\n    \"periods\": [\n      {\n        \"from\": \"2022-01-01\",\n        \"to\": \"2022-01-31\",\n        \"hours\": 8,\n        \"type\": \"DAYS\",\n        \"count\": 1\n      }\n    ],\n    \"coordinates\": [\n      {\n        \"latitude\": 59.334591,\n        \"longitude\": 18.06324,\n        \"name\": \"Stockholm Mall\",\n        \"radius\": 100\n      }\n    ],\n    \"customFields\": [\n      {\n        \"label\": \"phoneNumber\",\n        \"value\": \"+46123456789\"\n      }\n    ]\n  },\n  {\n    \"categoryExternalId\": \"LOC-001\",\n    \"name\": \"Downtown Store\",\n    \"unitExternalId\": \"UNIT-001\",\n    \"code\": \"DT-001\",\n    \"externalId\": \"store-123\",\n    \"information\": \"Main downtown location with parking\",\n    \"uniqueScheduling\": true,\n    \"startDate\": \"2024-01-01\",\n    \"endDate\": \"2024-12-31\",\n    \"periods\": [\n      {\n        \"from\": \"2022-01-01\",\n        \"to\": \"2022-01-31\",\n        \"hours\": 8,\n        \"type\": \"DAYS\",\n        \"count\": 1\n      }\n    ],\n    \"coordinates\": [\n      {\n        \"latitude\": 59.334591,\n        \"longitude\": 18.06324,\n        \"name\": \"Stockholm Mall\",\n        \"radius\": 100\n      }\n    ],\n    \"customFields\": [\n      {\n        \"label\": \"phoneNumber\",\n        \"value\": \"+46123456789\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49d716ab-5e99-478e-90cc-1f4c1fdf0bb6",
+          "name": "Create tag",
+          "request": {
+            "name": "Create tag",
+            "description": {
+              "content": "Creates a new tag within the specified category. The created tag is returned",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tags",
+                "categories",
+                ":categoryExternalId",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryExternalId",
+                  "description": "(Required) External identifier of the tag category"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryExternalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"unitExternalId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"information\": \"<string>\",\n  \"uniqueScheduling\": \"<boolean>\",\n  \"startDate\": \"<string,null-date>\",\n  \"endDate\": \"<string,null-date>\",\n  \"periods\": [\n    {\n      \"count\": \"<float>\",\n      \"from\": \"<date>\",\n      \"hours\": \"<float>\",\n      \"type\": \"<string>\",\n      \"to\": \"<date>\"\n    },\n    {\n      \"count\": \"<float>\",\n      \"from\": \"<date>\",\n      \"hours\": \"<float>\",\n      \"type\": \"<string>\",\n      \"to\": \"<date>\"\n    }\n  ],\n  \"coordinates\": [\n    {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"radius\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"radius\": \"<integer>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"customFields\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68059d79-79dd-4bd9-944e-bb7f80249e62",
+              "name": "Tag successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "categories",
+                    ":categoryExternalId",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryExternalId",
+                      "description": "(Required) External identifier of the tag category"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryExternalId\": \"LOC-001\",\n  \"name\": \"Downtown Store\",\n  \"unitExternalId\": \"UNIT-001\",\n  \"code\": \"DT-001\",\n  \"externalId\": \"store-123\",\n  \"information\": \"Main downtown location with parking\",\n  \"uniqueScheduling\": true,\n  \"startDate\": \"2024-01-01\",\n  \"endDate\": \"2024-12-31\",\n  \"periods\": [\n    {\n      \"from\": \"2022-01-01\",\n      \"to\": \"2022-01-31\",\n      \"hours\": 8,\n      \"type\": \"DAYS\",\n      \"count\": 1\n    }\n  ],\n  \"coordinates\": [\n    {\n      \"latitude\": 59.334591,\n      \"longitude\": 18.06324,\n      \"name\": \"Stockholm Mall\",\n      \"radius\": 100\n    }\n  ],\n  \"customFields\": [\n    {\n      \"label\": \"phoneNumber\",\n      \"value\": \"+46123456789\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"categoryExternalId\": \"LOC-001\",\n  \"name\": \"Downtown Store\",\n  \"unitExternalId\": \"UNIT-001\",\n  \"code\": \"DT-001\",\n  \"externalId\": \"store-123\",\n  \"information\": \"Main downtown location with parking\",\n  \"uniqueScheduling\": true,\n  \"startDate\": \"2024-01-01\",\n  \"endDate\": \"2024-12-31\",\n  \"periods\": [\n    {\n      \"from\": \"2022-01-01\",\n      \"to\": \"2022-01-31\",\n      \"hours\": 8,\n      \"type\": \"DAYS\",\n      \"count\": 1\n    }\n  ],\n  \"coordinates\": [\n    {\n      \"latitude\": 59.334591,\n      \"longitude\": 18.06324,\n      \"name\": \"Stockholm Mall\",\n      \"radius\": 100\n    }\n  ],\n  \"customFields\": [\n    {\n      \"label\": \"phoneNumber\",\n      \"value\": \"+46123456789\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d82216dc-7ccf-4ef8-8181-d57a688efa3c",
+          "name": "List paginated tags by external category id",
+          "request": {
+            "name": "List paginated tags by external category id",
+            "description": {
+              "content": "Retrieves a paginated collection of tags associated with the specified category external ID.<br />Pagination is defined by cursor and size.<br />If the cursor is omitted, the first page will be returned.<br />If the size is omitted, a default size of 1000 will be used",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tags",
+                "v2",
+                "categories",
+                ":categoryExternalId",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The reference point to fetch a set of results. If omitted or empty, the first page of results will be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "1000",
+                  "description": "Number of items per page (default value: 1000, min value: 1, max value: 10000)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryExternalId",
+                  "description": "(Required) External identifier of the tag category"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f400639a-ca73-4d6d-9fd5-8bb1563c1b93",
+              "name": "Paged collection of tags retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "v2",
+                    "categories",
+                    ":categoryExternalId",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "abcdefghijklmnopqrstuvwxyz=="
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryExternalId",
+                      "description": "(Required) External identifier of the tag category"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"categoryExternalId\": \"LOC-001\",\n      \"name\": \"Downtown Store\",\n      \"unitExternalId\": \"UNIT-001\",\n      \"code\": \"DT-001\",\n      \"externalId\": \"store-123\",\n      \"information\": \"Main downtown location with parking\",\n      \"uniqueScheduling\": true,\n      \"startDate\": \"2024-01-01\",\n      \"endDate\": \"2024-12-31\",\n      \"periods\": [\n        {\n          \"from\": \"2022-01-01\",\n          \"to\": \"2022-01-31\",\n          \"hours\": 8,\n          \"type\": \"DAYS\",\n          \"count\": 1\n        }\n      ],\n      \"coordinates\": [\n        {\n          \"latitude\": 59.334591,\n          \"longitude\": 18.06324,\n          \"name\": \"Stockholm Mall\",\n          \"radius\": 100\n        }\n      ],\n      \"customFields\": [\n        {\n          \"label\": \"phoneNumber\",\n          \"value\": \"+46123456789\"\n        }\n      ]\n    },\n    {\n      \"categoryExternalId\": \"LOC-001\",\n      \"name\": \"Downtown Store\",\n      \"unitExternalId\": \"UNIT-001\",\n      \"code\": \"DT-001\",\n      \"externalId\": \"store-123\",\n      \"information\": \"Main downtown location with parking\",\n      \"uniqueScheduling\": true,\n      \"startDate\": \"2024-01-01\",\n      \"endDate\": \"2024-12-31\",\n      \"periods\": [\n        {\n          \"from\": \"2022-01-01\",\n          \"to\": \"2022-01-31\",\n          \"hours\": 8,\n          \"type\": \"DAYS\",\n          \"count\": 1\n        }\n      ],\n      \"coordinates\": [\n        {\n          \"latitude\": 59.334591,\n          \"longitude\": 18.06324,\n          \"name\": \"Stockholm Mall\",\n          \"radius\": 100\n        }\n      ],\n      \"customFields\": [\n        {\n          \"label\": \"phoneNumber\",\n          \"value\": \"+46123456789\"\n        }\n      ]\n    }\n  ],\n  \"page\": {\n    \"contentSize\": 345,\n    \"nextCursor\": \"zyxwvutsrqponmlkjihgfedcba==\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37c30e3e-8439-4541-b6f7-6127f2305643",
+          "name": "List tag categories",
+          "request": {
+            "name": "List tag categories",
+            "description": {
+              "content": "Retrieves a list of all tag categories associated with the domain group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tags",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e318f65-fe47-4f09-aa5b-891cf6b67fed",
+              "name": "List of tag categories retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Store Locations\",\n    \"tagType\": \"PROJECT\",\n    \"color\": \"#FF5733\",\n    \"externalId\": \"LOC-001\"\n  },\n  {\n    \"name\": \"Store Locations\",\n    \"tagType\": \"PROJECT\",\n    \"color\": \"#FF5733\",\n    \"externalId\": \"LOC-001\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "978a005b-80a8-4f48-a6d2-1d6a2c0cf9bb",
+          "name": "Get tag category by external id",
+          "request": {
+            "name": "Get tag category by external id",
+            "description": {
+              "content": "Retrieves a tag category using its external identifier",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tags",
+                "categories",
+                ":categoryExternalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryExternalId",
+                  "description": "(Required) External identifier of the tag category"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db3857a5-c3bf-4365-83ef-34dfae077f4c",
+              "name": "Tag category found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tags",
+                    "categories",
+                    ":categoryExternalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryExternalId",
+                      "description": "(Required) External identifier of the tag category"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Store Locations\",\n  \"tagType\": \"PROJECT\",\n  \"color\": \"#FF5733\",\n  \"externalId\": \"LOC-001\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "34e3fd23-f0a3-47a8-89f8-56cee2bcafe8",
+    "name": "Quinyx Absence Schedules Tags API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

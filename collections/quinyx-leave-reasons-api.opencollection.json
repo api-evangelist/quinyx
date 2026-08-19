@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Leave Reasons API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leave Reasons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns list of leave reasons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/users/leave-reasons"
+          },
+          "docs": "Returns list of leave reasons"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

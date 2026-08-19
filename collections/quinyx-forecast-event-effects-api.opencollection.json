@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Forecast Event Effects API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecast Event Effects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate event effects for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/forecast-calculation/customer/:customerId/events",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate event effects for a customer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

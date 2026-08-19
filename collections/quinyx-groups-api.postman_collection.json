@@ -1,0 +1,1418 @@
+{
+  "item": [
+    {
+      "id": "2f47e27e-6f5c-445f-86e3-70ba0ee0f6e6",
+      "name": "Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "479aaae2-2678-4858-917b-87677a906562",
+          "name": "Get group by id",
+          "request": {
+            "name": "Get group by id",
+            "description": {
+              "content": "Get group details identified by groupId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organisation",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6e900c2-2f3e-4436-bc7a-d920b13c5571",
+              "name": "Returns group details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 170305,\n  \"name\": \"Stockholm Central\",\n  \"groupType\": \"unit\",\n  \"parentGroupId\": 170300,\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db58023f-3b31-4377-b8f4-f2269664eb31",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": 1776706090492,\n  \"path\": \"/v2/organisation/groups/123\",\n  \"status\": 401,\n  \"error\": \"invalid_token\",\n  \"requestId\": \"32dbf81e-314892\",\n  \"error_description\": \"Unauthorized exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "528377ff-7a65-4184-aebd-bd47e61880de",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  },\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cca7ba16-aef3-4aed-99f1-23fa9c6c2b5b",
+              "name": "The group not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-04-20T18:11:08.182+00:00\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"path\": \"/integration/groups/123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0612b76-4332-4b62-aefd-8f7492176231",
+          "name": "Update group",
+          "request": {
+            "name": "Update group",
+            "description": {
+              "content": "Update a group identified by given groupId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organisation",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parentGroupId\": \"<integer>\",\n  \"districtAttributesDto\": {\n    \"districtId\": \"<integer>\",\n    \"managerId\": \"<integer>\"\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": \"<integer>\",\n    \"managerGroupId\": \"<integer>\",\n    \"costCentre\": \"<integer>\",\n    \"managerId\": \"<integer>\"\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": \"<integer>\",\n    \"address\": {\n      \"country\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"municipality\": \"<string>\",\n      \"timeZone\": \"<string>\"\n    },\n    \"costCentre\": \"<integer>\",\n    \"managerId\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"publishedTo\": \"<date>\",\n    \"blockPasswordLogin\": \"<boolean>\",\n    \"shiftRules\": {\n      \"maxHoursPerDay\": \"<double>\",\n      \"maxHoursPerWeek\": \"<double>\",\n      \"minRest\": \"<integer>\",\n      \"numberOfBreaks\": \"<integer>\"\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": \"<double>\",\n      \"maxHoursPerWeek\": \"<double>\",\n      \"minRest\": \"<integer>\",\n      \"numberOfBreaks\": \"<integer>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4a09e6e-7470-4883-ac73-d565e3546ca8",
+              "name": "Group created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupType\": \"unit\",\n  \"name\": \"Stockholm Central\",\n  \"parentGroupId\": 170300,\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 170305,\n  \"name\": \"Stockholm Central\",\n  \"groupType\": \"unit\",\n  \"parentGroupId\": 170300,\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dba3fbad-bdc3-491d-9434-19933a85b94f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupType\": \"unit\",\n  \"name\": \"Stockholm Central\",\n  \"parentGroupId\": 170300,\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  },\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82cfb959-60ff-4ea4-84c7-973e86b64123",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupType\": \"unit\",\n  \"name\": \"Stockholm Central\",\n  \"parentGroupId\": 170300,\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": 1776706090492,\n  \"path\": \"/v2/organisation/groups/123\",\n  \"status\": 401,\n  \"error\": \"invalid_token\",\n  \"requestId\": \"32dbf81e-314892\",\n  \"error_description\": \"Unauthorized exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0598fea-a3ab-4da1-9afb-37dd7dbb762f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupType\": \"unit\",\n  \"name\": \"Stockholm Central\",\n  \"parentGroupId\": 170300,\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  },\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89d9ac7a-6573-425f-bd7f-b3367b5abfe9",
+              "name": "The group not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupType\": \"unit\",\n  \"name\": \"Stockholm Central\",\n  \"parentGroupId\": 170300,\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-04-20T18:11:08.182+00:00\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"path\": \"/integration/groups/123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7434bf3-44da-45a5-bf58-958086e3d346",
+          "name": "Delete a group",
+          "request": {
+            "name": "Delete a group",
+            "description": {
+              "content": "Deletes the group record with identified by aa given groupId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organisation",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c6d0fcf-8122-4c53-9b8b-67cd78067101",
+              "name": "Group record successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e68c50ef-ed77-4dfd-8830-3f43c0dadf45",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": 1776706090492,\n  \"path\": \"/v2/organisation/groups/123\",\n  \"status\": 401,\n  \"error\": \"invalid_token\",\n  \"requestId\": \"32dbf81e-314892\",\n  \"error_description\": \"Unauthorized exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ab3d68c-40c3-4427-90cb-97a87c57dd1b",
+              "name": "The user doesn't have permission to delete the record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  },\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5afb59f9-f8d6-4b77-9a54-5d042f7f720b",
+              "name": "Domain or group not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-04-20T18:11:08.182+00:00\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"path\": \"/integration/groups/123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "064b02a9-768e-4264-af76-b4a7361a02fe",
+          "name": "Create group",
+          "request": {
+            "name": "Create group",
+            "description": {
+              "content": "Create a new group from a given DTO.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organisation",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parentGroupId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"districtAttributesDto\": {\n    \"districtId\": \"<integer>\",\n    \"managerId\": \"<integer>\"\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": \"<integer>\",\n    \"managerGroupId\": \"<integer>\",\n    \"costCentre\": \"<integer>\",\n    \"managerId\": \"<integer>\"\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": \"<integer>\",\n    \"address\": {\n      \"country\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"city\": \"<string>\",\n      \"municipality\": \"<string>\",\n      \"timeZone\": \"<string>\"\n    },\n    \"costCentre\": \"<integer>\",\n    \"managerId\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"publishedTo\": \"<date>\",\n    \"blockPasswordLogin\": \"<boolean>\",\n    \"shiftRules\": {\n      \"maxHoursPerDay\": \"<double>\",\n      \"maxHoursPerWeek\": \"<double>\",\n      \"minRest\": \"<integer>\",\n      \"numberOfBreaks\": \"<integer>\"\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": \"<double>\",\n      \"maxHoursPerWeek\": \"<double>\",\n      \"minRest\": \"<integer>\",\n      \"numberOfBreaks\": \"<integer>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6820f30e-06f3-4326-8f22-0ba0a78a98eb",
+              "name": "Group created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parentGroupId\": 170300,\n  \"name\": \"Stockholm Central\",\n  \"groupType\": \"unit\",\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 170305,\n  \"name\": \"Stockholm Central\",\n  \"groupType\": \"unit\",\n  \"parentGroupId\": 170300,\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e89383f9-4347-49d8-9e70-a65afe7f1191",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parentGroupId\": 170300,\n  \"name\": \"Stockholm Central\",\n  \"groupType\": \"unit\",\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  },\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22c10116-1659-41af-8457-7f62c15b37e7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parentGroupId\": 170300,\n  \"name\": \"Stockholm Central\",\n  \"groupType\": \"unit\",\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": 1776706090492,\n  \"path\": \"/v2/organisation/groups/123\",\n  \"status\": 401,\n  \"error\": \"invalid_token\",\n  \"requestId\": \"32dbf81e-314892\",\n  \"error_description\": \"Unauthorized exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "980ea9da-7477-4fc4-a1fa-74686db65fca",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parentGroupId\": 170300,\n  \"name\": \"Stockholm Central\",\n  \"groupType\": \"unit\",\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  },\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b8efb7d-1f43-4fcf-93f8-5763eb01a20f",
+              "name": "The group not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parentGroupId\": 170300,\n  \"name\": \"Stockholm Central\",\n  \"groupType\": \"unit\",\n  \"districtAttributesDto\": {\n    \"districtId\": 567,\n    \"managerId\": 1234\n  },\n  \"sectionAttributesDto\": {\n    \"sectionId\": 789,\n    \"managerGroupId\": 170305,\n    \"costCentre\": 1001,\n    \"managerId\": 1234\n  },\n  \"unitAttributesDto\": {\n    \"unitId\": 170305,\n    \"address\": {\n      \"country\": \"SE\",\n      \"address\": \"123 Main Street\",\n      \"zipCode\": \"11120\",\n      \"city\": \"Stockholm\",\n      \"municipality\": \"Stockholm Municipality\",\n      \"timeZone\": \"Europe/Stockholm\"\n    },\n    \"costCentre\": 1001,\n    \"managerId\": 1234,\n    \"currency\": \"SEK\",\n    \"publishedTo\": \"2026-04-20\",\n    \"blockPasswordLogin\": false,\n    \"shiftRules\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    },\n    \"shiftRulesDto\": {\n      \"maxHoursPerDay\": 8,\n      \"maxHoursPerWeek\": 40,\n      \"minRest\": 11,\n      \"numberOfBreaks\": 1\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-04-20T18:11:08.182+00:00\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"path\": \"/integration/groups/123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc6db2aa-1266-495f-a39d-d8f4bccafa85",
+          "name": "List child groups",
+          "request": {
+            "name": "List child groups",
+            "description": {
+              "content": "Get children groups from a given groupId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "organisation",
+                "groups",
+                ":groupId",
+                "children"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Zero-based page index (0..N)"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "The size of the page to be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80b6f263-7483-4222-83ca-fc244784a475",
+              "name": "Returns group details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 170305,\n    \"name\": \"Stockholm Central\",\n    \"groupType\": \"unit\",\n    \"parentGroupId\": 170300,\n    \"districtAttributesDto\": {\n      \"districtId\": 567,\n      \"managerId\": 1234\n    },\n    \"sectionAttributesDto\": {\n      \"sectionId\": 789,\n      \"managerGroupId\": 170305,\n      \"costCentre\": 1001,\n      \"managerId\": 1234\n    },\n    \"unitAttributesDto\": {\n      \"unitId\": 170305,\n      \"address\": {\n        \"country\": \"SE\",\n        \"address\": \"123 Main Street\",\n        \"zipCode\": \"11120\",\n        \"city\": \"Stockholm\",\n        \"municipality\": \"Stockholm Municipality\",\n        \"timeZone\": \"Europe/Stockholm\"\n      },\n      \"costCentre\": 1001,\n      \"managerId\": 1234,\n      \"currency\": \"SEK\",\n      \"publishedTo\": \"2026-04-20\",\n      \"blockPasswordLogin\": false,\n      \"shiftRulesDto\": {\n        \"maxHoursPerDay\": 8,\n        \"maxHoursPerWeek\": 40,\n        \"minRest\": 11,\n        \"numberOfBreaks\": 1\n      }\n    }\n  },\n  {\n    \"id\": 170305,\n    \"name\": \"Stockholm Central\",\n    \"groupType\": \"unit\",\n    \"parentGroupId\": 170300,\n    \"districtAttributesDto\": {\n      \"districtId\": 567,\n      \"managerId\": 1234\n    },\n    \"sectionAttributesDto\": {\n      \"sectionId\": 789,\n      \"managerGroupId\": 170305,\n      \"costCentre\": 1001,\n      \"managerId\": 1234\n    },\n    \"unitAttributesDto\": {\n      \"unitId\": 170305,\n      \"address\": {\n        \"country\": \"SE\",\n        \"address\": \"123 Main Street\",\n        \"zipCode\": \"11120\",\n        \"city\": \"Stockholm\",\n        \"municipality\": \"Stockholm Municipality\",\n        \"timeZone\": \"Europe/Stockholm\"\n      },\n      \"costCentre\": 1001,\n      \"managerId\": 1234,\n      \"currency\": \"SEK\",\n      \"publishedTo\": \"2026-04-20\",\n      \"blockPasswordLogin\": false,\n      \"shiftRulesDto\": {\n        \"maxHoursPerDay\": 8,\n        \"maxHoursPerWeek\": 40,\n        \"minRest\": 11,\n        \"numberOfBreaks\": 1\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7a2ec72-628d-4a5c-ab8f-83dd4cf5b306",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": 1776706090492,\n  \"path\": \"/v2/organisation/groups/123\",\n  \"status\": 401,\n  \"error\": \"invalid_token\",\n  \"requestId\": \"32dbf81e-314892\",\n  \"error_description\": \"Unauthorized exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "077e4299-1cf8-4659-83b2-e00cc0870a10",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  },\n  {\n    \"field\": \"fieldName\",\n    \"message\": \"error.organisation.forbidden\",\n    \"severity\": \"ERROR\",\n    \"additionalErrorParameters\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25d2272f-559b-45d0-8dfc-9ba52601e2f9",
+              "name": "The group not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "organisation",
+                    "groups",
+                    ":groupId",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-04-20T18:11:08.182+00:00\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"path\": \"/integration/groups/123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "834d29a4-2052-4da7-b140-15a1e580f68a",
+    "name": "Quinyx Absence Schedules Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

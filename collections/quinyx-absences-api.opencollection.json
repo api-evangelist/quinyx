@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Absences API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Absences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create full-time absence for employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/schedule/groups/:groupId/absences",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "overlapAbsences",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ignoreOverridableValidations",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create full-time absence for employee"
+        },
+        {
+          "info": {
+            "name": "Create part-time absence for employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/schedule/groups/:groupId/absences/part-time",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "overlapAbsences",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ignoreOverridableValidations",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "absenceRate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "absenceRateDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "splitType",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create part-time absence for employee"
+        },
+        {
+          "info": {
+            "name": "Delete absence for employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/schedule/groups/:groupId/absences/:absenceId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "absenceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reassignBackShifts",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete absence for employee"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Forecast Dynamic Rules API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecast Dynamic Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List dynamic rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/forecasts/dynamic-rules",
+            "params": [
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List dynamic rules"
+        },
+        {
+          "info": {
+            "name": "Create a new dynamic rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/forecasts/dynamic-rules",
+            "params": [
+              {
+                "name": "externalUnitId",
+                "value": "unitId",
+                "type": "query",
+                "description": "External Group Id"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "sectionId",
+                "type": "query",
+                "description": "External Section Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new dynamic rule"
+        },
+        {
+          "info": {
+            "name": "Update a dynamic rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/forecasts/dynamic-rules",
+            "params": [
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a dynamic rule"
+        },
+        {
+          "info": {
+            "name": "Delete a dynamic rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/forecasts/dynamic-rules/:externalDynamicRuleId",
+            "params": [
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalDynamicRuleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a dynamic rule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

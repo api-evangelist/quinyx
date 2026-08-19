@@ -1,0 +1,695 @@
+{
+  "item": [
+    {
+      "id": "9f326b71-31dd-4300-85c2-d9e3bb68952f",
+      "name": "Forecast Static Rules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "275c832b-6e2a-4a2e-a872-71382559821c",
+          "name": "List static rules",
+          "request": {
+            "name": "List static rules",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "static-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "421316ef-0d9b-4828-9686-9c1a34b48f74",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "static-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"endTime\": \"13:00\",\n      \"repeatPeriod\": 1,\n      \"shiftType\": {\n        \"amount\": 10,\n        \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n      },\n      \"startDate\": \"2022-01-13\",\n      \"startTime\": \"12:00\",\n      \"weekdays\": [\n        6\n      ],\n      \"endDate\": \"2022-02-20\",\n      \"comment\": \"Holiday closure\"\n    },\n    {\n      \"endTime\": \"13:00\",\n      \"repeatPeriod\": 1,\n      \"shiftType\": {\n        \"amount\": 10,\n        \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n      },\n      \"startDate\": \"2022-01-13\",\n      \"startTime\": \"12:00\",\n      \"weekdays\": [\n        1\n      ],\n      \"endDate\": \"2022-02-20\",\n      \"comment\": \"Holiday closure\"\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 7652,\n    \"currentPage\": 6450,\n    \"totalPages\": 385\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28911716-d9df-45f4-a5e8-2888218b9ffa",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "static-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"endTime\": \"13:00\",\n      \"repeatPeriod\": 1,\n      \"shiftType\": {\n        \"amount\": 10,\n        \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n      },\n      \"startDate\": \"2022-01-13\",\n      \"startTime\": \"12:00\",\n      \"weekdays\": [\n        6\n      ],\n      \"endDate\": \"2022-02-20\",\n      \"comment\": \"Holiday closure\"\n    },\n    {\n      \"endTime\": \"13:00\",\n      \"repeatPeriod\": 1,\n      \"shiftType\": {\n        \"amount\": 10,\n        \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n      },\n      \"startDate\": \"2022-01-13\",\n      \"startTime\": \"12:00\",\n      \"weekdays\": [\n        1\n      ],\n      \"endDate\": \"2022-02-20\",\n      \"comment\": \"Holiday closure\"\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 7652,\n    \"currentPage\": 6450,\n    \"totalPages\": 385\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dee2cc31-2fe8-42ff-b458-dfcd64a4e09d",
+          "name": "Update a static rule",
+          "request": {
+            "name": "Update a static rule",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "static-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endTime\": \"<string>\",\n  \"repeatPeriod\": \"<integer>\",\n  \"shiftType\": {\n    \"amount\": \"<integer>\",\n    \"externalShiftTypeId\": \"<string>\"\n  },\n  \"startDate\": \"<date>\",\n  \"startTime\": \"<string>\",\n  \"weekdays\": [\n    \"<integer>\"\n  ],\n  \"endDate\": \"<date>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d8056d0-fc08-4c13-9eba-737a934c6872",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "static-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endTime\": \"13:00\",\n  \"repeatPeriod\": 1,\n  \"shiftType\": {\n    \"amount\": 10,\n    \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n  },\n  \"startDate\": \"2022-01-13\",\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    \"<integer>\"\n  ],\n  \"endDate\": \"2022-02-20\",\n  \"comment\": \"Holiday closure\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"endTime\": \"13:00\",\n  \"repeatPeriod\": 1,\n  \"shiftType\": {\n    \"amount\": 10,\n    \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n  },\n  \"startDate\": \"2022-01-13\",\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    2\n  ],\n  \"endDate\": \"2022-02-20\",\n  \"comment\": \"Holiday closure\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f2375ca-b354-46bd-b6e3-86976b7c614e",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "static-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endTime\": \"13:00\",\n  \"repeatPeriod\": 1,\n  \"shiftType\": {\n    \"amount\": 10,\n    \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n  },\n  \"startDate\": \"2022-01-13\",\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    \"<integer>\"\n  ],\n  \"endDate\": \"2022-02-20\",\n  \"comment\": \"Holiday closure\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"endTime\": \"13:00\",\n  \"repeatPeriod\": 1,\n  \"shiftType\": {\n    \"amount\": 10,\n    \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n  },\n  \"startDate\": \"2022-01-13\",\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    2\n  ],\n  \"endDate\": \"2022-02-20\",\n  \"comment\": \"Holiday closure\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c341672-88e9-492a-8e4f-47b518a725ff",
+          "name": "Create a new static rule",
+          "request": {
+            "name": "Create a new static rule",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "static-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endTime\": \"<string>\",\n  \"repeatPeriod\": \"<integer>\",\n  \"shiftType\": {\n    \"amount\": \"<integer>\",\n    \"externalShiftTypeId\": \"<string>\"\n  },\n  \"startDate\": \"<date>\",\n  \"startTime\": \"<string>\",\n  \"weekdays\": [\n    \"<integer>\"\n  ],\n  \"endDate\": \"<date>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cec4effa-f51f-46a6-a4dc-ab26c21010d4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "static-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endTime\": \"13:00\",\n  \"repeatPeriod\": 1,\n  \"shiftType\": {\n    \"amount\": 10,\n    \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n  },\n  \"startDate\": \"2022-01-13\",\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    \"<integer>\"\n  ],\n  \"endDate\": \"2022-02-20\",\n  \"comment\": \"Holiday closure\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"endTime\": \"13:00\",\n  \"repeatPeriod\": 1,\n  \"shiftType\": {\n    \"amount\": 10,\n    \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n  },\n  \"startDate\": \"2022-01-13\",\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    2\n  ],\n  \"endDate\": \"2022-02-20\",\n  \"comment\": \"Holiday closure\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d1fbd2d-0cc3-4eab-982f-bce3500225ba",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "static-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endTime\": \"13:00\",\n  \"repeatPeriod\": 1,\n  \"shiftType\": {\n    \"amount\": 10,\n    \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n  },\n  \"startDate\": \"2022-01-13\",\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    \"<integer>\"\n  ],\n  \"endDate\": \"2022-02-20\",\n  \"comment\": \"Holiday closure\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"endTime\": \"13:00\",\n  \"repeatPeriod\": 1,\n  \"shiftType\": {\n    \"amount\": 10,\n    \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n  },\n  \"startDate\": \"2022-01-13\",\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    2\n  ],\n  \"endDate\": \"2022-02-20\",\n  \"comment\": \"Holiday closure\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b0bdcd3-2711-45cf-8fb2-f32fc48b3591",
+          "name": "Delete a static rule",
+          "request": {
+            "name": "Delete a static rule",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "static-rules",
+                ":externalStaticRuleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "externalStaticRuleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7b47f96-ab94-4fa7-ba03-a81696d786ec",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "static-rules",
+                    ":externalStaticRuleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "externalStaticRuleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6e81352-e507-4d32-8ca0-02a12875024a",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "static-rules",
+                    ":externalStaticRuleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "externalStaticRuleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "835177b1-ceb3-48c5-b76c-e404069973e8",
+    "name": "Quinyx Absence Schedules Forecast Static Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Leave Applications API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leave Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns historical or upcoming leave applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/users/leave-applications",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Choose upcoming or historical leave applications"
+              }
+            ]
+          },
+          "docs": "Get upcoming leave applications, starting from today, or historical applications, ending today or earlier"
+        },
+        {
+          "info": {
+            "name": "Create leave application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/users/leave-applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create leave application"
+        },
+        {
+          "info": {
+            "name": "Returns list of leave applications managers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/users/leave-applications/managers"
+          },
+          "docs": "Returns list of leave applications managers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

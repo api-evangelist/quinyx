@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Forecast Static Rules API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecast Static Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List static rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/forecasts/static-rules",
+            "params": [
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List static rules"
+        },
+        {
+          "info": {
+            "name": "Create a new static rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/forecasts/static-rules",
+            "params": [
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new static rule"
+        },
+        {
+          "info": {
+            "name": "Update a static rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/forecasts/static-rules",
+            "params": [
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a static rule"
+        },
+        {
+          "info": {
+            "name": "Delete a static rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/forecasts/static-rules/:externalStaticRuleId",
+            "params": [
+              {
+                "name": "externalUnitId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalSectionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalStaticRuleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a static rule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

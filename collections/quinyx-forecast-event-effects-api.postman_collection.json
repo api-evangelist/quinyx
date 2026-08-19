@@ -1,0 +1,144 @@
+{
+  "item": [
+    {
+      "id": "e13edc84-df11-43af-8e79-25d03949043c",
+      "name": "Forecast Event Effects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae5e92a7-8ba3-4170-9602-7f124479f761",
+          "name": "Calculate event effects for a customer",
+          "request": {
+            "name": "Calculate event effects for a customer",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-calculation",
+                "customer",
+                ":customerId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endTime\": \"<dateTime>\",\n  \"externalConfigurationId\": \"<string>\",\n  \"externalUnitId\": \"<string>\",\n  \"externalVariableId\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"externalSectionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d85f1872-6671-4ec9-a95d-84394d31809a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-calculation",
+                    "customer",
+                    ":customerId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endTime\": \"2024-01-15T18:00:00Z\",\n  \"externalConfigurationId\": \"config-123\",\n  \"externalUnitId\": \"unit-789\",\n  \"externalVariableId\": \"var-456\",\n  \"startTime\": \"2024-01-15T08:00:00Z\",\n  \"externalSectionId\": \"section-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"evt-7f3c2a1b\",\n    \"startTime\": \"2024-01-15T08:00:00Z\",\n    \"endTime\": \"2024-01-15T18:00:00Z\",\n    \"eventCategoryId\": \"cat-001\",\n    \"groupId\": 42,\n    \"eventEffects\": [\n      {\n        \"id\": \"eff-7f3c2a1b\",\n        \"eventId\": \"evt-7f3c2a1b\",\n        \"forecastConfigurationId\": 1,\n        \"type\": \"RELATIVE\",\n        \"value\": 1.25\n      },\n      {\n        \"id\": \"eff-7f3c2a1b\",\n        \"eventId\": \"evt-7f3c2a1b\",\n        \"forecastConfigurationId\": 1,\n        \"type\": \"RELATIVE\",\n        \"value\": 1.25\n      }\n    ],\n    \"comment\": \"Marketing campaign launch\",\n    \"active\": true,\n    \"hierarchyEnabled\": false\n  },\n  {\n    \"id\": \"evt-7f3c2a1b\",\n    \"startTime\": \"2024-01-15T08:00:00Z\",\n    \"endTime\": \"2024-01-15T18:00:00Z\",\n    \"eventCategoryId\": \"cat-001\",\n    \"groupId\": 42,\n    \"eventEffects\": [\n      {\n        \"id\": \"eff-7f3c2a1b\",\n        \"eventId\": \"evt-7f3c2a1b\",\n        \"forecastConfigurationId\": 1,\n        \"type\": \"RELATIVE\",\n        \"value\": 1.25\n      },\n      {\n        \"id\": \"eff-7f3c2a1b\",\n        \"eventId\": \"evt-7f3c2a1b\",\n        \"forecastConfigurationId\": 1,\n        \"type\": \"RELATIVE\",\n        \"value\": 1.25\n      }\n    ],\n    \"comment\": \"Marketing campaign launch\",\n    \"active\": true,\n    \"hierarchyEnabled\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "77a5c7c6-0c5c-4f02-b00e-59881742988c",
+    "name": "Quinyx Absence Schedules Forecast Event Effects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

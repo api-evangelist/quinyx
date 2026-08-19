@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Shift API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shift",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List shifts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/schedule/v3/shifts",
+            "headers": [
+              {
+                "name": "Prefer",
+                "value": "timezone=Europe/Belgrade"
+              }
+            ],
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for the next page of results."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "idIn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id (IN). Supports external ids of types: xrefId"
+              },
+              {
+                "name": "groupIdIn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by groupId (IN). Supports external ids of types: xrefId"
+              },
+              {
+                "name": "employeeIdIn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by employeeId (IN). Supports external ids of types: badgeNumber"
+              },
+              {
+                "name": "beginGte",
+                "value": "",
+                "type": "query",
+                "description": "Filter by begin (GTE)"
+              },
+              {
+                "name": "beginLte",
+                "value": "",
+                "type": "query",
+                "description": "Filter by begin (LTE)"
+              },
+              {
+                "name": "statusIn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status (IN)"
+              },
+              {
+                "name": "deleted",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deleted (EQ)"
+              }
+            ]
+          },
+          "docs": "Returns shifts using cursor-based pagination.\n\nSupports:\n- Numeric internal IDs\n- External IDs using prefix 'xrefId:'\n- Employee badge numbers using prefix 'badgeNumber:'\n- Timezone override via Prefer header\n\nPagination is cursor-based. Use the returned pageToken for next/previous navigation.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "c1ed5235-0acd-47cf-a0f2-04a577a837a1",
+      "name": "Standard Variables",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "beb2a659-e745-4fb0-a255-266e194c8af3",
+          "name": "List standard variables",
+          "request": {
+            "name": "List standard variables",
+            "description": {
+              "content": "Fetches standard variables from the statistics service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "statistics",
+                "standard-variables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"period\": {\n    \"start\": \"<string>\",\n    \"end\": \"<string>\",\n    \"aggregation-type\": \"<string>\",\n    \"aggregation-value\": \"<integer>\"\n  },\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"values\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"timeRange\": {\n        \"enabled\": \"<boolean>\",\n        \"from\": \"<string>\",\n        \"to\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"values\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"timeRange\": {\n        \"enabled\": \"<boolean>\",\n        \"from\": \"<string>\",\n        \"to\": \"<string>\"\n      }\n    }\n  ],\n  \"baseScheduleData\": {\n    \"baseScheduleId\": \"<string>\",\n    \"dayIndex\": \"<integer>\"\n  },\n  \"baseScheduleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayItems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"laborView\": \"<boolean>\",\n  \"statisticsFilterTypes\": \"<string>\",\n  \"people-filter-type\": \"<string>\",\n  \"shifts-filter-type\": \"<string>\",\n  \"tasks-filter-type\": \"<string>\",\n  \"punches-filter-type\": \"<string>\",\n  \"absences-filter-type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f8db822-21dc-4807-80f0-7b4b61280747",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "statistics",
+                    "standard-variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"period\": {\n    \"start\": \"2026-01-01T00:00:00\",\n    \"end\": \"2026-01-31T23:59:59\",\n    \"aggregation-type\": \"D\",\n    \"aggregation-value\": 1\n  },\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"name\": \"employee\",\n      \"values\": [\n        594,\n        2018\n      ],\n      \"timeRange\": {\n        \"enabled\": true,\n        \"from\": \"08:00\",\n        \"to\": \"17:00\"\n      }\n    },\n    {\n      \"name\": \"employee\",\n      \"values\": [\n        8550,\n        5156\n      ],\n      \"timeRange\": {\n        \"enabled\": true,\n        \"from\": \"08:00\",\n        \"to\": \"17:00\"\n      }\n    }\n  ],\n  \"baseScheduleData\": {\n    \"baseScheduleId\": \"abc123\",\n    \"dayIndex\": 0\n  },\n  \"baseScheduleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayItems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"laborView\": false,\n  \"statisticsFilterTypes\": \"and\",\n  \"people-filter-type\": \"and\",\n  \"shifts-filter-type\": \"and\",\n  \"tasks-filter-type\": \"and\",\n  \"punches-filter-type\": \"and\",\n  \"absences-filter-type\": \"and\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"variable\": \"scheduled-hours\",\n    \"values\": [\n      {\n        \"start\": \"2026-01-01T00:00:00\",\n        \"end\": \"2026-01-01T23:59:59\",\n        \"value\": 100,\n        \"employeeId\": 1\n      },\n      {\n        \"start\": \"2026-01-01T00:00:00\",\n        \"end\": \"2026-01-01T23:59:59\",\n        \"value\": 100,\n        \"employeeId\": 1\n      }\n    ],\n    \"total-value\": 100\n  },\n  {\n    \"variable\": \"scheduled-hours\",\n    \"values\": [\n      {\n        \"start\": \"2026-01-01T00:00:00\",\n        \"end\": \"2026-01-01T23:59:59\",\n        \"value\": 100,\n        \"employeeId\": 1\n      },\n      {\n        \"start\": \"2026-01-01T00:00:00\",\n        \"end\": \"2026-01-01T23:59:59\",\n        \"value\": 100,\n        \"employeeId\": 1\n      }\n    ],\n    \"total-value\": 100\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "db81993e-1865-46e2-99d5-3f93082dc46d",
+    "name": "Quinyx Absence Schedules Standard Variables API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

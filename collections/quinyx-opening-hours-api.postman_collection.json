@@ -1,0 +1,571 @@
+{
+  "item": [
+    {
+      "id": "a8327cd2-d352-43da-b231-931a94b3ad7b",
+      "name": "Opening Hours",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a6cced7-97bf-40a7-895b-999401fb5c4e",
+          "name": "Update opening hours by id",
+          "request": {
+            "name": "Update opening hours by id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "opening-hours",
+                "groups",
+                ":groupId",
+                "opening-hours",
+                ":openingHoursId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "openingHoursId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"weekdayHours\": [\n    {\n      \"endTime\": \"<string>\",\n      \"open\": \"<boolean>\",\n      \"startTime\": \"<string>\",\n      \"weekday\": \"<integer>\"\n    }\n  ],\n  \"groupId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"endDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "799e2fb7-fa29-4a98-ab76-5f87ee63955d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "opening-hours",
+                    "groups",
+                    ":groupId",
+                    "opening-hours",
+                    ":openingHoursId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "openingHoursId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2023-03-15\",\n  \"type\": \"STANDARD\",\n  \"weekdayHours\": [\n    {\n      \"endTime\": \"14:00\",\n      \"open\": true,\n      \"startTime\": \"12:00\",\n      \"weekday\": 1\n    }\n  ],\n  \"groupId\": 1234,\n  \"name\": \"Saturday hours\",\n  \"endDate\": \"2023-04-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"startDate\": \"2023-03-15\",\n  \"type\": \"STANDARD\",\n  \"weekdayHours\": [\n    {\n      \"endTime\": \"14:00\",\n      \"open\": true,\n      \"startTime\": \"12:00\",\n      \"weekday\": 1\n    }\n  ],\n  \"groupId\": 1234,\n  \"name\": \"Saturday hours\",\n  \"endDate\": \"2023-04-20\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a81dd2a7-42de-4813-91ad-30070195e1c6",
+          "name": "Delete opening hours based on opening hours id",
+          "request": {
+            "name": "Delete opening hours based on opening hours id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "opening-hours",
+                "groups",
+                ":groupId",
+                "opening-hours",
+                ":openingHoursId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "openingHoursId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f9cf6db-5b8d-4c47-b5db-188972bdb6e8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "opening-hours",
+                    "groups",
+                    ":groupId",
+                    "opening-hours",
+                    ":openingHoursId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "openingHoursId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c791e130-446c-4847-8969-2996028a06b4",
+          "name": "Get opening hours based on group id",
+          "request": {
+            "name": "Get opening hours based on group id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "opening-hours",
+                "groups",
+                ":groupId",
+                "opening-hours"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff9a3a8a-8508-402d-91ca-bb804e00110c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "opening-hours",
+                    "groups",
+                    ":groupId",
+                    "opening-hours"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startDate\": \"2023-03-15\",\n    \"type\": \"STANDARD\",\n    \"weekdayHours\": [\n      {\n        \"endTime\": \"14:00\",\n        \"open\": true,\n        \"startTime\": \"12:00\",\n        \"weekday\": 1\n      }\n    ],\n    \"groupId\": 1234,\n    \"name\": \"Saturday hours\",\n    \"endDate\": \"2023-04-20\"\n  },\n  {\n    \"startDate\": \"2023-03-15\",\n    \"type\": \"STANDARD\",\n    \"weekdayHours\": [\n      {\n        \"endTime\": \"14:00\",\n        \"open\": true,\n        \"startTime\": \"12:00\",\n        \"weekday\": 1\n      }\n    ],\n    \"groupId\": 1234,\n    \"name\": \"Saturday hours\",\n    \"endDate\": \"2023-04-20\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c06db21-f456-4c7e-8252-cf81df14e8e6",
+          "name": "Create opening hours",
+          "request": {
+            "name": "Create opening hours",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "opening-hours",
+                "groups",
+                ":groupId",
+                "opening-hours"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<date>\",\n  \"type\": \"<string>\",\n  \"weekdayHours\": [\n    {\n      \"endTime\": \"<string>\",\n      \"open\": \"<boolean>\",\n      \"startTime\": \"<string>\",\n      \"weekday\": \"<integer>\"\n    }\n  ],\n  \"groupId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"endDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "935f51c7-c92f-4cbe-b89f-5516d7d7cb44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "opening-hours",
+                    "groups",
+                    ":groupId",
+                    "opening-hours"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2023-03-15\",\n  \"type\": \"STANDARD\",\n  \"weekdayHours\": [\n    {\n      \"endTime\": \"14:00\",\n      \"open\": true,\n      \"startTime\": \"12:00\",\n      \"weekday\": 1\n    }\n  ],\n  \"groupId\": 1234,\n  \"name\": \"Saturday hours\",\n  \"endDate\": \"2023-04-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"startDate\": \"2023-03-15\",\n  \"type\": \"STANDARD\",\n  \"weekdayHours\": [\n    {\n      \"endTime\": \"14:00\",\n      \"open\": true,\n      \"startTime\": \"12:00\",\n      \"weekday\": 1\n    }\n  ],\n  \"groupId\": 1234,\n  \"name\": \"Saturday hours\",\n  \"endDate\": \"2023-04-20\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39489b05-fe5c-4a27-9ec3-13afe8714d1c",
+          "name": "Get open periods",
+          "request": {
+            "name": "Get open periods",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "opening-hours",
+                "groups",
+                ":groupId",
+                "open-periods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "periodStart",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "periodEnd",
+                  "value": "<date>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d10e01be-e349-4fc1-ba78-c271b64f34e1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "opening-hours",
+                    "groups",
+                    ":groupId",
+                    "open-periods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "periodStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "periodEnd",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"close\": \"2023-03-15T20:00:00\",\n    \"open\": \"2023-03-15T08:00:00\"\n  },\n  {\n    \"close\": \"2023-03-15T20:00:00\",\n    \"open\": \"2023-03-15T08:00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "71a9169c-beed-43ee-94f0-f58f0d702f72",
+    "name": "Quinyx Absence Schedules Opening Hours API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

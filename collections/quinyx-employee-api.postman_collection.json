@@ -1,0 +1,1989 @@
+{
+  "item": [
+    {
+      "id": "cc9d0c05-cffa-42d9-b7ad-9d06e7280b0a",
+      "name": "Employee",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9fa92360-bb61-445b-b0e4-0d9edaec039b",
+          "name": "Get an employee",
+          "request": {
+            "name": "Get an employee",
+            "description": {
+              "content": "Retrieves a single employee by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "employees",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Employee identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e0a3cccc-7d16-4e18-8c53-347a745094a3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345\",\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  },\n  \"updated\": \"2024-06-01T10:00:00Z\",\n  \"created\": \"2024-06-01T10:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47508b0f-8fbf-4aa6-84dd-2a1830f957dd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fea5a2af-3f9c-4f6f-a30b-a57257839db7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3cfc4fe-92f3-4a9a-a70d-7340c1acfc72",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe36aa17-2f39-4a74-a027-ba0332a16cb8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/not-found\",\n  \"title\": \"Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource was not found\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ced7b08-72b9-436a-b73c-531149bb880d",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e58c6342-358f-4807-9243-0c4e2fdb8a74",
+          "name": "Update an employee",
+          "request": {
+            "name": "Update an employee",
+            "description": {
+              "content": "Updates the specified employee with the provided attributes and returns it",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "employees",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Employee identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"badgeNumber\": \"<string>\",\n  \"contactInformation\": {\n    \"mobileNumber\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  },\n  \"email\": \"<email>\",\n  \"emergencyContact\": {\n    \"legalGuardianEmail\": \"<string>\",\n    \"legalGuardianName\": \"<string>\",\n    \"nextOfKinName\": \"<string>\",\n    \"nextOfKinPhone\": \"<string>\"\n  },\n  \"employment\": {\n    \"employmentStartDate\": \"<date>\",\n    \"homeGroupId\": \"<string>\",\n    \"industryStartDate\": \"<date>\",\n    \"locked\": \"<string>\",\n    \"passive\": \"<boolean>\",\n    \"staffCategoryId\": \"<string>\",\n    \"managerId\": \"<string>\",\n    \"employmentEndDate\": \"<string,null-date>\",\n    \"costCentreId\": \"<string>\"\n  },\n  \"personalInformation\": {\n    \"dateOfBirth\": \"<date>\",\n    \"firstName\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"pictureURL\": \"<string>\",\n    \"socialSecurityNumber\": \"<string>\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1e005cfd-3842-416c-8058-3fcef6f003f4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\",\n    \"zip\": \"SE-10000\"\n  },\n  \"badgeNumber\": \"001\",\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"email\": \"employee@example.com\",\n  \"emergencyContact\": {\n    \"legalGuardianEmail\": \"guardian@example.com\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\"\n  },\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"locked\": \"NOT_LOCKED\",\n    \"passive\": false,\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"dateOfBirth\": \"1990-01-01\",\n    \"firstName\": \"John\",\n    \"gender\": \"MALE\",\n    \"lastName\": \"Doe\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\",\n    \"socialSecurityNumber\": \"000000-0000\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345\",\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  },\n  \"updated\": \"2024-06-01T10:00:00Z\",\n  \"created\": \"2024-06-01T10:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "158afd3d-2ac9-498a-ae0b-ed39e8fd7899",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\",\n    \"zip\": \"SE-10000\"\n  },\n  \"badgeNumber\": \"001\",\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"email\": \"employee@example.com\",\n  \"emergencyContact\": {\n    \"legalGuardianEmail\": \"guardian@example.com\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\"\n  },\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"locked\": \"NOT_LOCKED\",\n    \"passive\": false,\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"dateOfBirth\": \"1990-01-01\",\n    \"firstName\": \"John\",\n    \"gender\": \"MALE\",\n    \"lastName\": \"Doe\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\",\n    \"socialSecurityNumber\": \"000000-0000\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59388f6f-1d2e-4b1b-8c53-2bc3887de54b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\",\n    \"zip\": \"SE-10000\"\n  },\n  \"badgeNumber\": \"001\",\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"email\": \"employee@example.com\",\n  \"emergencyContact\": {\n    \"legalGuardianEmail\": \"guardian@example.com\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\"\n  },\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"locked\": \"NOT_LOCKED\",\n    \"passive\": false,\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"dateOfBirth\": \"1990-01-01\",\n    \"firstName\": \"John\",\n    \"gender\": \"MALE\",\n    \"lastName\": \"Doe\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\",\n    \"socialSecurityNumber\": \"000000-0000\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bf7d47b-7dbf-48b7-a0f9-a2e1149b84e4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\",\n    \"zip\": \"SE-10000\"\n  },\n  \"badgeNumber\": \"001\",\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"email\": \"employee@example.com\",\n  \"emergencyContact\": {\n    \"legalGuardianEmail\": \"guardian@example.com\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\"\n  },\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"locked\": \"NOT_LOCKED\",\n    \"passive\": false,\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"dateOfBirth\": \"1990-01-01\",\n    \"firstName\": \"John\",\n    \"gender\": \"MALE\",\n    \"lastName\": \"Doe\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\",\n    \"socialSecurityNumber\": \"000000-0000\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd4b0d9c-e2fc-4467-a14c-b2e05e84da7d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\",\n    \"zip\": \"SE-10000\"\n  },\n  \"badgeNumber\": \"001\",\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"email\": \"employee@example.com\",\n  \"emergencyContact\": {\n    \"legalGuardianEmail\": \"guardian@example.com\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\"\n  },\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"locked\": \"NOT_LOCKED\",\n    \"passive\": false,\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"dateOfBirth\": \"1990-01-01\",\n    \"firstName\": \"John\",\n    \"gender\": \"MALE\",\n    \"lastName\": \"Doe\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\",\n    \"socialSecurityNumber\": \"000000-0000\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/not-found\",\n  \"title\": \"Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource was not found\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4795d59c-8d6a-4397-be7f-f59aa0a9965b",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\",\n    \"zip\": \"SE-10000\"\n  },\n  \"badgeNumber\": \"001\",\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"email\": \"employee@example.com\",\n  \"emergencyContact\": {\n    \"legalGuardianEmail\": \"guardian@example.com\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\"\n  },\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"locked\": \"NOT_LOCKED\",\n    \"passive\": false,\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"dateOfBirth\": \"1990-01-01\",\n    \"firstName\": \"John\",\n    \"gender\": \"MALE\",\n    \"lastName\": \"Doe\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\",\n    \"socialSecurityNumber\": \"000000-0000\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55d42889-4495-49c7-bdf4-cc0389d96674",
+          "name": "Delete an employee",
+          "request": {
+            "name": "Delete an employee",
+            "description": {
+              "content": "Permanently deletes an employee",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "employees",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Employee identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "09aaa568-3922-41f6-b650-025a67845d84",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09de4df0-bd0e-4880-8bf4-56b1f4c43ac8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3df692a2-a777-475d-b274-60c9c22ea956",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "483efb2d-8316-4843-8210-47ef0e9b0c40",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/not-found\",\n  \"title\": \"Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource was not found\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd3cf335-96b8-493f-abe6-6f800e07aed8",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82e4329e-b46a-4328-b115-93d690d2c01b",
+          "name": "Partially update an employee",
+          "request": {
+            "name": "Partially update an employee",
+            "description": {
+              "content": "Partially updates the specified employee with the provided attributes and returns it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "employees",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Employee identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"badgeNumber\": \"<string>\",\n  \"email\": \"<email>\",\n  \"personalInformation\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"dateOfBirth\": \"<date>\",\n    \"gender\": \"<string>\",\n    \"socialSecurityNumber\": \"<string>\",\n    \"pictureURL\": \"<string>\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  },\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"<string>\",\n    \"staffCategoryId\": \"<string>\",\n    \"passive\": \"<boolean>\",\n    \"locked\": \"<string>\",\n    \"employmentStartDate\": \"<date>\",\n    \"industryStartDate\": \"<date>\",\n    \"managerId\": \"<string>\",\n    \"employmentEndDate\": \"<date>\",\n    \"costCentreId\": \"<string>\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"<string>\",\n    \"nextOfKinPhone\": \"<string>\",\n    \"legalGuardianName\": \"<string>\",\n    \"legalGuardianEmail\": \"<string>\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a122441-025b-493f-969e-57acd8bb8ffb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345\",\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  },\n  \"updated\": \"2024-06-01T10:00:00Z\",\n  \"created\": \"2024-06-01T10:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e896475-1e91-4e6e-bc61-39a9bad06298",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee33a8d1-eb9a-47ee-9835-e89f4ebf9b82",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8cacd2d-1123-48a0-bb84-21433eae7dc3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "568e4530-798b-4937-9c4b-ed27472b7bf6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/not-found\",\n  \"title\": \"Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource was not found\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff9d4e5f-35ea-4fc5-84e7-16b6259ec4c5",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/employees/{id}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d55e2070-1872-4674-853a-2bae1299257a",
+          "name": "List employees",
+          "request": {
+            "name": "List employees",
+            "description": {
+              "content": "Returns a paginated list of employees.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idIn",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "idIn",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Cursor for the next page of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50",
+                  "description": "Maximum number of items to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "b1311436-606c-42b2-901f-a53aa8fbf690",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"12345\",\n      \"badgeNumber\": \"001\",\n      \"email\": \"employee@example.com\",\n      \"personalInformation\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"dateOfBirth\": \"1990-01-01\",\n        \"gender\": \"MALE\",\n        \"socialSecurityNumber\": \"000000-0000\",\n        \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n      },\n      \"contactInformation\": {\n        \"mobileNumber\": \"+46700000000\",\n        \"phoneNumber\": \"+46800000000\"\n      },\n      \"address\": {\n        \"address1\": \"123 Example Street\",\n        \"address2\": \"Apt 1\",\n        \"zip\": \"SE-10000\",\n        \"city\": \"Stockholm\",\n        \"country\": \"Sweden\"\n      },\n      \"employment\": {\n        \"homeGroupId\": \"123\",\n        \"staffCategoryId\": \"123\",\n        \"passive\": false,\n        \"locked\": \"NOT_LOCKED\",\n        \"employmentStartDate\": \"2020-01-01\",\n        \"industryStartDate\": \"2015-01-01\",\n        \"managerId\": \"1234\",\n        \"employmentEndDate\": \"2025-12-31\",\n        \"costCentreId\": \"1234\"\n      },\n      \"emergencyContact\": {\n        \"nextOfKinName\": \"John Doe\",\n        \"nextOfKinPhone\": \"+46700000000\",\n        \"legalGuardianName\": \"Jane Doe\",\n        \"legalGuardianEmail\": \"guardian@example.com\"\n      },\n      \"punchSettings\": {\n        \"allowAttestOfOwnPunches\": false\n      },\n      \"updated\": \"2024-06-01T10:00:00Z\",\n      \"created\": \"2024-06-01T10:00:00Z\"\n    },\n    {\n      \"id\": \"12345\",\n      \"badgeNumber\": \"001\",\n      \"email\": \"employee@example.com\",\n      \"personalInformation\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"dateOfBirth\": \"1990-01-01\",\n        \"gender\": \"MALE\",\n        \"socialSecurityNumber\": \"000000-0000\",\n        \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n      },\n      \"contactInformation\": {\n        \"mobileNumber\": \"+46700000000\",\n        \"phoneNumber\": \"+46800000000\"\n      },\n      \"address\": {\n        \"address1\": \"123 Example Street\",\n        \"address2\": \"Apt 1\",\n        \"zip\": \"SE-10000\",\n        \"city\": \"Stockholm\",\n        \"country\": \"Sweden\"\n      },\n      \"employment\": {\n        \"homeGroupId\": \"123\",\n        \"staffCategoryId\": \"123\",\n        \"passive\": false,\n        \"locked\": \"NOT_LOCKED\",\n        \"employmentStartDate\": \"2020-01-01\",\n        \"industryStartDate\": \"2015-01-01\",\n        \"managerId\": \"1234\",\n        \"employmentEndDate\": \"2025-12-31\",\n        \"costCentreId\": \"1234\"\n      },\n      \"emergencyContact\": {\n        \"nextOfKinName\": \"John Doe\",\n        \"nextOfKinPhone\": \"+46700000000\",\n        \"legalGuardianName\": \"Jane Doe\",\n        \"legalGuardianEmail\": \"guardian@example.com\"\n      },\n      \"punchSettings\": {\n        \"allowAttestOfOwnPunches\": false\n      },\n      \"updated\": \"2024-06-01T10:00:00Z\",\n      \"created\": \"2024-06-01T10:00:00Z\"\n    }\n  ],\n  \"pagination\": {\n    \"nextPageToken\": \"eyJpZCI6MTIwfQ\",\n    \"previousPageToken\": \"eyJpZCI6ODB9\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b640dfde-8815-42c3-ae5e-3b5b21a42602",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/hr/v3/employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db61a370-3c35-4623-9f58-e8236bbb80fd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "656886c5-49e5-4f53-b156-39c1c9f141d2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a746177-77e6-486a-aa74-4667e43b5404",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62a80611-d235-47db-9e6c-1b079e31d624",
+          "name": "Create an employee",
+          "request": {
+            "name": "Create an employee",
+            "description": {
+              "content": "Creates and returns the created employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hr",
+                "v3",
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"badgeNumber\": \"<string>\",\n  \"email\": \"<email>\",\n  \"employment\": {\n    \"employmentStartDate\": \"<date>\",\n    \"homeGroupId\": \"<string>\",\n    \"staffCategoryId\": \"<string>\",\n    \"managerId\": \"<string>\",\n    \"passive\": \"<boolean>\",\n    \"locked\": \"<string>\",\n    \"employmentEndDate\": \"<date>\",\n    \"industryStartDate\": \"<date>\",\n    \"costCentreId\": \"<string>\"\n  },\n  \"personalInformation\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"dateOfBirth\": \"<date>\",\n    \"gender\": \"<string>\",\n    \"socialSecurityNumber\": \"<string>\",\n    \"pictureURL\": \"<string>\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  },\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"<string>\",\n    \"nextOfKinPhone\": \"<string>\",\n    \"legalGuardianName\": \"<string>\",\n    \"legalGuardianEmail\": \"<string>\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c19727db-c0d6-4780-8ea9-2ebc694c5847",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345\",\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"employment\": {\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentStartDate\": \"2020-01-01\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"managerId\": \"1234\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"costCentreId\": \"1234\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  },\n  \"updated\": \"2024-06-01T10:00:00Z\",\n  \"created\": \"2024-06-01T10:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db4b6c56-4b74-4cea-85f3-c93dae5c1bc6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/hr/v3/employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ad27a38-51e9-456a-ad76-286894d336fe",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/hr/v3/employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53e576c2-c347-4f24-8c69-9ea7d7d1bda8",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/hr/v3/employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d3f992e-7601-450a-ab21-d45feadc67c9",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hr",
+                    "v3",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"badgeNumber\": \"001\",\n  \"email\": \"employee@example.com\",\n  \"employment\": {\n    \"employmentStartDate\": \"2020-01-01\",\n    \"homeGroupId\": \"123\",\n    \"staffCategoryId\": \"123\",\n    \"managerId\": \"1234\",\n    \"passive\": false,\n    \"locked\": \"NOT_LOCKED\",\n    \"employmentEndDate\": \"2025-12-31\",\n    \"industryStartDate\": \"2015-01-01\",\n    \"costCentreId\": \"1234\"\n  },\n  \"personalInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"MALE\",\n    \"socialSecurityNumber\": \"000000-0000\",\n    \"pictureURL\": \"https://example.com/pictures/placeholder.jpg\"\n  },\n  \"contactInformation\": {\n    \"mobileNumber\": \"+46700000000\",\n    \"phoneNumber\": \"+46800000000\"\n  },\n  \"address\": {\n    \"address1\": \"123 Example Street\",\n    \"address2\": \"Apt 1\",\n    \"zip\": \"SE-10000\",\n    \"city\": \"Stockholm\",\n    \"country\": \"Sweden\"\n  },\n  \"emergencyContact\": {\n    \"nextOfKinName\": \"John Doe\",\n    \"nextOfKinPhone\": \"+46700000000\",\n    \"legalGuardianName\": \"Jane Doe\",\n    \"legalGuardianEmail\": \"guardian@example.com\"\n  },\n  \"punchSettings\": {\n    \"allowAttestOfOwnPunches\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/hr/v3/employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2bee1fd6-cb6a-493e-947a-2a72f14b58f5",
+    "name": "Quinyx Absence Schedules Employee API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

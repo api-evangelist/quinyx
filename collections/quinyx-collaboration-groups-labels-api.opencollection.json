@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Collaboration Groups Labels API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collaboration Groups Labels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get label by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/labels/:labelId",
+            "params": [
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get label by id"
+        },
+        {
+          "info": {
+            "name": "Update label",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/labels/:labelId",
+            "params": [
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update label"
+        },
+        {
+          "info": {
+            "name": "Delete label",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/labels/:labelId",
+            "params": [
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete label"
+        },
+        {
+          "info": {
+            "name": "Create label for domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/labels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create label for domain"
+        },
+        {
+          "info": {
+            "name": "List labels by domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/labels/domain/:domainId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List labels by domain"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

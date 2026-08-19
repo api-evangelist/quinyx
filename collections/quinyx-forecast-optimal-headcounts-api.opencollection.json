@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Forecast Optimal Headcounts API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecast Optimal Headcounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate optimal headcount by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/forecast-calculation/groups/:groupId/optimal-headcounts/:optimalHeadcountId",
+            "params": [
+              {
+                "name": "optimalHeadcountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate optimal headcount by id"
+        },
+        {
+          "info": {
+            "name": "Calculate optimal headcounts for group, excluding limit rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/forecast-calculation/groups/:groupId/optimal-headcounts",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Calculate optimal headcounts for group, excluding limit rules"
+        },
+        {
+          "info": {
+            "name": "Get all optimal headcounts for the customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/forecast-settings/optimal-headcounts"
+          },
+          "docs": "Get all optimal headcounts for the customer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,633 @@
+{
+  "item": [
+    {
+      "id": "9521047c-5842-4022-8336-b850f69a5fee",
+      "name": "Shift",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb4eafae-b69b-4d2c-9996-c7bb3523f331",
+          "name": "List shifts",
+          "request": {
+            "name": "List shifts",
+            "description": {
+              "content": "Returns shifts using cursor-based pagination.\n\nSupports:\n- Numeric internal IDs\n- External IDs using prefix 'xrefId:'\n- Employee badge numbers using prefix 'badgeNumber:'\n- Timezone override via Prefer header\n\nPagination is cursor-based. Use the returned pageToken for next/previous navigation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schedule",
+                "v3",
+                "shifts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Cursor for the next page of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50",
+                  "description": "Maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "idIn",
+                  "value": "<string>",
+                  "description": "Filter by id (IN). Supports external ids of types: xrefId"
+                },
+                {
+                  "disabled": false,
+                  "key": "idIn",
+                  "value": "<string>",
+                  "description": "Filter by id (IN). Supports external ids of types: xrefId"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdIn",
+                  "value": "<string>",
+                  "description": "Filter by groupId (IN). Supports external ids of types: xrefId"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdIn",
+                  "value": "<string>",
+                  "description": "Filter by groupId (IN). Supports external ids of types: xrefId"
+                },
+                {
+                  "disabled": false,
+                  "key": "employeeIdIn",
+                  "value": "<string>",
+                  "description": "Filter by employeeId (IN). Supports external ids of types: badgeNumber"
+                },
+                {
+                  "disabled": false,
+                  "key": "employeeIdIn",
+                  "value": "<string>",
+                  "description": "Filter by employeeId (IN). Supports external ids of types: badgeNumber"
+                },
+                {
+                  "disabled": false,
+                  "key": "beginGte",
+                  "value": "<dateTime>",
+                  "description": "Filter by begin (GTE)"
+                },
+                {
+                  "disabled": false,
+                  "key": "beginLte",
+                  "value": "<dateTime>",
+                  "description": "Filter by begin (LTE)"
+                },
+                {
+                  "disabled": false,
+                  "key": "statusIn",
+                  "value": "<string>",
+                  "description": "Filter by status (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "statusIn",
+                  "value": "<string>",
+                  "description": "Filter by status (IN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "deleted",
+                  "value": "<string>",
+                  "description": "Filter by deleted (EQ)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional header for response formatting.\n\nExample:\nPrefer: timezone=Europe/Belgrade\n\nAffects only response date-time values.\nDoes NOT affect filtering parameters.\n\nDefault response timezone is UTC.\n",
+                "key": "Prefer",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "dd08edb9-7ad0-4933-8c62-88f051ae2d15",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedule",
+                    "v3",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "beginGte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "beginLte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleted",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional header for response formatting.\n\nExample:\nPrefer: timezone=Europe/Belgrade\n\nAffects only response date-time values.\nDoes NOT affect filtering parameters.\n\nDefault response timezone is UTC.\n",
+                    "key": "Prefer",
+                    "value": "timezone=Europe/Belgrade"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"123456789\",\n      \"xrefId\": \"ext-shift-001\",\n      \"groupId\": \"42\",\n      \"begin\": \"2024-06-01T08:00:00Z\",\n      \"end\": \"2024-06-01T16:00:00Z\",\n      \"status\": \"ASSIGNED\",\n      \"deleted\": false,\n      \"shiftTypeId\": \"7\",\n      \"employeeId\": \"99\",\n      \"countScheduleHours\": true,\n      \"countWorkedHours\": true,\n      \"freeDay\": false,\n      \"productiveTime\": \"SCHEDULED_TIME\",\n      \"comment\": \"Morning shift - opening duties\",\n      \"costCentreId\": \"5\",\n      \"projectId\": \"12\",\n      \"agreementId\": \"3\",\n      \"scheduledDuration\": \"PT8H\",\n      \"created\": \"2024-01-15T10:30:00Z\",\n      \"updated\": \"2024-05-20T14:00:00Z\",\n      \"breaks\": [\n        {\n          \"begin\": \"2024-06-01T12:00:00Z\",\n          \"end\": \"2024-06-01T12:30:00Z\"\n        },\n        {\n          \"begin\": \"2024-06-01T12:00:00Z\",\n          \"end\": \"2024-06-01T12:30:00Z\"\n        }\n      ],\n      \"tasks\": [\n        {\n          \"id\": \"987654321\",\n          \"shiftTypeId\": \"7\",\n          \"begin\": \"2024-06-01T08:00:00Z\",\n          \"end\": \"2024-06-01T10:00:00Z\",\n          \"countAsScheduledHours\": true,\n          \"countAsWorkedHours\": true,\n          \"productiveTime\": \"ALWAYS\",\n          \"costCentreId\": \"5\",\n          \"projectId\": \"12\",\n          \"comment\": \"Customer service desk coverage\"\n        },\n        {\n          \"id\": \"987654321\",\n          \"shiftTypeId\": \"7\",\n          \"begin\": \"2024-06-01T08:00:00Z\",\n          \"end\": \"2024-06-01T10:00:00Z\",\n          \"countAsScheduledHours\": true,\n          \"countAsWorkedHours\": true,\n          \"productiveTime\": \"ALWAYS\",\n          \"costCentreId\": \"5\",\n          \"projectId\": \"12\",\n          \"comment\": \"Customer service desk coverage\"\n        }\n      ],\n      \"additionalTimeLevel\": \"4\"\n    },\n    {\n      \"id\": \"123456789\",\n      \"xrefId\": \"ext-shift-001\",\n      \"groupId\": \"42\",\n      \"begin\": \"2024-06-01T08:00:00Z\",\n      \"end\": \"2024-06-01T16:00:00Z\",\n      \"status\": \"ASSIGNED\",\n      \"deleted\": false,\n      \"shiftTypeId\": \"7\",\n      \"employeeId\": \"99\",\n      \"countScheduleHours\": true,\n      \"countWorkedHours\": true,\n      \"freeDay\": false,\n      \"productiveTime\": \"SCHEDULED_TIME\",\n      \"comment\": \"Morning shift - opening duties\",\n      \"costCentreId\": \"5\",\n      \"projectId\": \"12\",\n      \"agreementId\": \"3\",\n      \"scheduledDuration\": \"PT8H\",\n      \"created\": \"2024-01-15T10:30:00Z\",\n      \"updated\": \"2024-05-20T14:00:00Z\",\n      \"breaks\": [\n        {\n          \"begin\": \"2024-06-01T12:00:00Z\",\n          \"end\": \"2024-06-01T12:30:00Z\"\n        },\n        {\n          \"begin\": \"2024-06-01T12:00:00Z\",\n          \"end\": \"2024-06-01T12:30:00Z\"\n        }\n      ],\n      \"tasks\": [\n        {\n          \"id\": \"987654321\",\n          \"shiftTypeId\": \"7\",\n          \"begin\": \"2024-06-01T08:00:00Z\",\n          \"end\": \"2024-06-01T10:00:00Z\",\n          \"countAsScheduledHours\": true,\n          \"countAsWorkedHours\": true,\n          \"productiveTime\": \"ALWAYS\",\n          \"costCentreId\": \"5\",\n          \"projectId\": \"12\",\n          \"comment\": \"Customer service desk coverage\"\n        },\n        {\n          \"id\": \"987654321\",\n          \"shiftTypeId\": \"7\",\n          \"begin\": \"2024-06-01T08:00:00Z\",\n          \"end\": \"2024-06-01T10:00:00Z\",\n          \"countAsScheduledHours\": true,\n          \"countAsWorkedHours\": true,\n          \"productiveTime\": \"ALWAYS\",\n          \"costCentreId\": \"5\",\n          \"projectId\": \"12\",\n          \"comment\": \"Customer service desk coverage\"\n        }\n      ],\n      \"additionalTimeLevel\": \"4\"\n    }\n  ],\n  \"pagination\": {\n    \"nextPageToken\": \"eyJpZCI6MTIwfQ\",\n    \"previousPageToken\": \"eyJpZCI6ODB9\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3b1a47b-8c95-4359-8ea4-b93e7a0bc389",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedule",
+                    "v3",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "beginGte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "beginLte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleted",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional header for response formatting.\n\nExample:\nPrefer: timezone=Europe/Belgrade\n\nAffects only response date-time values.\nDoes NOT affect filtering parameters.\n\nDefault response timezone is UTC.\n",
+                    "key": "Prefer",
+                    "value": "timezone=Europe/Belgrade"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/bad-request\",\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"detail\": \"The request is invalid or malformed\",\n  \"instance\": \"/schedule/v3/shifts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e3ca24e-9eec-43b6-8170-0cf7ff691532",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedule",
+                    "v3",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "beginGte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "beginLte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleted",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional header for response formatting.\n\nExample:\nPrefer: timezone=Europe/Belgrade\n\nAffects only response date-time values.\nDoes NOT affect filtering parameters.\n\nDefault response timezone is UTC.\n",
+                    "key": "Prefer",
+                    "value": "timezone=Europe/Belgrade"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/unauthorized\",\n  \"title\": \"Unauthorized\",\n  \"status\": 401,\n  \"detail\": \"Access token not set or invalid, and the requested resource could not be returned\",\n  \"instance\": \"/schedule/v3/shifts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7caa483e-5506-403e-93fb-0185e3c4f532",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedule",
+                    "v3",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "beginGte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "beginLte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleted",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional header for response formatting.\n\nExample:\nPrefer: timezone=Europe/Belgrade\n\nAffects only response date-time values.\nDoes NOT affect filtering parameters.\n\nDefault response timezone is UTC.\n",
+                    "key": "Prefer",
+                    "value": "timezone=Europe/Belgrade"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/forbidden\",\n  \"title\": \"Forbidden\",\n  \"status\": 403,\n  \"detail\": \"The resource could not be returned as the requestor is not authorized\",\n  \"instance\": \"/schedule/v3/shifts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "517674c3-44f6-439c-a9c7-34f951007599",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedule",
+                    "v3",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "eyJpZCI6MTAwfQ"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeIdIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "beginGte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "beginLte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusIn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleted",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional header for response formatting.\n\nExample:\nPrefer: timezone=Europe/Belgrade\n\nAffects only response date-time values.\nDoes NOT affect filtering parameters.\n\nDefault response timezone is UTC.\n",
+                    "key": "Prefer",
+                    "value": "timezone=Europe/Belgrade"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://developer.quinyx.com/api/problems/server-error\",\n  \"title\": \"Server Error\",\n  \"status\": 500,\n  \"detail\": \"The server encountered an unexpected error\",\n  \"instance\": \"/schedule/v3/shifts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7ad30fba-31cd-4bed-9b93-c90a4d6fdafa",
+    "name": "Quinyx Absence Schedules Shift API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

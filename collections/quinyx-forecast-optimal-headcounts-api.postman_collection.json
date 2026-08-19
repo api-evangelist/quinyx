@@ -1,0 +1,344 @@
+{
+  "item": [
+    {
+      "id": "faf602cb-6f4b-43bf-821e-06dc3d16af40",
+      "name": "Forecast Optimal Headcounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "065b275c-711c-4b95-9430-4bb531a4856a",
+          "name": "Calculate optimal headcount by id",
+          "request": {
+            "name": "Calculate optimal headcount by id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-calculation",
+                "groups",
+                ":groupId",
+                "optimal-headcounts",
+                ":optimalHeadcountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "optimalHeadcountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataType\": \"<string>\",\n  \"end\": \"<dateTime>\",\n  \"start\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ad5bc32-04c5-46d5-bc99-77ee1517c690",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-calculation",
+                    "groups",
+                    ":groupId",
+                    "optimal-headcounts",
+                    ":optimalHeadcountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "optimalHeadcountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataType\": \"FORECAST\",\n  \"end\": \"2024-01-15T18:00:00Z\",\n  \"start\": \"2024-01-15T08:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"dataset\": {\n    \"data\": [\n      {\n        \"start\": \"2024-01-15T08:00:00Z\",\n        \"end\": \"2024-01-15T08:15:00Z\",\n        \"value\": 12.5,\n        \"editedValue\": 13\n      },\n      {\n        \"start\": \"2024-01-15T08:00:00Z\",\n        \"end\": \"2024-01-15T08:15:00Z\",\n        \"value\": 12.5,\n        \"editedValue\": 13\n      }\n    ],\n    \"summaryValue\": 100.5,\n    \"editedSummaryValue\": 105,\n    \"resolution\": 5\n  },\n  \"id\": \"calc-7f3c2a1b\",\n  \"src\": \"FORECAST\",\n  \"groupId\": 42\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aed9651d-fbd6-4416-bc15-aaa88486c0d2",
+          "name": "Calculate optimal headcounts for group, excluding limit rules",
+          "request": {
+            "name": "Calculate optimal headcounts for group, excluding limit rules",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-calculation",
+                "groups",
+                ":groupId",
+                "optimal-headcounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28a777be-99e2-445d-a335-81301a820781",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-calculation",
+                    "groups",
+                    ":groupId",
+                    "optimal-headcounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"optimalHeadcountId\": \"ohc-7f3c2a1b\",\n    \"shiftTypeId\": 5,\n    \"shiftTypeIds\": [\n      2519,\n      6667\n    ],\n    \"datasetsByGroupId\": {\n      \"key_0\": {\n        \"data\": [\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          },\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          }\n        ],\n        \"summaryValue\": 100.5,\n        \"editedSummaryValue\": 105,\n        \"resolution\": 5\n      }\n    }\n  },\n  {\n    \"optimalHeadcountId\": \"ohc-7f3c2a1b\",\n    \"shiftTypeId\": 5,\n    \"shiftTypeIds\": [\n      8266,\n      808\n    ],\n    \"datasetsByGroupId\": {\n      \"key_0\": {\n        \"data\": [\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          },\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          }\n        ],\n        \"summaryValue\": 100.5,\n        \"editedSummaryValue\": 105,\n        \"resolution\": 5\n      },\n      \"key_1\": {\n        \"data\": [\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          },\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          }\n        ],\n        \"summaryValue\": 100.5,\n        \"editedSummaryValue\": 105,\n        \"resolution\": 5\n      },\n      \"key_2\": {\n        \"data\": [\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          },\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          }\n        ],\n        \"summaryValue\": 100.5,\n        \"editedSummaryValue\": 105,\n        \"resolution\": 5\n      },\n      \"key_3\": {\n        \"data\": [\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          },\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          }\n        ],\n        \"summaryValue\": 100.5,\n        \"editedSummaryValue\": 105,\n        \"resolution\": 5\n      },\n      \"key_4\": {\n        \"data\": [\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          },\n          {\n            \"start\": \"2024-01-15T08:00:00Z\",\n            \"end\": \"2024-01-15T08:15:00Z\",\n            \"value\": 12.5,\n            \"editedValue\": 13,\n            \"runId\": \"run-7f3c2a1b\",\n            \"runTimeStamp\": \"2024-01-15T07:55:00Z\"\n          }\n        ],\n        \"summaryValue\": 100.5,\n        \"editedSummaryValue\": 105,\n        \"resolution\": 5\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b2802a1-824f-4c9c-af64-a299186a3e3d",
+          "name": "Get all optimal headcounts for the customer",
+          "request": {
+            "name": "Get all optimal headcounts for the customer",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecast-settings",
+                "optimal-headcounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cece9729-7323-44a9-a8d6-832a67ca4090",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecast-settings",
+                    "optimal-headcounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"aggregationType\": \"SUM\",\n    \"name\": \"Optimal headcount\",\n    \"id\": \"1f8e8b3c-9a2d-4b8e-9a2d-1f8e8b3c9a2d\",\n    \"description\": \"Optimal headcount description\",\n    \"forecastVariableId\": 1,\n    \"forecastVariableType\": \"headcount\",\n    \"forecastConfigurationId\": 1,\n    \"calculatedVariableId\": \"2f8e8b3c-9a2d-4b8e-9a2d-2f8e8b3c9a2d\",\n    \"externalId\": \"external-id-1\",\n    \"shiftTypeIds\": [\n      3797,\n      54\n    ],\n    \"variableType\": \"\",\n    \"src\": \"optimalHeadcount\"\n  },\n  {\n    \"aggregationType\": \"SUM\",\n    \"name\": \"Optimal headcount\",\n    \"id\": \"1f8e8b3c-9a2d-4b8e-9a2d-1f8e8b3c9a2d\",\n    \"description\": \"Optimal headcount description\",\n    \"forecastVariableId\": 1,\n    \"forecastVariableType\": \"headcount\",\n    \"forecastConfigurationId\": 1,\n    \"calculatedVariableId\": \"2f8e8b3c-9a2d-4b8e-9a2d-2f8e8b3c9a2d\",\n    \"externalId\": \"external-id-1\",\n    \"shiftTypeIds\": [\n      1810,\n      1529\n    ],\n    \"variableType\": \"\",\n    \"src\": \"optimalHeadcount\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "39f4bf17-4891-4b5c-a622-a95f62a17079",
+    "name": "Quinyx Absence Schedules Forecast Optimal Headcounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

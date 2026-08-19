@@ -1,0 +1,392 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Collaboration Groups API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collaboration Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get collaboration group by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:collaborationGroupId",
+            "params": [
+              {
+                "name": "collaborationGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get collaboration group by id"
+        },
+        {
+          "info": {
+            "name": "Update collaboration group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:collaborationGroupId",
+            "params": [
+              {
+                "name": "collaborationGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update collaboration group"
+        },
+        {
+          "info": {
+            "name": "Delete collaboration group with its children",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:collaborationGroupId",
+            "params": [
+              {
+                "name": "collaborationGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete collaboration group with its children"
+        },
+        {
+          "info": {
+            "name": "Unarchive collaboration group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:collaborationGroupId/unarchive",
+            "params": [
+              {
+                "name": "collaborationGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unarchive collaboration group"
+        },
+        {
+          "info": {
+            "name": "Move a collaboration group to a new parent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:collaborationGroupId/move",
+            "params": [
+              {
+                "name": "collaborationGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move a collaboration group to a new parent"
+        },
+        {
+          "info": {
+            "name": "Archive collaboration group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:collaborationGroupId/archive",
+            "params": [
+              {
+                "name": "collaborationGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archive collaboration group"
+        },
+        {
+          "info": {
+            "name": "Create collaboration group for domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create collaboration group for domain"
+        },
+        {
+          "info": {
+            "name": "Associate groups to a collaboration group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/associate-groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate groups to a collaboration group"
+        },
+        {
+          "info": {
+            "name": "Associate employees to a collaboration group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/associate-employees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate employees to a collaboration group"
+        },
+        {
+          "info": {
+            "name": "Get root collaboration group by domain id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/root-by-domain/:domainId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get root collaboration group by domain id"
+        },
+        {
+          "info": {
+            "name": "List collaboration groups under root",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:rootGroupId/all-under-root",
+            "params": [
+              {
+                "name": "rootGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List collaboration groups under root"
+        },
+        {
+          "info": {
+            "name": "List child collaboration groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:parentId/children",
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List child collaboration groups"
+        },
+        {
+          "info": {
+            "name": "List employee ids in collaboration group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:collaborationGroupId/employees",
+            "params": [
+              {
+                "name": "collaborationGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List employee ids in collaboration group"
+        },
+        {
+          "info": {
+            "name": "List eligible parent collaboration groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/:collaborationGroupId/eligible-parents",
+            "params": [
+              {
+                "name": "collaborationGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List eligible parent collaboration groups"
+        },
+        {
+          "info": {
+            "name": "List collaboration groups for group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/group/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List collaboration groups for group"
+        },
+        {
+          "info": {
+            "name": "List collaboration groups for employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/groups/employee/:employeeId",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List collaboration groups for employee"
+        },
+        {
+          "info": {
+            "name": "Get collaboration group by root id and employee id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/by-root/:rootCollaborationGroupId/employee/:employeeId",
+            "params": [
+              {
+                "name": "rootCollaborationGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get collaboration group by root id and employee id"
+        },
+        {
+          "info": {
+            "name": "Remove groups from a collaboration group, optionally including archived collaboration groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/delete-groups",
+            "params": [
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove groups from a collaboration group, optionally including archived collaboration groups"
+        },
+        {
+          "info": {
+            "name": "Remove employees from a collaboration group, optionally including archived collaboration groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/v2/collaboration-groups/delete-employees",
+            "params": [
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove employees from a collaboration group, optionally including archived collaboration groups"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

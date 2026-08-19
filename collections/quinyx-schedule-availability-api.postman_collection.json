@@ -1,0 +1,340 @@
+{
+  "item": [
+    {
+      "id": "1979b0ba-38be-40ff-aebf-7108d02dda00",
+      "name": "Schedule Availability",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ea983b27-b541-497f-b893-6b43acb820db",
+          "name": "Create schedule availability",
+          "request": {
+            "name": "Create schedule availability",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "schedule-availability",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"startDateTime\": \"<string>\",\n    \"endDateTime\": \"<string>\",\n    \"employeeId\": \"<long>\",\n    \"groupId\": \"<integer>\"\n  },\n  {\n    \"startDateTime\": \"<string>\",\n    \"endDateTime\": \"<string>\",\n    \"employeeId\": \"<long>\",\n    \"groupId\": \"<integer>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4af0ae1d-83fa-4f32-a296-108e36af3d59",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule-availability",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"startDateTime\": \"2026-01-15T08:00:00\",\n    \"endDateTime\": \"2026-01-15T17:00:00\",\n    \"employeeId\": 12345,\n    \"groupId\": 42\n  },\n  {\n    \"startDateTime\": \"2026-01-15T08:00:00\",\n    \"endDateTime\": \"2026-01-15T17:00:00\",\n    \"employeeId\": 12345,\n    \"groupId\": 42\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c435123-56db-4922-837e-972a39d3509a",
+          "name": "Get schedule availability by group id",
+          "request": {
+            "name": "Get schedule availability by group id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "schedule-availability",
+                "v2",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb1b2095-5ae9-40cf-9b32-dc67940aa3f7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule-availability",
+                    "v2",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startDateTime\": \"2026-01-15T08:00:00\",\n    \"endDateTime\": \"2026-01-15T17:00:00\",\n    \"employeeId\": 12345,\n    \"unitGroupIds\": [\n      6094,\n      7877\n    ],\n    \"sectionGroupIds\": [\n      6177,\n      4930\n    ]\n  },\n  {\n    \"startDateTime\": \"2026-01-15T08:00:00\",\n    \"endDateTime\": \"2026-01-15T17:00:00\",\n    \"employeeId\": 12345,\n    \"unitGroupIds\": [\n      4095,\n      4159\n    ],\n    \"sectionGroupIds\": [\n      436,\n      8254\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "781065c1-21a2-4b1c-a476-341ecb795d41",
+          "name": "Get schedule availability by employee id",
+          "request": {
+            "name": "Get schedule availability by employee id",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "schedule-availability",
+                "v2",
+                "employees",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cb1a6c1-69e0-44ba-97f8-795df8ebbed5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule-availability",
+                    "v2",
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startDateTime\": \"2026-01-15T08:00:00\",\n    \"endDateTime\": \"2026-01-15T17:00:00\",\n    \"employeeId\": 12345,\n    \"unitGroupIds\": [\n      6094,\n      7877\n    ],\n    \"sectionGroupIds\": [\n      6177,\n      4930\n    ]\n  },\n  {\n    \"startDateTime\": \"2026-01-15T08:00:00\",\n    \"endDateTime\": \"2026-01-15T17:00:00\",\n    \"employeeId\": 12345,\n    \"unitGroupIds\": [\n      4095,\n      4159\n    ],\n    \"sectionGroupIds\": [\n      436,\n      8254\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a2265954-7109-4e29-bd90-9900108f1c04",
+    "name": "Quinyx Absence Schedules Schedule Availability API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

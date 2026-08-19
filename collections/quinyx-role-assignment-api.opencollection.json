@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Role Assignment API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Role Assignment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List role assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/hr/v3/role-assignments",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for the next page of results."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "idIn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id (IN)"
+              },
+              {
+                "name": "employeeIdIn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by employeeId (IN)"
+              },
+              {
+                "name": "groupIdIn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by groupId (IN)"
+              },
+              {
+                "name": "roleIdIn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by roleId (IN)"
+              },
+              {
+                "name": "startDateGte",
+                "value": "",
+                "type": "query",
+                "description": "Filter by startDate (GTE)"
+              },
+              {
+                "name": "startDateLte",
+                "value": "",
+                "type": "query",
+                "description": "Filter by startDate (LTE)"
+              },
+              {
+                "name": "endDateGte",
+                "value": "",
+                "type": "query",
+                "description": "Filter by endDate (GTE)"
+              },
+              {
+                "name": "endDateLte",
+                "value": "",
+                "type": "query",
+                "description": "Filter by endDate (LTE)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of role assignments."
+        },
+        {
+          "info": {
+            "name": "Create a role assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.quinyx.com/hr/v3/role-assignments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new role assignment for an employee."
+        },
+        {
+          "info": {
+            "name": "Update a role assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.quinyx.com/hr/v3/role-assignments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the start date and/or end date of a role assignment."
+        },
+        {
+          "info": {
+            "name": "Delete a role assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.quinyx.com/hr/v3/role-assignments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a role assignment by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

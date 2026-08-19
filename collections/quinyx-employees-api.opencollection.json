@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quinyx Absence Schedules Employees API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get List of employee information by badge number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.quinyx.com/v2/employee/badgeNo/:badgeNo",
+            "params": [
+              {
+                "name": "badgeNo",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get List of employee information by badge number"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

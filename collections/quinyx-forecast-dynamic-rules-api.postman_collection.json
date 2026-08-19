@@ -1,0 +1,670 @@
+{
+  "item": [
+    {
+      "id": "6e4d40df-8aea-418a-87c7-d063decb6402",
+      "name": "Forecast Dynamic Rules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ccc960a2-62ae-43af-993e-601ca39b82f5",
+          "name": "List dynamic rules",
+          "request": {
+            "name": "List dynamic rules",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "dynamic-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "350f351e-db03-4183-8f84-9216d993f05d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "dynamic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"amount\": 100,\n    \"endTime\": \"13:00\",\n    \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n    \"shiftTypes\": [\n      {\n        \"amount\": 10,\n        \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n      }\n    ],\n    \"startTime\": \"12:00\",\n    \"weekdays\": [\n      6\n    ]\n  },\n  {\n    \"amount\": 100,\n    \"endTime\": \"13:00\",\n    \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n    \"shiftTypes\": [\n      {\n        \"amount\": 10,\n        \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n      }\n    ],\n    \"startTime\": \"12:00\",\n    \"weekdays\": [\n      2\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9792766-f0de-407b-ac22-cd11a3c22a32",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "dynamic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"amount\": 100,\n    \"endTime\": \"13:00\",\n    \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n    \"shiftTypes\": [\n      {\n        \"amount\": 10,\n        \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n      }\n    ],\n    \"startTime\": \"12:00\",\n    \"weekdays\": [\n      6\n    ]\n  },\n  {\n    \"amount\": 100,\n    \"endTime\": \"13:00\",\n    \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n    \"shiftTypes\": [\n      {\n        \"amount\": 10,\n        \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n      }\n    ],\n    \"startTime\": \"12:00\",\n    \"weekdays\": [\n      2\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb0428a6-c95e-43a1-af46-5dbc5aaa1042",
+          "name": "Update a dynamic rule",
+          "request": {
+            "name": "Update a dynamic rule",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "dynamic-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<long>\",\n  \"endTime\": \"<string>\",\n  \"forecastExternalVariableId\": \"<string>\",\n  \"shiftTypes\": [\n    {\n      \"amount\": \"<integer>\",\n      \"externalShiftTypeId\": \"<string>\"\n    }\n  ],\n  \"startTime\": \"<string>\",\n  \"weekdays\": [\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be6e2386-20ce-490c-8fbe-bf1c27b4f180",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "dynamic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"endTime\": \"13:00\",\n  \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n  \"shiftTypes\": [\n    {\n      \"amount\": 10,\n      \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n    }\n  ],\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0cd06976-c08b-42f9-96fa-f3bf96b39915",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "dynamic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"endTime\": \"13:00\",\n  \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n  \"shiftTypes\": [\n    {\n      \"amount\": 10,\n      \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n    }\n  ],\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35a7d00f-6013-44e2-be83-57d0ec3d71f2",
+          "name": "Create a new dynamic rule",
+          "request": {
+            "name": "Create a new dynamic rule",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "dynamic-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) External Group Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>",
+                  "description": "External Section Id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<long>\",\n  \"endTime\": \"<string>\",\n  \"forecastExternalVariableId\": \"<string>\",\n  \"shiftTypes\": [\n    {\n      \"amount\": \"<integer>\",\n      \"externalShiftTypeId\": \"<string>\"\n    }\n  ],\n  \"startTime\": \"<string>\",\n  \"weekdays\": [\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "96c171ac-618c-404e-b992-d4c00326cf20",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "dynamic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "unitId"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "sectionId"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"endTime\": \"13:00\",\n  \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n  \"shiftTypes\": [\n    {\n      \"amount\": 10,\n      \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n    }\n  ],\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"endTime\": \"13:00\",\n  \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n  \"shiftTypes\": [\n    {\n      \"amount\": 10,\n      \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n    }\n  ],\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    0\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb1fdc36-68d4-4e25-b700-5bd4412a2ea6",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "dynamic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "unitId"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "sectionId"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"endTime\": \"13:00\",\n  \"forecastExternalVariableId\": \"EXTERNAL_VAR\",\n  \"shiftTypes\": [\n    {\n      \"amount\": 10,\n      \"externalShiftTypeId\": \"EXTERNAL_SHIFT_ID\"\n    }\n  ],\n  \"startTime\": \"12:00\",\n  \"weekdays\": [\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1c660df-2ffa-494e-94dc-62b95450a19e",
+          "name": "Delete a dynamic rule",
+          "request": {
+            "name": "Delete a dynamic rule",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "forecasts",
+                "dynamic-rules",
+                ":externalDynamicRuleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalUnitId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "externalSectionId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "externalDynamicRuleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72703cc2-bc5f-4d0c-acde-be0e5d30c505",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "dynamic-rules",
+                    ":externalDynamicRuleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "externalDynamicRuleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9738294-4778-41dd-aafd-37d52f148ef0",
+              "name": "Forbidden to perform this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "forecasts",
+                    "dynamic-rules",
+                    ":externalDynamicRuleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalUnitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalSectionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "externalDynamicRuleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "36e7867b-cfe7-4951-8024-b02791f9ece8",
+    "name": "Quinyx Absence Schedules Forecast Dynamic Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

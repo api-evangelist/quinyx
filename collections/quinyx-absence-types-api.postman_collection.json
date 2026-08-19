@@ -1,0 +1,399 @@
+{
+  "item": [
+    {
+      "id": "08125b7c-8e99-42fe-8625-9931fd5192a8",
+      "name": "Absence Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4bba4156-7f2b-4155-b51c-d2ad8c47ebd1",
+          "name": "List absence types for group and employee in period",
+          "request": {
+            "name": "List absence types for group and employee in period",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "absence-types",
+                "groups",
+                ":groupId",
+                "employees",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<date>",
+                  "description": "(Required) Start date of the period (yyyy-MM-dd)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<date>",
+                  "description": "(Required) End date of the period (yyyy-MM-dd)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "groupId",
+                  "description": "(Required) ID of the domain group. Any other group type (e.g. district, unit or section) is rejected with a 400 error."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "employeeId",
+                  "description": "(Required) ID of the employee"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "353284dd-6fa5-4b3d-beef-e9f67268573b",
+              "name": "Response where you see the absence types for group and employee in period",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-types",
+                    "groups",
+                    ":groupId",
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "2026-07-01"
+                    },
+                    {
+                      "key": "end",
+                      "value": "2026-07-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) ID of the domain group. Any other group type (e.g. district, unit or section) is rejected with a 400 error."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) ID of the employee"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"absenceTypeId\": 1,\n    \"absenceTypeName\": \"Sick leave\",\n    \"absenceScheduleId\": 10,\n    \"shiftAction\": \"UNASSIGN\"\n  },\n  {\n    \"absenceTypeId\": 1,\n    \"absenceTypeName\": \"Sick leave\",\n    \"absenceScheduleId\": 10,\n    \"shiftAction\": \"UNASSIGN\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99e9e986-bec3-4799-a7e8-613eb0ff746b",
+              "name": "In case you send groupId which is not domain groupId.\nOr if any of groupId, employeeId, start, end is invalid.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-types",
+                    "groups",
+                    ":groupId",
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "2026-07-01"
+                    },
+                    {
+                      "key": "end",
+                      "value": "2026-07-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) ID of the domain group. Any other group type (e.g. district, unit or section) is rejected with a 400 error."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) ID of the employee"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field\": \"externalValue\",\n  \"message\": \"must not be blank\",\n  \"severity\": \"ERROR\",\n  \"localisedMessage\": \"External value must not be blank\",\n  \"groupingMessage\": \"validation\",\n  \"additionalErrorParameters\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67585a63-97c7-4b8b-a61b-e8d80df77280",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-types",
+                    "groups",
+                    ":groupId",
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "2026-07-01"
+                    },
+                    {
+                      "key": "end",
+                      "value": "2026-07-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) ID of the domain group. Any other group type (e.g. district, unit or section) is rejected with a 400 error."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) ID of the employee"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca4e1948-b0fa-4a13-850f-cc9013bc2087",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-types",
+                    "groups",
+                    ":groupId",
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "2026-07-01"
+                    },
+                    {
+                      "key": "end",
+                      "value": "2026-07-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) ID of the domain group. Any other group type (e.g. district, unit or section) is rejected with a 400 error."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) ID of the employee"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89761f05-143a-4eff-af87-62e208cfb6ae",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "absence-types",
+                    "groups",
+                    ":groupId",
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "2026-07-01"
+                    },
+                    {
+                      "key": "end",
+                      "value": "2026-07-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "groupId",
+                      "description": "(Required) ID of the domain group. Any other group type (e.g. district, unit or section) is rejected with a 400 error."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "employeeId",
+                      "description": "(Required) ID of the employee"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.quinyx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6a6259e9-d07a-49ac-93cc-2e5c3d3e124f",
+    "name": "Quinyx Absence Schedules Absence Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": null,
+      "type": "text/plain"
+    }
+  }
+}

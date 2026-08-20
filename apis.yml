@@ -273,6 +273,8 @@ apis:
   humanURL: https://developer.quinyx.com/api/v3
   baseURL: https://api.eu.quinyx.com
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI

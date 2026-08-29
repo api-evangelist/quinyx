@@ -1,14 +1,26 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Access Token API
-  version: v2
-  x-service: absence-schedule
+  title: Quinyx Access Token API
+  version: v3
+  x-service: dummy
   description: null
 servers:
-- url: https://api.quinyx.com
-  description: Production API
-- url: https://api-rc.quinyx.com
-  description: RC API
+- url: https://api.{region}.quinyx.com
+  description: Production
+  variables:
+    region:
+      default: eu
+      enum:
+      - eu
+      - na
+- url: https://api.{region}.rc.quinyx.com
+  description: RC
+  variables:
+    region:
+      default: eu
+      enum:
+      - eu
+      - na
 tags:
 - name: Access Token
 paths:
@@ -65,18 +77,6 @@ paths:
       - Access Token
 components:
   schemas:
-    rest-api-uaa_OAuth2ErrorResponse:
-      type: object
-      description: OAuth2 error response per RFC 6749
-      properties:
-        error:
-          type: string
-          description: An error code defined in RFC 6749 or other extensions
-          example: invalid_client
-        error_description:
-          type: string
-          description: A short description of what caused this error. Sometimes this contains dynamically-generated information about your specific error.
-          example: 'Client not found: my-client-id'
     rest-api-uaa_OAuth2TokenResponse:
       type: object
       description: OAuth2 token response
@@ -106,6 +106,18 @@ components:
       - expires_in
       - scope
       - token_type
+    rest-api-uaa_OAuth2ErrorResponse:
+      type: object
+      description: OAuth2 error response per RFC 6749
+      properties:
+        error:
+          type: string
+          description: An error code defined in RFC 6749 or other extensions
+          example: invalid_client
+        error_description:
+          type: string
+          description: A short description of what caused this error. Sometimes this contains dynamically-generated information about your specific error.
+          example: 'Client not found: my-client-id'
     rest-api-uaa_OAuth2TokenRequest:
       type: object
       description: OAuth2 client credentials token request
@@ -134,7 +146,7 @@ components:
       - client_secret
       - grant_type
   securitySchemes:
-    employee_OAuth2ClientCredentials:
+    OAuth2ClientCredentials:
       type: oauth2
       description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
       flows:
@@ -145,49 +157,28 @@ components:
             hr:employees:delete: ''
             hr:employees:read: ''
             hr:employees:update: ''
-    opening-hours_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    organisation_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes:
             organization:groups:create: ''
             organization:groups:delete: ''
             organization:groups:read: ''
             organization:groups:update: ''
-    rest-api-uaa_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    schedule-availability_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    schedule_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    statistics_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
+            hr:role-assignments:create: ''
+            hr:role-assignments:delete: ''
+            hr:role-assignments:read: ''
+            hr:role-assignments:update: ''
+            organization:roles:read: ''
+            schedule:shifts:read: ''
+x-tagGroups:
+- name: OAuth
+  tags:
+  - Access Token
+- name: Organization
+  tags:
+  - Group
+  - Role
+- name: HR
+  tags:
+  - Employee
+  - Role Assignment
+- name: Schedule
+  tags:
+  - Shift

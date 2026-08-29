@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Mappings API
+  title: Quinyx Mappings API
   version: v2
   x-service: absence-schedule
   description: null
@@ -246,6 +246,19 @@ paths:
       x-audience: public
 components:
   schemas:
+    mapping_MappingValues:
+      type: object
+      properties:
+        quinyxValue:
+          type: string
+          example: '1234'
+          maxLength: 256
+          minLength: 1
+        externalValue:
+          type: string
+          example: ext-abc-001
+          maxLength: 256
+          minLength: 1
     mapping_MappingRequest:
       type: object
       properties:
@@ -279,19 +292,6 @@ components:
       required:
       - externalValue
       - quinyxValue
-    mapping_MappingValues:
-      type: object
-      properties:
-        quinyxValue:
-          type: string
-          example: '1234'
-          maxLength: 256
-          minLength: 1
-        externalValue:
-          type: string
-          example: ext-abc-001
-          maxLength: 256
-          minLength: 1
     mapping_MappingResponse:
       type: object
       properties:

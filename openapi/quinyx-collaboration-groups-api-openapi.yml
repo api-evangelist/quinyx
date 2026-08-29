@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Collaboration Groups API
+  title: Quinyx Collaboration Groups API
   version: v2
   x-service: absence-schedule
   description: null
@@ -458,6 +458,114 @@ paths:
       x-audience: public
 components:
   schemas:
+    collaboration-groups_CollaborationGroupDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Region North
+        groups:
+          type: array
+          items:
+            type: integer
+            format: int32
+        employees:
+          type: array
+          items:
+            type: integer
+            format: int32
+        parent:
+          type: integer
+          format: int64
+          example: 10
+        children:
+          type: array
+          items:
+            type: integer
+            format: int64
+        labelId:
+          type: integer
+          format: int64
+          example: 5
+        domoDashboardId:
+          type: string
+          example: abc12
+        isArchived:
+          type: boolean
+          example: false
+    collaboration-groups_CollaborationGroupCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Region North
+          minLength: 1
+        domainId:
+          type: integer
+          format: int32
+          example: 100
+        parentId:
+          type: integer
+          format: int64
+          example: 10
+        labelId:
+          type: integer
+          format: int64
+          example: 5
+        domoDashboardId:
+          type: string
+          example: abc12
+          maxLength: 5
+          minLength: 5
+          pattern: ^[a-zA-Z0-9]*$
+      required:
+      - domainId
+      - labelId
+      - name
+    collaboration-groups_CollaborationGroupGroup:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+    collaboration-groups_CollaborationGroupGroupDTO:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+      required:
+      - collaborationGroupId
+      - groupIds
+    collaboration-groups_CollaborationGroupEmployee:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        employeeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
     collaboration-groups_CollaborationGroupEmployeeDTO:
       type: object
       properties:
@@ -474,6 +582,15 @@ components:
       required:
       - collaborationGroupId
       - employeeIds
+    collaboration-groups_CollaborationGroupMove:
+      type: object
+      properties:
+        newParentId:
+          type: integer
+          format: int64
+          example: 10
+      required:
+      - newParentId
     collaboration-groups_CollaborationGroupUpdate:
       type: object
       properties:
@@ -522,123 +639,6 @@ components:
         isArchived:
           type: boolean
           example: false
-    collaboration-groups_CollaborationGroupDetails:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 1
-        name:
-          type: string
-          example: Region North
-        groups:
-          type: array
-          items:
-            type: integer
-            format: int32
-        employees:
-          type: array
-          items:
-            type: integer
-            format: int32
-        parent:
-          type: integer
-          format: int64
-          example: 10
-        children:
-          type: array
-          items:
-            type: integer
-            format: int64
-        labelId:
-          type: integer
-          format: int64
-          example: 5
-        domoDashboardId:
-          type: string
-          example: abc12
-        isArchived:
-          type: boolean
-          example: false
-    collaboration-groups_CollaborationGroupEmployee:
-      type: object
-      properties:
-        collaborationGroupId:
-          type: integer
-          format: int64
-          example: 1
-        employeeIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-    collaboration-groups_CollaborationGroupCreate:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Region North
-          minLength: 1
-        domainId:
-          type: integer
-          format: int32
-          example: 100
-        parentId:
-          type: integer
-          format: int64
-          example: 10
-        labelId:
-          type: integer
-          format: int64
-          example: 5
-        domoDashboardId:
-          type: string
-          example: abc12
-          maxLength: 5
-          minLength: 5
-          pattern: ^[a-zA-Z0-9]*$
-      required:
-      - domainId
-      - labelId
-      - name
-    collaboration-groups_CollaborationGroupGroupDTO:
-      type: object
-      properties:
-        collaborationGroupId:
-          type: integer
-          format: int64
-          example: 1
-        groupIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-          minItems: 1
-      required:
-      - collaborationGroupId
-      - groupIds
-    collaboration-groups_CollaborationGroupGroup:
-      type: object
-      properties:
-        collaborationGroupId:
-          type: integer
-          format: int64
-          example: 1
-        groupIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-    collaboration-groups_CollaborationGroupMove:
-      type: object
-      properties:
-        newParentId:
-          type: integer
-          format: int64
-          example: 10
-      required:
-      - newParentId
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

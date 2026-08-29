@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Forecast Static Rules API
+  title: Quinyx Forecast Static Rules API
   version: v2
   x-service: absence-schedule
   description: null
@@ -173,18 +173,15 @@ paths:
       x-audience: public
 components:
   schemas:
-    forecast-data-ingestion_Pagination:
+    forecast-data-ingestion_PaginatedResultListExternalStaticRule:
       type: object
       properties:
-        totalCount:
-          type: integer
-          format: int64
-        currentPage:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+        pagination:
+          $ref: '#/components/schemas/forecast-data-ingestion_Pagination'
     forecast-data-ingestion_ExternalShiftType:
       type: object
       properties:
@@ -199,15 +196,18 @@ components:
       required:
       - amount
       - externalShiftTypeId
-    forecast-data-ingestion_PaginatedResultListExternalStaticRule:
+    forecast-data-ingestion_Pagination:
       type: object
       properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
-        pagination:
-          $ref: '#/components/schemas/forecast-data-ingestion_Pagination'
+        totalCount:
+          type: integer
+          format: int64
+        currentPage:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
     forecast-data-ingestion_ExternalStaticRule:
       type: object
       properties:

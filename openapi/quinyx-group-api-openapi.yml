@@ -1,14 +1,26 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Group API
-  version: v2
-  x-service: absence-schedule
+  title: Quinyx Group API
+  version: v3
+  x-service: dummy
   description: null
 servers:
-- url: https://api.quinyx.com
-  description: Production API
-- url: https://api-rc.quinyx.com
-  description: RC API
+- url: https://api.{region}.quinyx.com
+  description: Production
+  variables:
+    region:
+      default: eu
+      enum:
+      - eu
+      - na
+- url: https://api.{region}.rc.quinyx.com
+  description: RC
+  variables:
+    region:
+      default: eu
+      enum:
+      - eu
+      - na
 tags:
 - name: Group
 paths:
@@ -573,93 +585,18 @@ paths:
       - Group
 components:
   schemas:
-    organisation_CreateGroupRequest:
+    organisation_ValidationErrorDetail:
       type: object
-      description: Request payload used to create a new group
+      description: A single validation error.
       properties:
-        name:
-          type: string
-          description: The name of the group
-          example: Engineering
-          maxLength: 50
-          minLength: 0
-        groupType:
-          type: string
-          description: Type of group
-          enum:
-          - DISTRICT
-          - UNIT
-          - SECTION
-          example: UNIT
-          minLength: 1
-        parentGroupId:
-          type: string
-          description: Identifier of the parent group
-          example: '10'
-        managerId:
-          type: string
-          description: Employee ID of the group manager
-          example: '1001'
-        costCentreId:
-          type: string
-          description: Associated cost centre identifier
-          example: '200'
-        xrefIds:
-          type: array
-          description: External reference identifiers
-          example:
-          - AD-ENG
-          - COST-ENG-01
-          items:
-            type: string
-          maxItems: 50
-          minItems: 0
-      required:
-      - groupType
-      - name
-      - parentGroupId
-    organisation_CursorPageGroupResponse:
-      type: object
-      description: A page of data along with pagination information for cursor-based pagination.
-      properties:
-        data:
-          type: array
-          description: The data in the page.
-          items:
-            $ref: '#/components/schemas/organisation_GroupResponse'
-          maxItems: 100
-        pagination:
-          $ref: '#/components/schemas/organisation_CursorPaginationInfo'
-    organisation_ProblemDetail:
-      type: object
-      description: RFC 9457 Problem Details for HTTP APIs
-      properties:
-        type:
-          type: string
-          description: A URI reference that identifies the problem type
-          example: https://developer.quinyx.com/api/problems/error-type
-        title:
-          type: string
-          description: A short, human-readable summary of the problem type
-          example: Error Title
-        status:
-          type: integer
-          format: int32
-          description: The HTTP status code
-          example: 404
         detail:
           type: string
-          description: A human-readable explanation specific to this occurrence of the problem
-          example: A detailed explanation of the error
-        instance:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
           type: string
-          description: A URI reference that identifies the specific occurrence of the problem
-          example: /api/endpoint
-      required:
-      - status
-      - title
-      - type
-      title: ProblemDetail
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
     organisation_GroupResponse:
       type: object
       description: Represents a group within the organization hierarchy
@@ -714,18 +651,18 @@ components:
           format: date-time
           description: ISO-8601 timestamp when the group was last updated
           example: '2024-01-12T17:42:10Z'
-    organisation_ValidationErrorDetail:
+    organisation_CursorPageGroupResponse:
       type: object
-      description: A single validation error.
+      description: A page of data along with pagination information for cursor-based pagination.
       properties:
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: name is mandatory
-        pointer:
-          type: string
-          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
-          example: '#/name'
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/organisation_GroupResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/organisation_CursorPaginationInfo'
     organisation_CursorPaginationInfo:
       type: object
       description: Pagination information for cursor-based pagination.
@@ -738,6 +675,51 @@ components:
           type: string
           description: The token for the previous page
           example: eyJpZCI6ODB9
+    organisation_CreateGroupRequest:
+      type: object
+      description: Request payload used to create a new group
+      properties:
+        name:
+          type: string
+          description: The name of the group
+          example: Engineering
+          maxLength: 50
+          minLength: 0
+        groupType:
+          type: string
+          description: Type of group
+          enum:
+          - DISTRICT
+          - UNIT
+          - SECTION
+          example: UNIT
+          minLength: 1
+        parentGroupId:
+          type: string
+          description: Identifier of the parent group
+          example: '10'
+        managerId:
+          type: string
+          description: Employee ID of the group manager
+          example: '1001'
+        costCentreId:
+          type: string
+          description: Associated cost centre identifier
+          example: '200'
+        xrefIds:
+          type: array
+          description: External reference identifiers
+          example:
+          - AD-ENG
+          - COST-ENG-01
+          items:
+            type: string
+          maxItems: 50
+          minItems: 0
+      required:
+      - groupType
+      - name
+      - parentGroupId
     organisation_ValidationError:
       type: object
       description: Validation errors, conforming to RFC 9457.
@@ -772,8 +754,38 @@ components:
       - title
       - type
       title: ValidationError
+    organisation_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem
+          example: /api/endpoint
+      required:
+      - status
+      - title
+      - type
+      title: ProblemDetail
   securitySchemes:
-    employee_OAuth2ClientCredentials:
+    OAuth2ClientCredentials:
       type: oauth2
       description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
       flows:
@@ -784,49 +796,28 @@ components:
             hr:employees:delete: ''
             hr:employees:read: ''
             hr:employees:update: ''
-    opening-hours_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    organisation_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes:
             organization:groups:create: ''
             organization:groups:delete: ''
             organization:groups:read: ''
             organization:groups:update: ''
-    rest-api-uaa_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    schedule-availability_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    schedule_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    statistics_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
+            hr:role-assignments:create: ''
+            hr:role-assignments:delete: ''
+            hr:role-assignments:read: ''
+            hr:role-assignments:update: ''
+            organization:roles:read: ''
+            schedule:shifts:read: ''
+x-tagGroups:
+- name: OAuth
+  tags:
+  - Access Token
+- name: Organization
+  tags:
+  - Group
+  - Role
+- name: HR
+  tags:
+  - Employee
+  - Role Assignment
+- name: Schedule
+  tags:
+  - Shift

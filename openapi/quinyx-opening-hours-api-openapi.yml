@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Opening Hours API
+  title: Quinyx Opening Hours API
   version: v2
   x-service: absence-schedule
   description: null
@@ -152,47 +152,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    opening-hours_WeekdayHours:
-      type: object
-      properties:
-        weekday:
-          type: integer
-          format: int32
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          example: 1
-        startTime:
-          type: string
-          example: '12:00'
-        endTime:
-          type: string
-          example: '14:00'
-        open:
-          type: boolean
-          example: true
-      required:
-      - endTime
-      - open
-      - startTime
-      - weekday
-    opening-hours_OpenPeriod:
-      type: object
-      properties:
-        open:
-          type: string
-          example: '2023-03-15T08:00:00'
-        close:
-          type: string
-          example: '2023-03-15T20:00:00'
-      required:
-      - close
-      - open
     opening-hours_OpeningHours:
       type: object
       properties:
@@ -228,6 +187,47 @@ components:
       - startDate
       - type
       - weekdayHours
+    opening-hours_OpenPeriod:
+      type: object
+      properties:
+        open:
+          type: string
+          example: '2023-03-15T08:00:00'
+        close:
+          type: string
+          example: '2023-03-15T20:00:00'
+      required:
+      - close
+      - open
+    opening-hours_WeekdayHours:
+      type: object
+      properties:
+        weekday:
+          type: integer
+          format: int32
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          example: 1
+        startTime:
+          type: string
+          example: '12:00'
+        endTime:
+          type: string
+          example: '14:00'
+        open:
+          type: boolean
+          example: true
+      required:
+      - endTime
+      - open
+      - startTime
+      - weekday
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

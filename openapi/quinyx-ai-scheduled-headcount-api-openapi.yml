@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules AI Scheduled Headcount API
+  title: Quinyx AI Scheduled Headcount API
   version: v2
   x-service: absence-schedule
   description: null
@@ -55,6 +55,23 @@ paths:
       x-audience: public
 components:
   schemas:
+    statistics_StatisticPeriodValue:
+      type: object
+      properties:
+        start:
+          type: string
+          example: '2026-01-01T00:00:00'
+        end:
+          type: string
+          example: '2026-01-01T23:59:59'
+        value:
+          type: number
+          format: double
+          example: 100
+        employeeId:
+          type: integer
+          format: int32
+          example: 1
     statistics_HeadCount:
       type: object
       properties:
@@ -73,23 +90,6 @@ components:
           type: number
           format: double
           example: 100
-    statistics_StatisticPeriodValue:
-      type: object
-      properties:
-        start:
-          type: string
-          example: '2026-01-01T00:00:00'
-        end:
-          type: string
-          example: '2026-01-01T23:59:59'
-        value:
-          type: number
-          format: double
-          example: 100
-        employeeId:
-          type: integer
-          format: int32
-          example: 1
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

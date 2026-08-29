@@ -1,14 +1,26 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Role Assignment API
-  version: v2
-  x-service: absence-schedule
+  title: Quinyx Role Assignment API
+  version: v3
+  x-service: dummy
   description: null
 servers:
-- url: https://api.quinyx.com
-  description: Production API
-- url: https://api-rc.quinyx.com
-  description: RC API
+- url: https://api.{region}.quinyx.com
+  description: Production
+  variables:
+    region:
+      default: eu
+      enum:
+      - eu
+      - na
+- url: https://api.{region}.rc.quinyx.com
+  description: RC
+  variables:
+    region:
+      default: eu
+      enum:
+      - eu
+      - na
 tags:
 - name: Role Assignment
 paths:
@@ -522,84 +534,6 @@ paths:
       - Role Assignment
 components:
   schemas:
-    security_RoleAssignmentUpdateRequest:
-      type: object
-      description: Request to update a role assignment
-      properties:
-        startDate:
-          type: string
-          format: date
-          description: Start date of the assignment
-          example: '2026-06-01'
-        endDate:
-          type: string
-          format: date
-          description: End date of the assignment
-          example: '2026-12-31'
-    security_ValidationErrorDetail:
-      type: object
-      description: A single validation error.
-      properties:
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: name is mandatory
-        pointer:
-          type: string
-          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
-          example: '#/name'
-    security_CursorPageRoleAssignmentResponse:
-      type: object
-      description: A page of data along with pagination information for cursor-based pagination.
-      properties:
-        data:
-          type: array
-          description: The data in the page.
-          items:
-            $ref: '#/components/schemas/security_RoleAssignmentResponse'
-          maxItems: 100
-        pagination:
-          $ref: '#/components/schemas/security_CursorPaginationInfo'
-    security_RoleAssignmentResponse:
-      type: object
-      description: Represents a role assignment
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the role assignment
-          example: '12345'
-        employeeId:
-          type: string
-          description: Employee identifier
-          example: '12345'
-        groupId:
-          type: string
-          description: Group identifier
-          example: '16'
-        roleId:
-          type: string
-          description: Role identifier
-          example: '12'
-        startDate:
-          type: string
-          format: date
-          description: Start date of the assignment
-          example: '2025-10-01'
-        endDate:
-          type: string
-          format: date
-          description: End date of the assignment
-          example: '2026-12-31'
-        created:
-          type: string
-          format: date-time
-          description: Creation timestamp
-          example: '2025-10-01T14:18:41Z'
-        updated:
-          type: string
-          format: date-time
-          description: Last update timestamp
-          example: '2025-10-16T09:34:27Z'
     security_RoleAssignmentRequest:
       type: object
       description: Request body for creating a role assignment
@@ -666,18 +600,32 @@ components:
       - title
       - type
       title: ProblemDetail
-    security_CursorPaginationInfo:
+    security_ValidationErrorDetail:
       type: object
-      description: Pagination information for cursor-based pagination.
+      description: A single validation error.
       properties:
-        nextPageToken:
+        detail:
           type: string
-          description: The token for the next page
-          example: eyJpZCI6MTIwfQ
-        previousPageToken:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
           type: string
-          description: The token for the previous page
-          example: eyJpZCI6ODB9
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
+    security_RoleAssignmentUpdateRequest:
+      type: object
+      description: Request to update a role assignment
+      properties:
+        startDate:
+          type: string
+          format: date
+          description: Start date of the assignment
+          example: '2026-06-01'
+        endDate:
+          type: string
+          format: date
+          description: End date of the assignment
+          example: '2026-12-31'
     security_ValidationError:
       type: object
       description: Validation errors, conforming to RFC 9457.
@@ -712,8 +660,72 @@ components:
       - title
       - type
       title: ValidationError
+    security_CursorPageRoleAssignmentResponse:
+      type: object
+      description: A page of data along with pagination information for cursor-based pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/security_RoleAssignmentResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/security_CursorPaginationInfo'
+    security_RoleAssignmentResponse:
+      type: object
+      description: Represents a role assignment
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the role assignment
+          example: '12345'
+        employeeId:
+          type: string
+          description: Employee identifier
+          example: '12345'
+        groupId:
+          type: string
+          description: Group identifier
+          example: '16'
+        roleId:
+          type: string
+          description: Role identifier
+          example: '12'
+        startDate:
+          type: string
+          format: date
+          description: Start date of the assignment
+          example: '2025-10-01'
+        endDate:
+          type: string
+          format: date
+          description: End date of the assignment
+          example: '2026-12-31'
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+          example: '2025-10-01T14:18:41Z'
+        updated:
+          type: string
+          format: date-time
+          description: Last update timestamp
+          example: '2025-10-16T09:34:27Z'
+    security_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
   securitySchemes:
-    employee_OAuth2ClientCredentials:
+    OAuth2ClientCredentials:
       type: oauth2
       description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
       flows:
@@ -724,49 +736,28 @@ components:
             hr:employees:delete: ''
             hr:employees:read: ''
             hr:employees:update: ''
-    opening-hours_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    organisation_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes:
             organization:groups:create: ''
             organization:groups:delete: ''
             organization:groups:read: ''
             organization:groups:update: ''
-    rest-api-uaa_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    schedule-availability_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    schedule_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    statistics_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
+            hr:role-assignments:create: ''
+            hr:role-assignments:delete: ''
+            hr:role-assignments:read: ''
+            hr:role-assignments:update: ''
+            organization:roles:read: ''
+            schedule:shifts:read: ''
+x-tagGroups:
+- name: OAuth
+  tags:
+  - Access Token
+- name: Organization
+  tags:
+  - Group
+  - Role
+- name: HR
+  tags:
+  - Employee
+  - Role Assignment
+- name: Schedule
+  tags:
+  - Shift

@@ -1,13 +1,25 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Shifts API
+  title: Quinyx User Shifts API
   version: v2
-  x-service: absence-schedule
-  description: null
+  x-service: userapi
+  description: 'The Quinyx User API exposes per-employee data — upcoming and
+
+    unassigned shifts, leave applications, leave reasons, and
+
+    leave-application managers — to authenticated end users. It
+
+    uses an OAuth 2.0 password grant with the employee''s own
+
+    Quinyx credentials and is intentionally separate from the
+
+    customer/integration-level Quinyx API.
+
+    '
 servers:
-- url: https://api.quinyx.com
+- url: https://user-api.quinyx.com/v2
   description: Production API
-- url: https://api-rc.quinyx.com
+- url: https://user-api-rc.quinyx.com/v2
   description: RC API
 tags:
 - name: Shifts
@@ -52,6 +64,16 @@ paths:
       x-audience: public
 components:
   schemas:
+    Break:
+      description: Shift Break Model
+      properties:
+        start:
+          type: string
+          example: '2019-02-01 11:30:00'
+        end:
+          type: string
+          example: '2019-02-01 12:30:00'
+      type: object
     Shift:
       description: Shift Model
       properties:
@@ -96,71 +118,8 @@ components:
               example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, unassigned'
           type: object
       type: object
-    Break:
-      description: Shift Break Model
-      properties:
-        start:
-          type: string
-          example: '2019-02-01 11:30:00'
-        end:
-          type: string
-          example: '2019-02-01 12:30:00'
-      type: object
   securitySchemes:
-    employee_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes:
-            hr:employees:create: ''
-            hr:employees:delete: ''
-            hr:employees:read: ''
-            hr:employees:update: ''
-    opening-hours_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    organisation_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes:
-            organization:groups:create: ''
-            organization:groups:delete: ''
-            organization:groups:read: ''
-            organization:groups:update: ''
-    rest-api-uaa_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    schedule-availability_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    schedule_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
-    statistics_OAuth2ClientCredentials:
-      type: oauth2
-      description: OAuth2 Client Credentials flow. See https://developer.quinyx.com/api/authentication
-      flows:
-        clientCredentials:
-          tokenUrl: /oauth/v3/token
-          scopes: {}
+    BearerAuth:
+      type: apiKey
+      in: header
+      name: Authorization

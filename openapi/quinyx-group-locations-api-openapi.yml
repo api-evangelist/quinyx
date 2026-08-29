@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Group Locations API
+  title: Quinyx Group Locations API
   version: v2
   x-service: absence-schedule
   description: null
@@ -277,47 +277,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    organisation_UnauthorizedErrorResponseDto:
-      type: object
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-          example: 1776706090492
-        path:
-          type: string
-          example: /v2/organisation/groups/123
-        status:
-          type: integer
-          format: int32
-          example: 401
-        error:
-          type: string
-          example: invalid_token
-        requestId:
-          type: string
-          example: 32dbf81e-314892
-        error_description:
-          type: string
-          example: Unauthorized exception
-    organisation_ValidationErrorDto:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-          example: fieldName
-        message:
-          type: string
-          example: error.organisation.forbidden
-        severity:
-          type: string
-          example: ERROR
-        additionalErrorParameters:
-          type: object
-          additionalProperties: {}
-          example: {}
     organisation_GroupLocationRequestDto:
       type: object
       properties:
@@ -342,6 +301,24 @@ components:
       - latitude
       - longitude
       - radius
+    organisation_ValidationErrorDto:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+          example: fieldName
+        message:
+          type: string
+          example: error.organisation.forbidden
+        severity:
+          type: string
+          example: ERROR
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
+          example: {}
     organisation_ApiErrorResponseDto:
       type: object
       properties:
@@ -382,6 +359,29 @@ components:
         comment:
           type: string
           example: Main entrance
+    organisation_UnauthorizedErrorResponseDto:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          example: 1776706090492
+        path:
+          type: string
+          example: /v2/organisation/groups/123
+        status:
+          type: integer
+          format: int32
+          example: 401
+        error:
+          type: string
+          example: invalid_token
+        requestId:
+          type: string
+          example: 32dbf81e-314892
+        error_description:
+          type: string
+          example: Unauthorized exception
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

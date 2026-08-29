@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Standard Variables API
+  title: Quinyx Standard Variables API
   version: v2
   x-service: absence-schedule
   description: null
@@ -38,6 +38,45 @@ paths:
       x-audience: public
 components:
   schemas:
+    statistics_Statistic:
+      type: object
+      properties:
+        variable:
+          type: string
+          enum:
+          - scheduled-hours
+          - worked-hours
+          - leave-hours
+          - optimal-hours
+          - forecast-hours
+          - forecast-sales
+          - actual-sales
+          - actual-staff-cost
+          - forecast-staff-cost
+          - base-schedule-hours
+          - productive-hours
+          - kpi-scheduled-hours
+          - kpi-scheduled-hours-excl-ut
+          - kpi-worked-hours
+          - scheduled-staff-cost
+          - scheduled-staff-cost-excluding-absences
+          - scheduled-hours-excluding-absences
+          - worked-hours-excluding-absences
+          - expected-staff-cost
+          - scheduled-break-hours
+          - punched-break-hours
+          - base-schedule-cost
+          - expected-kpi-scheduled-hours
+          - expected-kpi-worked-hours
+          example: scheduled-hours
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/statistics_StatisticPeriodValue'
+        total-value:
+          type: number
+          format: double
+          example: 100
     statistics_AdvancedStatisticsRequest:
       type: object
       properties:
@@ -137,6 +176,50 @@ components:
           - and
           - or
           example: and
+    statistics_TimeRangeFilter:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        from:
+          type: string
+          example: 08:00
+        to:
+          type: string
+          example: '17:00'
+    statistics_StatisticsPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          example: '2026-01-01T00:00:00'
+        end:
+          type: string
+          example: '2026-01-31T23:59:59'
+        aggregation-type:
+          type: string
+          enum:
+          - m
+          - H
+          - D
+          - W
+          - M
+          example: D
+        aggregation-value:
+          type: integer
+          format: int32
+          example: 1
+    statistics_BaseScheduleData:
+      type: object
+      properties:
+        baseScheduleId:
+          type: string
+          example: abc123
+        dayIndex:
+          type: integer
+          format: int32
+          example: 0
     statistics_StatisticPeriodValue:
       type: object
       properties:
@@ -154,28 +237,6 @@ components:
           type: integer
           format: int32
           example: 1
-    statistics_TimeRangeFilter:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        from:
-          type: string
-          example: 08:00
-        to:
-          type: string
-          example: '17:00'
-    statistics_BaseScheduleData:
-      type: object
-      properties:
-        baseScheduleId:
-          type: string
-          example: abc123
-        dayIndex:
-          type: integer
-          format: int32
-          example: 0
     statistics_Filter:
       type: object
       properties:
@@ -214,67 +275,6 @@ components:
             format: int32
         timeRange:
           $ref: '#/components/schemas/statistics_TimeRangeFilter'
-    statistics_StatisticsPeriod:
-      type: object
-      properties:
-        start:
-          type: string
-          example: '2026-01-01T00:00:00'
-        end:
-          type: string
-          example: '2026-01-31T23:59:59'
-        aggregation-type:
-          type: string
-          enum:
-          - m
-          - H
-          - D
-          - W
-          - M
-          example: D
-        aggregation-value:
-          type: integer
-          format: int32
-          example: 1
-    statistics_Statistic:
-      type: object
-      properties:
-        variable:
-          type: string
-          enum:
-          - scheduled-hours
-          - worked-hours
-          - leave-hours
-          - optimal-hours
-          - forecast-hours
-          - forecast-sales
-          - actual-sales
-          - actual-staff-cost
-          - forecast-staff-cost
-          - base-schedule-hours
-          - productive-hours
-          - kpi-scheduled-hours
-          - kpi-scheduled-hours-excl-ut
-          - kpi-worked-hours
-          - scheduled-staff-cost
-          - scheduled-staff-cost-excluding-absences
-          - scheduled-hours-excluding-absences
-          - worked-hours-excluding-absences
-          - expected-staff-cost
-          - scheduled-break-hours
-          - punched-break-hours
-          - base-schedule-cost
-          - expected-kpi-scheduled-hours
-          - expected-kpi-worked-hours
-          example: scheduled-hours
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/statistics_StatisticPeriodValue'
-        total-value:
-          type: number
-          format: double
-          example: 100
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

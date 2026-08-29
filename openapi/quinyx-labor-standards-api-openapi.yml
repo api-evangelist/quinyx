@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Quinyx Absence Schedules Labor Standards API
+  title: Quinyx Labor Standards API
   version: v2
   x-service: absence-schedule
   description: null
@@ -132,87 +132,75 @@ paths:
       x-audience: public
 components:
   schemas:
-    labor-standards_IntegrationRule:
+    labor-standards_LimitConfiguration:
       type: object
-      discriminator:
-        propertyName: type
       properties:
-        id:
+        useOpeningHours:
+          type: boolean
+          example: true
+        startTime:
           type: string
-          example: rule-1
+          example: 08:00
+        endTime:
+          type: string
+          example: '17:00'
+        startOffset:
+          type: integer
+          format: int32
+          example: 0
+        endOffset:
+          type: integer
+          format: int32
+          example: 0
+        weekdays:
+          type: array
+          items:
+            type: integer
+            format: int32
+            enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+          minItems: 1
         type:
           type: string
           enum:
-          - LINEAR
-          - LIMIT
-          - DYNAMIC
-          - STATIC
-          example: LINEAR
-      required:
-      - type
-    labor-standards_DynamicRule:
-      allOf:
-      - $ref: '#/components/schemas/labor-standards_Rule'
-      - type: object
-        properties:
-          forecastConfigurationId:
-            type: integer
-            format: int32
-            example: 1
-          configurations:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_DynamicConfiguration'
-            minItems: 1
-      required:
-      - configurations
-      - forecastConfigurationId
-      - type
-    labor-standards_LimitRule:
-      allOf:
-      - $ref: '#/components/schemas/labor-standards_Rule'
-      - type: object
-        properties:
-          configurations:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_LimitConfiguration'
-            minItems: 1
-      required:
-      - configurations
-      - type
-    labor-standards_StaticRule:
-      allOf:
-      - $ref: '#/components/schemas/labor-standards_Rule'
-      - type: object
-        properties:
-          configurations:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_StaticConfiguration'
-            minItems: 1
-      required:
-      - configurations
-      - type
-    labor-standards_DynamicConfiguration:
-      type: object
-      properties:
-        startValue:
-          type: number
-          format: double
-          example: 0
-        endValue:
-          type: number
-          format: double
-          example: 100
+          - MIN
+          - MAX
+          example: MIN
         headcount:
           type: number
           format: double
           example: 5
       required:
-      - endValue
       - headcount
-      - startValue
+      - type
+      - useOpeningHours
+      - weekdays
+    labor-standards_LinearRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_Rule'
+      - type: object
+        properties:
+          productivityMethod:
+            type: string
+            enum:
+            - UNITS_PER_HOUR
+            - MINUTES_PER_UNIT
+            example: UNITS_PER_HOUR
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_LinearConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - productivityMethod
+      - type
     labor-standards_IntegrationLaborStandard:
       type: object
       properties:
@@ -260,6 +248,101 @@ components:
       - name
       - roundingMethod
       - rules
+    labor-standards_LimitConfigurationsByGroupResponse:
+      type: object
+      properties:
+        optimalHeadcountId:
+          type: string
+          example: headcount-1
+        shiftTypeId:
+          type: integer
+          format: int32
+          example: 1
+        shiftTypeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        limitConfigurationsByGroupId:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_ResolvedLimitConfiguration'
+    labor-standards_IntegrationLinearRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
+      - type: object
+        properties:
+          productivityMethod:
+            type: string
+            enum:
+            - UNITS_PER_HOUR
+            - MINUTES_PER_UNIT
+            example: UNITS_PER_HOUR
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_IntegrationLinearConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - productivityMethod
+      - type
+    labor-standards_IntegrationRule:
+      type: object
+      discriminator:
+        propertyName: type
+      properties:
+        id:
+          type: string
+          example: rule-1
+        type:
+          type: string
+          enum:
+          - LINEAR
+          - LIMIT
+          - DYNAMIC
+          - STATIC
+          example: LINEAR
+      required:
+      - type
+    labor-standards_IntegrationDynamicRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
+      - type: object
+        properties:
+          externalForecastConfigurationId:
+            type: string
+            example: external-fc-1
+            minLength: 1
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_DynamicConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - externalForecastConfigurationId
+      - type
+    labor-standards_DynamicRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_Rule'
+      - type: object
+        properties:
+          forecastConfigurationId:
+            type: integer
+            format: int32
+            example: 1
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_DynamicConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - forecastConfigurationId
+      - type
     labor-standards_StaticConfiguration:
       type: object
       properties:
@@ -302,62 +385,6 @@ components:
       - headcount
       - useOpeningHours
       - weekdays
-    labor-standards_LinearRule:
-      allOf:
-      - $ref: '#/components/schemas/labor-standards_Rule'
-      - type: object
-        properties:
-          productivityMethod:
-            type: string
-            enum:
-            - UNITS_PER_HOUR
-            - MINUTES_PER_UNIT
-            example: UNITS_PER_HOUR
-          configurations:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_LinearConfiguration'
-            minItems: 1
-      required:
-      - configurations
-      - productivityMethod
-      - type
-    labor-standards_Rule:
-      type: object
-      discriminator:
-        propertyName: type
-      properties:
-        id:
-          type: string
-          example: rule-1
-        type:
-          type: string
-          enum:
-          - LINEAR
-          - LIMIT
-          - DYNAMIC
-          - STATIC
-          example: LINEAR
-      required:
-      - type
-    labor-standards_IntegrationDynamicRule:
-      allOf:
-      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
-      - type: object
-        properties:
-          externalForecastConfigurationId:
-            type: string
-            example: external-fc-1
-            minLength: 1
-          configurations:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_DynamicConfiguration'
-            minItems: 1
-      required:
-      - configurations
-      - externalForecastConfigurationId
-      - type
     labor-standards_LaborStandard:
       type: object
       properties:
@@ -405,6 +432,123 @@ components:
       - optimalHeadcountId
       - roundingMethod
       - rules
+    labor-standards_LimitRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_Rule'
+      - type: object
+        properties:
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_LimitConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - type
+    labor-standards_IntegrationLinearConfiguration:
+      type: object
+      properties:
+        productivity:
+          type: number
+          format: double
+          example: 10
+        externalForecastConfigurationId:
+          type: string
+          example: external-fc-1
+          minLength: 1
+      required:
+      - externalForecastConfigurationId
+      - productivity
+    labor-standards_IntegrationStaticRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
+      - type: object
+        properties:
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_StaticConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - type
+    labor-standards_LinearConfiguration:
+      type: object
+      properties:
+        productivity:
+          type: number
+          format: double
+          example: 10
+        forecastConfigurationId:
+          type: integer
+          format: int32
+          example: 1
+      required:
+      - forecastConfigurationId
+      - productivity
+    labor-standards_DynamicConfiguration:
+      type: object
+      properties:
+        startValue:
+          type: number
+          format: double
+          example: 0
+        endValue:
+          type: number
+          format: double
+          example: 100
+        headcount:
+          type: number
+          format: double
+          example: 5
+      required:
+      - endValue
+      - headcount
+      - startValue
+    labor-standards_StaticRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_Rule'
+      - type: object
+        properties:
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_StaticConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - type
+    labor-standards_Rule:
+      type: object
+      discriminator:
+        propertyName: type
+      properties:
+        id:
+          type: string
+          example: rule-1
+        type:
+          type: string
+          enum:
+          - LINEAR
+          - LIMIT
+          - DYNAMIC
+          - STATIC
+          example: LINEAR
+      required:
+      - type
+    labor-standards_IntegrationLimitRule:
+      allOf:
+      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
+      - type: object
+        properties:
+          configurations:
+            type: array
+            items:
+              $ref: '#/components/schemas/labor-standards_LimitConfiguration'
+            minItems: 1
+      required:
+      - configurations
+      - type
     labor-standards_ResolvedLimitConfiguration:
       type: object
       properties:
@@ -460,150 +604,6 @@ components:
       - type
       - useOpeningHours
       - weekdays
-    labor-standards_LimitConfiguration:
-      type: object
-      properties:
-        useOpeningHours:
-          type: boolean
-          example: true
-        startTime:
-          type: string
-          example: 08:00
-        endTime:
-          type: string
-          example: '17:00'
-        startOffset:
-          type: integer
-          format: int32
-          example: 0
-        endOffset:
-          type: integer
-          format: int32
-          example: 0
-        weekdays:
-          type: array
-          items:
-            type: integer
-            format: int32
-            enum:
-            - 0
-            - 1
-            - 2
-            - 3
-            - 4
-            - 5
-            - 6
-          minItems: 1
-        type:
-          type: string
-          enum:
-          - MIN
-          - MAX
-          example: MIN
-        headcount:
-          type: number
-          format: double
-          example: 5
-      required:
-      - headcount
-      - type
-      - useOpeningHours
-      - weekdays
-    labor-standards_IntegrationLinearRule:
-      allOf:
-      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
-      - type: object
-        properties:
-          productivityMethod:
-            type: string
-            enum:
-            - UNITS_PER_HOUR
-            - MINUTES_PER_UNIT
-            example: UNITS_PER_HOUR
-          configurations:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_IntegrationLinearConfiguration'
-            minItems: 1
-      required:
-      - configurations
-      - productivityMethod
-      - type
-    labor-standards_LinearConfiguration:
-      type: object
-      properties:
-        productivity:
-          type: number
-          format: double
-          example: 10
-        forecastConfigurationId:
-          type: integer
-          format: int32
-          example: 1
-      required:
-      - forecastConfigurationId
-      - productivity
-    labor-standards_IntegrationLinearConfiguration:
-      type: object
-      properties:
-        productivity:
-          type: number
-          format: double
-          example: 10
-        externalForecastConfigurationId:
-          type: string
-          example: external-fc-1
-          minLength: 1
-      required:
-      - externalForecastConfigurationId
-      - productivity
-    labor-standards_IntegrationStaticRule:
-      allOf:
-      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
-      - type: object
-        properties:
-          configurations:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_StaticConfiguration'
-            minItems: 1
-      required:
-      - configurations
-      - type
-    labor-standards_LimitConfigurationsByGroupResponse:
-      type: object
-      properties:
-        optimalHeadcountId:
-          type: string
-          example: headcount-1
-        shiftTypeId:
-          type: integer
-          format: int32
-          example: 1
-        shiftTypeIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-        limitConfigurationsByGroupId:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_ResolvedLimitConfiguration'
-    labor-standards_IntegrationLimitRule:
-      allOf:
-      - $ref: '#/components/schemas/labor-standards_IntegrationRule'
-      - type: object
-        properties:
-          configurations:
-            type: array
-            items:
-              $ref: '#/components/schemas/labor-standards_LimitConfiguration'
-            minItems: 1
-      required:
-      - configurations
-      - type
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

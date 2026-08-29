@@ -10,6 +10,18 @@ description: >-
   pagination, regional EU/NA hosts), the earlier REST API v2, and a bearer-token
   User API v2, plus a legacy SOAP v1. This profile was enriched from Quinyx's
   own developer portal, OpenAPI descriptions, and public documentation.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -410,6 +422,9 @@ apis:
   - type: OpenAPI
     url: openapi/quinyx-tags-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/quinyx-capability-edges.yml
+  name: Quinyx Business Capability Map
 - type: Overlay
   url: overlays/quinyx-api-v2-overlay.yaml
 - type: DeveloperPortal

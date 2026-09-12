@@ -422,6 +422,8 @@ apis:
   - type: OpenAPI
     url: openapi/quinyx-tags-api-openapi.yml
 common:
+- type: Website
+  url: https://www.quinyx.com/
 - type: CapabilityMap
   url: capabilities/quinyx-capability-edges.yml
   name: Quinyx Business Capability Map

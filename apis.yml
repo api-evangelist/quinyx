@@ -422,6 +422,8 @@ apis:
   - type: OpenAPI
     url: openapi/quinyx-tags-api-openapi.yml
 common:
+- type: Plans
+  url: plans/quinyx-plans-pricing.yml
 - type: Website
   url: https://www.quinyx.com/
 - type: CapabilityMap

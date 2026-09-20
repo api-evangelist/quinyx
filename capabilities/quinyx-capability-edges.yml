@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 5
+edge_count: 15
 edges:
 - tag: Employee
   spec_file: quinyx-employee-api-openapi.yml
@@ -33,6 +33,28 @@ edges:
     'Calculate optimal headcounts for group'
   reason: Computing optimal headcount per group and period from forecast data is squarely workforce supply-and-demand
     planning within Human Capital Management.
+- tag: Schedule Availability
+  spec_file: quinyx-schedule-availability-api-openapi.yml
+  capability_id: BC-300
+  capability_id_l1: BC-300
+  capability_name: Human Capital Management
+  confidence: 0.75
+  evidence: POST /v2/schedule-availability/v2 createScheduleAvailability 'Create schedule availability';
+    GET .../employees/{employeeId} 'Get schedule availability by employee id'
+  reason: Employee availability records used for workforce shift scheduling in a WFM platform — squarely
+    employee-lifecycle/workforce management (BC-300). No candidate L2 cleanly covers operational shift
+    scheduling (Workforce Planning is strategic), so L2 left unset.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Shift
+  spec_file: quinyx-shift-api-openapi.yml
+  capability_id: BC-300
+  capability_id_l1: BC-300
+  capability_name: Human Capital Management
+  confidence: 0.75
+  evidence: GET /schedule/v3/shifts getShifts 'List shifts'; schemas shifts_Shift, shifts_Task
+  reason: Shift scheduling data from a workforce management platform; belongs under Human Capital Management.
+    No L2 in the candidate list matches operational scheduling precisely, so abstain at L2.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Leave Applications
   spec_file: quinyx-leave-applications-api-openapi.yml
   capability_id: BC-300.70
@@ -43,6 +65,48 @@ edges:
   reason: Employee-initiated leave/absence requests with approving managers is absence administration,
     an HR operations/employee-records function within Human Capital Management. Not a travel capability
     despite the hospitality vertical.
+- tag: Shifts
+  spec_file: quinyx-shifts-api-openapi.yml
+  capability_id: BC-300
+  capability_id_l1: BC-300
+  capability_name: Human Capital Management
+  confidence: 0.72
+  evidence: GET /users/shifts 'Returns upcoming or unassigned shifts'; schemas Break, Shift
+  reason: Employee-facing view of upcoming/unassigned shifts in a WFM product — workforce scheduling under
+    Human Capital Management; no precise L2 candidate for shift scheduling.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: AI Scheduled Headcount
+  spec_file: quinyx-ai-scheduled-headcount-api-openapi.yml
+  capability_id: BC-300.50
+  capability_id_l1: BC-300
+  capability_name: Workforce Planning Management
+  confidence: 0.7
+  evidence: getScheduledHeadcountSnapshot  Get ai scheduled headcount snapshot; schemas statistics_HeadCount
+  reason: Headcount-by-period scheduling statistics from a workforce management platform — workforce planning/scheduling
+    analytics. Could also be store workforce management but the API is generic across industries.
+  recovered_from: vertical-retail-consumer-goods-edges.json
+- tag: Absence Schedules
+  spec_file: quinyx-absence-schedules-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: GET /v2/absence-schedule/groups/{groupId} getAbsenceSchedules List absence schedules for group;
+    schema absence-schedule_IntegrationAbsenceScheduleShift
+  reason: Exposes employee absence schedules and associated shifts from a workforce management system
+    — absence administration sits within HR operations/employee records administration.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Absence Types
+  spec_file: quinyx-absence-types-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: GET /v2/absence-types/groups/{groupId}/employees/{employeeId} getAbsenceTypesForEmployee List
+    absence types for group and employee in period
+  reason: Returns the absence/leave types applicable to a given employee, reference data for absence administration
+    — an HR operations function in the WFM platform.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Absences
   spec_file: quinyx-absences-api-openapi.yml
   capability_id: BC-300.70
@@ -52,6 +116,16 @@ edges:
   evidence: POST /v2/schedule/groups/{groupId}/absences addAbsence "Create full-time absence for employee"
   reason: Creating and deleting full-time and part-time employee absences is employee leave/absence administration,
     an HR operations activity in this WFM platform.
+- tag: Employees
+  spec_file: quinyx-employees-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: GET /v2/employee/badgeNo/{badgeNo} "Get List of employee information by badge number"
+  reason: Single lookup of employee records by badge number — employee record retrieval, an HR operations
+    function; thin surface so moderate confidence.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Labor Standards
   spec_file: quinyx-labor-standards-api-openapi.yml
   capability_id: BC-300.50
@@ -62,3 +136,33 @@ edges:
     optimal headcount id'; schemas labor-standards_LimitRule, labor-standards_DynamicRule
   reason: Labor standards define the staffing effort required per unit of forecast demand and are read
     against optimal headcount ids — this is labour demand modelling for workforce supply/demand planning.
+- tag: Pay Schedules
+  spec_file: quinyx-pay-schedules-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: getPayPeriod  Get most recent pay period ending before date; schema employee_IntegrationPayPeriodResponse
+  reason: Pay period/pay schedule lookup for employees supports payroll administration, an HR Operations
+    function. Single endpoint keeps confidence moderate.
+  recovered_from: vertical-retail-consumer-goods-edges.json
+- tag: Role
+  spec_file: quinyx-role-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: getRoles  List roles; schemas security_RoleResponse, security_ProblemDetail
+  reason: The security_ schema prefix indicates these are access-control roles rather than job roles,
+    so this is identity and access management reference data. Read-only and generic, hence moderate confidence.
+  recovered_from: vertical-retail-consumer-goods-edges.json
+- tag: Role Assignment
+  spec_file: quinyx-role-assignment-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: createRoleAssignment  Create a role assignment; schema security_RoleAssignmentRequest
+  reason: Granting and revoking security roles to users is access management. The /hr/ path adds slight
+    ambiguity (could be job-role assignment), so confidence is moderate.
+  recovered_from: vertical-retail-consumer-goods-edges.json

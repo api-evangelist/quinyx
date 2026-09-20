@@ -1,0 +1,64 @@
+slug: quinyx
+provider: Quinyx
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Travel & Hospitality
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Employee
+  spec_file: quinyx-employee-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.85
+  evidence: POST /hr/v3/employees createEmployee; schemas employee_PersonalInformation, employee_Employment,
+    employee_EmergencyContact, employee_Address
+  reason: Full CRUD over employee master records including personal information, employment, address and
+    emergency contact — core employee record keeping / HR service delivery.
+- tag: Forecast Optimal Headcounts
+  spec_file: quinyx-forecast-optimal-headcounts-api-openapi.yml
+  capability_id: BC-300.50
+  capability_id_l1: BC-300
+  capability_name: Workforce Planning Management
+  confidence: 0.8
+  evidence: GET /v2/forecast-calculation/groups/{groupId}/optimal-headcounts calculateOptimalHeadcounts
+    'Calculate optimal headcounts for group'
+  reason: Computing optimal headcount per group and period from forecast data is squarely workforce supply-and-demand
+    planning within Human Capital Management.
+- tag: Leave Applications
+  spec_file: quinyx-leave-applications-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.72
+  evidence: POST /users/leave-applications  Create leave application; schemas LeaveApplication, LeaveApplicationManager
+  reason: Employee-initiated leave/absence requests with approving managers is absence administration,
+    an HR operations/employee-records function within Human Capital Management. Not a travel capability
+    despite the hospitality vertical.
+- tag: Absences
+  spec_file: quinyx-absences-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: POST /v2/schedule/groups/{groupId}/absences addAbsence "Create full-time absence for employee"
+  reason: Creating and deleting full-time and part-time employee absences is employee leave/absence administration,
+    an HR operations activity in this WFM platform.
+- tag: Labor Standards
+  spec_file: quinyx-labor-standards-api-openapi.yml
+  capability_id: BC-300.50
+  capability_id_l1: BC-300
+  capability_name: Workforce Planning Management
+  confidence: 0.7
+  evidence: POST /v2/labor-standards/labor-standards createLaborStandard; 'Read labor standards by external
+    optimal headcount id'; schemas labor-standards_LimitRule, labor-standards_DynamicRule
+  reason: Labor standards define the staffing effort required per unit of forecast demand and are read
+    against optimal headcount ids — this is labour demand modelling for workforce supply/demand planning.

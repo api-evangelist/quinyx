@@ -1,0 +1,17 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.quinyx.com/pricing
+sources:
+- https://www.quinyx.com/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+published: false
+note: Pricing page contains no numeric prices; invites prospects to contact Quinyx for a tailored workforce
+  management solution.
+plan_count: 0
+plans: []

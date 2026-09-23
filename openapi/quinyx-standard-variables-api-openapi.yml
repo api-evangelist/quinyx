@@ -38,6 +38,45 @@ paths:
       x-audience: public
 components:
   schemas:
+    statistics_StatisticsPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          example: '2026-01-01T00:00:00'
+        end:
+          type: string
+          example: '2026-01-31T23:59:59'
+        aggregation-type:
+          type: string
+          enum:
+          - m
+          - H
+          - D
+          - W
+          - M
+          example: D
+        aggregation-value:
+          type: integer
+          format: int32
+          example: 1
+    statistics_StatisticPeriodValue:
+      type: object
+      properties:
+        start:
+          type: string
+          example: '2026-01-01T00:00:00'
+        end:
+          type: string
+          example: '2026-01-01T23:59:59'
+        value:
+          type: number
+          format: double
+          example: 100
+        employeeId:
+          type: integer
+          format: int32
+          example: 1
     statistics_Statistic:
       type: object
       properties:
@@ -176,67 +215,6 @@ components:
           - and
           - or
           example: and
-    statistics_TimeRangeFilter:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        from:
-          type: string
-          example: 08:00
-        to:
-          type: string
-          example: '17:00'
-    statistics_StatisticsPeriod:
-      type: object
-      properties:
-        start:
-          type: string
-          example: '2026-01-01T00:00:00'
-        end:
-          type: string
-          example: '2026-01-31T23:59:59'
-        aggregation-type:
-          type: string
-          enum:
-          - m
-          - H
-          - D
-          - W
-          - M
-          example: D
-        aggregation-value:
-          type: integer
-          format: int32
-          example: 1
-    statistics_BaseScheduleData:
-      type: object
-      properties:
-        baseScheduleId:
-          type: string
-          example: abc123
-        dayIndex:
-          type: integer
-          format: int32
-          example: 0
-    statistics_StatisticPeriodValue:
-      type: object
-      properties:
-        start:
-          type: string
-          example: '2026-01-01T00:00:00'
-        end:
-          type: string
-          example: '2026-01-01T23:59:59'
-        value:
-          type: number
-          format: double
-          example: 100
-        employeeId:
-          type: integer
-          format: int32
-          example: 1
     statistics_Filter:
       type: object
       properties:
@@ -275,6 +253,28 @@ components:
             format: int32
         timeRange:
           $ref: '#/components/schemas/statistics_TimeRangeFilter'
+    statistics_BaseScheduleData:
+      type: object
+      properties:
+        baseScheduleId:
+          type: string
+          example: abc123
+        dayIndex:
+          type: integer
+          format: int32
+          example: 0
+    statistics_TimeRangeFilter:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        from:
+          type: string
+          example: 08:00
+        to:
+          type: string
+          example: '17:00'
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

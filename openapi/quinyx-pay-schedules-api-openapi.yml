@@ -59,6 +59,15 @@ paths:
       x-audience: public
 components:
   schemas:
+    employee_IntegrationPayPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date
+        end:
+          type: string
+          format: date
     employee_IntegrationPayPeriodResponse:
       type: object
       properties:
@@ -81,15 +90,6 @@ components:
             type: integer
             format: int32
           uniqueItems: true
-    employee_IntegrationPayPeriod:
-      type: object
-      properties:
-        start:
-          type: string
-          format: date
-        end:
-          type: string
-          format: date
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

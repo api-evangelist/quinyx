@@ -277,64 +277,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    organisation_GroupLocationRequestDto:
-      type: object
-      properties:
-        latitude:
-          type: string
-          example: '59.329956'
-          minLength: 1
-          pattern: ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
-        longitude:
-          type: string
-          example: '18.062850'
-          minLength: 1
-          pattern: ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
-        radius:
-          type: integer
-          format: int32
-          example: 100
-        comment:
-          type: string
-          example: Main entrance
-      required:
-      - latitude
-      - longitude
-      - radius
-    organisation_ValidationErrorDto:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-          example: fieldName
-        message:
-          type: string
-          example: error.organisation.forbidden
-        severity:
-          type: string
-          example: ERROR
-        additionalErrorParameters:
-          type: object
-          additionalProperties: {}
-          example: {}
-    organisation_ApiErrorResponseDto:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          example: '2026-04-20T18:11:08.182+00:00'
-        status:
-          type: integer
-          format: int32
-          example: 404
-        error:
-          type: string
-          example: Not Found
-        path:
-          type: string
-          example: /integration/groups/123
     organisation_GroupLocationResponseDto:
       type: object
       properties:
@@ -359,6 +301,30 @@ components:
         comment:
           type: string
           example: Main entrance
+    organisation_GroupLocationRequestDto:
+      type: object
+      properties:
+        latitude:
+          type: string
+          example: '59.329956'
+          minLength: 1
+          pattern: ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
+        longitude:
+          type: string
+          example: '18.062850'
+          minLength: 1
+          pattern: ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
+        radius:
+          type: integer
+          format: int32
+          example: 100
+        comment:
+          type: string
+          example: Main entrance
+      required:
+      - latitude
+      - longitude
+      - radius
     organisation_UnauthorizedErrorResponseDto:
       type: object
       properties:
@@ -382,6 +348,40 @@ components:
         error_description:
           type: string
           example: Unauthorized exception
+    organisation_ApiErrorResponseDto:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          example: '2026-04-20T18:11:08.182+00:00'
+        status:
+          type: integer
+          format: int32
+          example: 404
+        error:
+          type: string
+          example: Not Found
+        path:
+          type: string
+          example: /integration/groups/123
+    organisation_ValidationErrorDto:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+          example: fieldName
+        message:
+          type: string
+          example: error.organisation.forbidden
+        severity:
+          type: string
+          example: ERROR
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
+          example: {}
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

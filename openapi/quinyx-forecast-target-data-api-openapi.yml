@@ -146,15 +146,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    forecast-data-ingestion_TargetDataInputList:
-      type: object
-      properties:
-        requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_TargetDataInput'
-      required:
-      - requests
     forecast-data-ingestion_TargetDataOutput:
       type: object
       properties:
@@ -222,6 +213,15 @@ components:
       required:
       - date
       - rangeType
+    forecast-data-ingestion_TargetDataInputList:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_TargetDataInput'
+      required:
+      - requests
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

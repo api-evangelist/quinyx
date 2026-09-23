@@ -60,7 +60,8 @@
     "quinyx-userapi-v2-openapi.yml: declared missing tag: Leave Applications",
     "quinyx-userapi-v2-openapi.yml: declared missing tag: Leave Reasons",
     "quinyx-userapi-v2-openapi.yml: declared missing tag: Shifts",
-    "tag 'Authentication' spans 2 source specs (quinyx-api-v2-openapi.yml, quinyx-userapi-v2-openapi.yml): per-path servers applied"
+    "tag 'Authentication' spans 2 source specs (quinyx-api-v2-openapi.yml, quinyx-userapi-v2-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "quinyx-absence-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/",

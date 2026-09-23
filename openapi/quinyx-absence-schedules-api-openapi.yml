@@ -75,27 +75,6 @@ components:
             - FRIDAY
             - SATURDAY
             - SUNDAY
-    absence-schedule_ValidationError:
-      type: object
-      properties:
-        field:
-          type: string
-          example: externalValue
-        message:
-          type: string
-          example: must not be blank
-        severity:
-          type: string
-          example: ERROR
-        localisedMessage:
-          type: string
-          example: External value must not be blank
-        groupingMessage:
-          type: string
-          example: validation
-        additionalErrorParameters:
-          type: object
-          additionalProperties: {}
     absence-schedule_IntegrationAbsenceSchedule:
       type: object
       properties:
@@ -136,6 +115,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/absence-schedule_IntegrationAbsenceScheduleShift'
+    absence-schedule_ValidationError:
+      type: object
+      properties:
+        field:
+          type: string
+          example: externalValue
+        message:
+          type: string
+          example: must not be blank
+        severity:
+          type: string
+          example: ERROR
+        localisedMessage:
+          type: string
+          example: External value must not be blank
+        groupingMessage:
+          type: string
+          example: validation
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

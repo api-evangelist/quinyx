@@ -13,9 +13,7 @@ info:
 
     Quinyx credentials and is intentionally separate from the
 
-    customer/integration-level Quinyx API.
-
-    '
+    customer/integration-level Quinyx API.'
 servers:
 - url: https://user-api.quinyx.com/v2
   description: Production API
@@ -29,7 +27,6 @@ paths:
       tags:
       - Leave Reasons
       summary: Returns list of leave reasons
-      description: Returns list of leave reasons
       operationId: e5fd7d826054be45710680505ab8c092
       responses:
         '200':

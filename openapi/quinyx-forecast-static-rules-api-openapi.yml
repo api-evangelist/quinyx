@@ -173,41 +173,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    forecast-data-ingestion_PaginatedResultListExternalStaticRule:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
-        pagination:
-          $ref: '#/components/schemas/forecast-data-ingestion_Pagination'
-    forecast-data-ingestion_ExternalShiftType:
-      type: object
-      properties:
-        externalShiftTypeId:
-          type: string
-          example: EXTERNAL_SHIFT_ID
-        amount:
-          type: integer
-          format: int32
-          example: 10
-          maximum: 100000
-      required:
-      - amount
-      - externalShiftTypeId
-    forecast-data-ingestion_Pagination:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          format: int64
-        currentPage:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
     forecast-data-ingestion_ExternalStaticRule:
       type: object
       properties:
@@ -257,6 +222,41 @@ components:
       - startDate
       - startTime
       - weekdays
+    forecast-data-ingestion_Pagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          format: int64
+        currentPage:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
+    forecast-data-ingestion_PaginatedResultListExternalStaticRule:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
+        pagination:
+          $ref: '#/components/schemas/forecast-data-ingestion_Pagination'
+    forecast-data-ingestion_ExternalShiftType:
+      type: object
+      properties:
+        externalShiftTypeId:
+          type: string
+          example: EXTERNAL_SHIFT_ID
+        amount:
+          type: integer
+          format: int32
+          example: 10
+          maximum: 100000
+      required:
+      - amount
+      - externalShiftTypeId
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

@@ -240,6 +240,18 @@ paths:
       - Role
 components:
   schemas:
+    security_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
     security_RoleResponse:
       type: object
       description: Represents a role within the organization
@@ -260,6 +272,30 @@ components:
           type: string
           description: Identifier of the associated level (rank)
           example: '5'
+    security_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
+    security_CursorPageRoleResponse:
+      type: object
+      description: A page of data along with pagination information for cursor-based pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/security_RoleResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/security_CursorPaginationInfo'
     security_ProblemDetail:
       type: object
       description: RFC 9457 Problem Details for HTTP APIs
@@ -290,18 +326,6 @@ components:
       - title
       - type
       title: ProblemDetail
-    security_ValidationErrorDetail:
-      type: object
-      description: A single validation error.
-      properties:
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: name is mandatory
-        pointer:
-          type: string
-          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
-          example: '#/name'
     security_ValidationError:
       type: object
       description: Validation errors, conforming to RFC 9457.
@@ -336,30 +360,6 @@ components:
       - title
       - type
       title: ValidationError
-    security_CursorPageRoleResponse:
-      type: object
-      description: A page of data along with pagination information for cursor-based pagination.
-      properties:
-        data:
-          type: array
-          description: The data in the page.
-          items:
-            $ref: '#/components/schemas/security_RoleResponse'
-          maxItems: 100
-        pagination:
-          $ref: '#/components/schemas/security_CursorPaginationInfo'
-    security_CursorPaginationInfo:
-      type: object
-      description: Pagination information for cursor-based pagination.
-      properties:
-        nextPageToken:
-          type: string
-          description: The token for the next page
-          example: eyJpZCI6MTIwfQ
-        previousPageToken:
-          type: string
-          description: The token for the previous page
-          example: eyJpZCI6ODB9
   securitySchemes:
     OAuth2ClientCredentials:
       type: oauth2

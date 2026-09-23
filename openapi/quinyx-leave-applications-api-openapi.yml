@@ -13,9 +13,7 @@ info:
 
     Quinyx credentials and is intentionally separate from the
 
-    customer/integration-level Quinyx API.
-
-    '
+    customer/integration-level Quinyx API.'
 servers:
 - url: https://user-api.quinyx.com/v2
   description: Production API
@@ -66,7 +64,6 @@ paths:
       tags:
       - Leave Applications
       summary: Create leave application
-      description: Create leave application
       operationId: b29f8f50f23a5ea3e76a1af8bb808965
       requestBody:
         required: true
@@ -147,7 +144,6 @@ paths:
       tags:
       - Leave Applications
       summary: Returns list of leave applications managers
-      description: Returns list of leave applications managers
       operationId: c59728cf9f3146f3224e3811c0b71700
       responses:
         '200':
@@ -166,25 +162,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    LeaveApplicationManager:
-      description: Leave Application Manager Model
-      properties:
-        id:
-          type: string
-          example: lEgFK5pUNvkUtqzE8jcmjYsvk0WlKqx9f_fHbMrk_0VIsw--
-        name:
-          type: string
-          example: John Doe
-        unit:
-          type: string
-          example: Unit name
-        section:
-          type: string
-          example: Section name
-        defaultManager:
-          type: boolean
-          example: false
-      type: object
     LeaveApplication:
       description: Leave Application Model
       properties:
@@ -231,6 +208,25 @@ components:
               type: string
               example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, historical'
           type: object
+      type: object
+    LeaveApplicationManager:
+      description: Leave Application Manager Model
+      properties:
+        id:
+          type: string
+          example: lEgFK5pUNvkUtqzE8jcmjYsvk0WlKqx9f_fHbMrk_0VIsw--
+        name:
+          type: string
+          example: John Doe
+        unit:
+          type: string
+          example: Unit name
+        section:
+          type: string
+          example: Section name
+        defaultManager:
+          type: boolean
+          example: false
       type: object
   securitySchemes:
     BearerAuth:

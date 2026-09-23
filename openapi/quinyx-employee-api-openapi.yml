@@ -777,217 +777,52 @@ paths:
       x-resource: Employee
 components:
   schemas:
-    employee_Employment:
+    employee_UpdateAddress:
       type: object
       properties:
-        homeGroupId:
+        address1:
           type: string
-          description: ID of the employee's home group
-          example: '123'
-        staffCategoryId:
-          type: string
-          description: ID of the staff category assigned to the employee
-          example: '123'
-        passive:
-          type: boolean
-          description: Whether the employee is passive
-          example: false
-        locked:
-          type: string
-          description: Lock status of the employee account
-          enum:
-          - NOT_LOCKED
-          - LOCKED_BY_MANAGER
-          - LOCKED_BY_SYSTEM
-          example: NOT_LOCKED
-        employmentStartDate:
-          type: string
-          format: date
-          description: Date when the employment started
-          example: '2020-01-01'
-        industryStartDate:
-          type: string
-          format: date
-          description: Date when the employee started working in the industry
-          example: '2015-01-01'
-        managerId:
-          type: string
-          description: ID of the employee's manager
-          example: '1234'
-        employmentEndDate:
-          type: string
-          format: date
-          description: Date when the employment ends, if applicable
-          example: '2025-12-31'
-        costCentreId:
-          type: string
-          description: Cost centre ID
-          example: '1234'
-    employee_UpdateEmergencyContact:
-      type: object
-      properties:
-        nextOfKinName:
-          type: string
-          description: Name of the employee's next of kin
-          example: John Doe
+          description: Primary address line
+          example: 123 Example Street
           maxLength: 50
           minLength: 0
-        nextOfKinPhone:
+        address2:
           type: string
-          description: Phone number of the employee's next of kin
-          example: '+46700000000'
+          description: Secondary address line
+          example: Apt 1
+          maxLength: 50
+          minLength: 0
+        zip:
+          type: string
+          description: Postal or ZIP code
+          example: SE-10000
           maxLength: 20
           minLength: 0
-        legalGuardianName:
+        city:
           type: string
-          description: Name of the employee's legal guardian
-          example: Jane Doe
+          description: City of residence
+          example: Stockholm
           maxLength: 50
           minLength: 0
-        legalGuardianEmail:
+        country:
           type: string
-          description: Email address of the employee's legal guardian
-          example: guardian@example.com
+          description: Country of residence
+          example: Sweden
           maxLength: 50
           minLength: 0
       required:
-      - legalGuardianEmail
-      - legalGuardianName
-      - nextOfKinName
-      - nextOfKinPhone
-    employee_EmergencyContact:
+      - address1
+      - address2
+      - city
+      - country
+      - zip
+    employee_PunchSettings:
       type: object
       properties:
-        nextOfKinName:
-          type: string
-          description: Name of the employee's next of kin
-          example: John Doe
-          maxLength: 50
-          minLength: 0
-        nextOfKinPhone:
-          type: string
-          description: Phone number of the employee's next of kin
-          example: '+46700000000'
-          maxLength: 20
-          minLength: 0
-        legalGuardianName:
-          type: string
-          description: Name of the employee's legal guardian
-          example: Jane Doe
-          maxLength: 50
-          minLength: 0
-        legalGuardianEmail:
-          type: string
-          description: Email address of the employee's legal guardian
-          example: guardian@example.com
-          maxLength: 50
-          minLength: 0
-    employee_UpdatePersonalInformation:
-      type: object
-      properties:
-        firstName:
-          type: string
-          description: Employee's first name
-          example: John
-          maxLength: 40
-          minLength: 0
-        lastName:
-          type: string
-          description: Employee's last name
-          example: Doe
-          maxLength: 40
-          minLength: 0
-        dateOfBirth:
-          type: string
-          format: date
-          description: 'Employee''s date of birth '
-          example: '1990-01-01'
-        gender:
-          type: string
-          description: Employee's gender
-          enum:
-          - MALE
-          - FEMALE
-          - OTHER
-          - NOT_SPECIFIED
-          example: MALE
-        socialSecurityNumber:
-          type: string
-          description: 'Employee''s social security number '
-          example: 000000-0000
-        pictureURL:
-          type: string
-          description: URL to the employee's profile picture
-          example: https://example.com/pictures/placeholder.jpg
-      required:
-      - dateOfBirth
-      - firstName
-      - gender
-      - lastName
-      - pictureURL
-      - socialSecurityNumber
-    employee_CreateEmployment:
-      type: object
-      properties:
-        homeGroupId:
-          type: string
-          description: ID of the employee's home group
-          example: '123'
-          minLength: 1
-        staffCategoryId:
-          type: string
-          description: ID of the staff category assigned to the employee
-          example: '123'
-        managerId:
-          type: string
-          description: ID of the employee's manager
-          example: '1234'
-        passive:
+        allowAttestOfOwnPunches:
           type: boolean
-          description: Whether the employee is passive
+          description: Whether the employee is allowed to attest their own time punches
           example: false
-        locked:
-          type: string
-          description: Lock status of the employee account
-          enum:
-          - NOT_LOCKED
-          - LOCKED_BY_MANAGER
-          - LOCKED_BY_SYSTEM
-          example: NOT_LOCKED
-        employmentStartDate:
-          type: string
-          format: date
-          description: Date when the employment started
-          example: '2020-01-01'
-        employmentEndDate:
-          type: string
-          format: date
-          description: Date when the employment ends, if applicable
-          example: '2025-12-31'
-        industryStartDate:
-          type: string
-          format: date
-          description: Date when the employee started working in the industry
-          example: '2015-01-01'
-        costCentreId:
-          type: string
-          description: Cost centre ID
-          example: '1234'
-      required:
-      - employmentStartDate
-      - homeGroupId
-    employee_ValidationErrorDetail:
-      type: object
-      description: A single validation error.
-      properties:
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: name is mandatory
-        pointer:
-          type: string
-          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
-          example: '#/name'
     employee_UpdateEmployment:
       type: object
       properties:
@@ -1044,46 +879,58 @@ components:
       - locked
       - passive
       - staffCategoryId
-    employee_UpdateAddress:
+    employee_CursorPageIntegrationEmployeeResponse:
+      type: object
+      description: A page of data along with pagination information for cursor-based pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/employee_IntegrationEmployeeResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/employee_CursorPaginationInfo'
+    employee_EmergencyContact:
       type: object
       properties:
-        address1:
+        nextOfKinName:
           type: string
-          description: Primary address line
-          example: 123 Example Street
+          description: Name of the employee's next of kin
+          example: John Doe
           maxLength: 50
           minLength: 0
-        address2:
+        nextOfKinPhone:
           type: string
-          description: Secondary address line
-          example: Apt 1
-          maxLength: 50
-          minLength: 0
-        zip:
-          type: string
-          description: Postal or ZIP code
-          example: SE-10000
+          description: Phone number of the employee's next of kin
+          example: '+46700000000'
           maxLength: 20
           minLength: 0
-        city:
+        legalGuardianName:
           type: string
-          description: City of residence
-          example: Stockholm
+          description: Name of the employee's legal guardian
+          example: Jane Doe
           maxLength: 50
           minLength: 0
-        country:
+        legalGuardianEmail:
           type: string
-          description: Country of residence
-          example: Sweden
+          description: Email address of the employee's legal guardian
+          example: guardian@example.com
           maxLength: 50
           minLength: 0
-      required:
-      - address1
-      - address2
-      - city
-      - country
-      - zip
-    employee_UpdateContactInformation:
+    employee_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
+    employee_ContactInformation:
       type: object
       properties:
         mobileNumber:
@@ -1098,18 +945,52 @@ components:
           example: '+46800000000'
           maxLength: 20
           minLength: 0
-      required:
-      - mobileNumber
-      - phoneNumber
-    employee_UpdatePunchSettings:
+    employee_Employment:
       type: object
       properties:
-        allowAttestOfOwnPunches:
+        homeGroupId:
+          type: string
+          description: ID of the employee's home group
+          example: '123'
+        staffCategoryId:
+          type: string
+          description: ID of the staff category assigned to the employee
+          example: '123'
+        passive:
           type: boolean
-          description: Whether the employee is allowed to attest their own time punches
+          description: Whether the employee is passive
           example: false
-      required:
-      - allowAttestOfOwnPunches
+        locked:
+          type: string
+          description: Lock status of the employee account
+          enum:
+          - NOT_LOCKED
+          - LOCKED_BY_MANAGER
+          - LOCKED_BY_SYSTEM
+          example: NOT_LOCKED
+        employmentStartDate:
+          type: string
+          format: date
+          description: Date when the employment started
+          example: '2020-01-01'
+        industryStartDate:
+          type: string
+          format: date
+          description: Date when the employee started working in the industry
+          example: '2015-01-01'
+        managerId:
+          type: string
+          description: ID of the employee's manager
+          example: '1234'
+        employmentEndDate:
+          type: string
+          format: date
+          description: Date when the employment ends, if applicable
+          example: '2025-12-31'
+        costCentreId:
+          type: string
+          description: Cost centre ID
+          example: '1234'
     employee_ValidationError:
       type: object
       description: Validation errors, conforming to RFC 9457.
@@ -1144,14 +1025,37 @@ components:
       - title
       - type
       title: ValidationError
-    employee_PunchSettings:
+    employee_ProblemDetail:
       type: object
+      description: RFC 9457 Problem Details for HTTP APIs
       properties:
-        allowAttestOfOwnPunches:
-          type: boolean
-          description: Whether the employee is allowed to attest their own time punches
-          example: false
-    employee_IntegrationEmployeeUpdateRequest:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem
+          example: /api/endpoint
+      required:
+      - status
+      - title
+      - type
+      title: ProblemDetail
+    employee_IntegrationEmployeePatchRequest:
       type: object
       properties:
         badgeNumber:
@@ -1168,123 +1072,67 @@ components:
           maxLength: 255
           minLength: 0
         personalInformation:
-          $ref: '#/components/schemas/employee_UpdatePersonalInformation'
+          $ref: '#/components/schemas/employee_PersonalInformation'
         contactInformation:
-          $ref: '#/components/schemas/employee_UpdateContactInformation'
+          $ref: '#/components/schemas/employee_ContactInformation'
         address:
-          $ref: '#/components/schemas/employee_UpdateAddress'
+          $ref: '#/components/schemas/employee_Address'
         employment:
-          $ref: '#/components/schemas/employee_UpdateEmployment'
+          $ref: '#/components/schemas/employee_Employment'
         emergencyContact:
-          $ref: '#/components/schemas/employee_UpdateEmergencyContact'
+          $ref: '#/components/schemas/employee_EmergencyContact'
         punchSettings:
-          $ref: '#/components/schemas/employee_UpdatePunchSettings'
-      required:
-      - address
-      - badgeNumber
-      - contactInformation
-      - email
-      - emergencyContact
-      - employment
-      - personalInformation
-      - punchSettings
-    employee_CursorPaginationInfo:
-      type: object
-      description: Pagination information for cursor-based pagination.
-      properties:
-        nextPageToken:
-          type: string
-          description: The token for the next page
-          example: eyJpZCI6MTIwfQ
-        previousPageToken:
-          type: string
-          description: The token for the previous page
-          example: eyJpZCI6ODB9
-    employee_Address:
+          $ref: '#/components/schemas/employee_PunchSettings'
+    employee_CreateEmployment:
       type: object
       properties:
-        address1:
+        homeGroupId:
           type: string
-          description: Primary address line
-          example: 123 Example Street
-          maxLength: 50
-          minLength: 0
-        address2:
+          description: ID of the employee's home group
+          example: '123'
+          minLength: 1
+        staffCategoryId:
           type: string
-          description: Secondary address line
-          example: Apt 1
-          maxLength: 50
-          minLength: 0
-        zip:
+          description: ID of the staff category assigned to the employee
+          example: '123'
+        managerId:
           type: string
-          description: Postal or ZIP code
-          example: SE-10000
-          maxLength: 20
-          minLength: 0
-        city:
+          description: ID of the employee's manager
+          example: '1234'
+        passive:
+          type: boolean
+          description: Whether the employee is passive
+          example: false
+        locked:
           type: string
-          description: City of residence
-          example: Stockholm
-          maxLength: 50
-          minLength: 0
-        country:
-          type: string
-          description: Country of residence
-          example: Sweden
-          maxLength: 50
-          minLength: 0
-    employee_CreatePersonalInformation:
-      type: object
-      properties:
-        firstName:
-          type: string
-          description: Employee's first name
-          example: John
-          maxLength: 40
-          minLength: 0
-        lastName:
-          type: string
-          description: Employee's last name
-          example: Doe
-          maxLength: 40
-          minLength: 0
-        dateOfBirth:
+          description: Lock status of the employee account
+          enum:
+          - NOT_LOCKED
+          - LOCKED_BY_MANAGER
+          - LOCKED_BY_SYSTEM
+          example: NOT_LOCKED
+        employmentStartDate:
           type: string
           format: date
-          description: Employee's date of birth
-          example: '1990-01-01'
-        gender:
+          description: Date when the employment started
+          example: '2020-01-01'
+        employmentEndDate:
           type: string
-          description: Employee's gender
-          enum:
-          - MALE
-          - FEMALE
-          - OTHER
-          - NOT_SPECIFIED
-          example: MALE
-        socialSecurityNumber:
+          format: date
+          description: Date when the employment ends, if applicable
+          example: '2025-12-31'
+        industryStartDate:
           type: string
-          description: Employee's social security number
-          example: 000000-0000
-        pictureURL:
+          format: date
+          description: Date when the employee started working in the industry
+          example: '2015-01-01'
+        costCentreId:
           type: string
-          description: URL to the employee's profile picture
-          example: https://example.com/pictures/placeholder.jpg
+          description: Cost centre ID
+          example: '1234'
       required:
-      - firstName
-      - lastName
-    employee_CursorPageIntegrationEmployeeResponse:
-      type: object
-      description: A page of data along with pagination information for cursor-based pagination.
-      properties:
-        data:
-          type: array
-          description: The data in the page.
-          items:
-            $ref: '#/components/schemas/employee_IntegrationEmployeeResponse'
-          maxItems: 100
-        pagination:
-          $ref: '#/components/schemas/employee_CursorPaginationInfo'
+      - employmentStartDate
+      - homeGroupId
     employee_IntegrationEmployeeResponse:
       type: object
       properties:
@@ -1330,34 +1178,33 @@ components:
           description: Timestamp when the employee record was created
           example: '2024-06-01T10:00:00Z'
           readOnly: true
-    employee_IntegrationEmployeePatchRequest:
+    employee_UpdatePunchSettings:
       type: object
       properties:
-        badgeNumber:
+        allowAttestOfOwnPunches:
+          type: boolean
+          description: Whether the employee is allowed to attest their own time punches
+          example: false
+      required:
+      - allowAttestOfOwnPunches
+    employee_UpdateContactInformation:
+      type: object
+      properties:
+        mobileNumber:
           type: string
-          description: Unique badge number identifying the employee
-          example: '001'
+          description: Employee's mobile phone number
+          example: '+46700000000'
           maxLength: 20
           minLength: 0
-        email:
+        phoneNumber:
           type: string
-          format: email
-          description: Employee email address
-          example: employee@example.com
-          maxLength: 255
+          description: Employee's work phone number
+          example: '+46800000000'
+          maxLength: 20
           minLength: 0
-        personalInformation:
-          $ref: '#/components/schemas/employee_PersonalInformation'
-        contactInformation:
-          $ref: '#/components/schemas/employee_ContactInformation'
-        address:
-          $ref: '#/components/schemas/employee_Address'
-        employment:
-          $ref: '#/components/schemas/employee_Employment'
-        emergencyContact:
-          $ref: '#/components/schemas/employee_EmergencyContact'
-        punchSettings:
-          $ref: '#/components/schemas/employee_PunchSettings'
+      required:
+      - mobileNumber
+      - phoneNumber
     employee_PersonalInformation:
       type: object
       properties:
@@ -1395,6 +1242,167 @@ components:
           type: string
           description: URL to the employee's profile picture
           example: https://example.com/pictures/placeholder.jpg
+    employee_UpdateEmergencyContact:
+      type: object
+      properties:
+        nextOfKinName:
+          type: string
+          description: Name of the employee's next of kin
+          example: John Doe
+          maxLength: 50
+          minLength: 0
+        nextOfKinPhone:
+          type: string
+          description: Phone number of the employee's next of kin
+          example: '+46700000000'
+          maxLength: 20
+          minLength: 0
+        legalGuardianName:
+          type: string
+          description: Name of the employee's legal guardian
+          example: Jane Doe
+          maxLength: 50
+          minLength: 0
+        legalGuardianEmail:
+          type: string
+          description: Email address of the employee's legal guardian
+          example: guardian@example.com
+          maxLength: 50
+          minLength: 0
+      required:
+      - legalGuardianEmail
+      - legalGuardianName
+      - nextOfKinName
+      - nextOfKinPhone
+    employee_Address:
+      type: object
+      properties:
+        address1:
+          type: string
+          description: Primary address line
+          example: 123 Example Street
+          maxLength: 50
+          minLength: 0
+        address2:
+          type: string
+          description: Secondary address line
+          example: Apt 1
+          maxLength: 50
+          minLength: 0
+        zip:
+          type: string
+          description: Postal or ZIP code
+          example: SE-10000
+          maxLength: 20
+          minLength: 0
+        city:
+          type: string
+          description: City of residence
+          example: Stockholm
+          maxLength: 50
+          minLength: 0
+        country:
+          type: string
+          description: Country of residence
+          example: Sweden
+          maxLength: 50
+          minLength: 0
+    employee_UpdatePersonalInformation:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Employee's first name
+          example: John
+          maxLength: 40
+          minLength: 0
+        lastName:
+          type: string
+          description: Employee's last name
+          example: Doe
+          maxLength: 40
+          minLength: 0
+        dateOfBirth:
+          type: string
+          format: date
+          description: 'Employee''s date of birth '
+          example: '1990-01-01'
+        gender:
+          type: string
+          description: Employee's gender
+          enum:
+          - MALE
+          - FEMALE
+          - OTHER
+          - NOT_SPECIFIED
+          example: MALE
+        socialSecurityNumber:
+          type: string
+          description: 'Employee''s social security number '
+          example: 000000-0000
+        pictureURL:
+          type: string
+          description: URL to the employee's profile picture
+          example: https://example.com/pictures/placeholder.jpg
+      required:
+      - dateOfBirth
+      - firstName
+      - gender
+      - lastName
+      - pictureURL
+      - socialSecurityNumber
+    employee_CreatePersonalInformation:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Employee's first name
+          example: John
+          maxLength: 40
+          minLength: 0
+        lastName:
+          type: string
+          description: Employee's last name
+          example: Doe
+          maxLength: 40
+          minLength: 0
+        dateOfBirth:
+          type: string
+          format: date
+          description: Employee's date of birth
+          example: '1990-01-01'
+        gender:
+          type: string
+          description: Employee's gender
+          enum:
+          - MALE
+          - FEMALE
+          - OTHER
+          - NOT_SPECIFIED
+          example: MALE
+        socialSecurityNumber:
+          type: string
+          description: Employee's social security number
+          example: 000000-0000
+        pictureURL:
+          type: string
+          description: URL to the employee's profile picture
+          example: https://example.com/pictures/placeholder.jpg
+      required:
+      - firstName
+      - lastName
+    employee_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
     employee_IntegrationEmployeeCreateRequest:
       type: object
       properties:
@@ -1428,51 +1436,43 @@ components:
       - email
       - employment
       - personalInformation
-    employee_ProblemDetail:
+    employee_IntegrationEmployeeUpdateRequest:
       type: object
-      description: RFC 9457 Problem Details for HTTP APIs
       properties:
-        type:
+        badgeNumber:
           type: string
-          description: A URI reference that identifies the problem type
-          example: https://developer.quinyx.com/api/problems/error-type
-        title:
+          description: Unique badge number identifying the employee
+          example: '001'
+          maxLength: 20
+          minLength: 0
+        email:
           type: string
-          description: A short, human-readable summary of the problem type
-          example: Error Title
-        status:
-          type: integer
-          format: int32
-          description: The HTTP status code
-          example: 404
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem
-          example: A detailed explanation of the error
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurrence of the problem
-          example: /api/endpoint
+          format: email
+          description: Employee email address
+          example: employee@example.com
+          maxLength: 255
+          minLength: 0
+        personalInformation:
+          $ref: '#/components/schemas/employee_UpdatePersonalInformation'
+        contactInformation:
+          $ref: '#/components/schemas/employee_UpdateContactInformation'
+        address:
+          $ref: '#/components/schemas/employee_UpdateAddress'
+        employment:
+          $ref: '#/components/schemas/employee_UpdateEmployment'
+        emergencyContact:
+          $ref: '#/components/schemas/employee_UpdateEmergencyContact'
+        punchSettings:
+          $ref: '#/components/schemas/employee_UpdatePunchSettings'
       required:
-      - status
-      - title
-      - type
-      title: ProblemDetail
-    employee_ContactInformation:
-      type: object
-      properties:
-        mobileNumber:
-          type: string
-          description: Employee's mobile phone number
-          example: '+46700000000'
-          maxLength: 20
-          minLength: 0
-        phoneNumber:
-          type: string
-          description: Employee's work phone number
-          example: '+46800000000'
-          maxLength: 20
-          minLength: 0
+      - address
+      - badgeNumber
+      - contactInformation
+      - email
+      - emergencyContact
+      - employment
+      - personalInformation
+      - punchSettings
   securitySchemes:
     OAuth2ClientCredentials:
       type: oauth2

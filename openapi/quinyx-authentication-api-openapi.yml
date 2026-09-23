@@ -151,28 +151,6 @@ components:
         token_type:
           type: string
           example: bearer
-    TokenResponse:
-      description: Token object
-      properties:
-        tokenType:
-          description: Token type. It is always Bearer.
-          type: string
-          enum:
-          - Bearer
-          example: Bearer
-        accessToken:
-          description: Access token used for authorization. Copy it to 'Authorization' header in format 'Bearer accessToken'
-          type: string
-          example: receivedAccessToken
-        expiredIn:
-          description: Expiration time for access tokens in seconds, default is 900.
-          type: integer
-          example: 900
-        refreshToken:
-          description: Refresh token used for getting new access token. It will expire in 30 days.
-          type: string
-          example: receivedRefreshToken
-      type: object
     ErrorResponse:
       properties:
         err:
@@ -196,6 +174,28 @@ components:
               type: string
               example: INVALID_USERNAME_OR_PASSWORD
           type: object
+      type: object
+    TokenResponse:
+      description: Token object
+      properties:
+        tokenType:
+          description: Token type. It is always Bearer.
+          type: string
+          enum:
+          - Bearer
+          example: Bearer
+        accessToken:
+          description: Access token used for authorization. Copy it to 'Authorization' header in format 'Bearer accessToken'
+          type: string
+          example: receivedAccessToken
+        expiredIn:
+          description: Expiration time for access tokens in seconds, default is 900.
+          type: integer
+          example: 900
+        refreshToken:
+          description: Refresh token used for getting new access token. It will expire in 30 days.
+          type: string
+          example: receivedRefreshToken
       type: object
   securitySchemes:
     employee_OAuth2ClientCredentials:

@@ -414,7 +414,7 @@ paths:
     delete:
       tags:
       - Collaboration Groups
-      summary: Remove groups from a collaboration group, optionally including archived collaboration groups
+      summary: Remove groups from a collaboration group, optionally including archived…
       operationId: deleteGroupsFromCollaborationGroup
       parameters:
       - name: includeArchived
@@ -437,7 +437,7 @@ paths:
     delete:
       tags:
       - Collaboration Groups
-      summary: Remove employees from a collaboration group, optionally including archived collaboration groups
+      summary: Remove employees from a collaboration group, optionally including archived…
       operationId: deleteEmployeesFromCollaborationGroup
       parameters:
       - name: includeArchived
@@ -458,6 +458,54 @@ paths:
       x-audience: public
 components:
   schemas:
+    collaboration-groups_CollaborationGroupGroupDTO:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+      required:
+      - collaborationGroupId
+      - groupIds
+    collaboration-groups_CollaborationGroupGroup:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        groupIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+    collaboration-groups_CollaborationGroupUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Region North
+          minLength: 1
+        labelId:
+          type: integer
+          format: int64
+          example: 5
+        domoDashboardId:
+          type: string
+          example: abc12
+          maxLength: 5
+          minLength: 5
+          pattern: ^[a-zA-Z0-9]*$
+      required:
+      - labelId
+      - name
     collaboration-groups_CollaborationGroupDetails:
       type: object
       properties:
@@ -497,6 +545,31 @@ components:
         isArchived:
           type: boolean
           example: false
+    collaboration-groups_CollaborationGroupEmployeeDTO:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        employeeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          minItems: 1
+      required:
+      - collaborationGroupId
+      - employeeIds
+    collaboration-groups_CollaborationGroupMove:
+      type: object
+      properties:
+        newParentId:
+          type: integer
+          format: int64
+          example: 10
+      required:
+      - newParentId
     collaboration-groups_CollaborationGroupCreate:
       type: object
       properties:
@@ -524,91 +597,6 @@ components:
           pattern: ^[a-zA-Z0-9]*$
       required:
       - domainId
-      - labelId
-      - name
-    collaboration-groups_CollaborationGroupGroup:
-      type: object
-      properties:
-        collaborationGroupId:
-          type: integer
-          format: int64
-          example: 1
-        groupIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-    collaboration-groups_CollaborationGroupGroupDTO:
-      type: object
-      properties:
-        collaborationGroupId:
-          type: integer
-          format: int64
-          example: 1
-        groupIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-          minItems: 1
-      required:
-      - collaborationGroupId
-      - groupIds
-    collaboration-groups_CollaborationGroupEmployee:
-      type: object
-      properties:
-        collaborationGroupId:
-          type: integer
-          format: int64
-          example: 1
-        employeeIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-    collaboration-groups_CollaborationGroupEmployeeDTO:
-      type: object
-      properties:
-        collaborationGroupId:
-          type: integer
-          format: int64
-          example: 1
-        employeeIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-          minItems: 1
-      required:
-      - collaborationGroupId
-      - employeeIds
-    collaboration-groups_CollaborationGroupMove:
-      type: object
-      properties:
-        newParentId:
-          type: integer
-          format: int64
-          example: 10
-      required:
-      - newParentId
-    collaboration-groups_CollaborationGroupUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Region North
-          minLength: 1
-        labelId:
-          type: integer
-          format: int64
-          example: 5
-        domoDashboardId:
-          type: string
-          example: abc12
-          maxLength: 5
-          minLength: 5
-          pattern: ^[a-zA-Z0-9]*$
-      required:
       - labelId
       - name
     collaboration-groups_CollaborationGroup:
@@ -639,6 +627,18 @@ components:
         isArchived:
           type: boolean
           example: false
+    collaboration-groups_CollaborationGroupEmployee:
+      type: object
+      properties:
+        collaborationGroupId:
+          type: integer
+          format: int64
+          example: 1
+        employeeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

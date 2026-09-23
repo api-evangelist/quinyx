@@ -163,20 +163,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    forecast-data-ingestion_ExternalShiftType:
-      type: object
-      properties:
-        externalShiftTypeId:
-          type: string
-          example: EXTERNAL_SHIFT_ID
-        amount:
-          type: integer
-          format: int32
-          example: 10
-          maximum: 100000
-      required:
-      - amount
-      - externalShiftTypeId
     forecast-data-ingestion_ExternalDynamicRule:
       type: object
       properties:
@@ -221,6 +207,20 @@ components:
       - shiftTypes
       - startTime
       - weekdays
+    forecast-data-ingestion_ExternalShiftType:
+      type: object
+      properties:
+        externalShiftTypeId:
+          type: string
+          example: EXTERNAL_SHIFT_ID
+        amount:
+          type: integer
+          format: int32
+          example: 10
+          maximum: 100000
+      required:
+      - amount
+      - externalShiftTypeId
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

@@ -44,58 +44,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    forecast-calculation_EventEffect:
-      type: object
-      properties:
-        id:
-          type: string
-          example: eff-7f3c2a1b
-        eventId:
-          type: string
-          example: evt-7f3c2a1b
-        forecastConfigurationId:
-          type: integer
-          format: int32
-          example: 1
-        type:
-          type: string
-          example: RELATIVE
-        value:
-          type: number
-          format: double
-          example: 1.25
-    forecast-calculation_CalculateEventEffectsRequest:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          example: '2024-01-15T08:00:00Z'
-        endTime:
-          type: string
-          format: date-time
-          example: '2024-01-15T18:00:00Z'
-        externalConfigurationId:
-          type: string
-          example: config-123
-          minLength: 1
-        externalVariableId:
-          type: string
-          example: var-456
-          minLength: 1
-        externalUnitId:
-          type: string
-          example: unit-789
-          minLength: 1
-        externalSectionId:
-          type: string
-          example: section-001
-      required:
-      - endTime
-      - externalConfigurationId
-      - externalUnitId
-      - externalVariableId
-      - startTime
     forecast-calculation_Event:
       type: object
       properties:
@@ -130,6 +78,58 @@ components:
         hierarchyEnabled:
           type: boolean
           example: false
+    forecast-calculation_CalculateEventEffectsRequest:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2024-01-15T18:00:00Z'
+        externalConfigurationId:
+          type: string
+          example: config-123
+          minLength: 1
+        externalVariableId:
+          type: string
+          example: var-456
+          minLength: 1
+        externalUnitId:
+          type: string
+          example: unit-789
+          minLength: 1
+        externalSectionId:
+          type: string
+          example: section-001
+      required:
+      - endTime
+      - externalConfigurationId
+      - externalUnitId
+      - externalVariableId
+      - startTime
+    forecast-calculation_EventEffect:
+      type: object
+      properties:
+        id:
+          type: string
+          example: eff-7f3c2a1b
+        eventId:
+          type: string
+          example: evt-7f3c2a1b
+        forecastConfigurationId:
+          type: integer
+          format: int32
+          example: 1
+        type:
+          type: string
+          example: RELATIVE
+        value:
+          type: number
+          format: double
+          example: 1.25
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

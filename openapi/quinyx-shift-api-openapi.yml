@@ -41,9 +41,7 @@ paths:
         - Timezone override via Prefer header
 
 
-        Pagination is cursor-based. Use the returned pageToken for next/previous navigation.
-
-        '
+        Pagination is cursor-based. Use the returned pageToken for next/previous navigation.'
       operationId: getShifts
       parameters:
       - name: Prefer
@@ -277,18 +275,20 @@ components:
           maxItems: 100
         pagination:
           $ref: '#/components/schemas/shifts_CursorPaginationInfo'
-    shifts_ValidationErrorDetail:
+    shifts_Task:
       type: object
-      description: A single validation error.
+      description: Represents a task segment within a shift
       properties:
-        detail:
+        begin:
           type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: name is mandatory
-        pointer:
+          format: date-time
+          description: Start date and time of the break
+          example: '2024-06-01T12:00:00Z'
+        end:
           type: string
-          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
-          example: '#/name'
+          format: date-time
+          description: End date and time of the break
+          example: '2024-06-01T12:30:00Z'
     shifts_ValidationError:
       type: object
       description: Validation errors, conforming to RFC 9457.
@@ -323,6 +323,48 @@ components:
       - title
       - type
       title: ValidationError
+    shifts_ProblemDetail:
+      type: object
+      description: RFC 9457 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: https://developer.quinyx.com/api/problems/error-type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Error Title
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+          example: A detailed explanation of the error
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem
+          example: /api/endpoint
+      required:
+      - status
+      - title
+      - type
+      title: ProblemDetail
+    shifts_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page, or null if there is no next page.
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page, or null if there is no previous page.
+          example: eyJpZCI6ODB9
     shifts_Shift:
       type: object
       description: Represents a scheduled shift for an employee within a group
@@ -473,62 +515,18 @@ components:
           type: string
           description: Optional comment or note attached to the task
           example: Customer service desk coverage
-    shifts_Task:
+    shifts_ValidationErrorDetail:
       type: object
-      description: Represents a task segment within a shift
+      description: A single validation error.
       properties:
-        begin:
-          type: string
-          format: date-time
-          description: Start date and time of the break
-          example: '2024-06-01T12:00:00Z'
-        end:
-          type: string
-          format: date-time
-          description: End date and time of the break
-          example: '2024-06-01T12:30:00Z'
-    shifts_ProblemDetail:
-      type: object
-      description: RFC 9457 Problem Details for HTTP APIs
-      properties:
-        type:
-          type: string
-          description: A URI reference that identifies the problem type
-          example: https://developer.quinyx.com/api/problems/error-type
-        title:
-          type: string
-          description: A short, human-readable summary of the problem type
-          example: Error Title
-        status:
-          type: integer
-          format: int32
-          description: The HTTP status code
-          example: 404
         detail:
           type: string
-          description: A human-readable explanation specific to this occurrence of the problem
-          example: A detailed explanation of the error
-        instance:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
           type: string
-          description: A URI reference that identifies the specific occurrence of the problem
-          example: /api/endpoint
-      required:
-      - status
-      - title
-      - type
-      title: ProblemDetail
-    shifts_CursorPaginationInfo:
-      type: object
-      description: Pagination information for cursor-based pagination.
-      properties:
-        nextPageToken:
-          type: string
-          description: The token for the next page, or null if there is no next page.
-          example: eyJpZCI6MTIwfQ
-        previousPageToken:
-          type: string
-          description: The token for the previous page, or null if there is no previous page.
-          example: eyJpZCI6ODB9
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
   securitySchemes:
     OAuth2ClientCredentials:
       type: oauth2

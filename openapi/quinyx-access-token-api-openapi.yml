@@ -106,18 +106,6 @@ components:
       - expires_in
       - scope
       - token_type
-    rest-api-uaa_OAuth2ErrorResponse:
-      type: object
-      description: OAuth2 error response per RFC 6749
-      properties:
-        error:
-          type: string
-          description: An error code defined in RFC 6749 or other extensions
-          example: invalid_client
-        error_description:
-          type: string
-          description: A short description of what caused this error. Sometimes this contains dynamically-generated information about your specific error.
-          example: 'Client not found: my-client-id'
     rest-api-uaa_OAuth2TokenRequest:
       type: object
       description: OAuth2 client credentials token request
@@ -145,6 +133,18 @@ components:
       - client_id
       - client_secret
       - grant_type
+    rest-api-uaa_OAuth2ErrorResponse:
+      type: object
+      description: OAuth2 error response per RFC 6749
+      properties:
+        error:
+          type: string
+          description: An error code defined in RFC 6749 or other extensions
+          example: invalid_client
+        error_description:
+          type: string
+          description: A short description of what caused this error. Sometimes this contains dynamically-generated information about your specific error.
+          example: 'Client not found: my-client-id'
   securitySchemes:
     OAuth2ClientCredentials:
       type: oauth2

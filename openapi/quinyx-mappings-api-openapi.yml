@@ -279,16 +279,6 @@ components:
       required:
       - externalValue
       - quinyxValue
-    mapping_MappingExternalValueRequest:
-      type: object
-      properties:
-        externalValue:
-          type: string
-          example: ext-abc-001
-          maxLength: 256
-          minLength: 1
-      required:
-      - externalValue
     mapping_MappingValues:
       type: object
       properties:
@@ -302,6 +292,16 @@ components:
           example: ext-abc-001
           maxLength: 256
           minLength: 1
+    mapping_MappingExternalValueRequest:
+      type: object
+      properties:
+        externalValue:
+          type: string
+          example: ext-abc-001
+          maxLength: 256
+          minLength: 1
+      required:
+      - externalValue
     mapping_ValidationError:
       type: object
       properties:

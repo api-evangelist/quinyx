@@ -54,27 +54,27 @@ paths:
       x-audience: public
 components:
   schemas:
-    absence-schedule_IntegrationAbsenceScheduleShift:
+    absence-schedule_ValidationError:
       type: object
       properties:
-        startTime:
+        field:
           type: string
-          example: 08:00:00
-        endTime:
+          example: externalValue
+        message:
           type: string
-          example: '17:00:00'
-        days:
-          type: array
-          items:
-            type: string
-            enum:
-            - MONDAY
-            - TUESDAY
-            - WEDNESDAY
-            - THURSDAY
-            - FRIDAY
-            - SATURDAY
-            - SUNDAY
+          example: must not be blank
+        severity:
+          type: string
+          example: ERROR
+        localisedMessage:
+          type: string
+          example: External value must not be blank
+        groupingMessage:
+          type: string
+          example: validation
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
     absence-schedule_IntegrationAbsenceSchedule:
       type: object
       properties:
@@ -115,27 +115,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/absence-schedule_IntegrationAbsenceScheduleShift'
-    absence-schedule_ValidationError:
+    absence-schedule_IntegrationAbsenceScheduleShift:
       type: object
       properties:
-        field:
+        startTime:
           type: string
-          example: externalValue
-        message:
+          example: 08:00:00
+        endTime:
           type: string
-          example: must not be blank
-        severity:
-          type: string
-          example: ERROR
-        localisedMessage:
-          type: string
-          example: External value must not be blank
-        groupingMessage:
-          type: string
-          example: validation
-        additionalErrorParameters:
-          type: object
-          additionalProperties: {}
+          example: '17:00:00'
+        days:
+          type: array
+          items:
+            type: string
+            enum:
+            - MONDAY
+            - TUESDAY
+            - WEDNESDAY
+            - THURSDAY
+            - FRIDAY
+            - SATURDAY
+            - SUNDAY
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

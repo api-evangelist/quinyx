@@ -80,26 +80,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    absence-types_IntegrationAbsenceType:
-      type: object
-      properties:
-        absenceTypeId:
-          type: integer
-          format: int32
-          example: 1
-        absenceTypeName:
-          type: string
-          example: Sick leave
-        absenceScheduleId:
-          type: integer
-          format: int32
-          example: 10
-        shiftAction:
-          type: string
-          enum:
-          - UNASSIGN
-          - DELETE
-          example: UNASSIGN
     absence-types_ValidationError:
       type: object
       properties:
@@ -121,6 +101,26 @@ components:
         additionalErrorParameters:
           type: object
           additionalProperties: {}
+    absence-types_IntegrationAbsenceType:
+      type: object
+      properties:
+        absenceTypeId:
+          type: integer
+          format: int32
+          example: 1
+        absenceTypeName:
+          type: string
+          example: Sick leave
+        absenceScheduleId:
+          type: integer
+          format: int32
+          example: 10
+        shiftAction:
+          type: string
+          enum:
+          - UNASSIGN
+          - DELETE
+          example: UNASSIGN
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

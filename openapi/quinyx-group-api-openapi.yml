@@ -585,6 +585,30 @@ paths:
       - Group
 components:
   schemas:
+    organisation_CursorPaginationInfo:
+      type: object
+      description: Pagination information for cursor-based pagination.
+      properties:
+        nextPageToken:
+          type: string
+          description: The token for the next page
+          example: eyJpZCI6MTIwfQ
+        previousPageToken:
+          type: string
+          description: The token for the previous page
+          example: eyJpZCI6ODB9
+    organisation_ValidationErrorDetail:
+      type: object
+      description: A single validation error.
+      properties:
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: name is mandatory
+        pointer:
+          type: string
+          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
+          example: '#/name'
     organisation_CreateGroupRequest:
       type: object
       description: Request payload used to create a new group
@@ -630,18 +654,6 @@ components:
       - groupType
       - name
       - parentGroupId
-    organisation_CursorPaginationInfo:
-      type: object
-      description: Pagination information for cursor-based pagination.
-      properties:
-        nextPageToken:
-          type: string
-          description: The token for the next page
-          example: eyJpZCI6MTIwfQ
-        previousPageToken:
-          type: string
-          description: The token for the previous page
-          example: eyJpZCI6ODB9
     organisation_ValidationError:
       type: object
       description: Validation errors, conforming to RFC 9457.
@@ -676,30 +688,6 @@ components:
       - title
       - type
       title: ValidationError
-    organisation_ValidationErrorDetail:
-      type: object
-      description: A single validation error.
-      properties:
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          example: name is mandatory
-        pointer:
-          type: string
-          description: A JSON Pointer [RFC6901] to the associated entity in the request body.
-          example: '#/name'
-    organisation_CursorPageGroupResponse:
-      type: object
-      description: A page of data along with pagination information for cursor-based pagination.
-      properties:
-        data:
-          type: array
-          description: The data in the page.
-          items:
-            $ref: '#/components/schemas/organisation_GroupResponse'
-          maxItems: 100
-        pagination:
-          $ref: '#/components/schemas/organisation_CursorPaginationInfo'
     organisation_ProblemDetail:
       type: object
       description: RFC 9457 Problem Details for HTTP APIs
@@ -730,6 +718,18 @@ components:
       - title
       - type
       title: ProblemDetail
+    organisation_CursorPageGroupResponse:
+      type: object
+      description: A page of data along with pagination information for cursor-based pagination.
+      properties:
+        data:
+          type: array
+          description: The data in the page.
+          items:
+            $ref: '#/components/schemas/organisation_GroupResponse'
+          maxItems: 100
+        pagination:
+          $ref: '#/components/schemas/organisation_CursorPaginationInfo'
     organisation_GroupResponse:
       type: object
       description: Represents a group within the organization hierarchy

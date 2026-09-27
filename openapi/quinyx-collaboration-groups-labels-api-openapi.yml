@@ -121,6 +121,23 @@ paths:
       x-audience: public
 components:
   schemas:
+    collaboration-groups_Label:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Important
+        color:
+          type: string
+          example: '#FF0000'
+        domainId:
+          type: integer
+          format: int32
+          example: 100
     collaboration-groups_LabelCreate:
       type: object
       properties:
@@ -150,23 +167,6 @@ components:
           example: '#FF0000'
       required:
       - name
-    collaboration-groups_Label:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 1
-        name:
-          type: string
-          example: Important
-        color:
-          type: string
-          example: '#FF0000'
-        domainId:
-          type: integer
-          format: int32
-          example: 100
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

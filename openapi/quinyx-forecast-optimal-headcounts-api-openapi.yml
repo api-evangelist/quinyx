@@ -98,66 +98,25 @@ paths:
       x-audience: public
 components:
   schemas:
-    forecast-calculation_AggregatedBlock:
+    forecast-calculation_DatasetAggregatedBlockLocalTime:
       type: object
       properties:
-        start:
-          type: string
-          format: date-time
-          example: '2024-01-15T08:00:00Z'
-        end:
-          type: string
-          format: date-time
-          example: '2024-01-15T08:15:00Z'
-        value:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-calculation_AggregatedBlockLocalTime'
+        summaryValue:
           type: number
           format: double
-          example: 12.5
-        editedValue:
+          example: 100.5
+        editedSummaryValue:
           type: number
           format: double
-          example: 13
-        runId:
-          type: string
-          example: run-7f3c2a1b
-        runTimeStamp:
-          type: string
-          format: date-time
-          example: '2024-01-15T07:55:00Z'
-    forecast-calculation_CalculatedDatasetResponse:
-      type: object
-      properties:
-        dataset:
-          $ref: '#/components/schemas/forecast-calculation_DatasetAggregatedBlockLocalTime'
-        id:
-          type: string
-          example: calc-7f3c2a1b
-        src:
-          type: string
-          example: FORECAST
-        groupId:
+          example: 105
+        resolution:
           type: integer
           format: int32
-          example: 42
-    forecast-calculation_AggregatedBlockLocalTime:
-      type: object
-      properties:
-        start:
-          type: string
-          format: date-time
-          example: '2024-01-15T08:00:00Z'
-        end:
-          type: string
-          format: date-time
-          example: '2024-01-15T08:15:00Z'
-        value:
-          type: number
-          format: double
-          example: 12.5
-        editedValue:
-          type: number
-          format: double
-          example: 13
+          example: 5
     forecast-calculation_OptimalHeadcountDatasetIntegrationRequest:
       type: object
       properties:
@@ -180,32 +139,13 @@ components:
       - dataType
       - end
       - start
-    forecast-calculation_OptimalHeadcountDatasetByGroupResponse:
-      type: object
-      properties:
-        optimalHeadcountId:
-          type: string
-          example: ohc-7f3c2a1b
-        shiftTypeId:
-          type: integer
-          format: int32
-          example: 5
-        shiftTypeIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-        datasetsByGroupId:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/forecast-calculation_DatasetAggregatedBlock'
-    forecast-calculation_DatasetAggregatedBlockLocalTime:
+    forecast-calculation_DatasetAggregatedBlock:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/forecast-calculation_AggregatedBlockLocalTime'
+            $ref: '#/components/schemas/forecast-calculation_AggregatedBlock'
         summaryValue:
           type: number
           format: double
@@ -275,25 +215,85 @@ components:
       required:
       - aggregationType
       - name
-    forecast-calculation_DatasetAggregatedBlock:
+    forecast-calculation_CalculatedDatasetResponse:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-calculation_AggregatedBlock'
-        summaryValue:
+        dataset:
+          $ref: '#/components/schemas/forecast-calculation_DatasetAggregatedBlockLocalTime'
+        id:
+          type: string
+          example: calc-7f3c2a1b
+        src:
+          type: string
+          example: FORECAST
+        groupId:
+          type: integer
+          format: int32
+          example: 42
+    forecast-calculation_AggregatedBlockLocalTime:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:15:00Z'
+        value:
           type: number
           format: double
-          example: 100.5
-        editedSummaryValue:
+          example: 12.5
+        editedValue:
           type: number
           format: double
-          example: 105
-        resolution:
+          example: 13
+    forecast-calculation_AggregatedBlock:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:00:00Z'
+        end:
+          type: string
+          format: date-time
+          example: '2024-01-15T08:15:00Z'
+        value:
+          type: number
+          format: double
+          example: 12.5
+        editedValue:
+          type: number
+          format: double
+          example: 13
+        runId:
+          type: string
+          example: run-7f3c2a1b
+        runTimeStamp:
+          type: string
+          format: date-time
+          example: '2024-01-15T07:55:00Z'
+    forecast-calculation_OptimalHeadcountDatasetByGroupResponse:
+      type: object
+      properties:
+        optimalHeadcountId:
+          type: string
+          example: ohc-7f3c2a1b
+        shiftTypeId:
           type: integer
           format: int32
           example: 5
+        shiftTypeIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        datasetsByGroupId:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/forecast-calculation_DatasetAggregatedBlock'
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

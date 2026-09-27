@@ -60,23 +60,44 @@ components:
           type: integer
           format: int32
           example: 1
-    statistics_StatisticPeriodValue:
+    statistics_Filter:
       type: object
       properties:
-        start:
+        name:
           type: string
-          example: '2026-01-01T00:00:00'
-        end:
-          type: string
-          example: '2026-01-01T23:59:59'
-        value:
-          type: number
-          format: double
-          example: 100
-        employeeId:
-          type: integer
-          format: int32
-          example: 1
+          enum:
+          - employee
+          - employee-skill
+          - employee-section
+          - employee-unit
+          - staff-category
+          - shift-type
+          - shift-status
+          - section
+          - shift-id
+          - shift-start
+          - shift-end
+          - task-status
+          - task-type
+          - task-section
+          - punch-type
+          - punch-id
+          - absence-type
+          - absence-shift-id
+          - attest-status
+          - absence-attest-status
+          - punch-attest-status
+          - tag-ids
+          - agreement
+          - base-schedule
+          example: employee
+        values:
+          type: array
+          items:
+            type: integer
+            format: int32
+        timeRange:
+          $ref: '#/components/schemas/statistics_TimeRangeFilter'
     statistics_Statistic:
       type: object
       properties:
@@ -116,6 +137,16 @@ components:
           type: number
           format: double
           example: 100
+    statistics_BaseScheduleData:
+      type: object
+      properties:
+        baseScheduleId:
+          type: string
+          example: abc123
+        dayIndex:
+          type: integer
+          format: int32
+          example: 0
     statistics_AdvancedStatisticsRequest:
       type: object
       properties:
@@ -215,54 +246,23 @@ components:
           - and
           - or
           example: and
-    statistics_Filter:
+    statistics_StatisticPeriodValue:
       type: object
       properties:
-        name:
+        start:
           type: string
-          enum:
-          - employee
-          - employee-skill
-          - employee-section
-          - employee-unit
-          - staff-category
-          - shift-type
-          - shift-status
-          - section
-          - shift-id
-          - shift-start
-          - shift-end
-          - task-status
-          - task-type
-          - task-section
-          - punch-type
-          - punch-id
-          - absence-type
-          - absence-shift-id
-          - attest-status
-          - absence-attest-status
-          - punch-attest-status
-          - tag-ids
-          - agreement
-          - base-schedule
-          example: employee
-        values:
-          type: array
-          items:
-            type: integer
-            format: int32
-        timeRange:
-          $ref: '#/components/schemas/statistics_TimeRangeFilter'
-    statistics_BaseScheduleData:
-      type: object
-      properties:
-        baseScheduleId:
+          example: '2026-01-01T00:00:00'
+        end:
           type: string
-          example: abc123
-        dayIndex:
+          example: '2026-01-01T23:59:59'
+        value:
+          type: number
+          format: double
+          example: 100
+        employeeId:
           type: integer
           format: int32
-          example: 0
+          example: 1
     statistics_TimeRangeFilter:
       type: object
       properties:

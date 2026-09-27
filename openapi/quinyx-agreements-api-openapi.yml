@@ -65,6 +65,17 @@ paths:
       x-audience: public
 components:
   schemas:
+    employee_AgreementPatchRequest:
+      type: object
+      properties:
+        payroll:
+          $ref: '#/components/schemas/employee_Payroll'
+    employee_Payroll:
+      type: object
+      properties:
+        payScheduleId:
+          type: string
+          example: '546'
     employee_AgreementResponse:
       type: object
       properties:
@@ -77,17 +88,6 @@ components:
         name:
           type: string
           example: John's monthly agreement
-        payroll:
-          $ref: '#/components/schemas/employee_Payroll'
-    employee_Payroll:
-      type: object
-      properties:
-        payScheduleId:
-          type: string
-          example: '546'
-    employee_AgreementPatchRequest:
-      type: object
-      properties:
         payroll:
           $ref: '#/components/schemas/employee_Payroll'
   securitySchemes:

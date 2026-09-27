@@ -197,18 +197,6 @@ components:
           type: boolean
           example: true
       type: object
-    InvalidLeaveApplicationFilter:
-      properties:
-        err:
-          properties:
-            code:
-              type: integer
-              example: 400
-            msg:
-              type: string
-              example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, historical'
-          type: object
-      type: object
     LeaveApplicationManager:
       description: Leave Application Manager Model
       properties:
@@ -227,6 +215,18 @@ components:
         defaultManager:
           type: boolean
           example: false
+      type: object
+    InvalidLeaveApplicationFilter:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, historical'
+          type: object
       type: object
   securitySchemes:
     BearerAuth:

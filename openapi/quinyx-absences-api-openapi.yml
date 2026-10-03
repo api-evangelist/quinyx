@@ -180,6 +180,28 @@ paths:
       x-audience: public
 components:
   schemas:
+    schedule_AbsenceValidationError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: ABSENCE_OVERLAP
+        text:
+          type: string
+          example: Absence overlaps with existing absence
+        severity:
+          type: string
+          example: ERROR
+        localisedMessage:
+          type: string
+          example: Absence overlaps with existing absence
+        shiftId:
+          type: integer
+          format: int64
+          example: 1
+        additionalErrorParameters:
+          type: object
+          additionalProperties: {}
     schedule_AbsenceResponse:
       type: object
       properties:
@@ -225,28 +247,6 @@ components:
         managerComment:
           type: string
           example: Approved
-    schedule_AbsenceValidationError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: ABSENCE_OVERLAP
-        text:
-          type: string
-          example: Absence overlaps with existing absence
-        severity:
-          type: string
-          example: ERROR
-        localisedMessage:
-          type: string
-          example: Absence overlaps with existing absence
-        shiftId:
-          type: integer
-          format: int64
-          example: 1
-        additionalErrorParameters:
-          type: object
-          additionalProperties: {}
     schedule_AbsenceRequest:
       type: object
       properties:

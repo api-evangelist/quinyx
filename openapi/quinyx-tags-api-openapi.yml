@@ -246,140 +246,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    tags_TagCategoryType_Default:
-      type: string
-      description: Enumeration of possible tag types
-      enum:
-      - COST_CENTER
-      - PROJECT
-      - ACCOUNT
-      - EXTENDED
-      example: PROJECT
-    tags_CustomField:
-      type: object
-      description: Represents a custom field with key-value pair for additional tag properties
-      properties:
-        label:
-          type: string
-          description: Label of the custom field
-          example: Phone number
-          maxLength: 50
-          minLength: 0
-        value:
-          type: string
-          description: Value of the custom field
-          example: '+46701234567'
-          maxLength: 255
-          minLength: 0
-      required:
-      - label
-      - value
-    tags_Period:
-      type: object
-      description: Represents an operating period for a tag, defining when it is active
-      properties:
-        from:
-          type: string
-          format: date
-          description: Start date of the period
-          example: '2022-01-01'
-        to:
-          type: string
-          format: date
-          description: End date of the period
-          example: '2022-01-31'
-        hours:
-          type: number
-          format: float
-          description: Number of hours for this period
-          example: 8
-        type:
-          type: string
-          description: Type of period
-          enum:
-          - PERIOD
-          - DAYS
-          - WEEKS
-          example: DAYS
-        count:
-          type: number
-          format: float
-          description: Number of periods
-          example: 1
-      required:
-      - count
-      - from
-      - hours
-      - type
-    tags_PageMetadata:
-      type: object
-      description: Page metadata
-      properties:
-        contentSize:
-          type: integer
-          format: int32
-          description: Content size (number of content items)
-          example: 345
-        nextCursor:
-          type: string
-          description: Next page cursor. It will be empty if current page is the last page
-          example: zyxwvutsrqponmlkjihgfedcba==
-      required:
-      - contentSize
-      - nextCursor
-    tags_TagCategory_Default:
-      type: object
-      description: Represents a category for grouping tags with common characteristics
-      properties:
-        name:
-          type: string
-          description: Name of the tag category
-          example: Store Locations
-          maxLength: 255
-        tagType:
-          $ref: '#/components/schemas/tags_TagCategoryType_Default'
-          description: Type of tags in this category
-          example: PROJECT
-        color:
-          type: string
-          description: Hexadecimal color code for visual representation
-          example: '#FF5733'
-        externalId:
-          type: string
-          description: External identifier for integration purposes
-          example: LOC-001
-          maxLength: 60
-      required:
-      - name
-      - tagType
-    tags_Coordinate:
-      type: object
-      description: Represents geographic coordinates for a location
-      properties:
-        latitude:
-          type: number
-          format: float
-          description: Latitude of the location
-          example: 59.334591
-        longitude:
-          type: number
-          format: float
-          description: Longitude of the location
-          example: 18.06324
-        name:
-          type: string
-          description: Name or description of the location
-          example: Stockholm Mall
-        radius:
-          type: integer
-          format: int32
-          description: Radius of the location
-          example: 100
-          minimum: 1
-      required:
-      - latitude
-      - longitude
-      - radius
     tags_TagIntegration:
       type: object
       description: Represents a tag with integration-specific properties
@@ -467,6 +333,43 @@ components:
       - categoryExternalId
       - name
       - unitExternalId
+    tags_Period:
+      type: object
+      description: Represents an operating period for a tag, defining when it is active
+      properties:
+        from:
+          type: string
+          format: date
+          description: Start date of the period
+          example: '2022-01-01'
+        to:
+          type: string
+          format: date
+          description: End date of the period
+          example: '2022-01-31'
+        hours:
+          type: number
+          format: float
+          description: Number of hours for this period
+          example: 8
+        type:
+          type: string
+          description: Type of period
+          enum:
+          - PERIOD
+          - DAYS
+          - WEEKS
+          example: DAYS
+        count:
+          type: number
+          format: float
+          description: Number of periods
+          example: 1
+      required:
+      - count
+      - from
+      - hours
+      - type
     tags_PagedResponse:
       type: object
       description: Represents a paginated collection of tags
@@ -485,6 +388,103 @@ components:
       required:
       - content
       - page
+    tags_CustomField:
+      type: object
+      description: Represents a custom field with key-value pair for additional tag properties
+      properties:
+        label:
+          type: string
+          description: Label of the custom field
+          example: Phone number
+          maxLength: 50
+          minLength: 0
+        value:
+          type: string
+          description: Value of the custom field
+          example: '+46701234567'
+          maxLength: 255
+          minLength: 0
+      required:
+      - label
+      - value
+    tags_TagCategory_Default:
+      type: object
+      description: Represents a category for grouping tags with common characteristics
+      properties:
+        name:
+          type: string
+          description: Name of the tag category
+          example: Store Locations
+          maxLength: 255
+        tagType:
+          $ref: '#/components/schemas/tags_TagCategoryType_Default'
+          description: Type of tags in this category
+          example: PROJECT
+        color:
+          type: string
+          description: Hexadecimal color code for visual representation
+          example: '#FF5733'
+        externalId:
+          type: string
+          description: External identifier for integration purposes
+          example: LOC-001
+          maxLength: 60
+      required:
+      - name
+      - tagType
+    tags_TagCategoryType_Default:
+      type: string
+      description: Enumeration of possible tag types
+      enum:
+      - COST_CENTER
+      - PROJECT
+      - ACCOUNT
+      - EXTENDED
+      example: PROJECT
+    tags_Coordinate:
+      type: object
+      description: Represents geographic coordinates for a location
+      properties:
+        latitude:
+          type: number
+          format: float
+          description: Latitude of the location
+          example: 59.334591
+        longitude:
+          type: number
+          format: float
+          description: Longitude of the location
+          example: 18.06324
+        name:
+          type: string
+          description: Name or description of the location
+          example: Stockholm Mall
+        radius:
+          type: integer
+          format: int32
+          description: Radius of the location
+          example: 100
+          minimum: 1
+      required:
+      - latitude
+      - longitude
+      - radius
+    tags_PageMetadata:
+      type: object
+      description: Page metadata
+      properties:
+        contentSize:
+          type: integer
+          format: int32
+          description: Content size (number of content items)
+          example: 345
+        nextCursor:
+          type: string
+          description: Next page cursor. It will be empty if current page is the last page
+          example: zyxwvutsrqponmlkjihgfedcba==
+      required:
+      - contentSize
+      - nextCursor
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

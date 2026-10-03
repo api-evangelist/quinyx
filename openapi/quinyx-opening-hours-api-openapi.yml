@@ -152,6 +152,35 @@ paths:
       x-audience: public
 components:
   schemas:
+    opening-hours_WeekdayHours:
+      type: object
+      properties:
+        weekday:
+          type: integer
+          format: int32
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          example: 1
+        startTime:
+          type: string
+          example: '12:00'
+        endTime:
+          type: string
+          example: '14:00'
+        open:
+          type: boolean
+          example: true
+      required:
+      - endTime
+      - open
+      - startTime
+      - weekday
     opening-hours_OpeningHours:
       type: object
       properties:
@@ -199,35 +228,6 @@ components:
       required:
       - close
       - open
-    opening-hours_WeekdayHours:
-      type: object
-      properties:
-        weekday:
-          type: integer
-          format: int32
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          example: 1
-        startTime:
-          type: string
-          example: '12:00'
-        endTime:
-          type: string
-          example: '14:00'
-        open:
-          type: boolean
-          example: true
-      required:
-      - endTime
-      - open
-      - startTime
-      - weekday
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

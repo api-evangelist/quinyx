@@ -173,6 +173,18 @@ paths:
       x-audience: public
 components:
   schemas:
+    forecast-data-ingestion_Pagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          format: int64
+        currentPage:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
     forecast-data-ingestion_ExternalShiftType:
       type: object
       properties:
@@ -245,18 +257,6 @@ components:
             $ref: '#/components/schemas/forecast-data-ingestion_ExternalStaticRule'
         pagination:
           $ref: '#/components/schemas/forecast-data-ingestion_Pagination'
-    forecast-data-ingestion_Pagination:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          format: int64
-        currentPage:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

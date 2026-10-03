@@ -189,42 +189,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    forecast-events_UpdateEventIntegrationRequest:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-05-04T08:00:00Z'
-        endTime:
-          type: string
-          format: date-time
-          example: '2026-05-04T18:00:00Z'
-        eventCategoryId:
-          type: string
-          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
-          minLength: 1
-        comment:
-          type: string
-          example: Local football match
-          maxLength: 255
-          minLength: 0
-        active:
-          type: boolean
-          example: true
-        id:
-          type: string
-          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
-        eventEffects:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-events_EventEffect'
-          minItems: 1
-      required:
-      - endTime
-      - eventCategoryId
-      - eventEffects
-      - startTime
     forecast-events_GroupHierarchyEventsExternalRequest:
       type: object
       properties:
@@ -249,55 +213,29 @@ components:
       - externalConfigurationId
       - externalVariableId
       - startTime
-    forecast-events_IntegrationEvent:
+    forecast-events_EventEffect:
       type: object
       properties:
-        id:
-          type: string
-          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-05-04T08:00:00Z'
-        endTime:
-          type: string
-          format: date-time
-          example: '2026-05-04T18:00:00Z'
-        eventCategoryId:
-          type: string
-          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
-          minLength: 1
-        parentEvent:
-          $ref: '#/components/schemas/forecast-events_Event'
-        groupId:
+        forecastConfigurationId:
           type: integer
           format: int32
-          example: 12345
-        eventEffects:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-events_EventEffect'
-          minItems: 1
-        eventEffectValue:
+          example: 42
+        type:
+          type: string
+          enum:
+          - RELATIVE
+          - CLOSED
+          - ABSOLUTE
+          - AUTOMATIC
+          example: RELATIVE
+        value:
           type: number
           format: double
           example: 1.25
-        comment:
-          type: string
-          example: Local football match
-          maxLength: 255
-          minLength: 0
-        active:
-          type: boolean
-          example: true
-        hierarchyEnabled:
-          type: boolean
-          example: true
       required:
-      - endTime
-      - eventCategoryId
-      - eventEffects
-      - startTime
+      - forecastConfigurationId
+      - type
+      - value
     forecast-events_CreateEventIntegrationRequest:
       type: object
       properties:
@@ -355,29 +293,91 @@ components:
       - forecastConfigurationIds
       - groupIds
       - startTime
-    forecast-events_EventEffect:
+    forecast-events_IntegrationEvent:
       type: object
       properties:
-        forecastConfigurationId:
+        id:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T18:00:00Z'
+        eventCategoryId:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          minLength: 1
+        parentEvent:
+          $ref: '#/components/schemas/forecast-events_Event'
+        groupId:
           type: integer
           format: int32
-          example: 42
-        type:
-          type: string
-          enum:
-          - RELATIVE
-          - CLOSED
-          - ABSOLUTE
-          - AUTOMATIC
-          example: RELATIVE
-        value:
+          example: 12345
+        eventEffects:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-events_EventEffect'
+          minItems: 1
+        eventEffectValue:
           type: number
           format: double
           example: 1.25
+        comment:
+          type: string
+          example: Local football match
+          maxLength: 255
+          minLength: 0
+        active:
+          type: boolean
+          example: true
+        hierarchyEnabled:
+          type: boolean
+          example: true
       required:
-      - forecastConfigurationId
-      - type
-      - value
+      - endTime
+      - eventCategoryId
+      - eventEffects
+      - startTime
+    forecast-events_UpdateEventIntegrationRequest:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T08:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-05-04T18:00:00Z'
+        eventCategoryId:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+          minLength: 1
+        comment:
+          type: string
+          example: Local football match
+          maxLength: 255
+          minLength: 0
+        active:
+          type: boolean
+          example: true
+        id:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        eventEffects:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-events_EventEffect'
+          minItems: 1
+      required:
+      - endTime
+      - eventCategoryId
+      - eventEffects
+      - startTime
     forecast-events_Event:
       type: object
       properties:

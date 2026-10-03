@@ -279,29 +279,6 @@ components:
       required:
       - externalValue
       - quinyxValue
-    mapping_MappingValues:
-      type: object
-      properties:
-        quinyxValue:
-          type: string
-          example: '1234'
-          maxLength: 256
-          minLength: 1
-        externalValue:
-          type: string
-          example: ext-abc-001
-          maxLength: 256
-          minLength: 1
-    mapping_MappingExternalValueRequest:
-      type: object
-      properties:
-        externalValue:
-          type: string
-          example: ext-abc-001
-          maxLength: 256
-          minLength: 1
-      required:
-      - externalValue
     mapping_ValidationError:
       type: object
       properties:
@@ -323,6 +300,19 @@ components:
         additionalErrorParameters:
           type: object
           additionalProperties: {}
+    mapping_MappingValues:
+      type: object
+      properties:
+        quinyxValue:
+          type: string
+          example: '1234'
+          maxLength: 256
+          minLength: 1
+        externalValue:
+          type: string
+          example: ext-abc-001
+          maxLength: 256
+          minLength: 1
     mapping_MappingResponse:
       type: object
       properties:
@@ -342,6 +332,16 @@ components:
           type: integer
           format: int32
           example: 1
+    mapping_MappingExternalValueRequest:
+      type: object
+      properties:
+        externalValue:
+          type: string
+          example: ext-abc-001
+          maxLength: 256
+          minLength: 1
+      required:
+      - externalValue
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

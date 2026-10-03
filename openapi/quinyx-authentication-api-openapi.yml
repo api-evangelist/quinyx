@@ -151,18 +151,6 @@ components:
         token_type:
           type: string
           example: bearer
-    InvalidUsernamePassword:
-      properties:
-        err:
-          properties:
-            code:
-              type: integer
-              example: 401
-            msg:
-              type: string
-              example: INVALID_USERNAME_OR_PASSWORD
-          type: object
-      type: object
     TokenResponse:
       description: Token object
       properties:
@@ -184,6 +172,18 @@ components:
           description: Refresh token used for getting new access token. It will expire in 30 days.
           type: string
           example: receivedRefreshToken
+      type: object
+    InvalidUsernamePassword:
+      properties:
+        err:
+          properties:
+            code:
+              type: integer
+              example: 401
+            msg:
+              type: string
+              example: INVALID_USERNAME_OR_PASSWORD
+          type: object
       type: object
     ErrorResponse:
       properties:

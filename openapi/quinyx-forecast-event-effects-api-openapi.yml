@@ -44,26 +44,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    forecast-calculation_EventEffect:
-      type: object
-      properties:
-        id:
-          type: string
-          example: eff-7f3c2a1b
-        eventId:
-          type: string
-          example: evt-7f3c2a1b
-        forecastConfigurationId:
-          type: integer
-          format: int32
-          example: 1
-        type:
-          type: string
-          example: RELATIVE
-        value:
-          type: number
-          format: double
-          example: 1.25
     forecast-calculation_Event:
       type: object
       properties:
@@ -130,6 +110,26 @@ components:
       - externalUnitId
       - externalVariableId
       - startTime
+    forecast-calculation_EventEffect:
+      type: object
+      properties:
+        id:
+          type: string
+          example: eff-7f3c2a1b
+        eventId:
+          type: string
+          example: evt-7f3c2a1b
+        forecastConfigurationId:
+          type: integer
+          format: int32
+          example: 1
+        type:
+          type: string
+          example: RELATIVE
+        value:
+          type: number
+          format: double
+          example: 1.25
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

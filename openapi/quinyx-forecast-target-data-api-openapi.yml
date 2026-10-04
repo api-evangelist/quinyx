@@ -146,6 +146,27 @@ paths:
       x-audience: public
 components:
   schemas:
+    forecast-data-ingestion_TargetDataInput:
+      type: object
+      properties:
+        externalId:
+          type: string
+          example: target-1
+          minLength: 1
+        externalUnitId:
+          type: string
+          example: unit-1
+          minLength: 1
+        externalSectionId:
+          type: string
+          example: section-1
+        targetPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_TargetDataPayload'
+      required:
+      - externalId
+      - externalUnitId
     forecast-data-ingestion_TargetDataPayload:
       type: object
       properties:
@@ -201,27 +222,6 @@ components:
             $ref: '#/components/schemas/forecast-data-ingestion_TargetDataInput'
       required:
       - requests
-    forecast-data-ingestion_TargetDataInput:
-      type: object
-      properties:
-        externalId:
-          type: string
-          example: target-1
-          minLength: 1
-        externalUnitId:
-          type: string
-          example: unit-1
-          minLength: 1
-        externalSectionId:
-          type: string
-          example: section-1
-        targetPayload:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_TargetDataPayload'
-      required:
-      - externalId
-      - externalUnitId
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

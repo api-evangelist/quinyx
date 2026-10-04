@@ -152,6 +152,18 @@ paths:
       x-audience: public
 components:
   schemas:
+    opening-hours_OpenPeriod:
+      type: object
+      properties:
+        open:
+          type: string
+          example: '2023-03-15T08:00:00'
+        close:
+          type: string
+          example: '2023-03-15T20:00:00'
+      required:
+      - close
+      - open
     opening-hours_WeekdayHours:
       type: object
       properties:
@@ -216,18 +228,6 @@ components:
       - startDate
       - type
       - weekdayHours
-    opening-hours_OpenPeriod:
-      type: object
-      properties:
-        open:
-          type: string
-          example: '2023-03-15T08:00:00'
-        close:
-          type: string
-          example: '2023-03-15T20:00:00'
-      required:
-      - close
-      - open
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

@@ -266,6 +266,117 @@ paths:
       x-audience: public
 components:
   schemas:
+    organisation_ApiErrorResponseDto:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          example: '2026-04-20T18:11:08.182+00:00'
+        status:
+          type: integer
+          format: int32
+          example: 404
+        error:
+          type: string
+          example: Not Found
+        path:
+          type: string
+          example: /integration/groups/123
+    organisation_AddressDto:
+      type: object
+      properties:
+        country:
+          type: string
+          example: SE
+        address:
+          type: string
+          example: 123 Main Street
+        zipCode:
+          type: string
+          example: '11120'
+        city:
+          type: string
+          example: Stockholm
+        municipality:
+          type: string
+          example: Stockholm Municipality
+        timeZone:
+          type: string
+          example: Europe/Stockholm
+    organisation_ShiftRulesDto:
+      type: object
+      properties:
+        maxHoursPerDay:
+          type: number
+          format: double
+          example: 8
+        maxHoursPerWeek:
+          type: number
+          format: double
+          example: 40
+        minRest:
+          type: integer
+          format: int32
+          example: 11
+        numberOfBreaks:
+          type: integer
+          format: int32
+          example: 1
+    organisation_DistrictAttributesDto:
+      type: object
+      properties:
+        districtId:
+          type: integer
+          format: int32
+          example: 567
+        managerId:
+          type: integer
+          format: int32
+          description: If not provided will set current value to null.
+          example: 1234
+    organisation_GroupCreationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Stockholm Central
+        groupType:
+          type: string
+          example: unit
+        parentGroupId:
+          type: integer
+          format: int32
+          example: 170300
+        districtAttributesDto:
+          $ref: '#/components/schemas/organisation_DistrictAttributesDto'
+        sectionAttributesDto:
+          $ref: '#/components/schemas/organisation_SectionAttributesDto'
+        unitAttributesDto:
+          $ref: '#/components/schemas/organisation_UnitAttributesDto'
+      required:
+      - parentGroupId
+    organisation_SectionAttributesDto:
+      type: object
+      properties:
+        sectionId:
+          type: integer
+          format: int32
+          example: 789
+        managerGroupId:
+          type: integer
+          format: int32
+          description: If not provided will set current value to 0.
+          example: 170305
+        costCentre:
+          type: integer
+          format: int32
+          description: If not provided will set current value to 0.
+          example: 1001
+        managerId:
+          type: integer
+          format: int32
+          description: If not provided will set current value to 0.
+          example: 1234
     organisation_GroupDetailsResponseDto:
       type: object
       properties:
@@ -294,166 +405,6 @@ components:
           $ref: '#/components/schemas/organisation_SectionAttributesDto'
         unitAttributesDto:
           $ref: '#/components/schemas/organisation_UnitAttributesDto'
-    organisation_GroupUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Stockholm Central
-          minLength: 1
-        parentGroupId:
-          type: integer
-          format: int32
-          description: Required for all group types except 'domain'
-          example: 170300
-        groupType:
-          type: string
-          enum:
-          - domain
-          - district
-          - unit
-          - section
-          example: unit
-          pattern: ^(domain|district|unit|section)$
-        districtAttributesDto:
-          $ref: '#/components/schemas/organisation_DistrictAttributesDto'
-          description: Used for group type 'district'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
-        sectionAttributesDto:
-          $ref: '#/components/schemas/organisation_SectionAttributesDto'
-          description: Required for group type 'section'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
-        unitAttributesDto:
-          $ref: '#/components/schemas/organisation_UnitAttributesDto'
-          description: Required for group type 'unit'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
-      required:
-      - groupType
-      - name
-    organisation_AddressDto:
-      type: object
-      properties:
-        country:
-          type: string
-          example: SE
-        address:
-          type: string
-          example: 123 Main Street
-        zipCode:
-          type: string
-          example: '11120'
-        city:
-          type: string
-          example: Stockholm
-        municipality:
-          type: string
-          example: Stockholm Municipality
-        timeZone:
-          type: string
-          example: Europe/Stockholm
-    organisation_GroupCreationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Stockholm Central
-        groupType:
-          type: string
-          example: unit
-        parentGroupId:
-          type: integer
-          format: int32
-          example: 170300
-        districtAttributesDto:
-          $ref: '#/components/schemas/organisation_DistrictAttributesDto'
-        sectionAttributesDto:
-          $ref: '#/components/schemas/organisation_SectionAttributesDto'
-        unitAttributesDto:
-          $ref: '#/components/schemas/organisation_UnitAttributesDto'
-      required:
-      - parentGroupId
-    organisation_ShiftRulesDto:
-      type: object
-      properties:
-        maxHoursPerDay:
-          type: number
-          format: double
-          example: 8
-        maxHoursPerWeek:
-          type: number
-          format: double
-          example: 40
-        minRest:
-          type: integer
-          format: int32
-          example: 11
-        numberOfBreaks:
-          type: integer
-          format: int32
-          example: 1
-    organisation_ApiErrorResponseDto:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          example: '2026-04-20T18:11:08.182+00:00'
-        status:
-          type: integer
-          format: int32
-          example: 404
-        error:
-          type: string
-          example: Not Found
-        path:
-          type: string
-          example: /integration/groups/123
-    organisation_UnitAttributesDto:
-      type: object
-      properties:
-        unitId:
-          type: integer
-          format: int32
-          example: 170305
-        address:
-          $ref: '#/components/schemas/organisation_AddressDto'
-          description: If not provided will be ignored.
-        costCentre:
-          type: integer
-          format: int32
-          description: If not provided will set current value to 0.
-          example: 1001
-        managerId:
-          type: integer
-          format: int32
-          description: If not provided will set current value to 0.
-          example: 1234
-        currency:
-          type: string
-          description: Currency can not be null
-          example: SEK
-        publishedTo:
-          type: string
-          format: date
-          description: publishedTo, if not provided will set current value to current Date.
-          example: '2026-04-20'
-        blockPasswordLogin:
-          type: boolean
-          description: If not explicitly provided will set existing value to false.
-          example: false
-        shiftRules:
-          $ref: '#/components/schemas/organisation_ShiftRulesDto'
-          writeOnly: true
-        shiftRulesDto:
-          $ref: '#/components/schemas/organisation_ShiftRulesDto'
-    organisation_DistrictAttributesDto:
-      type: object
-      properties:
-        districtId:
-          type: integer
-          format: int32
-          example: 567
-        managerId:
-          type: integer
-          format: int32
-          description: If not provided will set current value to null.
-          example: 1234
     organisation_UnauthorizedErrorResponseDto:
       type: object
       properties:
@@ -495,18 +446,16 @@ components:
           type: object
           additionalProperties: {}
           example: {}
-    organisation_SectionAttributesDto:
+    organisation_UnitAttributesDto:
       type: object
       properties:
-        sectionId:
+        unitId:
           type: integer
           format: int32
-          example: 789
-        managerGroupId:
-          type: integer
-          format: int32
-          description: If not provided will set current value to 0.
           example: 170305
+        address:
+          $ref: '#/components/schemas/organisation_AddressDto'
+          description: If not provided will be ignored.
         costCentre:
           type: integer
           format: int32
@@ -517,6 +466,57 @@ components:
           format: int32
           description: If not provided will set current value to 0.
           example: 1234
+        currency:
+          type: string
+          description: Currency can not be null
+          example: SEK
+        publishedTo:
+          type: string
+          format: date
+          description: publishedTo, if not provided will set current value to current Date.
+          example: '2026-04-20'
+        blockPasswordLogin:
+          type: boolean
+          description: If not explicitly provided will set existing value to false.
+          example: false
+        shiftRules:
+          $ref: '#/components/schemas/organisation_ShiftRulesDto'
+          writeOnly: true
+        shiftRulesDto:
+          $ref: '#/components/schemas/organisation_ShiftRulesDto'
+    organisation_GroupUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Stockholm Central
+          minLength: 1
+        parentGroupId:
+          type: integer
+          format: int32
+          description: Required for all group types except 'domain'
+          example: 170300
+        groupType:
+          type: string
+          enum:
+          - domain
+          - district
+          - unit
+          - section
+          example: unit
+          pattern: ^(domain|district|unit|section)$
+        districtAttributesDto:
+          $ref: '#/components/schemas/organisation_DistrictAttributesDto'
+          description: Used for group type 'district'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
+        sectionAttributesDto:
+          $ref: '#/components/schemas/organisation_SectionAttributesDto'
+          description: Required for group type 'section'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
+        unitAttributesDto:
+          $ref: '#/components/schemas/organisation_UnitAttributesDto'
+          description: Required for group type 'unit'. If not provided will only use `name`, `parentGroupId` and `groupId`(from path)
+      required:
+      - groupType
+      - name
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

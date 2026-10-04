@@ -246,6 +246,19 @@ paths:
       x-audience: public
 components:
   schemas:
+    mapping_MappingValues:
+      type: object
+      properties:
+        quinyxValue:
+          type: string
+          example: '1234'
+          maxLength: 256
+          minLength: 1
+        externalValue:
+          type: string
+          example: ext-abc-001
+          maxLength: 256
+          minLength: 1
     mapping_MappingRequest:
       type: object
       properties:
@@ -279,6 +292,25 @@ components:
       required:
       - externalValue
       - quinyxValue
+    mapping_MappingResponse:
+      type: object
+      properties:
+        mappingType:
+          type: string
+          example: GROUP_ID
+        id:
+          type: string
+          example: 5f9a8c6d-1e2b-3c4d-5e6f-7a8b9c0d1e2f
+        quinyxValue:
+          type: string
+          example: '1234'
+        externalValue:
+          type: string
+          example: ext-abc-001
+        domainId:
+          type: integer
+          format: int32
+          example: 1
     mapping_ValidationError:
       type: object
       properties:
@@ -300,38 +332,6 @@ components:
         additionalErrorParameters:
           type: object
           additionalProperties: {}
-    mapping_MappingValues:
-      type: object
-      properties:
-        quinyxValue:
-          type: string
-          example: '1234'
-          maxLength: 256
-          minLength: 1
-        externalValue:
-          type: string
-          example: ext-abc-001
-          maxLength: 256
-          minLength: 1
-    mapping_MappingResponse:
-      type: object
-      properties:
-        mappingType:
-          type: string
-          example: GROUP_ID
-        id:
-          type: string
-          example: 5f9a8c6d-1e2b-3c4d-5e6f-7a8b9c0d1e2f
-        quinyxValue:
-          type: string
-          example: '1234'
-        externalValue:
-          type: string
-          example: ext-abc-001
-        domainId:
-          type: integer
-          format: int32
-          example: 1
     mapping_MappingExternalValueRequest:
       type: object
       properties:

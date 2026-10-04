@@ -103,6 +103,23 @@ paths:
       x-audience: public
 components:
   schemas:
+    schedule-availability_CreateScheduleAvailabilityInternalIdsModel:
+      type: object
+      properties:
+        startDateTime:
+          type: string
+          example: '2026-01-15T08:00:00'
+        endDateTime:
+          type: string
+          example: '2026-01-15T17:00:00'
+        employeeId:
+          type: integer
+          format: int64
+          example: 12345
+        groupId:
+          type: integer
+          format: int32
+          example: 42
     schedule-availability_IntegrationInternalIdsScheduleAvailability:
       type: object
       properties:
@@ -126,23 +143,6 @@ components:
           items:
             type: integer
             format: int32
-    schedule-availability_CreateScheduleAvailabilityInternalIdsModel:
-      type: object
-      properties:
-        startDateTime:
-          type: string
-          example: '2026-01-15T08:00:00'
-        endDateTime:
-          type: string
-          example: '2026-01-15T17:00:00'
-        employeeId:
-          type: integer
-          format: int64
-          example: 12345
-        groupId:
-          type: integer
-          format: int32
-          example: 42
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

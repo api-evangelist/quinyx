@@ -62,16 +62,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    Break:
-      description: Shift Break Model
-      properties:
-        start:
-          type: string
-          example: '2019-02-01 11:30:00'
-        end:
-          type: string
-          example: '2019-02-01 12:30:00'
-      type: object
     InvalidShiftFilter:
       properties:
         err:
@@ -83,6 +73,16 @@ components:
               type: string
               example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, unassigned'
           type: object
+      type: object
+    Break:
+      description: Shift Break Model
+      properties:
+        start:
+          type: string
+          example: '2019-02-01 11:30:00'
+        end:
+          type: string
+          example: '2019-02-01 12:30:00'
       type: object
     Shift:
       description: Shift Model

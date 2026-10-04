@@ -38,6 +38,44 @@ paths:
       x-audience: public
 components:
   schemas:
+    statistics_Filter:
+      type: object
+      properties:
+        name:
+          type: string
+          enum:
+          - employee
+          - employee-skill
+          - employee-section
+          - employee-unit
+          - staff-category
+          - shift-type
+          - shift-status
+          - section
+          - shift-id
+          - shift-start
+          - shift-end
+          - task-status
+          - task-type
+          - task-section
+          - punch-type
+          - punch-id
+          - absence-type
+          - absence-shift-id
+          - attest-status
+          - absence-attest-status
+          - punch-attest-status
+          - tag-ids
+          - agreement
+          - base-schedule
+          example: employee
+        values:
+          type: array
+          items:
+            type: integer
+            format: int32
+        timeRange:
+          $ref: '#/components/schemas/statistics_TimeRangeFilter'
     statistics_BaseScheduleData:
       type: object
       properties:
@@ -48,6 +86,28 @@ components:
           type: integer
           format: int32
           example: 0
+    statistics_StatisticsPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          example: '2026-01-01T00:00:00'
+        end:
+          type: string
+          example: '2026-01-31T23:59:59'
+        aggregation-type:
+          type: string
+          enum:
+          - m
+          - H
+          - D
+          - W
+          - M
+          example: D
+        aggregation-value:
+          type: integer
+          format: int32
+          example: 1
     statistics_Statistic:
       type: object
       properties:
@@ -186,66 +246,18 @@ components:
           - and
           - or
           example: and
-    statistics_Filter:
+    statistics_TimeRangeFilter:
       type: object
       properties:
-        name:
+        enabled:
+          type: boolean
+          example: true
+        from:
           type: string
-          enum:
-          - employee
-          - employee-skill
-          - employee-section
-          - employee-unit
-          - staff-category
-          - shift-type
-          - shift-status
-          - section
-          - shift-id
-          - shift-start
-          - shift-end
-          - task-status
-          - task-type
-          - task-section
-          - punch-type
-          - punch-id
-          - absence-type
-          - absence-shift-id
-          - attest-status
-          - absence-attest-status
-          - punch-attest-status
-          - tag-ids
-          - agreement
-          - base-schedule
-          example: employee
-        values:
-          type: array
-          items:
-            type: integer
-            format: int32
-        timeRange:
-          $ref: '#/components/schemas/statistics_TimeRangeFilter'
-    statistics_StatisticsPeriod:
-      type: object
-      properties:
-        start:
+          example: 08:00
+        to:
           type: string
-          example: '2026-01-01T00:00:00'
-        end:
-          type: string
-          example: '2026-01-31T23:59:59'
-        aggregation-type:
-          type: string
-          enum:
-          - m
-          - H
-          - D
-          - W
-          - M
-          example: D
-        aggregation-value:
-          type: integer
-          format: int32
-          example: 1
+          example: '17:00'
     statistics_StatisticPeriodValue:
       type: object
       properties:
@@ -263,18 +275,6 @@ components:
           type: integer
           format: int32
           example: 1
-    statistics_TimeRangeFilter:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        from:
-          type: string
-          example: 08:00
-        to:
-          type: string
-          example: '17:00'
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

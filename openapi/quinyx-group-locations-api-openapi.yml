@@ -277,30 +277,6 @@ paths:
       x-audience: public
 components:
   schemas:
-    organisation_GroupLocationResponseDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-          example: 1
-        groupId:
-          type: integer
-          format: int32
-          example: 170305
-        latitude:
-          type: string
-          example: '59.329956'
-        longitude:
-          type: string
-          example: '18.062850'
-        radius:
-          type: integer
-          format: int32
-          example: 100
-        comment:
-          type: string
-          example: Main entrance
     organisation_ApiErrorResponseDto:
       type: object
       properties:
@@ -317,6 +293,30 @@ components:
         path:
           type: string
           example: /integration/groups/123
+    organisation_GroupLocationRequestDto:
+      type: object
+      properties:
+        latitude:
+          type: string
+          example: '59.329956'
+          minLength: 1
+          pattern: ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
+        longitude:
+          type: string
+          example: '18.062850'
+          minLength: 1
+          pattern: ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
+        radius:
+          type: integer
+          format: int32
+          example: 100
+        comment:
+          type: string
+          example: Main entrance
+      required:
+      - latitude
+      - longitude
+      - radius
     organisation_UnauthorizedErrorResponseDto:
       type: object
       properties:
@@ -358,19 +358,23 @@ components:
           type: object
           additionalProperties: {}
           example: {}
-    organisation_GroupLocationRequestDto:
+    organisation_GroupLocationResponseDto:
       type: object
       properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        groupId:
+          type: integer
+          format: int32
+          example: 170305
         latitude:
           type: string
           example: '59.329956'
-          minLength: 1
-          pattern: ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
         longitude:
           type: string
           example: '18.062850'
-          minLength: 1
-          pattern: ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
         radius:
           type: integer
           format: int32
@@ -378,10 +382,6 @@ components:
         comment:
           type: string
           example: Main entrance
-      required:
-      - latitude
-      - longitude
-      - radius
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

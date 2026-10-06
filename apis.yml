@@ -44,7 +44,7 @@ x-tier: profiled
 x-tier-reason: enriched-from-developer-portal
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-10-06'
 x-enrichment:
   date: '2026-07-20'
   status: enriched
@@ -422,6 +422,8 @@ apis:
   - type: OpenAPI
     url: openapi/quinyx-tags-api-openapi.yml
 common:
+- url: https://www.quinyx.com/blog/rss.xml
+  type: BlogRSS
 - type: Plans
   url: plans/quinyx-plans-pricing.yml
 - type: Website

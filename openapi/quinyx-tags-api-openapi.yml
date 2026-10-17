@@ -246,6 +246,93 @@ paths:
       x-audience: public
 components:
   schemas:
+    tags_TagCategory_Default:
+      type: object
+      description: Represents a category for grouping tags with common characteristics
+      properties:
+        name:
+          type: string
+          description: Name of the tag category
+          example: Store Locations
+          maxLength: 255
+        tagType:
+          $ref: '#/components/schemas/tags_TagCategoryType_Default'
+          description: Type of tags in this category
+          example: PROJECT
+        color:
+          type: string
+          description: Hexadecimal color code for visual representation
+          example: '#FF5733'
+        externalId:
+          type: string
+          description: External identifier for integration purposes
+          example: LOC-001
+          maxLength: 60
+      required:
+      - name
+      - tagType
+    tags_PageMetadata:
+      type: object
+      description: Page metadata
+      properties:
+        contentSize:
+          type: integer
+          format: int32
+          description: Content size (number of content items)
+          example: 345
+        nextCursor:
+          type: string
+          description: Next page cursor. It will be empty if current page is the last page
+          example: zyxwvutsrqponmlkjihgfedcba==
+      required:
+      - contentSize
+      - nextCursor
+    tags_PagedResponse:
+      type: object
+      description: Represents a paginated collection of tags
+      properties:
+        content:
+          type: array
+          description: Page content (collection of tags)
+          items:
+            $ref: '#/components/schemas/tags_TagIntegration'
+        page:
+          $ref: '#/components/schemas/tags_PageMetadata'
+          description: This page metadata
+          example:
+            contentSize: 345
+            nextCursor: zyxwvutsrqponmlkjihgfedcba==
+      required:
+      - content
+      - page
+    tags_Coordinate:
+      type: object
+      description: Represents geographic coordinates for a location
+      properties:
+        latitude:
+          type: number
+          format: float
+          description: Latitude of the location
+          example: 59.334591
+        longitude:
+          type: number
+          format: float
+          description: Longitude of the location
+          example: 18.06324
+        name:
+          type: string
+          description: Name or description of the location
+          example: Stockholm Mall
+        radius:
+          type: integer
+          format: int32
+          description: Radius of the location
+          example: 100
+          minimum: 1
+      required:
+      - latitude
+      - longitude
+      - radius
     tags_TagIntegration:
       type: object
       description: Represents a tag with integration-specific properties
@@ -333,49 +420,6 @@ components:
       - categoryExternalId
       - name
       - unitExternalId
-    tags_TagCategory_Default:
-      type: object
-      description: Represents a category for grouping tags with common characteristics
-      properties:
-        name:
-          type: string
-          description: Name of the tag category
-          example: Store Locations
-          maxLength: 255
-        tagType:
-          $ref: '#/components/schemas/tags_TagCategoryType_Default'
-          description: Type of tags in this category
-          example: PROJECT
-        color:
-          type: string
-          description: Hexadecimal color code for visual representation
-          example: '#FF5733'
-        externalId:
-          type: string
-          description: External identifier for integration purposes
-          example: LOC-001
-          maxLength: 60
-      required:
-      - name
-      - tagType
-    tags_PagedResponse:
-      type: object
-      description: Represents a paginated collection of tags
-      properties:
-        content:
-          type: array
-          description: Page content (collection of tags)
-          items:
-            $ref: '#/components/schemas/tags_TagIntegration'
-        page:
-          $ref: '#/components/schemas/tags_PageMetadata'
-          description: This page metadata
-          example:
-            contentSize: 345
-            nextCursor: zyxwvutsrqponmlkjihgfedcba==
-      required:
-      - content
-      - page
     tags_CustomField:
       type: object
       description: Represents a custom field with key-value pair for additional tag properties
@@ -395,59 +439,6 @@ components:
       required:
       - label
       - value
-    tags_Coordinate:
-      type: object
-      description: Represents geographic coordinates for a location
-      properties:
-        latitude:
-          type: number
-          format: float
-          description: Latitude of the location
-          example: 59.334591
-        longitude:
-          type: number
-          format: float
-          description: Longitude of the location
-          example: 18.06324
-        name:
-          type: string
-          description: Name or description of the location
-          example: Stockholm Mall
-        radius:
-          type: integer
-          format: int32
-          description: Radius of the location
-          example: 100
-          minimum: 1
-      required:
-      - latitude
-      - longitude
-      - radius
-    tags_PageMetadata:
-      type: object
-      description: Page metadata
-      properties:
-        contentSize:
-          type: integer
-          format: int32
-          description: Content size (number of content items)
-          example: 345
-        nextCursor:
-          type: string
-          description: Next page cursor. It will be empty if current page is the last page
-          example: zyxwvutsrqponmlkjihgfedcba==
-      required:
-      - contentSize
-      - nextCursor
-    tags_TagCategoryType_Default:
-      type: string
-      description: Enumeration of possible tag types
-      enum:
-      - COST_CENTER
-      - PROJECT
-      - ACCOUNT
-      - EXTENDED
-      example: PROJECT
     tags_Period:
       type: object
       description: Represents an operating period for a tag, defining when it is active
@@ -485,6 +476,15 @@ components:
       - from
       - hours
       - type
+    tags_TagCategoryType_Default:
+      type: string
+      description: Enumeration of possible tag types
+      enum:
+      - COST_CENTER
+      - PROJECT
+      - ACCOUNT
+      - EXTENDED
+      example: PROJECT
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

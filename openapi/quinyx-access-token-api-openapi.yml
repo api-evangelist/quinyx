@@ -77,33 +77,6 @@ paths:
       - Access Token
 components:
   schemas:
-    rest-api-uaa_OAuth2TokenRequest:
-      type: object
-      description: OAuth2 client credentials token request
-      properties:
-        grant_type:
-          type: string
-          description: OAuth2 grant type
-          example: client_credentials
-          minLength: 1
-        client_id:
-          type: string
-          description: Client identifier
-          example: my-client-id
-          minLength: 1
-        client_secret:
-          type: string
-          description: Client secret
-          example: my-client-secret
-          minLength: 1
-        scope:
-          type: string
-          description: Space-delimited subset of the originally granted scopes. Allows the client to request a narrower set of permissions for the issued access token. If omitted, all originally authorized scopes apply.
-          example: organization:groups:read organization:groups:create
-      required:
-      - client_id
-      - client_secret
-      - grant_type
     rest-api-uaa_OAuth2ErrorResponse:
       type: object
       description: OAuth2 error response per RFC 6749
@@ -145,6 +118,33 @@ components:
       - expires_in
       - scope
       - token_type
+    rest-api-uaa_OAuth2TokenRequest:
+      type: object
+      description: OAuth2 client credentials token request
+      properties:
+        grant_type:
+          type: string
+          description: OAuth2 grant type
+          example: client_credentials
+          minLength: 1
+        client_id:
+          type: string
+          description: Client identifier
+          example: my-client-id
+          minLength: 1
+        client_secret:
+          type: string
+          description: Client secret
+          example: my-client-secret
+          minLength: 1
+        scope:
+          type: string
+          description: Space-delimited subset of the originally granted scopes. Allows the client to request a narrower set of permissions for the issued access token. If omitted, all originally authorized scopes apply.
+          example: organization:groups:read organization:groups:create
+      required:
+      - client_id
+      - client_secret
+      - grant_type
   securitySchemes:
     OAuth2ClientCredentials:
       type: oauth2

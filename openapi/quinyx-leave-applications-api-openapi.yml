@@ -162,24 +162,17 @@ paths:
       x-audience: public
 components:
   schemas:
-    LeaveApplicationManager:
-      description: Leave Application Manager Model
+    InvalidLeaveApplicationFilter:
       properties:
-        id:
-          type: string
-          example: lEgFK5pUNvkUtqzE8jcmjYsvk0WlKqx9f_fHbMrk_0VIsw--
-        name:
-          type: string
-          example: John Doe
-        unit:
-          type: string
-          example: Unit name
-        section:
-          type: string
-          example: Section name
-        defaultManager:
-          type: boolean
-          example: false
+        err:
+          properties:
+            code:
+              type: integer
+              example: 400
+            msg:
+              type: string
+              example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, historical'
+          type: object
       type: object
     LeaveApplication:
       description: Leave Application Model
@@ -216,17 +209,24 @@ components:
           type: boolean
           example: true
       type: object
-    InvalidLeaveApplicationFilter:
+    LeaveApplicationManager:
+      description: Leave Application Manager Model
       properties:
-        err:
-          properties:
-            code:
-              type: integer
-              example: 400
-            msg:
-              type: string
-              example: 'INVALID_FILTER, MUST BE ONE OF: upcoming, historical'
-          type: object
+        id:
+          type: string
+          example: lEgFK5pUNvkUtqzE8jcmjYsvk0WlKqx9f_fHbMrk_0VIsw--
+        name:
+          type: string
+          example: John Doe
+        unit:
+          type: string
+          example: Unit name
+        section:
+          type: string
+          example: Section name
+        defaultManager:
+          type: boolean
+          example: false
       type: object
   securitySchemes:
     BearerAuth:

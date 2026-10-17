@@ -277,6 +277,30 @@ paths:
       x-audience: public
 components:
   schemas:
+    organisation_GroupLocationResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        groupId:
+          type: integer
+          format: int32
+          example: 170305
+        latitude:
+          type: string
+          example: '59.329956'
+        longitude:
+          type: string
+          example: '18.062850'
+        radius:
+          type: integer
+          format: int32
+          example: 100
+        comment:
+          type: string
+          example: Main entrance
     organisation_ApiErrorResponseDto:
       type: object
       properties:
@@ -358,30 +382,6 @@ components:
           type: object
           additionalProperties: {}
           example: {}
-    organisation_GroupLocationResponseDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-          example: 1
-        groupId:
-          type: integer
-          format: int32
-          example: 170305
-        latitude:
-          type: string
-          example: '59.329956'
-        longitude:
-          type: string
-          example: '18.062850'
-        radius:
-          type: integer
-          format: int32
-          example: 100
-        comment:
-          type: string
-          example: Main entrance
   securitySchemes:
     employee_OAuth2ClientCredentials:
       type: oauth2

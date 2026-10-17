@@ -946,6 +946,76 @@ paths:
       x-audience: public
 components:
   schemas:
+    forecast-data-ingestion_CalculatedVariableOutput:
+      type: object
+      properties:
+        extCalculatedVarId:
+          type: string
+          example: calc-var-1
+        externalUnitId:
+          type: string
+          example: unit-1
+        externalSectionId:
+          type: string
+          example: section-1
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataPayload'
+    forecast-data-ingestion_CalculatedForecast:
+      type: object
+      properties:
+        externalForecastConfigurationId:
+          type: string
+          example: config-1
+        externalUnitId:
+          type: string
+          example: unit-1
+        externalSectionId:
+          type: string
+          example: section-1
+        dataPayLoad:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_CalculatedForecastData'
+          writeOnly: true
+        dataPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_CalculatedForecastData'
+    forecast-data-ingestion_ForecastDataPayload:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example: 100
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T12:00:00Z'
+      required:
+      - data
+      - timestamp
+    forecast-data-ingestion_CalculatedForecastData:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example: 100
+        editedData:
+          type: number
+          format: double
+          example: 105
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T12:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T13:00:00Z'
     forecast-data-ingestion_ForecastDataModifier:
       type: object
       properties:
@@ -968,29 +1038,6 @@ components:
       required:
       - endTime
       - startTime
-    forecast-data-ingestion_DataProviderInput:
-      type: object
-      properties:
-        externalForecastVariableId:
-          type: string
-          example: var-1
-          minLength: 1
-        externalUnitId:
-          type: string
-          example: unit-1
-          minLength: 1
-        externalSectionId:
-          type: string
-          example: section-1
-        forecastDataPayload:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_Payload'
-          minItems: 1
-      required:
-      - externalForecastVariableId
-      - externalUnitId
-      - forecastDataPayload
     forecast-data-ingestion_AggregatedData:
       type: object
       properties:
@@ -1024,67 +1071,6 @@ components:
           - PREDICTED
           - FORECAST
           example: ACTUAL
-    forecast-data-ingestion_CalculatedForecast:
-      type: object
-      properties:
-        externalForecastConfigurationId:
-          type: string
-          example: config-1
-        externalUnitId:
-          type: string
-          example: unit-1
-        externalSectionId:
-          type: string
-          example: section-1
-        dataPayLoad:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_CalculatedForecastData'
-          writeOnly: true
-        dataPayload:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_CalculatedForecastData'
-    forecast-data-ingestion_DataIngestionOutput:
-      type: object
-      properties:
-        externalForecastVariableId:
-          type: string
-          example: var-1
-        externalUnitId:
-          type: string
-          example: unit-1
-        externalSectionId:
-          type: string
-          example: section-1
-        dataPayLoad:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataPayload'
-          writeOnly: true
-        dataPayload:
-          type: array
-          items:
-            $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataPayload'
-    forecast-data-ingestion_CalculatedForecastData:
-      type: object
-      properties:
-        data:
-          type: number
-          format: double
-          example: 100
-        editedData:
-          type: number
-          format: double
-          example: 105
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T12:00:00Z'
-        endTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T13:00:00Z'
     forecast-data-ingestion_DataProviderInputList:
       type: object
       properties:
@@ -1094,7 +1080,30 @@ components:
             $ref: '#/components/schemas/forecast-data-ingestion_DataProviderInput'
       required:
       - requests
-    forecast-data-ingestion_ForecastDataPayload:
+    forecast-data-ingestion_DataProviderInput:
+      type: object
+      properties:
+        externalForecastVariableId:
+          type: string
+          example: var-1
+          minLength: 1
+        externalUnitId:
+          type: string
+          example: unit-1
+          minLength: 1
+        externalSectionId:
+          type: string
+          example: section-1
+        forecastDataPayload:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_Payload'
+          minItems: 1
+      required:
+      - externalForecastVariableId
+      - externalUnitId
+      - forecastDataPayload
+    forecast-data-ingestion_Payload:
       type: object
       properties:
         data:
@@ -1103,7 +1112,6 @@ components:
           example: 100
         timestamp:
           type: string
-          format: date-time
           example: '2026-01-15T12:00:00Z'
       required:
       - data
@@ -1146,32 +1154,24 @@ components:
       - forecastDataPayload
       - runIdentifier
       - runTimestamp
-    forecast-data-ingestion_Payload:
+    forecast-data-ingestion_DataIngestionOutput:
       type: object
       properties:
-        data:
-          type: number
-          format: double
-          example: 100
-        timestamp:
+        externalForecastVariableId:
           type: string
-          example: '2026-01-15T12:00:00Z'
-      required:
-      - data
-      - timestamp
-    forecast-data-ingestion_CalculatedVariableOutput:
-      type: object
-      properties:
-        extCalculatedVarId:
-          type: string
-          example: calc-var-1
+          example: var-1
         externalUnitId:
           type: string
           example: unit-1
         externalSectionId:
           type: string
           example: section-1
-        data:
+        dataPayLoad:
+          type: array
+          items:
+            $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataPayload'
+          writeOnly: true
+        dataPayload:
           type: array
           items:
             $ref: '#/components/schemas/forecast-data-ingestion_ForecastDataPayload'
